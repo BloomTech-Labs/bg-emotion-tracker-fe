@@ -58,9 +58,9 @@ function RenderHomePage(props) {
         <h1>Hi {userInfo.name}, Welcome.</h1>
         <p></p>
         <Dropdown overlay={menu}>
-          <Button>
-            <DownOutlined />
-          </Button>
+          {/* <Button> */}
+          <DownOutlined />
+          {/* </Button> */}
         </Dropdown>
       </StyledHomePage>
       <StyledData>
@@ -106,7 +106,6 @@ function RenderHomePage(props) {
         </Row>
         ,
       </StyledData>
-      <Button> Import CSV</Button>
     </>
   );
 }
