@@ -104,7 +104,7 @@ function RenderHomePage(props) {
             <Statistic title="Kids Logged" value={93} suffix="/ 100" />
           </Col>
         </Row>
-        ,
+        <Button> import CSV </Button>
       </StyledData>
     </>
   );
