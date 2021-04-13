@@ -31,12 +31,12 @@ const StyledHomePage = styled.header`
   }
 `;
 
-const StyledData = styled.body`
+const StyledData = styled.div`
   padding: 5%;
   margin: 2%;
 `;
 const menu = (
-  <Menu onClick={handleMenuClick}>
+  <Menu>
     <Menu.Item key="1" icon={<UserOutlined />}>
       Add User
     </Menu.Item>
@@ -48,9 +48,6 @@ const menu = (
     </Menu.Item>
   </Menu>
 );
-function handleMenuClick(e) {
-  console.log('click', e);
-}
 
 function RenderHomePage(props) {
   const { userInfo, authService } = props;
@@ -59,12 +56,7 @@ function RenderHomePage(props) {
       <StyledHomePage>
         <Avatar size="large" icon={<UserOutlined />} className="avatar" />
         <h1>Hi {userInfo.name}, Welcome.</h1>
-        <p>
-          <Button
-            handleClick={() => authService.logout()}
-            buttonText="Logout"
-          />
-        </p>
+        <p></p>
         <Dropdown overlay={menu}>
           <Button>
             <DownOutlined />
