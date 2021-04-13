@@ -2,16 +2,20 @@ import React from 'react';
 import QRCode from 'qrcode.react';
 
 const QRGenerator = props => {
-  let valueString = 'https://www.youtube.com/';
+  // de-constructor part
+  // const {valueString, documentId, downloadName} = props
+  const valueString = 'https://www.youtube.com/';
+  const documentId = 'qrcode-1';
+  const downloadName = 'qrcode-1.jpg';
 
   const downloadQR = () => {
-    const canvas = document.getElementById('qrcode-1');
+    const canvas = document.getElementById(documentId);
     const pngUrl = canvas
-      .toDataURL('image/png')
-      .replace('image/png', 'image/octet-stream');
-    let downloadLink = document.createElement('a');
+      .toDataURL('image/jpeg')
+      .replace('image/jpeg', 'image/octet-stream');
+    const downloadLink = document.createElement('a');
     downloadLink.href = pngUrl;
-    downloadLink.download = 'qrcode-1.png';
+    downloadLink.download = downloadName;
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
@@ -23,19 +27,10 @@ const QRGenerator = props => {
         id="qrcode-1"
         value={valueString}
         size={290}
-        //bgColor={'#ffffff'}
-        //fgColor={'#000000'}
+        bgColor={'#ffffff'}
+        fgColor={'#000000'}
         level={'H'}
         includeMargin={true}
-        //renderAs={'svg'}
-        /*imageSettings={{
-        src: 'https://static.zpao.com/favicon.png',
-        x: null,
-        y: null,
-        height: 24,
-        width: 24,
-        excavate: true,
-      }}*/
       />
       <button onClick={downloadQR}> Download QR</button>
     </div>
