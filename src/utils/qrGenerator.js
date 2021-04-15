@@ -4,7 +4,8 @@ import QRCode from 'qrcode.react';
 const QRGenerator = props => {
   // de-constructor part
   // const {valueString, documentId, downloadName} = props
-  const valueString = 'https://www.youtube.com/';
+  const valueString =
+    'https://www.youtube.com/watch?v=FbrUZhX_haQ&ab_channel=BadComedian';
   const documentId = 'qrcode-1';
   const downloadName = 'qrcode-1.jpg';
 
