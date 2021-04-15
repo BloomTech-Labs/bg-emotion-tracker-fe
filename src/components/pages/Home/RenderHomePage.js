@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import {
   Statistic,
@@ -50,7 +50,7 @@ const menu = (
 );
 
 function RenderHomePage(props) {
-  const { userInfo, authService } = props;
+  const { userInfo /*authService*/ } = props;
   return (
     <>
       <StyledHomePage>
