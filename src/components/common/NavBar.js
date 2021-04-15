@@ -18,15 +18,6 @@ const StyledNavBar = styled.header`
   h1 {
     margin: 1% auto;
   }
-
-  @media (min-width: 800px) {
-    .avatar,
-    h1,
-    button {
-      display: none;
-    }
-    height: 2rem;
-  }
 `;
 
 function hoverHandler() {}
