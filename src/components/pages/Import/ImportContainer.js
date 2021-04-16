@@ -1,12 +1,12 @@
 import React from 'react';
 
-import ImportKidsPage from './ImportKidsPage';
+import ImportButton from './ImportButton';
 
 // Container for import page
 const ImportContainer = () => {
   return (
     <div>
-      <ImportKidsPage />
+      <ImportButton />
     </div>
   );
 };
