@@ -1,12 +1,12 @@
 import React from 'react';
 
-import ImportButton from './ImportButton';
+import ImportModal from './ImportModal';
 
 // Container for import page
 const ImportContainer = () => {
   return (
     <div>
-      <ImportButton />
+      <ImportModal />
     </div>
   );
 };
