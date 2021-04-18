@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Modal, Button } from 'antd';
-import { parseCSV } from '../../../utils/parseCSV';
+import MemberList from './MemberList';
 
 import ImportUpload from './ImportUpload';
 // Might have to check if file is type csv
 // Import for kids csv
-const ImportModal = () => {
+const ImportModal = props => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [fileState, setFileState] = useState([]);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -37,7 +38,8 @@ const ImportModal = () => {
         </div>
         <div>
           <h3>Upload</h3>
-          <ImportUpload />
+          <MemberList listOfMembers={fileState} />
+          <ImportUpload fileState={fileState} setFileState={setFileState} />
         </div>
       </Modal>
     </>

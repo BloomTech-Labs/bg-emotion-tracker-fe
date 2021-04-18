@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Button } from 'antd';
-import MemberList from './MemberList';
-const ImportUpload = props => {
-  const [fileState, setFileState] = useState([]);
+
+const ImportUpload = ({ fileState, setFileState }) => {
   const onFormSubmit = () => {
     // upload data to server
     return;
@@ -10,6 +9,12 @@ const ImportUpload = props => {
 
   const onChange = e => {
     const file = e.target.files[0];
+    // Checking if correct file type
+    if (file.type !== 'text/csv') {
+      // Display wrong file format error
+      return;
+    }
+    console.warn(file);
     const reader = new FileReader();
     reader.readAsText(file);
     reader.onload = readerEvent => {
@@ -24,7 +29,6 @@ const ImportUpload = props => {
 
   return (
     <>
-      <MemberList listOfMembers={fileState} />
       <div onSubmit={onFormSubmit}>
         <input type="file" name="fileUplaod" onChange={e => onChange(e)} />
         <Button type="primary">Submit</Button>
