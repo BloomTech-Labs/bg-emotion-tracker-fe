@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import View from './View.js';
+import View from './ViewList.js';
 import NavBar from '../../common/NavBar.js';
 import { List } from '../../common';
+import { PageHeader } from 'antd';
 
 const Members = () => {
   const [members, setMembers] = useState({});
@@ -43,6 +44,11 @@ const Members = () => {
       <NavBar
         titleName="Manage Members"
         backgroundColor="rgba(0, 129, 198, 1)"
+      />
+      <PageHeader
+        className="site-page-header"
+        title="Members"
+        subTitle="Sorted by ID"
       />
       <List
         // Here we are passing our Axios request helper function as a callback.
