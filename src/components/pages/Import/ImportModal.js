@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import { Modal, Button } from 'antd';
+import { Modal, Button, Alert } from 'antd';
 import MemberList from './MemberList';
 
 import ImportUpload from './ImportUpload';
-// Might have to check if file is type csv
-// Import for kids csv
+
 const ImportModal = props => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [alertData, setAlertData] = useState({
+    isVisable: false,
+    type: 'success',
+    text: '',
+  });
   const [fileState, setFileState] = useState([]);
 
   const showModal = () => {
@@ -23,6 +27,20 @@ const ImportModal = props => {
     clearState();
   };
 
+  const showAlert = (text, type) => {
+    setAlertData({
+      isVisable: true,
+      type: [type],
+      text: [text],
+    });
+  };
+
+  const handleAlertClose = () => {
+    setAlertData({
+      ...alertData,
+      isVisable: false,
+    });
+  };
   const clearState = () => {
     setFileState([]);
     document.getElementById('file_form').reset();
@@ -40,13 +58,26 @@ const ImportModal = props => {
         onCancel={handleCancel}
         width={'60%'}
       >
+        {alertData.isVisable ? (
+          <Alert
+            message={alertData.text}
+            type={alertData.type}
+            closable
+            afterClose={handleAlertClose}
+          />
+        ) : null}
         <div>
           <h3>Add Individual Member</h3>
         </div>
         <div>
           <h3>Upload</h3>
           <MemberList listOfMembers={fileState} />
-          <ImportUpload fileState={fileState} setFileState={setFileState} />
+          <ImportUpload
+            fileState={fileState}
+            setFileState={setFileState}
+            showAlert={showAlert}
+            clearState={clearState}
+          />
         </div>
       </Modal>
     </>
