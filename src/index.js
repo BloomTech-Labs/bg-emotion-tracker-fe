@@ -11,7 +11,7 @@ import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import 'antd/dist/antd.less';
 
 import { NotFoundPage } from './components/pages/NotFound';
-import { ExampleListPage } from './components/pages/ExampleList';
+import { ViewMembers } from './components/pages/Members/';
 import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
 import { HomePage } from './components/pages/Home';
@@ -50,13 +50,13 @@ function App() {
         <Route path="/qrgenerator" component={QRCodeGenerator} />
         {/* any of the routes you need secured should be registered as SecureRoutes */}
         <SecureRoute
-          path="/"
           exact
+          path="/"
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
         />
-        <SecureRoute path="/example-list" component={ExampleListPage} />
-        <SecureRoute path="/profile-list" component={ProfileListPage} />
-        <SecureRoute path="/datavis" component={ExampleDataViz} />
+        <SecureRoute path="/manage-members" component={ViewMembers} />
+        <SecureRoute path="/manage-programs" component={ProfileListPage} />
+        <SecureRoute path="/manage-staff" component={ExampleDataViz} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>

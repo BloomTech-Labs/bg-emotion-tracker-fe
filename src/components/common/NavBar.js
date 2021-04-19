@@ -20,21 +20,26 @@ const StyledNavBar = styled.header`
   }
 `;
 
-function hoverHandler() {}
 const menu = (
   <Menu>
     <Menu.Item key="1" icon={<UserOutlined />}>
       Home
     </Menu.Item>
-    <Menu.Item key="2" icon={<UserOutlined />}>
-      Manage Members
-    </Menu.Item>
-    <Menu.Item key="3" icon={<UserOutlined />}>
-      Manage Programs
-    </Menu.Item>
-    <Menu.Item key="4" icon={<UserOutlined />}>
-      Manage Staff
-    </Menu.Item>
+    <Link to="manage-members">
+      <Menu.Item key="2" icon={<UserOutlined />}>
+        Manage Members
+      </Menu.Item>
+    </Link>
+    <Link to="manage-programs">
+      <Menu.Item key="3" icon={<UserOutlined />}>
+        Manage Programs
+      </Menu.Item>
+    </Link>
+    <Link to="manage-staff">
+      <Menu.Item key="4" icon={<UserOutlined />}>
+        Manage Staff
+      </Menu.Item>
+    </Link>
   </Menu>
 );
 

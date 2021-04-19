@@ -6,6 +6,7 @@ import { Card } from 'antd';
 
 const StyledHomePage = styled.header`
   display: flex;
+  flex-direction: column;
   margin: 10%;
   justify-content: center;
 `;
@@ -16,6 +17,7 @@ function RenderHomePage(props) {
     <>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
       <StyledHomePage>
+        <h2>Club Name</h2>
         <Card>Sample Data</Card>
       </StyledHomePage>
     </>
