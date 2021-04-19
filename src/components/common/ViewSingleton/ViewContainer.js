@@ -44,7 +44,29 @@ const menu = (
   </Menu>
 );
 
-function ViewMembers(props) {
+function ViewContainer(props) {
+  const source = props.viewData; //[]
+  /* Shape of data example for Activities
+  Props {
+    titleName: Activities,
+    viewData: [
+      {
+        id: "121e21ex12"
+        Name: "Dungeons and Dragons"
+        Role: ""
+        Desc: "Members get together to play the tabletop game D&D"
+        Location: "adsndjasn12" // Id of club
+      },
+      {
+        id: "121e21ex12"
+        Name: "Dungeons and Dragons"
+        Role: ""
+        Desc: "Members get together to play the tabletop game D&D"
+        Location: "adsndjasn12" // Id of club
+      },
+    ]
+  }
+  */
   return (
     <>
       <NavBar titleName={props.headerName} backgroundColor="royalblue" />
@@ -54,4 +76,4 @@ function ViewMembers(props) {
     </>
   );
 }
-export default ViewMembers;
+export default ViewContainer;
