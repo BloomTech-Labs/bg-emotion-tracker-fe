@@ -15,6 +15,10 @@ const ImportUpload = props => {
 
   const onChange = e => {
     const file = e.target.files[0];
+    // check if file in undefined, fixes case where user closes out of file selector
+    if (file === undefined) {
+      return;
+    }
     // Checking if correct file type
     if (file.type !== 'text/csv') {
       // Display wrong file format error
