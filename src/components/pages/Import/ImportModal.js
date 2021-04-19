@@ -62,6 +62,7 @@ const ImportModal = props => {
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
+        width={'70%'}
       >
         {alertData.isVisable ? (
           <Alert

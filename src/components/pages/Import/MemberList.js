@@ -5,23 +5,23 @@ const MemberList = ({ inputData }) => {
   let source = [];
 
   //Push all data to source
-  inputData.file.forEach(item => {
-    source.push(item);
-  });
   inputData.individual.forEach(item => {
     source.push(item);
   });
+  inputData.file.forEach(item => {
+    source.push(item);
+  });
+
   return (
     <List
-      grid={{
-        gutter: 16,
-        xs: 1,
-        sm: 2,
-        md: 4,
-        lg: 4,
-        xl: 6,
-        xxl: 3,
+      grid={{ gutter: 16, column: 4 }}
+      pagination={{
+        onChange: page => {
+          console.log(page);
+        },
+        pageSize: 20,
       }}
+      size="small"
       dataSource={source}
       renderItem={item => (
         <List.Item>

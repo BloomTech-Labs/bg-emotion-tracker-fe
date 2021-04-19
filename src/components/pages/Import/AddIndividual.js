@@ -15,8 +15,8 @@ const tailLayout = {
 
 export const AddIndividual = props => {
   const { inputData, setInputData, showAlert } = props;
+
   const onFinish = values => {
-    console.log('Success:', values.memberId);
     const newList = inputData.individual;
     newList.push(values.memberId);
     setInputData({

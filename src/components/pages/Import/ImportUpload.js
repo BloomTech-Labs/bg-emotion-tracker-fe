@@ -32,7 +32,7 @@ const ImportUpload = props => {
     reader.onload = readerEvent => {
       const members = readerEvent.target.result;
       console.warn(members);
-      const listOfMembers = members.match(/.{1,10}/g); // Splits input every 10 characters
+      const listOfMembers = members.match(/[^\r\n]+/g); // Splits input every 10 characters
       setInputData({
         ...inputData,
         file: listOfMembers,
