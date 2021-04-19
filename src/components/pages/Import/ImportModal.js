@@ -15,10 +15,17 @@ const ImportModal = props => {
 
   const handleOk = () => {
     setIsModalVisible(false);
+    clearState();
   };
 
   const handleCancel = () => {
     setIsModalVisible(false);
+    clearState();
+  };
+
+  const clearState = () => {
+    setFileState([]);
+    document.getElementById('file_form').reset();
   };
 
   return (

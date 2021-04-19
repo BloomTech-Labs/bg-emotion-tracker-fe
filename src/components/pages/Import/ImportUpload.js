@@ -29,10 +29,10 @@ const ImportUpload = ({ fileState, setFileState }) => {
 
   return (
     <>
-      <div onSubmit={onFormSubmit}>
+      <form id="file_form" onSubmit={onFormSubmit} className="submit_container">
         <input type="file" name="fileUplaod" onChange={e => onChange(e)} />
         <Button type="primary">Submit</Button>
-      </div>
+      </form>
     </>
   );
 };
