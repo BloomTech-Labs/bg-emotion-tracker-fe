@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button, Alert } from 'antd';
 import MemberList from './MemberList';
-
+import AddIndividual from './AddIndividual';
 import ImportUpload from './ImportUpload';
 
 const ImportModal = props => {
@@ -11,7 +11,10 @@ const ImportModal = props => {
     type: 'success',
     text: '',
   });
-  const [fileState, setFileState] = useState([]);
+  const [inputData, setInputData] = useState({
+    individual: [],
+    file: [],
+  });
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -42,7 +45,10 @@ const ImportModal = props => {
     });
   };
   const clearState = () => {
-    setFileState([]);
+    setInputData({
+      individual: [],
+      file: [],
+    });
     document.getElementById('file_form').reset();
   };
 
@@ -56,7 +62,6 @@ const ImportModal = props => {
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
-        width={'60%'}
       >
         {alertData.isVisable ? (
           <Alert
@@ -68,13 +73,17 @@ const ImportModal = props => {
         ) : null}
         <div>
           <h3>Add Individual Member</h3>
+          <AddIndividual
+            setInputData={setInputData}
+            inputData={inputData}
+            showAlert={showAlert}
+          />
+          <MemberList inputData={inputData} />
         </div>
         <div>
-          <h3>Upload</h3>
-          <MemberList listOfMembers={fileState} />
           <ImportUpload
-            fileState={fileState}
-            setFileState={setFileState}
+            inputData={inputData}
+            setInputData={setInputData}
             showAlert={showAlert}
             clearState={clearState}
           />

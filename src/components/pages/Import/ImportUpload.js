@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { Button } from 'antd';
 
-const ImportUpload = ({ fileState, setFileState, showAlert, clearState }) => {
+const ImportUpload = props => {
+  const { inputData, setInputData, showAlert, clearState } = props;
   const onFormSubmit = () => {
     // upload data to server
+
     // After Response show completed
     console.warn('submited');
     showAlert('Members successfully added', 'success');
@@ -25,12 +27,14 @@ const ImportUpload = ({ fileState, setFileState, showAlert, clearState }) => {
     reader.readAsText(file);
     reader.onload = readerEvent => {
       const members = readerEvent.target.result;
+      console.warn(members);
       const listOfMembers = members.match(/.{1,10}/g); // Splits input every 10 characters
-      setFileState(...fileState, listOfMembers);
+      setInputData({
+        ...inputData,
+        file: listOfMembers,
+      });
     };
   };
-
-  useEffect(() => {}, [fileState]);
 
   return (
     <>

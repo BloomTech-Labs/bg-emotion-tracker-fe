@@ -1,7 +1,16 @@
 import React from 'react';
 import { List } from 'antd';
 
-const MemberList = ({ listOfMembers }) => {
+const MemberList = ({ inputData }) => {
+  let source = [];
+
+  //Push all data to source
+  inputData.file.forEach(item => {
+    source.push(item);
+  });
+  inputData.individual.forEach(item => {
+    source.push(item);
+  });
   return (
     <List
       grid={{
@@ -13,7 +22,7 @@ const MemberList = ({ listOfMembers }) => {
         xl: 6,
         xxl: 3,
       }}
-      dataSource={listOfMembers}
+      dataSource={source}
       renderItem={item => (
         <List.Item>
           <List.Item.Meta title={item} />
