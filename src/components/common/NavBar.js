@@ -53,14 +53,22 @@ function NavBar(props) {
       <Menu.Item
         key="2"
         icon={<UserOutlined />}
-        onClick={() => history.push('/members')}
+        onClick={() => history.push('/manage-members')}
       >
         Manage Members
       </Menu.Item>
-      <Menu.Item key="3" icon={<CalendarOutlined />}>
+      <Menu.Item
+        key="3"
+        icon={<CalendarOutlined />}
+        onClick={() => history.push('manage-programs')}
+      >
         Manage Programs
       </Menu.Item>
-      <Menu.Item key="4" icon={<TeamOutlined />}>
+      <Menu.Item
+        key="4"
+        onClick={() => history.push('/manage-staff')}
+        icon={<TeamOutlined />}
+      >
         Manage Staff
       </Menu.Item>
     </Menu>
