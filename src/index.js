@@ -11,7 +11,7 @@ import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import 'antd/dist/antd.less';
 
 import { NotFoundPage } from './components/pages/NotFound';
-import { ViewMembers } from './components/pages/Members/';
+import { ViewSingleton } from './components/common/ViewSingleton';
 import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
 import { HomePage } from './components/pages/Home';
@@ -54,7 +54,9 @@ function App() {
           path="/"
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
         />
-        <SecureRoute path="/manage-members" component={ViewMembers} />
+        <SecureRoute path="/manage-members">
+          <ViewSingleton headerName="Manage Members" titleName="All Members" />
+        </SecureRoute>
         <SecureRoute path="/manage-programs" component={ProfileListPage} />
         <SecureRoute path="/manage-staff" component={ExampleDataViz} />
         <Route component={NotFoundPage} />
