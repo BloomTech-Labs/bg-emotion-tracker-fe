@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import styled from 'styled-components';
 import NavBar from '../../common/NavBar.js';
-import { PageHeader, Table, Tag, Space } from 'antd';
-import View from './ViewList.js';
 import ViewList from './ViewList.js';
 
 const sampleMembers = [
