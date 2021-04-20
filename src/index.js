@@ -20,6 +20,7 @@ import { ExampleDataViz } from './components/pages/ExampleDataViz';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 import { QRCodeGenerator } from './components/pages/QRCodeGenerator';
+import { QRCodeReader } from './components/pages/QRCodeReader';
 
 ReactDOM.render(
   <Router>
@@ -48,6 +49,7 @@ function App() {
         <Route path="/implicit/callback" component={LoginCallback} />
         <Route path="/landing" component={LandingPage} />
         <Route path="/qrgenerator" component={QRCodeGenerator} />
+        <Route path="/qrreader" component={QRCodeReader} />
         {/* any of the routes you need secured should be registered as SecureRoutes */}
         <SecureRoute
           path="/"
