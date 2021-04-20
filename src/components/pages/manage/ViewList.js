@@ -1,11 +1,17 @@
 import React from 'react';
 import { PageHeader, Table } from 'antd';
+import styled from 'styled-components';
+
+const StyledList = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+`;
 
 export default function ViewList(props) {
   const { title, sortedBy, columns, members } = props;
 
   return (
-    <div>
+    <StyledList>
       <PageHeader
         className="site-page-header"
         title={title}
@@ -17,6 +23,6 @@ export default function ViewList(props) {
         style={{ paddingLeft: 8 }}
         pagination={{ position: ['none', 'bottomRight'] }}
       />
-    </div>
+    </StyledList>
   );
 }
