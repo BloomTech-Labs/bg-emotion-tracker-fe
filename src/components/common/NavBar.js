@@ -20,14 +20,14 @@ const StyledNavBar = styled.header`
   text-align: center;
   img,
   .menu-container {
-    margin: 2%;
+    margin: 1rem;
   }
   .menu-container {
     text-align: left;
     width: 109px;
   }
   img {
-    height: 60px;
+    height: 5rem;
     width: auto;
   }
   h1 {
