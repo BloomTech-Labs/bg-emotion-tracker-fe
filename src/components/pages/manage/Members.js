@@ -36,10 +36,7 @@ const Members = () => {
 
   return (
     <div>
-      <NavBar
-        titleName="Manage Members"
-        backgroundColor="rgba(0, 129, 198, 1)"
-      />
+      <NavBar titleName="Manage Members" />
       <ViewList
         title="Members"
         sortedBy="ID"
