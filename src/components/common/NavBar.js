@@ -22,9 +22,11 @@ const StyledNavBar = styled.header`
 
 const menu = (
   <Menu>
-    <Menu.Item key="1" icon={<UserOutlined />}>
-      Home
-    </Menu.Item>
+    <Link to="/">
+      <Menu.Item key="1" icon={<UserOutlined />}>
+        Home
+      </Menu.Item>
+    </Link>
     <Link to="manage-members">
       <Menu.Item key="2" icon={<UserOutlined />}>
         Manage Members
@@ -45,7 +47,6 @@ const menu = (
 
 function NavBar(props) {
   const { userInfo, authService } = props;
-
   return (
     <>
       <StyledNavBar backgroundColor={props.backgroundColor}>
