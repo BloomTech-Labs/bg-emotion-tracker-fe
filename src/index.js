@@ -11,16 +11,15 @@ import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import 'antd/dist/antd.less';
 
 import { NotFoundPage } from './components/pages/NotFound';
-import { ViewSingleton } from './components/common/ViewSingleton';
-import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
 import { HomePage } from './components/pages/Home';
 import { LandingPage } from './components/pages/Landing';
-import { ExampleDataViz } from './components/pages/ExampleDataViz';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 import { QRCodeGenerator } from './components/pages/QRCodeGenerator';
-import Members from './components/pages/manage/Members';
+import { ViewMembers } from './components/pages/Members';
+import { ViewPrograms } from './components/pages/Programs';
+import { ViewStaff } from './components/pages/Staff';
 
 ReactDOM.render(
   <Router>
@@ -49,7 +48,6 @@ function App() {
         <Route path="/implicit/callback" component={LoginCallback} />
         <Route path="/landing" component={LandingPage} />
         <Route path="/qrgenerator" component={QRCodeGenerator} />
-        <Route path="/members" component={Members} />
         {/* any of the routes you need secured should be registered as SecureRoutes */}
         <SecureRoute
           exact
@@ -57,10 +55,14 @@ function App() {
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
         />
         <SecureRoute path="/manage-members">
-          <ViewSingleton headerName="Manage Members" titleName="All Members" />
+          <ViewMembers />
         </SecureRoute>
-        <SecureRoute path="/manage-programs" component={ProfileListPage} />
-        <SecureRoute path="/manage-staff" component={ExampleDataViz} />
+        <SecureRoute path="/manage-programs">
+          <ViewPrograms />
+        </SecureRoute>
+        <SecureRoute path="/manage-staff">
+          <ViewStaff />
+        </SecureRoute>
         <Route component={NotFoundPage} />
       </Switch>
     </Security>
