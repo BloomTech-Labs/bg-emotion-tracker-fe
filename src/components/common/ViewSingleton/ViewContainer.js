@@ -5,18 +5,10 @@ import NavBar from '../../common/NavBar';
 import { Card, Button, Table, Menu, Dropdown } from 'antd';
 import { Link } from 'react-router-dom';
 import { DownOutlined, UserOutlined } from '@ant-design/icons';
+import ViewList from './ViewList';
 
 const StyledView = styled.header`
   margin: 10%;
-  justify-content: center;
-  button {
-  }
-  h2,
-  button {
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-  }
 `;
 
 const menu = (
@@ -45,33 +37,14 @@ const menu = (
 );
 
 function ViewContainer(props) {
-  const source = props.viewData; //[]
-  /* Shape of data example for Activities
-  Props {
-    titleName: Activities,
-    viewData: [
-      {
-        id: "121e21ex12"
-        Name: "Dungeons and Dragons"
-        Role: ""
-        Desc: "Members get together to play the tabletop game D&D"
-        Location: "adsndjasn12" // Id of club
-      },
-      {
-        id: "121e21ex12"
-        Name: "Dungeons and Dragons"
-        Role: ""
-        Desc: "Members get together to play the tabletop game D&D"
-        Location: "adsndjasn12" // Id of club
-      },
-    ]
-  }
-  */
+  const source = props.viewData;
   return (
     <>
-      <NavBar titleName={props.headerName} backgroundColor="royalblue" />
+      <NavBar titleName={props.headerName} backgroundColor="#293845" />
       <StyledView>
         <h2>{props.titleName}</h2>
+        <Button> + </Button>
+        <ViewList />
       </StyledView>
     </>
   );
