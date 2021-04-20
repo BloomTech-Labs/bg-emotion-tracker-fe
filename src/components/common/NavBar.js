@@ -39,19 +39,25 @@ const menu = (
       <Menu.Item key="1" icon={<UserOutlined />}>
         Home
       </Menu.Item>
-    </Link>
-    <Link to="manage-members">
-      <Menu.Item key="2" icon={<UserOutlined />}>
+      <Menu.Item
+        key="2"
+        icon={<UserOutlined />}
+        onClick={() => history.push('/manage-members')}
+      >
         Manage Members
       </Menu.Item>
-    </Link>
-    <Link to="manage-programs">
-      <Menu.Item key="3" icon={<UserOutlined />}>
+      <Menu.Item
+        key="3"
+        icon={<CalendarOutlined />}
+        onClick={() => history.push('manage-programs')}
+      >
         Manage Programs
       </Menu.Item>
-    </Link>
-    <Link to="manage-staff">
-      <Menu.Item key="4" icon={<UserOutlined />}>
+      <Menu.Item
+        key="4"
+        onClick={() => history.push('/manage-staff')}
+        icon={<TeamOutlined />}
+      >
         Manage Staff
       </Menu.Item>
     </Link>
