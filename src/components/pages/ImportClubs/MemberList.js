@@ -4,14 +4,16 @@ import { List } from 'antd';
 const MemberList = ({ inputData }) => {
   let source = [];
 
-  //Push all data to source
+  //Push all input data to source
   inputData.individual.forEach(item => {
     source.push(item);
   });
   inputData.file.forEach(item => {
     source.push(item);
   });
-
+  /*
+    
+    */
   return (
     <List
       grid={{ gutter: 16, column: 4 }}

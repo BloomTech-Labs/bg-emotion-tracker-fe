@@ -14,16 +14,16 @@ const tailLayout = {
 };
 
 export const AddIndividual = props => {
-  const { inputData, setInputData, showAlert } = props;
+  const { inputData, setInputData } = props;
 
   const onFinish = values => {
+    console.warn(values);
     const newList = inputData.individual;
     newList.push(values.memberId);
     setInputData({
       ...inputData,
       individual: newList,
     });
-    console.log(inputData);
   };
 
   const onFinishFailed = errorInfo => {
@@ -43,16 +43,10 @@ export const AddIndividual = props => {
       <Form.Item
         label="Member ID"
         name="memberId"
-        rules={[
-          {
-            required: true,
-            message: 'Please input a valid ID',
-          },
-        ]}
+        rules={[{ required: true, message: 'Please a valid user id' }]}
       >
         <Input />
       </Form.Item>
-
       <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit">
           Add

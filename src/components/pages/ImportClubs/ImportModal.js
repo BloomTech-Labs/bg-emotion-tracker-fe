@@ -55,7 +55,7 @@ const ImportModal = props => {
   return (
     <>
       <Button type="primary" onClick={showModal}>
-        Add
+        Generate ID Cards
       </Button>
       <Modal
         title="Import Member"
@@ -73,7 +73,6 @@ const ImportModal = props => {
           />
         ) : null}
         <div>
-          <h3>Add Individual Member</h3>
           <AddIndividual
             setInputData={setInputData}
             inputData={inputData}

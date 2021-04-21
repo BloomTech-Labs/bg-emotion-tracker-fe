@@ -29,10 +29,11 @@ const ImportUpload = props => {
     }
     const reader = new FileReader();
     reader.readAsText(file);
+    // Runs after file is read
     reader.onload = readerEvent => {
+      // Getting members to list and appending to inputData
       const members = readerEvent.target.result;
-      console.warn(members);
-      const listOfMembers = members.match(/[^\r\n]+/g); // Splits input every 10 characters
+      const listOfMembers = members.match(/[^\r\n]+/g);
       setInputData({
         ...inputData,
         file: listOfMembers,
