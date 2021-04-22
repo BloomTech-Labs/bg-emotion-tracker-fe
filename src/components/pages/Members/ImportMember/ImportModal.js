@@ -21,7 +21,11 @@ const ImportModal = props => {
   };
 
   const handleOk = () => {
-    setIsModalVisible(false);
+    // upload data to server
+    // generate id cards
+    // After Response show completed
+    console.warn('submited');
+    showAlert('Members successfully added', 'success');
     clearState();
   };
 
@@ -63,6 +67,14 @@ const ImportModal = props => {
         onOk={handleOk}
         onCancel={handleCancel}
         width={'70%'}
+        footer={[
+          <Button key="back" onClick={handleCancel}>
+            Cancel
+          </Button>,
+          <Button key="submit" type="primary" onClick={handleOk}>
+            Generate
+          </Button>,
+        ]}
       >
         {alertData.isVisable ? (
           <Alert
@@ -73,14 +85,15 @@ const ImportModal = props => {
           />
         ) : null}
         <div>
+          <h2>Add Individual Member</h2>
           <AddIndividual
             setInputData={setInputData}
             inputData={inputData}
             showAlert={showAlert}
           />
-          <MemberList inputData={inputData} />
         </div>
         <div>
+          <h2>Upload Members</h2>
           <ImportUpload
             inputData={inputData}
             setInputData={setInputData}
@@ -88,6 +101,7 @@ const ImportModal = props => {
             clearState={clearState}
           />
         </div>
+        <MemberList inputData={inputData} />
       </Modal>
     </>
   );

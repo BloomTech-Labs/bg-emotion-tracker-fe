@@ -3,15 +3,6 @@ import { Button } from 'antd';
 
 const ImportUpload = props => {
   const { inputData, setInputData, showAlert, clearState } = props;
-  const onFormSubmit = () => {
-    // upload data to server
-
-    // After Response show completed
-    console.warn('submited');
-    showAlert('Members successfully added', 'success');
-    clearState();
-    return;
-  };
 
   const onChange = e => {
     const file = e.target.files[0];
@@ -45,9 +36,6 @@ const ImportUpload = props => {
     <>
       <form id="file_form" className="submit_container">
         <input type="file" name="fileUplaod" onChange={e => onChange(e)} />
-        <Button type="primary" onClick={onFormSubmit}>
-          Submit
-        </Button>
       </form>
     </>
   );
