@@ -2,19 +2,35 @@ import React from 'react';
 import { Document, Page, Text, Image, View } from '@react-pdf/renderer';
 
 const PDFcomponent = props => {
-  const { PDFImageId } = props;
+  const { PDFImageIds } = props;
 
-  const canvas = document.getElementById(PDFImageId);
-  const dataURL = canvas.toDataURL();
+  const IdsArray = [];
+
+  const resultArray = PDFImageIds.map(id => {
+    IdsArray.push(id);
+    return document.getElementById(id).toDataURL();
+  });
 
   return (
     <Document>
-      <Page>
-        <View>
-          <Text>My document data</Text>
-          <Image allowDangerousPaths src={dataURL} />
-        </View>
-      </Page>
+      {resultArray.map((dataURL, id) => {
+        return (
+          <Page
+            key={`PageId_${id}`}
+            size={'A10'}
+            style={{ backgroundColor: 'white' }}
+          >
+            <View style={{ display: 'inline' }}>
+              <Image
+                allowDangerousPaths
+                src={dataURL}
+                style={{ width: '50%' }}
+              />
+              <Text>{IdsArray[id]}</Text>
+            </View>
+          </Page>
+        );
+      })}
     </Document>
   );
 };
