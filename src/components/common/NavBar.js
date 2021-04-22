@@ -32,7 +32,7 @@ const StyledNavBar = styled.header`
   }
   h1 {
     color: white;
-    margin: 1% auto;
+    margin: 0;
   }
 `;
 

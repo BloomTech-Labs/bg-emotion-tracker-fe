@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { GenerateTable } from '../GenerateTable/';
 const StyledView = styled.header`
-  margin: 10%;
+  width: 1200px;
+  max-width: 90%;
+  margin: 3rem auto;
 `;
 
 function ViewContainer(props) {
