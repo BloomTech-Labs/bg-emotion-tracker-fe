@@ -55,7 +55,7 @@ const ImportModal = props => {
   return (
     <>
       <Button type="primary" onClick={showModal}>
-        Generate ID Cards
+        Add Clubs
       </Button>
       <Modal
         title="Import Member"
