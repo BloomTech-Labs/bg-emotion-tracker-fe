@@ -1,33 +1,21 @@
-# Basic SPA
+# Boys & Girls Club of Conejo Tracker Emotion Tracker
 
-For steps on how to work with this repository [please see here](https://docs.labs.lambdaschool.com/labs-spa-starter/)
-
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your first Pull-Request is merged. This is intended to be a guideline. Feel free to add your own flare to it.
-
-# Title of project goes here
-
-You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
+You can find the deployed project [here](https://b.bgexperiencetracker.dev/).
 
 ## Contributors
 
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
-
-|                                                      [Student 1](https://github.com/)                                                       |                                                       [Student 2](https://github.com/)                                                        |                                                      [Student 3](https://github.com/)                                                       |                                                       [Student 4](https://github.com/)                                                        |                                                      [Student 5](https://github.com/)                                                       |
-| :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: |
-| [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) |
-|                                [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                                |                            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)                             |                          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)                           |                          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)                           |                           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)                            |
-|                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                |                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                 |                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                |                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                 |                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                |
-
+| [Alexander Besse](https://github.com/AlexJoeb) | [Donavyn Haley](https://github.com/donavynhaley) | [Jordan Hanson](https://github.com/jordan-hanson) | [Jamie Jenks](https://github.com/Lukerdue) | [Sebastian Mendoza](https://github.com/sebass482) | [Iaroslav Mokroguz](https://github.com/maustrauk) | [Jacob Olness](https://github.com/jolness1) | [Leah Tabush](https://github.com/leahfern) |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| [<img src="https://avatars.githubusercontent.com/u/44859433?v=4" width = "200" />](https://github.com/AlexJoeb) | [<img src="https://avatars.githubusercontent.com/u/9630087?v=4" width = "200" />](https://github.com/donavynhaley) | [<img src="https://avatars.githubusercontent.com/u/57274530?v=4" width = "200" />](https://github.com/jordan-hanson) | [<img src="https://avatars.githubusercontent.com/u/61995130?v=4" width = "200" />](https://github.com/Lukerdue) | [<img src="https://avatars.githubusercontent.com/u/66289590?v=4" width="200" />](https://github.com/sebass482) | [<img src="https://avatars.githubusercontent.com/u/25729054?v=4" width="200" />](https://github.com/maustrauk) | [<img src="https://avatars.githubusercontent.com/u/1554076?v=4" width="200" />](https://github.com/jolness1) | [<img src="https://avatars.githubusercontent.com/u/73200321?v=4" width="200" />](https://github.com/leahfern) |
+| TPL | Front-End Engineer | Back-End Engineer | Back-End Engineer | Co-Design Lead | Front-End Engineer | Back-End Engineer | Co-Design Lead | 
+| [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/AlexJoeb) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/donavynhaley) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jordan-hanson) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Lukerdue) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/sebass482) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/maustrauk) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jolness1) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/leahfern) |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/alexander-besse/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/haley-d-90253ba8/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jordan-hanson-2a0346b1/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](http://linkedin.com/in/jamiejenksdev) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/sebastian-mendoza482/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/iaroslav-mokroguz-b1448b132/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jacob-olness/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/lft/) |
 <br>
 <br>
-
-🚫 Optional examples of using images with links for your tech stack, make sure to change these to fit your project
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
 ![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)
-
-🚫 more info on using badges [here](https://github.com/badges/shields)
 
 - Fork and clone the repo to install it as your own remote.
   - **note** please [be sure to set your remote](https://help.github.jp/enterprise/2.11/user/articles/changing-a-remote-s-url/) for this repo to point to your Labs Team Front End Repository.
@@ -38,17 +26,14 @@ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste
 
 ### Key Features
 
-- feature one
-- feature two
-- feature three
-- feature four
-- feature five
+- Batch or individual generation of printable ID cards with QR Codes
+- Batch or individual import of staff, programs and members parsed from .csv files
 
-#### Front end deployed to `🚫insert service here`
+#### Front end deployed to AWS
 
-#### [Back end](🚫link to back end repo here) built using:
+#### [Back end](https://github.com/Lambda-School-Labs/bg-emotion-tracker-be-b) built using:
 
-#### 🚫 back end framework goes here
+Java Spring
 
 - point one
 - point two
@@ -58,35 +43,24 @@ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste
 
 # APIs
 
-## Authentication API here
+## Okta Authentication
 
-🚫Replace text below with a description of the API
+The sign-in experience is one of the most important user experiences any app developer needs to consider. To provide a seamless and attractive, yet secure authentication experience is not a trivial task. Typically, the sign-in logic accompanies other features such as password reset and registration. More importantly, enhanced security in the form of strong and adaptive authentication during the sign-in process is often critical to many implementations.
 
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
+Okta provides many options for developers to handle the authentication experience that are built on top of the underlying feature set in Okta. Password policies, strong and adaptive authentication policies, and password reset workflow can all be configured easily in the administrator UI. Many of these policies can also be controlled through Okta's API.
 
-## Payment API here
-
-🚫Replace text below with a description of the API
-
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
-
-## Misc API here
-
-🚫Replace text below with a description of the API
-
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
+Okta provides OAuth 2.0 and OpenID Connect implementations, the Sign-In Widget, the Auth JS SDK, and the Authentication API.
 
 # Installation Instructions
 
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
+npm i
 
 ## Other Scripts
 
-🚫replace these examples with your own
-
     * build - creates a build of the application
     * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
+    * test - runs tests in **tests** directory
+    * eject - copy the configuration files and dependencies into the project so you have full control over them
 
 # Contributing
 
@@ -123,3 +97,4 @@ Remember that this project is licensed under the MIT license, and by submitting 
 ## Documentation
 
 See [Backend Documentation](🚫*link to your backend API SWAGGER DOCS here*) for details on the backend of our project.
+
