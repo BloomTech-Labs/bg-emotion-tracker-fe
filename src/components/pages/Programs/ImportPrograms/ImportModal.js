@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Button, Alert } from 'antd';
-import MemberList from './MemberList';
+import ProgramList from './ProgramList';
 import AddIndividual from './AddIndividual';
 import ImportUpload from './ImportUpload';
 
@@ -58,7 +58,7 @@ const ImportModal = props => {
         Add Programs
       </Button>
       <Modal
-        title="Import Member"
+        title="Add a Program"
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -73,20 +73,25 @@ const ImportModal = props => {
           />
         ) : null}
         <div>
+          <h2>Add a Single Program</h2>
           <AddIndividual
             setInputData={setInputData}
             inputData={inputData}
             showAlert={showAlert}
           />
-          <MemberList inputData={inputData} />
         </div>
         <div>
+          <h2>Add programs by .csv file</h2>
           <ImportUpload
             inputData={inputData}
             setInputData={setInputData}
             showAlert={showAlert}
             clearState={clearState}
           />
+        </div>
+        <div>
+          <h3>Preview</h3>
+          <ProgramList inputData={inputData} />
         </div>
       </Modal>
     </>

@@ -4,9 +4,9 @@ import { ImportPrograms } from './ImportPrograms';
 function ViewPrograms(props) {
   return (
     <ViewSingleton
-      headerName="Manage Programs"
-      titleName="All Programs"
+      headerName="Programs"
       RenderAddButton={ImportPrograms}
+      sortedBy="Name"
     />
   );
 }
