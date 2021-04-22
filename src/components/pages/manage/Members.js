@@ -13,19 +13,18 @@ const sampleMembers = [
   { id: 8, member_id: 'fhI1oatLsR' },
 ];
 
+const columns = [
+  {
+    title: 'Member ID',
+    dataIndex: 'member_id',
+    key: 'id',
+    render: text => <p>{text}</p>,
+  },
+];
 const Members = () => {
   const [members, setMembers] = useState([]);
   // //if add is true, modal is active;
   // const [add, setAdd] = useState(false);
-
-  const columns = [
-    {
-      title: 'Member ID',
-      dataIndex: 'member_id',
-      key: 'id',
-      render: text => <p>{text}</p>,
-    },
-  ];
 
   useEffect(() => {
     //get data from api
