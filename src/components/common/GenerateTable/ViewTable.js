@@ -11,7 +11,7 @@ const StyledView = styled.header`
   justify-content: space-between;
   align-items: center;
 `;
-export default function ViewList(props) {
+const ViewList = props => {
   const { title, sortedBy, columns, rows, RenderAddButton } = props;
 
   return (
@@ -22,7 +22,7 @@ export default function ViewList(props) {
           title={title}
           subTitle={`Sorted by ${sortedBy}`}
         />
-        <RenderAddButton />
+        {RenderAddButton == null ? null : <RenderAddButton />}
       </StyledView>
       <Table
         columns={columns}
@@ -32,4 +32,6 @@ export default function ViewList(props) {
       />
     </StyledList>
   );
-}
+};
+
+export default ViewList;

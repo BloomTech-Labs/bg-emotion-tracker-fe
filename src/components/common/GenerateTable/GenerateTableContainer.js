@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ViewTable from './ViewTable.js';
 
-const GenerateTable = props => {
+const GenerateTableContainer = props => {
   const [listData, setListData] = useState([]);
   const { rows, columns, tableName, RenderAddButton } = props;
 
@@ -25,7 +25,7 @@ const GenerateTable = props => {
   );
 };
 
-export default GenerateTable;
+export default GenerateTableContainer;
 // example props data for members
 /*
 const props = {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Button, Alert } from 'antd';
-import MemberList from './MemberList';
+import MemberTable from './MemberTable';
 import AddIndividual from './AddIndividual';
 import ImportUpload from './ImportUpload';
 
@@ -101,7 +101,7 @@ const ImportModal = props => {
             clearState={clearState}
           />
         </div>
-        <MemberList inputData={inputData} />
+        <MemberTable inputData={inputData} />
       </Modal>
     </>
   );

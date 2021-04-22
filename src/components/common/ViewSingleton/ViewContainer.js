@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
-import GenerateTable from './GenerateTable';
+import { GenerateTable } from '../GenerateTable/';
 const StyledView = styled.header`
   margin: 10%;
 `;
@@ -11,6 +11,7 @@ function ViewContainer(props) {
   return (
     <>
       <NavBar titleName={headerName} backgroundColor="#293845" />
+
       <StyledView>
         <GenerateTable
           rows={rows}
