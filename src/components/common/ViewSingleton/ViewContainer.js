@@ -7,7 +7,7 @@ const StyledView = styled.header`
 `;
 
 function ViewContainer(props) {
-  const { RenderAddButton, rows, columns, headerName } = props;
+  const { RenderAddButton, rows, columns, headerName, sortedBy } = props;
   return (
     <>
       <NavBar titleName={headerName} backgroundColor="#293845" />
@@ -18,6 +18,7 @@ function ViewContainer(props) {
           columns={columns}
           tableName={headerName}
           RenderAddButton={RenderAddButton}
+          sortedBy={sortedBy}
         />
       </StyledView>
     </>
