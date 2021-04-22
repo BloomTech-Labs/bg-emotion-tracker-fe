@@ -12,8 +12,12 @@ function ViewContainer(props) {
     <>
       <NavBar titleName={headerName} backgroundColor="#293845" />
       <StyledView>
-        <RenderAddButton />
-        <GenerateTable rows={rows} columns={columns} tableName={headerName} />
+        <GenerateTable
+          rows={rows}
+          columns={columns}
+          tableName={headerName}
+          RenderAddButton={RenderAddButton}
+        />
       </StyledView>
     </>
   );

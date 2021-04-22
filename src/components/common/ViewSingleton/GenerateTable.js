@@ -3,7 +3,7 @@ import ViewTable from './ViewTable.js';
 
 const GenerateTable = props => {
   const [listData, setListData] = useState([]);
-  const { rows, columns, tableName } = props;
+  const { rows, columns, tableName, RenderAddButton } = props;
 
   useEffect(() => {
     //get data from api
@@ -19,6 +19,7 @@ const GenerateTable = props => {
         sortedBy="ID"
         columns={columns}
         rows={rows}
+        RenderAddButton={RenderAddButton}
       />
     </div>
   );
