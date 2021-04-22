@@ -14,14 +14,6 @@ import { useHistory } from 'react-router';
 const StyledNavBar = styled.header`
   display: flex;
   justify-content: space-between;
-  margin: 0 auto;
-  background-color: ${props => props.backgroundColor};
-  text-align: center;
-  .avatar,
-  button {
-    margin: 2%;
-  }
-  h1 {
   align-items: center;
   margin: 0 auto;
   background-color: rgba(0, 129, 198, 1);
