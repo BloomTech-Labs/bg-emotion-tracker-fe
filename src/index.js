@@ -20,6 +20,7 @@ import { QRCodeGenerator } from './components/pages/QRCodeGenerator';
 import { ViewMembers } from './components/pages/Members';
 import { ViewPrograms } from './components/pages/Programs';
 import { ViewStaff } from './components/pages/Staff';
+import { ViewClubs } from './components/pages/Clubs';
 
 ReactDOM.render(
   <Router>
@@ -62,6 +63,9 @@ function App() {
         </SecureRoute>
         <SecureRoute path="/manage-staff">
           <ViewStaff />
+        </SecureRoute>
+        <SecureRoute path="/manage-clubs">
+          <ViewClubs />
         </SecureRoute>
         <Route component={NotFoundPage} />
       </Switch>
