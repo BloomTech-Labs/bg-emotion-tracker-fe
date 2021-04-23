@@ -26,7 +26,7 @@ const PDFcomponent = props => {
                 src={dataURL}
                 style={{ width: '50%' }}
               />
-              <Text>{IdsArray[id]}</Text>
+              <Text style={{ color: '#0081C6' }}>{IdsArray[id]}</Text>
             </View>
           </Page>
         );
