@@ -4,8 +4,8 @@ import PDFcomponent from './PDFcomponent';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 
 const QRCodeGenerator = props => {
+  const { valueStrings } = props;
   const downloadName = 'qrcodes';
-  const valueStrings = ['111112', '222223', '441243'];
 
   return (
     <div>
