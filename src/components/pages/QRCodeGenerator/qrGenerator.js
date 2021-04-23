@@ -14,6 +14,14 @@ const QRGenerator = props => {
         fgColor={'#000000'}
         level={'H'}
         includeMargin={true}
+        imageSettings={{
+          src: './BGLogo.png',
+          x: null,
+          y: null,
+          height: 50,
+          width: 50,
+          excavate: true,
+        }}
       />
     </div>
   );
