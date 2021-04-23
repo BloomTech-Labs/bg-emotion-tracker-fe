@@ -16,7 +16,6 @@ import { HomePage } from './components/pages/Home';
 import { LandingPage } from './components/pages/Landing';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
-import { QRCodeGenerator } from './components/pages/QRCodeGenerator';
 import { ViewMembers } from './components/pages/Members';
 import { ViewPrograms } from './components/pages/Programs';
 import { ViewStaff } from './components/pages/Staff';
@@ -48,7 +47,6 @@ function App() {
         <Route path="/login" component={LoginPage} />
         <Route path="/implicit/callback" component={LoginCallback} />
         <Route path="/landing" component={LandingPage} />
-        <Route path="/qrgenerator" component={QRCodeGenerator} />
         {/* any of the routes you need secured should be registered as SecureRoutes */}
         <SecureRoute
           exact
