@@ -8,7 +8,7 @@ const ImportUpload = props => {
 
     // After Response show completed
     console.warn('submited');
-    showAlert('Members successfully added', 'success');
+    showAlert('Programs successfully added', 'success');
     clearState();
     return;
   };
@@ -31,12 +31,12 @@ const ImportUpload = props => {
     reader.readAsText(file);
     // Runs after file is read
     reader.onload = readerEvent => {
-      // Getting members to list and appending to inputData
-      const members = readerEvent.target.result;
-      const listOfMembers = members.match(/[^\r\n]+/g);
+      // Getting programs to list and appending to inputData
+      const programs = readerEvent.target.result;
+      const listOfPrograms = programs.match(/[^\r\n]+/g);
       setInputData({
         ...inputData,
-        file: listOfMembers,
+        file: listOfPrograms,
       });
     };
   };

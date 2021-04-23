@@ -71,6 +71,7 @@ function ViewPrograms(props) {
       rows={rows}
       columns={columns}
       RenderAddButton={ImportPrograms}
+      sortedBy="Name"
     />
   );
 }

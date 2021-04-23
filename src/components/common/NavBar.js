@@ -20,7 +20,7 @@ const StyledNavBar = styled.header`
   text-align: center;
   img,
   .menu-container {
-    margin: 2%;
+    margin: 1.5rem;
   }
   .menu-container {
     text-align: left;
@@ -32,7 +32,7 @@ const StyledNavBar = styled.header`
   }
   h1 {
     color: white;
-    margin: 1% auto;
+    margin: 0;
   }
 `;
 

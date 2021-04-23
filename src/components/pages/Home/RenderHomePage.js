@@ -6,12 +6,11 @@ import { Card } from 'antd';
 
 const StyledHomePage = styled.header`
   display: flex;
-  <<<<<<<HEAD
-=======
   flex-direction: column;
-  >>>>>>>379b8094f3265ddeb4678d5174e3631d99d7540e
-  margin: 10%;
   justify-content: center;
+  width: 1200px;
+  max-width: 90%;
+  margin: 3rem auto;
 `;
 
 function RenderHomePage(props) {
