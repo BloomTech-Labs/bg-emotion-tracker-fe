@@ -13,7 +13,7 @@ const ProgramList = ({ inputData }) => {
         key: '1',
       },
       {
-        title: 'Club ID',
+        title: 'Club Name',
         dataIndex: 'clubId',
         render: text => <p>{text}</p>,
         key: '2',
