@@ -42,6 +42,7 @@ const MemberTable = ({ inputData }) => {
         rows={tableData.rows}
         columns={tableData.columns}
         sortedBy="ID"
+        tableName="Members"
         RenderAddButton={null}
       />
     </>

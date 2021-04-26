@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const StyledUpload = styled.div`
   .custom-file-upload {
     border: 1px solid #1890ff;
+    border-radius: 5px;
     display: inline-block;
     padding: 6px 12px;
     cursor: pointer;
@@ -40,11 +41,11 @@ const ImportUpload = props => {
     // Runs after file is read
     reader.onload = readerEvent => {
       // Getting members to list and appending to inputData
-      const members = readerEvent.target.result;
-      const listOfMembers = members.match(/[^\r\n]+/g);
+      const values = readerEvent.target.result;
+      const listOfValues = values.match(/[^\r\n]+/g); // Seperates by line break
       setInputData({
         ...inputData,
-        file: listOfMembers,
+        file: listOfValues,
       });
     };
   };
@@ -52,7 +53,7 @@ const ImportUpload = props => {
   return (
     <>
       <StyledUpload>
-        <label for="file-upload" class="custom-file-upload">
+        <label htmlFor="file-upload" className="custom-file-upload">
           Upload CSV
         </label>
 
