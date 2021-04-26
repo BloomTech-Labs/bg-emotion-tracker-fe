@@ -17,9 +17,8 @@ export const AddIndividual = props => {
   const { inputData, setInputData } = props;
 
   const onFinish = values => {
-    console.warn(values);
     const newList = inputData.individual;
-    newList.push(values.memberId);
+    newList.push(values.clubName);
     setInputData({
       ...inputData,
       individual: newList,
@@ -41,9 +40,9 @@ export const AddIndividual = props => {
       onFinishFailed={onFinishFailed}
     >
       <Form.Item
-        label="Member ID"
-        name="memberId"
-        rules={[{ required: true, message: 'Please a valid user id' }]}
+        label="Club Name"
+        name="clubName"
+        rules={[{ required: true, message: 'Please a valid club Name' }]}
       >
         <Input />
       </Form.Item>
