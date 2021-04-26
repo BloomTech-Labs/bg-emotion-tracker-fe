@@ -8,6 +8,8 @@ import {
   StyleSheet,
 } from '@react-pdf/renderer';
 
+import logo from './BGLogo.png';
+
 const PDFcomponent = props => {
   const { PDFImageIds } = props;
 
@@ -16,16 +18,24 @@ const PDFcomponent = props => {
   const styles = StyleSheet.create({
     page: {
       backgroundColor: 'white',
-      flexDirection: 'row',
+      display: 'block',
     },
     view: {
-      display: 'inline',
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
     },
-    image: {
-      width: '50%',
+    QRImage: {
+      width: '100%',
+      height: '100%',
     },
     text: {
       color: '#0081C6',
+      size: '11em',
+    },
+    logoImage: {
+      width: '50%',
+      height: '50%',
     },
   });
 
@@ -38,9 +48,12 @@ const PDFcomponent = props => {
     <Document>
       {resultArray.map((dataURL, id) => {
         return (
-          <Page key={`PageId_${id}`} size={'A10'} style={styles.page}>
+          <Page key={`PageId_${id}`} size={'A4'} style={styles.page}>
             <View style={styles.view}>
-              <Image allowDangerousPaths src={dataURL} style={styles.image} />
+              <Image allowDangerousPaths src={dataURL} style={styles.QRImage} />
+              <Image src={logo} style={styles.logoImage} />
+            </View>
+            <View style={styles.view}>
               <Text style={styles.text}>{IdsArray[id]}</Text>
             </View>
           </Page>
