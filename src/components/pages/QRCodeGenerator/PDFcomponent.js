@@ -48,7 +48,7 @@ const PDFcomponent = props => {
     <Document>
       {resultArray.map((dataURL, id) => {
         return (
-          <Page key={`PageId_${id}`} size={'A4'} style={styles.page}>
+          <Page key={`PageId_${id}`} size={'B8'} style={styles.page}>
             <View style={styles.view}>
               <Image allowDangerousPaths src={dataURL} style={styles.QRImage} />
               <Image src={logo} style={styles.logoImage} />
