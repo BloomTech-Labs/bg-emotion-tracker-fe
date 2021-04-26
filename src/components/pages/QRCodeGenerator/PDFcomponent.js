@@ -8,7 +8,7 @@ import {
   StyleSheet,
 } from '@react-pdf/renderer';
 
-import logo from './BGLogo.png';
+//import logo from './BGLogo.png';
 
 const PDFcomponent = props => {
   const { PDFImageIds } = props;
@@ -23,7 +23,8 @@ const PDFcomponent = props => {
     view: {
       display: 'flex',
       flexDirection: 'row',
-      justifyContent: 'space-between',
+      justifyContent: 'center',
+      width: '100%',
     },
     QRImage: {
       width: '100%',
@@ -51,7 +52,6 @@ const PDFcomponent = props => {
           <Page key={`PageId_${id}`} size={'B8'} style={styles.page}>
             <View style={styles.view}>
               <Image allowDangerousPaths src={dataURL} style={styles.QRImage} />
-              <Image src={logo} style={styles.logoImage} />
             </View>
             <View style={styles.view}>
               <Text style={styles.text}>{IdsArray[id]}</Text>
@@ -64,3 +64,10 @@ const PDFcomponent = props => {
 };
 
 export default PDFcomponent;
+
+//<Image src={logo} style={styles.logoImage} />
+/*
+<View style={styles.view}>
+              
+            </View>
+            */
