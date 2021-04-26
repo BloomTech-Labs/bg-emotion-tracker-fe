@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { GenerateTable } from '../../../common/GenerateTable';
+import { Table } from 'antd';
 
 const MemberTable = ({ inputData }) => {
   const [tableData, setTableData] = useState({
@@ -38,12 +38,11 @@ const MemberTable = ({ inputData }) => {
   };
   return (
     <>
-      <GenerateTable
-        rows={tableData.rows}
+      <Table
         columns={tableData.columns}
-        sortedBy="ID"
-        tableName="Members"
-        RenderAddButton={null}
+        dataSource={tableData.rows}
+        style={{ paddingLeft: 8 }}
+        pagination={{ position: ['none', 'bottomRight'] }}
       />
     </>
   );
