@@ -42,10 +42,20 @@ const ImportUpload = props => {
     reader.onload = readerEvent => {
       // Getting members to list and appending to inputData
       const values = readerEvent.target.result;
-      const listOfValues = values.match(/[^\r\n]+/g); // Seperates by line break
+      // Seperates by line break
+      const listOfValues = values.match(/[^\r\n]+/g);
+      // Seperate by comma
+      /*programName: , clubId */
+      const listOfValueObjects = [];
+      listOfValues.forEach(item => {
+        const items = item.match(/([^,]+)/g);
+        const newItem = { programName: items[0], clubId: items[1] };
+        listOfValueObjects.push(newItem);
+      });
+
       setInputData({
         ...inputData,
-        file: listOfValues,
+        file: listOfValueObjects,
       });
     };
   };
