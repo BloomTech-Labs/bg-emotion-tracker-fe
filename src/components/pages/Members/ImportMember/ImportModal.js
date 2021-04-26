@@ -53,7 +53,6 @@ const ImportModal = props => {
       individual: [],
       file: [],
     });
-    document.getElementById('file_form').reset();
   };
 
   return (
