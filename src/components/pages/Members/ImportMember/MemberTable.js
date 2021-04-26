@@ -41,7 +41,7 @@ const MemberTable = ({ inputData }) => {
       <GenerateTable
         rows={tableData.rows}
         columns={tableData.columns}
-        tableName={'Members'}
+        sortedBy="ID"
         RenderAddButton={null}
       />
     </>

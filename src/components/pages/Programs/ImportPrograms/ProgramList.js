@@ -49,7 +49,8 @@ const ProgramList = ({ inputData }) => {
       <GenerateTable
         rows={tableData.rows}
         columns={tableData.columns}
-        tableName={'Members'}
+        tableName="Programs"
+        sortedBy="Name"
         RenderAddButton={null}
       />
     </>
