@@ -9,19 +9,11 @@ const QRGenerator = props => {
       <QRCode
         id={documentId}
         value={valueString}
-        size={290}
+        size={128}
         bgColor={'#ffffff'}
         fgColor={'#000000'}
         level={'H'}
         includeMargin={true}
-        imageSettings={{
-          src: './BGLogo.png',
-          x: null,
-          y: null,
-          height: 50,
-          width: 50,
-          excavate: true,
-        }}
       />
     </div>
   );
