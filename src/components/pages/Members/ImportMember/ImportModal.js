@@ -100,6 +100,7 @@ const ImportModal = props => {
             clearState={clearState}
           />
         </div>
+        <h3>Preview</h3>
         <MemberTable inputData={inputData} />
       </Modal>
     </>

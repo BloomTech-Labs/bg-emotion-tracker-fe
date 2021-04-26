@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { List } from 'antd';
 import { Table } from 'antd';
 
 const ProgramList = ({ inputData }) => {
