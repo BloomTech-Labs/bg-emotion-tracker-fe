@@ -49,16 +49,17 @@ const ImportModal = props => {
     });
   };
 
-  const handleAlertClose = () => {
-    setAlertData({
-      ...alertData,
-      isVisable: false,
-    });
-  };
   const clearState = () => {
     setInputData({
       individual: [],
       file: [],
+    });
+    setValueStrings([]);
+    setGenerateQR(false);
+    setAlertData({
+      isVisable: false,
+      type: 'success',
+      text: '',
     });
   };
 
@@ -68,7 +69,7 @@ const ImportModal = props => {
         Generate ID Cards
       </Button>
       <Modal
-        title="Import Member"
+        title="Generate ID Cards"
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -83,17 +84,12 @@ const ImportModal = props => {
         ]}
       >
         {alertData.isVisable ? (
-          <Alert
-            message={alertData.text}
-            type={alertData.type}
-            closable
-            afterClose={handleAlertClose}
-          />
+          <Alert message={alertData.text} type={alertData.type} />
         ) : null}
         {/*QRCodeGenerator component*/
         generateQR ? <QRCodeGenerator valueStrings={valueStrings} /> : null}
         <div>
-          <h2>Add Individual Member</h2>
+          <h2>Generate Single ID Card</h2>
           <AddIndividual
             setInputData={setInputData}
             inputData={inputData}
@@ -101,7 +97,7 @@ const ImportModal = props => {
           />
         </div>
         <div>
-          <h2>Upload Members</h2>
+          <h2>Generate ID Cards from .csv Member List</h2>
           <ImportUpload
             inputData={inputData}
             setInputData={setInputData}
@@ -109,7 +105,7 @@ const ImportModal = props => {
             clearState={clearState}
           />
         </div>
-        <h3>Preview</h3>
+        <h2 style={{ 'margin-top': '2rem' }}>Preview</h2>
         <MemberTable inputData={inputData} />
       </Modal>
     </>

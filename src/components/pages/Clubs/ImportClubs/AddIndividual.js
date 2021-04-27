@@ -1,17 +1,8 @@
 import React from 'react';
 import { Form, Input, Button } from 'antd';
 
-const layout = {
-  wrapperCol: {
-    span: 16,
-  },
-};
-const tailLayout = {
-  wrapperCol: {
-    offset: 16,
-    span: 1,
-  },
-};
+const layout = {};
+const tailLayout = {};
 
 export const AddIndividual = props => {
   const { inputData, setInputData } = props;
@@ -31,13 +22,13 @@ export const AddIndividual = props => {
 
   return (
     <Form
-      {...layout}
       name="addIndividual"
       initialValues={{
         remember: true,
       }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
+      style={{ 'margin-bottom': '2rem' }}
     >
       <Form.Item
         label="Club Name"
@@ -46,7 +37,7 @@ export const AddIndividual = props => {
       >
         <Input />
       </Form.Item>
-      <Form.Item {...tailLayout}>
+      <Form.Item>
         <Button type="primary" htmlType="submit">
           Add
         </Button>

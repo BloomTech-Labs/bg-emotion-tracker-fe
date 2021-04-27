@@ -6,7 +6,7 @@ const StyledUpload = styled.div`
     border: 1px solid #1890ff;
     border-radius: 5px;
     display: inline-block;
-    padding: 6px 12px;
+    padding: 4px 15px;
     cursor: pointer;
     color: #fff;
     background: #0081c6;

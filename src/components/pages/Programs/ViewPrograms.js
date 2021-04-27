@@ -6,7 +6,7 @@ function ViewPrograms(props) {
   const { rows, columns } = props;
   return (
     <ViewSingleton
-      headerName="Manage Programs"
+      headerName="Programs"
       titleName="All Programs"
       rows={rows}
       columns={columns}

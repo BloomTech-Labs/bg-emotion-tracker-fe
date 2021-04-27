@@ -57,7 +57,7 @@ const ImportModal = props => {
         Add Programs
       </Button>
       <Modal
-        title="Add a Program"
+        title="Add Programs"
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -89,7 +89,7 @@ const ImportModal = props => {
           />
         </div>
         <div>
-          <h3>Preview</h3>
+          <h2 style={{ 'margin-top': '2rem' }}>Preview</h2>
           <ProgramList inputData={inputData} />
         </div>
       </Modal>

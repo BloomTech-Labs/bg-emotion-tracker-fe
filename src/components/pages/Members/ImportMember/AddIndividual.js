@@ -2,15 +2,15 @@ import React from 'react';
 import { Form, Input, Button } from 'antd';
 
 const layout = {
-  wrapperCol: {
-    span: 16,
-  },
+  // wrapperCol: {
+  //   span: 16,
+  // },
 };
 const tailLayout = {
-  wrapperCol: {
-    offset: 16,
-    span: 1,
-  },
+  // wrapperCol: {
+  //   offset: 16,
+  //   span: 1,
+  // },
 };
 
 export const AddIndividual = props => {
@@ -33,6 +33,7 @@ export const AddIndividual = props => {
   return (
     <Form
       {...layout}
+      layout="inline"
       name="addIndividual"
       initialValues={{
         remember: true,
@@ -44,6 +45,7 @@ export const AddIndividual = props => {
         label="Member ID"
         name="memberId"
         rules={[{ required: true, message: 'Please a valid user id' }]}
+        style={{ 'margin-bottom': '2rem' }}
       >
         <Input />
       </Form.Item>

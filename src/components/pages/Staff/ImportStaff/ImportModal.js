@@ -72,20 +72,25 @@ const ImportModal = props => {
           />
         ) : null}
         <div>
+          <h2>Add a Single Staff</h2>
           <AddIndividual
             setInputData={setInputData}
             inputData={inputData}
             showAlert={showAlert}
           />
-          <MemberList inputData={inputData} />
         </div>
         <div>
+          <h2>Add staff by .csv file</h2>
           <ImportUpload
             inputData={inputData}
             setInputData={setInputData}
             showAlert={showAlert}
             clearState={clearState}
           />
+        </div>
+        <div>
+          <h2>Preview</h2>
+          <MemberList inputData={inputData} />
         </div>
       </Modal>
     </>

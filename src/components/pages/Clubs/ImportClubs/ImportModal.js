@@ -56,7 +56,7 @@ const ImportModal = props => {
         Add Clubs
       </Button>
       <Modal
-        title="Import Member"
+        title="Add Clubs"
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}

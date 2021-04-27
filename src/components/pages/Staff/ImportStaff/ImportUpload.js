@@ -6,12 +6,13 @@ const StyledUpload = styled.div`
     border: 1px solid #1890ff;
     border-radius: 5px;
     display: inline-block;
-    padding: 6px 12px;
+    padding: 4px 15px;
     cursor: pointer;
     color: #fff;
     background: #0081c6;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
     box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+    margin-bottom: 2rem;
   }
 
   input[type='file'] {

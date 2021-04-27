@@ -5,9 +5,10 @@ function ViewClubs(props) {
   return (
     <>
       <ViewSingleton
-        headerName="Manage Clubs"
+        headerName="Clubs"
         titleName="All Clubs"
         RenderAddButton={ImportClubs}
+        sortedBy="Club Name"
       />
     </>
   );
