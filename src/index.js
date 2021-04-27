@@ -16,10 +16,13 @@ import { HomePage } from './components/pages/Home';
 import { LandingPage } from './components/pages/Landing';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
+import { QRCodeGenerator } from './components/pages/QRCodeGenerator';
+import { QRCodeReader } from './components/pages/QRCodeReader';
 import { ViewMembers } from './components/pages/Members';
 import { ViewPrograms } from './components/pages/Programs';
 import { ViewStaff } from './components/pages/Staff';
 import { ViewClubs } from './components/pages/Clubs';
+
 
 ReactDOM.render(
   <Router>
@@ -47,6 +50,9 @@ function App() {
         <Route path="/login" component={LoginPage} />
         <Route path="/implicit/callback" component={LoginCallback} />
         <Route path="/landing" component={LandingPage} />
+
+        <Route path="/qrgenerator" component={QRCodeGenerator} />
+        <Route path="/qrreader" component={QRCodeReader} />
         {/* any of the routes you need secured should be registered as SecureRoutes */}
         <SecureRoute
           exact
