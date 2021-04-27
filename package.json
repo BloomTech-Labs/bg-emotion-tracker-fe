@@ -12,6 +12,7 @@
     "antd": "^4.4.3",
     "axios": "^0.21.1",
     "craco-less": "^1.17.0",
+    "modern-react-qr-reader": "^1.0.12",
     "plotly.js": "^1.54.6",
     "qrcode.react": "^1.0.1",
     "react": "^16.13.1",

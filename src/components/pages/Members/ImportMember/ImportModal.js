@@ -3,6 +3,7 @@ import { Modal, Button, Alert } from 'antd';
 import MemberTable from './MemberTable';
 import AddIndividual from './AddIndividual';
 import ImportUpload from './ImportUpload';
+import { QRCodeGenerator } from '../../QRCodeGenerator';
 
 const ImportModal = props => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -15,6 +16,9 @@ const ImportModal = props => {
     individual: [],
     file: [],
   });
+  //QRCode generation and download hook
+  const [generateQR, setGenerateQR] = useState(false);
+  const [valueStrings, setValueStrings] = useState([]);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -27,6 +31,9 @@ const ImportModal = props => {
     console.warn('submited');
     showAlert('Members successfully added', 'success');
     clearState();
+    //QR Component
+    setGenerateQR(true);
+    setValueStrings(inputData.individual);
   };
 
   const handleCancel = () => {
@@ -83,6 +90,8 @@ const ImportModal = props => {
             afterClose={handleAlertClose}
           />
         ) : null}
+        {/*QRCodeGenerator component*/
+        generateQR ? <QRCodeGenerator valueStrings={valueStrings} /> : null}
         <div>
           <h2>Add Individual Member</h2>
           <AddIndividual
