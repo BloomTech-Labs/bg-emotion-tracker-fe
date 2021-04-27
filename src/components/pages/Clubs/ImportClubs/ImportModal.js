@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button, Alert } from 'antd';
-import MemberList from './MemberList';
+import ClubTable from './ClubTable';
 import AddIndividual from './AddIndividual';
-import ImportUpload from './ImportUpload';
 
 const ImportModal = props => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -77,16 +76,9 @@ const ImportModal = props => {
             inputData={inputData}
             showAlert={showAlert}
           />
-          <MemberList inputData={inputData} />
+          <ClubTable inputData={inputData} />
         </div>
-        <div>
-          <ImportUpload
-            inputData={inputData}
-            setInputData={setInputData}
-            showAlert={showAlert}
-            clearState={clearState}
-          />
-        </div>
+        <div></div>
       </Modal>
     </>
   );
