@@ -9,7 +9,7 @@ const QRGenerator = props => {
       <QRCode
         id={documentId}
         value={valueString}
-        size={290}
+        size={128}
         bgColor={'#ffffff'}
         fgColor={'#000000'}
         level={'H'}

@@ -20,7 +20,7 @@ const StyledNavBar = styled.header`
   text-align: center;
   img,
   .menu-container {
-    margin: 2%;
+    margin: 1.5rem;
   }
   .menu-container {
     text-align: left;
@@ -32,7 +32,7 @@ const StyledNavBar = styled.header`
   }
   h1 {
     color: white;
-    margin: 1% auto;
+    margin: 0;
   }
 `;
 
@@ -71,6 +71,13 @@ function NavBar(props) {
         onClick={() => history.push('/manage-staff')}
       >
         Manage Staff
+      </Menu.Item>
+      <Menu.Item
+        key="5"
+        icon={<TeamOutlined />}
+        onClick={() => history.push('/manage-clubs')}
+      >
+        Manage Clubs
       </Menu.Item>
     </Menu>
   );

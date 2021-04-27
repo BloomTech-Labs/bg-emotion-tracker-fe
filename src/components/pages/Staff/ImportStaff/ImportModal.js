@@ -1,23 +1,8 @@
 import React, { useState } from 'react';
-import { Modal, Button, Alert, Form, Input } from 'antd';
+import { Modal, Button, Alert } from 'antd';
 import MemberList from './MemberList';
 import AddIndividual from './AddIndividual';
 import ImportUpload from './ImportUpload';
-
-const layout = {
-  labelCol: {
-    span: 8,
-  },
-  wrapperCol: {
-    span: 16,
-  },
-};
-const tailLayout = {
-  wrapperCol: {
-    offset: 8,
-    span: 16,
-  },
-};
 
 const ImportModal = props => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -30,14 +15,6 @@ const ImportModal = props => {
     individual: [],
     file: [],
   });
-
-  const onFinish = values => {
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo);
-  };
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -78,7 +55,7 @@ const ImportModal = props => {
   return (
     <>
       <Button type="primary" onClick={showModal}>
-        Add
+        Add Staff
       </Button>
       <Modal
         title="Import Member"
@@ -87,33 +64,30 @@ const ImportModal = props => {
         onCancel={handleCancel}
         width={'70%'}
       >
-        <Form>
-          {alertData.isVisable ? (
-            <Alert
-              message={alertData.text}
-              type={alertData.type}
-              closable
-              afterClose={handleAlertClose}
-            />
-          ) : null}
-          <div>
-            <h3>Add Individual Member</h3>
-            <AddIndividual
-              setInputData={setInputData}
-              inputData={inputData}
-              showAlert={showAlert}
-            />
-            <MemberList inputData={inputData} />
-          </div>
-          <div>
-            <ImportUpload
-              inputData={inputData}
-              setInputData={setInputData}
-              showAlert={showAlert}
-              clearState={clearState}
-            />
-          </div>
-        </Form>
+        {alertData.isVisable ? (
+          <Alert
+            message={alertData.text}
+            type={alertData.type}
+            closable
+            afterClose={handleAlertClose}
+          />
+        ) : null}
+        <div>
+          <AddIndividual
+            setInputData={setInputData}
+            inputData={inputData}
+            showAlert={showAlert}
+          />
+          <MemberList inputData={inputData} />
+        </div>
+        <div>
+          <ImportUpload
+            inputData={inputData}
+            setInputData={setInputData}
+            showAlert={showAlert}
+            clearState={clearState}
+          />
+        </div>
       </Modal>
     </>
   );
