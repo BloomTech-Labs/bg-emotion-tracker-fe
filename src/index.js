@@ -12,6 +12,7 @@ import 'antd/dist/antd.less';
 
 import { NotFoundPage } from './components/pages/NotFound';
 import { LoginPage } from './components/pages/Login';
+import { Logout } from './components/common/Logout';
 import { HomePage } from './components/pages/Home';
 import { LandingPage } from './components/pages/Landing';
 import { config } from './utils/oktaConfig';
@@ -22,7 +23,6 @@ import { ViewMembers } from './components/pages/Members';
 import { ViewPrograms } from './components/pages/Programs';
 import { ViewStaff } from './components/pages/Staff';
 import { ViewClubs } from './components/pages/Clubs';
-
 
 ReactDOM.render(
   <Router>
@@ -48,6 +48,7 @@ function App() {
     <Security {...config} onAuthRequired={authHandler}>
       <Switch>
         <Route path="/login" component={LoginPage} />
+        <Route path="/logout" component={Logout} />
         <Route path="/implicit/callback" component={LoginCallback} />
         <Route path="/landing" component={LandingPage} />
 
