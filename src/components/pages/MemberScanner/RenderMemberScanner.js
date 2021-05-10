@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 //import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
@@ -16,9 +16,11 @@ const StyledMemberScanner = styled.header`
 function RenderMemberScanner(props) {
   const { userInfo /*authService*/ } = props;
 
+  const [QRdata, setQRdata] = useState('None');
+
   const handleScan = data => {
     if (data) {
-      console.log(data);
+      setQRdata(data);
     }
   };
 
@@ -28,6 +30,7 @@ function RenderMemberScanner(props) {
       <StyledMemberScanner>
         <h2>Scaner</h2>
         <QRCodeReader handleScan={handleScan} />
+        <p>{QRdata}</p>
       </StyledMemberScanner>
     </>
   );
