@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-//import { Link } from 'react-router-dom';
+import { Button } from 'antd';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { QRCodeReader } from '../QRCodeReader';
@@ -14,8 +14,6 @@ const StyledMemberScanner = styled.header`
 `;
 
 function RenderMemberScanner(props) {
-  const { userInfo /*authService*/ } = props;
-
   const [QRdata, setQRdata] = useState('None');
 
   const handleScan = data => {
@@ -24,6 +22,8 @@ function RenderMemberScanner(props) {
     }
   };
 
+  const onClick = () => {};
+
   return (
     <>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
@@ -31,6 +31,9 @@ function RenderMemberScanner(props) {
         <h2>Scaner</h2>
         <QRCodeReader handleScan={handleScan} />
         <p>{QRdata}</p>
+        <Button type="primary" onClick={onClick}>
+          Submit
+        </Button>
       </StyledMemberScanner>
     </>
   );
