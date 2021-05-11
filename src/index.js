@@ -58,7 +58,7 @@ function App() {
         {/*Member scaner test*/}
         <SecureRoute
           exact
-          path="/scaner"
+          path="/scanner"
           component={() => (
             <MemberScanner LoadingComponent={LoadingComponent} />
           )}
