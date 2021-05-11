@@ -32,7 +32,7 @@ function RenderMemberScanner(props) {
     <>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
       <StyledMemberScanner>
-        <h2>Scaner</h2>
+        <h2>Scanner</h2>
         <QRCodeReader handleScan={handleScan} />
         <p>{QRdata}</p>
         <Button type="primary" onClick={onClick}>
