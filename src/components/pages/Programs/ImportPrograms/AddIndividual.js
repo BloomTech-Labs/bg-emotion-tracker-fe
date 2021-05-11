@@ -8,7 +8,7 @@ const layout = {
 };
 const tailLayout = {
   wrapperCol: {
-    offset: 16,
+    offset: 0,
     span: 1,
   },
 };
@@ -48,9 +48,9 @@ export const AddIndividual = props => {
         <Input />
       </Form.Item>
       <Form.Item
-        label="Club ID"
+        label="Club Name"
         name="clubId"
-        rules={[{ required: true, message: 'Please enter a valid club ID' }]}
+        rules={[{ required: true, message: 'Please enter a valid club name' }]}
       >
         <Input />
       </Form.Item>

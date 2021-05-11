@@ -19,7 +19,7 @@
     "react-dom": "^16.13.1",
     "react-plotly.js": "^2.4.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^4.0.3",
     "styled-components": "^5.2.3"
   },
   "scripts": {
@@ -70,11 +70,11 @@
     ]
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^5.3.19",
-    "@storybook/addon-knobs": "^5.3.19",
-    "@storybook/addon-notes": "^5.3.19",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-knobs": "^6.2.9",
+    "@storybook/addon-notes": "^4.1.18",
     "@storybook/addons": "^5.3.19",
-    "@storybook/react": "^5.3.19",
+    "@storybook/react": "^6.2.9",
     "@storybook/storybook-deployer": "^2.8.6",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^10.2.1",

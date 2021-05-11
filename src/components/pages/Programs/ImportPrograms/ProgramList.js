@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { List } from 'antd';
-import { GenerateTable } from '../../../common/GenerateTable';
+import { Table } from 'antd';
 
 const ProgramList = ({ inputData }) => {
   const [tableData, setTableData] = useState({
@@ -13,7 +12,7 @@ const ProgramList = ({ inputData }) => {
         key: '1',
       },
       {
-        title: 'Club ID',
+        title: 'Club Name',
         dataIndex: 'clubId',
         render: text => <p>{text}</p>,
         key: '2',
@@ -46,11 +45,11 @@ const ProgramList = ({ inputData }) => {
   };
   return (
     <>
-      <GenerateTable
-        rows={tableData.rows}
+      <Table
         columns={tableData.columns}
-        tableName={'Members'}
-        RenderAddButton={null}
+        dataSource={tableData.rows}
+        style={{ paddingLeft: 8 }}
+        pagination={{ position: ['none', 'bottomRight'] }}
       />
     </>
   );
