@@ -1,25 +1,15 @@
 import React from 'react';
 import { Form, Input, Button } from 'antd';
 
-const layout = {
-  wrapperCol: {
-    span: 16,
-  },
-};
-const tailLayout = {
-  wrapperCol: {
-    offset: 16,
-    span: 1,
-  },
-};
+const layout = {};
+const tailLayout = {};
 
 export const AddIndividual = props => {
   const { inputData, setInputData } = props;
 
   const onFinish = values => {
-    console.warn(values);
     const newList = inputData.individual;
-    newList.push(values.memberId);
+    newList.push(values.clubName);
     setInputData({
       ...inputData,
       individual: newList,
@@ -32,22 +22,22 @@ export const AddIndividual = props => {
 
   return (
     <Form
-      {...layout}
       name="addIndividual"
       initialValues={{
         remember: true,
       }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
+      style={{ 'margin-bottom': '2rem' }}
     >
       <Form.Item
-        label="Member ID"
-        name="memberId"
-        rules={[{ required: true, message: 'Please a valid user id' }]}
+        label="Club Name"
+        name="clubName"
+        rules={[{ required: true, message: 'Please a valid club Name' }]}
       >
         <Input />
       </Form.Item>
-      <Form.Item {...tailLayout}>
+      <Form.Item>
         <Button type="primary" htmlType="submit">
           Add
         </Button>
