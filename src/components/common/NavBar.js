@@ -5,6 +5,7 @@ import {
   MenuOutlined,
   UserOutlined,
   TeamOutlined,
+  LogoutOutlined,
   LineChartOutlined,
   CalendarOutlined,
 } from '@ant-design/icons';
@@ -78,6 +79,13 @@ function NavBar(props) {
         onClick={() => history.push('/manage-clubs')}
       >
         Manage Clubs
+      </Menu.Item>
+      <Menu.Item
+        key="5"
+        icon={<LogoutOutlined />}
+        onClick={() => history.push('/logout')}
+      >
+        Log Out
       </Menu.Item>
     </Menu>
   );
