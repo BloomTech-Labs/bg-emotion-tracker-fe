@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from 'antd';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
@@ -22,7 +23,10 @@ function RenderMemberScanner(props) {
     }
   };
 
-  const onClick = () => {};
+  const onClick = e => {
+    e.preventDefault();
+    console.log('Redirected');
+  };
 
   return (
     <>
@@ -32,7 +36,7 @@ function RenderMemberScanner(props) {
         <QRCodeReader handleScan={handleScan} />
         <p>{QRdata}</p>
         <Button type="primary" onClick={onClick}>
-          Submit
+          <Link to="/manage-members">Submit</Link>
         </Button>
       </StyledMemberScanner>
     </>
