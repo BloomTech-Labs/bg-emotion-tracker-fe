@@ -90,7 +90,7 @@ const ImportModal = props => {
           />
         </div>
         <div>
-          <h3>Preview</h3>
+          {/* <h3>Preview</h3> */}
           <ProgramList inputData={inputData} />
         </div>
       </Modal>

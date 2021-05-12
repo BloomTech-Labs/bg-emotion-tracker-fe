@@ -1,25 +1,53 @@
 import React, { useState, useEffect } from 'react';
-import { List } from 'antd';
+// import { List } from 'antd';
 import { GenerateTable } from '../../../common/GenerateTable';
+import axios from 'axios';
+import { baseUrl } from '../../../../api/index';
+// const baseUrl = "http://localhost:2019";
+
+const clubid = 20;
+// this will be handled in context state, hard coded for testing now.
+
+const initialTableData = {
+  rows: [],
+  columns: [
+    {
+      title: 'Program Name',
+      dataIndex: 'programName',
+      render: text => <p>{text}</p>,
+      key: '1',
+    },
+    {
+      title: 'Club ID',
+      dataIndex: 'clubId',
+      render: text => <p>{text}</p>,
+      key: '2',
+    },
+  ],
+};
 
 const ProgramList = ({ inputData }) => {
-  const [tableData, setTableData] = useState({
-    rows: [],
-    columns: [
-      {
-        title: 'Program Name',
-        dataIndex: 'programName',
-        render: text => <p>{text}</p>,
-        key: '1',
-      },
-      {
-        title: 'Club ID',
-        dataIndex: 'clubId',
-        render: text => <p>{text}</p>,
-        key: '2',
-      },
-    ],
-  });
+  const [activities, setActivities] = useState([]);
+  const [tableData, setTableData] = useState(initialTableData);
+
+  function fetchActivities() {
+    let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
+    axios
+      .get(`${baseUrl}/clubs/clubs`, {
+        headers: {
+          Authorization: `Bearer ${tokenObj.accessToken.accessToken}`,
+        },
+      })
+      .then(res => setActivities(res.data))
+      .catch(e => console.log(e));
+  }
+  // on component mount, stores programs data to state.
+  // From there, data can be pruned and displayed as desired.
+  // If data becomes too large, may need to handle pruning in this call.
+
+  useEffect(() => {
+    fetchActivities();
+  }, []);
 
   useEffect(() => {
     //get data from api
