@@ -22,6 +22,10 @@ import { ViewPrograms } from './components/pages/Programs';
 import { ViewStaff } from './components/pages/Staff';
 import { ViewClubs } from './components/pages/Clubs';
 import { MemberScanner } from './components/pages/MemberScanner';
+import { ClubSelect } from './components/pages/ClubSelect';
+import { ActivitySelect } from './components/pages/ActivitySelect';
+import { EmojiSelectCheck } from './components/pages/EmojiSelectCheck';
+import { EmojiConfirmRedirect } from './components/pages/EmojiConfirmRedirect';
 
 ReactDOM.render(
   <Router>
@@ -63,6 +67,36 @@ function App() {
           path="/scanner"
           component={() => (
             <MemberScanner LoadingComponent={LoadingComponent} />
+          )}
+        />
+
+        <SecureRoute
+          exact
+          path="/club-select"
+          component={() => <ClubSelect LoadingComponent={LoadingComponent} />}
+        />
+
+        <SecureRoute
+          exact
+          path="/activity-select"
+          component={() => (
+            <ActivitySelect LoadingComponent={LoadingComponent} />
+          )}
+        />
+
+        <SecureRoute
+          exact
+          path="/emoji-selectcheck"
+          component={() => (
+            <EmojiSelectCheck LoadingComponent={LoadingComponent} />
+          )}
+        />
+
+        <SecureRoute
+          exact
+          path="/emoji-confirm-redirect"
+          component={() => (
+            <EmojiConfirmRedirect LoadingComponent={LoadingComponent} />
           )}
         />
 
