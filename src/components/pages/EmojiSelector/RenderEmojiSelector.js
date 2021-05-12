@@ -1,10 +1,8 @@
 import React from 'react';
-//import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
-import { Card } from 'antd';
 
-const StyledHomePage = styled.header`
+const StyledEmojiSelector = styled.header`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,16 +11,14 @@ const StyledHomePage = styled.header`
   margin: 3rem auto;
 `;
 
-function RenderHomePage(props) {
-  const { userInfo /*authService*/ } = props;
+function RenderEmojiSelector(props) {
   return (
     <>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
-      <StyledHomePage>
-        <h2>Club Name</h2>
-        <Card>Sample Data</Card>
-      </StyledHomePage>
+      <StyledEmojiSelector>
+        <h2>Emoji Selector</h2>
+      </StyledEmojiSelector>
     </>
   );
 }
-export default RenderHomePage;
+export default RenderEmojiSelector;
