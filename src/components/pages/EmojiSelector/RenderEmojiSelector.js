@@ -12,11 +12,14 @@ const StyledEmojiSelector = styled.header`
 `;
 
 function RenderEmojiSelector(props) {
+  const locationState = props.pageProps.history.location.state;
+
   return (
     <>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
       <StyledEmojiSelector>
         <h2>Emoji Selector</h2>
+        {locationState ? <p>Choose emoji</p> : <p>Use scanner first</p>}
       </StyledEmojiSelector>
     </>
   );
