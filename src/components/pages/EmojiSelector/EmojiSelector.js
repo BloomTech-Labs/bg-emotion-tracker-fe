@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 
-import RenderHomePage from './RenderEmojiSelector';
+import RenderEmojiSelector from './RenderEmojiSelector';
 
-function EmojiSelector({ LoadingComponent }) {
+function EmojiSelector(props) {
   const { authService } = useOktaAuth();
   const [userInfo] = useState(null);
 
   return (
     <>
-      <RenderHomePage userInfo={userInfo} authService={authService} />
+      <RenderEmojiSelector userInfo={userInfo} authService={authService} />
     </>
   );
 }
