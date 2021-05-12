@@ -22,6 +22,7 @@ import { ViewPrograms } from './components/pages/Programs';
 import { ViewStaff } from './components/pages/Staff';
 import { ViewClubs } from './components/pages/Clubs';
 import { MemberScanner } from './components/pages/MemberScanner';
+import { EmojiSelector } from './components/pages/EmojiSelector';
 
 ReactDOM.render(
   <Router>
@@ -64,6 +65,12 @@ function App() {
           component={() => (
             <MemberScanner LoadingComponent={LoadingComponent} />
           )}
+        />
+
+        {/* Emoji Selector test */}
+        <SecureRoute
+          path="/emojiselector"
+          render={props => <EmojiSelector {...props} />}
         />
 
         <SecureRoute path="/manage-members">
