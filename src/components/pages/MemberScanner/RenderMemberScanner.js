@@ -45,7 +45,14 @@ function RenderMemberScanner(props) {
         {scanStatus ? 'Scan successful' : 'Not scanned yet'}
         {scanError ? 'Some error happens' : null}
         <Button type="primary" onClick={onClick}>
-          <Link to="/manage-members">Submit</Link>
+          <Link
+            to={{
+              pathname: '/emojiselector',
+              state: { QRdata: QRdata },
+            }}
+          >
+            Submit
+          </Link>
         </Button>
       </StyledMemberScanner>
     </>
