@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Button } from 'antd';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
@@ -31,11 +31,6 @@ function RenderMemberScanner(props) {
     }
   };
 
-  const onClick = e => {
-    e.preventDefault();
-    console.log('Redirected');
-  };
-
   return (
     <>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
@@ -44,16 +39,14 @@ function RenderMemberScanner(props) {
         <QRCodeReader handleScan={handleScan} handleError={handleError} />
         {scanStatus ? 'Scan successful' : 'Not scanned yet'}
         {scanError ? 'Some error happens' : null}
-        <Button type="primary" onClick={onClick}>
-          <Link
+        {scanStatus ? (
+          <Redirect
             to={{
               pathname: '/emojiselector',
               state: { QRdata: QRdata },
             }}
-          >
-            Submit
-          </Link>
-        </Button>
+          />
+        ) : null}
       </StyledMemberScanner>
     </>
   );
