@@ -37,8 +37,8 @@ function RenderMemberScanner(props) {
       <StyledMemberScanner>
         <h2>Scanner</h2>
         <QRCodeReader handleScan={handleScan} handleError={handleError} />
-        {scanStatus ? 'Scan successful' : 'Not scanned yet'}
-        {scanError ? 'Some error happens' : null}
+        {scanStatus ? <p>Scan successful</p> : <p>Not scanned yet</p>}
+        {scanError ? <p>Some error happens</p> : null}
         {scanStatus ? (
           <Redirect
             to={{
