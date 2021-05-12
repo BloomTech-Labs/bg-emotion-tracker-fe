@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const baseUrl = 'https://bg-emotion-tracker-be-b.herokuapp.com';
+
 // we will define a bunch of API calls here.
 const apiUrl = `${process.env.REACT_APP_API_URI}/profiles`;
 
@@ -49,4 +51,4 @@ const getProfileData = authState => {
   }
 };
 
-export { sleep, getExampleData, getProfileData, getDSData };
+export { sleep, getExampleData, getProfileData, getDSData, baseUrl };
