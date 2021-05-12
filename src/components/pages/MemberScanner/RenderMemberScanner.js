@@ -4,6 +4,7 @@ import { Button } from 'antd';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { QRCodeReader } from '../QRCodeReader';
+import ManualMemberInput from './ManualMemberInput';
 
 const StyledMemberScanner = styled.header`
   display: flex;
@@ -47,6 +48,10 @@ function RenderMemberScanner(props) {
             }}
           />
         ) : null}
+        <ManualMemberInput
+          setQRdata={setQRdata}
+          setScanStatus={setScanStatus}
+        />
       </StyledMemberScanner>
     </>
   );
