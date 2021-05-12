@@ -5,11 +5,11 @@ import axios from 'axios';
 import { baseUrl } from '../../../../api/index';
 // const baseUrl = "http://localhost:2019";
 
-const clubid = 20;
+const userClubId = 20;
 // this will be handled in context state, hard coded for testing now.
 
 const initialTableData = {
-  rows: [],
+  rows: [{ programName: 'Sample Name', clubId: '20' }],
   columns: [
     {
       title: 'Program Name',
@@ -38,7 +38,14 @@ const ProgramList = ({ inputData }) => {
           Authorization: `Bearer ${tokenObj.accessToken.accessToken}`,
         },
       })
-      .then(res => setActivities(res.data))
+      .then(res =>
+        userClubId === 0
+          ? setActivities(res.data)
+          : setActivities(
+              // res.data
+              res.data.filter(club => club.clubid === userClubId)
+            )
+      )
       .catch(e => console.log(e));
   }
   // on component mount, stores programs data to state.
@@ -48,13 +55,6 @@ const ProgramList = ({ inputData }) => {
   useEffect(() => {
     fetchActivities();
   }, []);
-
-  useEffect(() => {
-    //get data from api
-    //then setListData to the data returned
-    //until back-end is built, using rows data
-    dataToTable();
-  }, [inputData]);
 
   const dataToTable = () => {
     //Add Rows
