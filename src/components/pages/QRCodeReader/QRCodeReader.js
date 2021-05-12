@@ -2,11 +2,7 @@ import React from 'react';
 import QrReader from 'modern-react-qr-reader';
 
 const QRCodeReader = props => {
-  const { handleScan } = props;
-
-  const handleError = err => {
-    console.error(err);
-  };
+  const { handleScan, handleError } = props;
 
   return (
     <div>
