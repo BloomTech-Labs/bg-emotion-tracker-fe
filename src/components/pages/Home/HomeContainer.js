@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 
 import RenderHomePage from './RenderHomePage';
+import { getProfileData } from '../../../api';
+import { userContext } from '../../../state/contexts/index';
 
 function HomeContainer({ LoadingComponent }) {
   const { authState, authService } = useOktaAuth();
   const [userInfo] = useState(null);
-  console.log('auth: ', authState);
-  // we get access token and id token from authState
-  // which one do we use to make backend requests?
   useEffect(() => {
-    // make a request to backend for current user and put role into context api
+    getProfileData(authState)
+      .then(res => console.log('result: ', res))
+      .catch(err => err);
   });
 
   return (
