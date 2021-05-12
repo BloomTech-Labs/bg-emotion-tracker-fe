@@ -9,7 +9,11 @@ function EmojiSelector(props) {
 
   return (
     <>
-      <RenderEmojiSelector userInfo={userInfo} authService={authService} />
+      <RenderEmojiSelector
+        userInfo={userInfo}
+        authService={authService}
+        pageProps={props}
+      />
     </>
   );
 }
