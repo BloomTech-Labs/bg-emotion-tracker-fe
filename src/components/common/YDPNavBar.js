@@ -3,11 +3,8 @@ import styled from 'styled-components';
 import { Menu, Dropdown, Button } from 'antd';
 import {
   MenuOutlined,
-  UserOutlined,
-  TeamOutlined,
   LogoutOutlined,
   LineChartOutlined,
-  CalendarOutlined,
 } from '@ant-design/icons';
 import logo from '../../assets/images/BGC-logo-header.png';
 import { useHistory } from 'react-router';
@@ -45,41 +42,11 @@ function NavBar(props) {
       <Menu.Item
         key="1"
         icon={<LineChartOutlined />}
-        onClick={() => history.push('/')}
+        onClick={() => history.push('/YDPDashboard')}
       >
         Home
       </Menu.Item>
 
-      <Menu.Item
-        key="2"
-        icon={<UserOutlined />}
-        onClick={() => history.push('/manage-members')}
-      >
-        Manage Members
-      </Menu.Item>
-
-      <Menu.Item
-        key="3"
-        icon={<CalendarOutlined />}
-        onClick={() => history.push('/manage-programs')}
-      >
-        Manage Programs
-      </Menu.Item>
-
-      <Menu.Item
-        key="4"
-        icon={<TeamOutlined />}
-        onClick={() => history.push('/manage-staff')}
-      >
-        Manage Staff
-      </Menu.Item>
-      <Menu.Item
-        key="5"
-        icon={<TeamOutlined />}
-        onClick={() => history.push('/manage-clubs')}
-      >
-        Manage Clubs
-      </Menu.Item>
       <Menu.Item
         key="5"
         icon={<LogoutOutlined />}

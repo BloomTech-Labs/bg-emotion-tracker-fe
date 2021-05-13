@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import { List } from 'antd';
-import { GenerateTable } from '../../../common/GenerateTable';
+import { Table } from 'antd';
 import axios from 'axios';
 import { baseUrl } from '../../../../api/index';
 // const baseUrl = "http://localhost:2019";
@@ -74,11 +73,11 @@ const ProgramList = ({ inputData }) => {
   };
   return (
     <>
-      <GenerateTable
-        rows={tableData.rows}
+      <Table
         columns={tableData.columns}
-        tableName={'Members'}
-        RenderAddButton={null}
+        dataSource={tableData.rows}
+        style={{ paddingLeft: 8 }}
+        pagination={{ position: ['none', 'bottomRight'] }}
       />
     </>
   );

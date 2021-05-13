@@ -1,17 +1,25 @@
 import React from 'react';
-import { Button } from 'antd';
+import styled from 'styled-components';
+
+const StyledUpload = styled.div`
+  .custom-file-upload {
+    border: 1px solid #1890ff;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 4px 15px;
+    cursor: pointer;
+    color: #fff;
+    background: #0081c6;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+  }
+  input[type='file'] {
+    display: none;
+  }
+`;
 
 const ImportUpload = props => {
-  const { inputData, setInputData, showAlert, clearState } = props;
-  const onFormSubmit = () => {
-    // upload data to server
-
-    // After Response show completed
-    console.warn('submited');
-    showAlert('Programs successfully added', 'success');
-    clearState();
-    return;
-  };
+  const { inputData, setInputData, showAlert } = props;
 
   const onChange = e => {
     const file = e.target.files[0];
@@ -24,31 +32,47 @@ const ImportUpload = props => {
       // Display wrong file format error
       showAlert('File type must be .csv', 'error');
       // Reset upload
-      document.getElementById('file_form').reset();
+      e.target.value = null;
       return;
     }
     const reader = new FileReader();
     reader.readAsText(file);
     // Runs after file is read
     reader.onload = readerEvent => {
-      // Getting programs to list and appending to inputData
-      const programs = readerEvent.target.result;
-      const listOfPrograms = programs.match(/[^\r\n]+/g);
+      // Getting members to list and appending to inputData
+      const values = readerEvent.target.result;
+      // Seperates by line break
+      const listOfValues = values.match(/[^\r\n]+/g);
+      // Seperate by comma
+      /*programName: , clubId */
+      const listOfValueObjects = [];
+      listOfValues.forEach(item => {
+        const items = item.match(/([^,]+)/g);
+        const newItem = { programName: items[0], clubId: items[1] };
+        listOfValueObjects.push(newItem);
+      });
+
       setInputData({
         ...inputData,
-        file: listOfPrograms,
+        file: listOfValueObjects,
       });
     };
   };
 
   return (
     <>
-      <form id="file_form" className="submit_container">
-        <input type="file" name="fileUplaod" onChange={e => onChange(e)} />
-        <Button type="primary" onClick={onFormSubmit}>
-          Submit
-        </Button>
-      </form>
+      <StyledUpload>
+        <label htmlFor="file-upload" className="custom-file-upload">
+          Upload CSV
+        </label>
+
+        <input
+          id="file-upload"
+          type="file"
+          name="fileUplaod"
+          onChange={e => onChange(e)}
+        />
+      </StyledUpload>
     </>
   );
 };

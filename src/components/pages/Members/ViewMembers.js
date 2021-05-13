@@ -56,11 +56,12 @@ const mockData = {
 function ViewMembers(props) {
   return (
     <ViewSingleton
-      headerName="Manage Members"
+      headerName="Members"
       titleName="All Members"
       RenderAddButton={ImportMembers}
       rows={mockData.rows}
       columns={mockData.columns}
+      sortedBy="ID"
     />
   );
 }

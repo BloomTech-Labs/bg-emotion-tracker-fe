@@ -1,43 +1,32 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
+import { UserContext } from '../../../state/contexts';
 
 import RenderHomePage from './RenderHomePage';
+import { getUserProfile } from '../../../state/actions';
+import { useHistory } from 'react-router-dom';
 
-function HomeContainer({ LoadingComponent }) {
-  const { authState, authService } = useOktaAuth();
-  const [userInfo, setUserInfo] = useState(null);
-  // eslint-disable-next-line
-  const [memoAuthService] = useMemo(() => [authService], []);
+const HomeContainer = props => {
+  const [userInfo] = useState(null);
+  const { authState } = useOktaAuth();
+  const context = useContext(UserContext);
+  const { push } = useHistory();
 
   useEffect(() => {
-    let isSubscribed = true;
+    getUserProfile(authState, context);
+  }, []);
 
-    memoAuthService
-      .getUser()
-      .then(info => {
-        // if user is authenticated we can use the authService to snag some user info.
-        // isSubscribed is a boolean toggle that we're using to clean up our useEffect.
-        if (isSubscribed) {
-          setUserInfo(info);
-        }
-      })
-      .catch(err => {
-        isSubscribed = false;
-        return setUserInfo(null);
-      });
-    return () => (isSubscribed = false);
-  }, [memoAuthService]);
+  let role = context.user.roles && context.user.roles[0].role.name;
+
+  if (role === 'YDP') {
+    push('/YDPDashboard');
+  }
 
   return (
     <>
-      {authState.isAuthenticated && !userInfo && (
-        <LoadingComponent message="Fetching user profile..." />
-      )}
-      {authState.isAuthenticated && userInfo && (
-        <RenderHomePage userInfo={userInfo} authService={authService} />
-      )}
+      <RenderHomePage userInfo={userInfo} />
     </>
   );
-}
+};
 
 export default HomeContainer;

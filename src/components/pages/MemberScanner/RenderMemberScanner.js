@@ -16,10 +16,18 @@ const StyledMemberScanner = styled.header`
 
 function RenderMemberScanner(props) {
   const [QRdata, setQRdata] = useState('None');
+  const [scanStatus, setScanStatus] = useState(false);
+  const [scanError, setScanError] = useState(false);
+
+  const handleError = err => {
+    setScanError(true);
+    console.error(err);
+  };
 
   const handleScan = data => {
     if (data) {
       setQRdata(data);
+      setScanStatus(true);
     }
   };
 
@@ -33,8 +41,9 @@ function RenderMemberScanner(props) {
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
       <StyledMemberScanner>
         <h2>Scanner</h2>
-        <QRCodeReader handleScan={handleScan} />
-        <p>{QRdata}</p>
+        <QRCodeReader handleScan={handleScan} handleError={handleError} />
+        {scanStatus ? 'Scan successful' : 'Not scanned yet'}
+        {scanError ? 'Some error happens' : null}
         <Button type="primary" onClick={onClick}>
           <Link to="/manage-members">Submit</Link>
         </Button>

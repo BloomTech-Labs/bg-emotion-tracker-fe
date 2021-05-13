@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table } from 'antd';
 
-const MemberTable = ({ inputData }) => {
+const ClubTable = ({ inputData }) => {
   const [tableData, setTableData] = useState({
     rows: [],
     columns: [
       {
-        title: 'Member ID',
-        dataIndex: 'member_id',
+        title: 'Club Name',
+        dataIndex: 'club_name',
         render: text => <p>{text}</p>,
         key: '1',
       },
@@ -22,15 +22,13 @@ const MemberTable = ({ inputData }) => {
   }, [inputData]);
 
   const dataToTable = () => {
+    let rowKey = 1;
     //Add Rows
     const newRows = [];
     inputData.individual.forEach(item => {
-      const newRow = { member_id: item };
+      const newRow = { club_name: item, key: rowKey };
       newRows.push(newRow);
-    });
-    inputData.file.forEach(item => {
-      const newRow = { member_id: item };
-      newRows.push(newRow);
+      rowKey++;
     });
     setTableData({
       ...tableData,
@@ -49,4 +47,4 @@ const MemberTable = ({ inputData }) => {
   );
 };
 
-export default MemberTable;
+export default ClubTable;

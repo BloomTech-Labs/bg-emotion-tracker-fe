@@ -49,7 +49,6 @@ const ImportModal = props => {
       individual: [],
       file: [],
     });
-    document.getElementById('file_form').reset();
   };
 
   return (
@@ -58,7 +57,7 @@ const ImportModal = props => {
         Add Programs
       </Button>
       <Modal
-        title="Add a Program"
+        title="Add Programs"
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
