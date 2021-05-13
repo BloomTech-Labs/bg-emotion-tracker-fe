@@ -41,7 +41,6 @@ const StyledNavBar = styled.header`
 function NavBar(props) {
   const { userInfo, authService } = props;
   const context = useContext(UserContext);
-  console.log('con: ', context);
   let role = context.user.roles && context.user.roles[0].role.name;
   console.log(role);
 
@@ -54,7 +53,7 @@ function NavBar(props) {
       >
         Home
       </Menu.Item>
-      {role === 'ADMIN' && (
+      {(role === 'ADMIN' || role === 'CD') && (
         <Menu.Item
           key="2"
           icon={<UserOutlined />}
@@ -63,7 +62,7 @@ function NavBar(props) {
           Manage Members
         </Menu.Item>
       )}
-      {role === 'ADMIN' && (
+      {(role === 'ADMIN' || role === 'CD') && (
         <Menu.Item
           key="3"
           icon={<CalendarOutlined />}
@@ -72,7 +71,7 @@ function NavBar(props) {
           Manage Programs
         </Menu.Item>
       )}
-      {role === 'ADMIN' && (
+      {(role === 'ADMIN' || role === 'CD') && (
         <Menu.Item
           key="4"
           icon={<TeamOutlined />}
@@ -81,7 +80,7 @@ function NavBar(props) {
           Manage Staff
         </Menu.Item>
       )}
-      {role === 'ADMIN' && (
+      {(role === 'ADMIN' || role === 'CD') && (
         <Menu.Item
           key="5"
           icon={<TeamOutlined />}
