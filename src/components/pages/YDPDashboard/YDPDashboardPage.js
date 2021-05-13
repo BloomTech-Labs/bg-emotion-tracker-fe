@@ -13,6 +13,10 @@ const StyledYDPPage = styled.header`
   margin: 3rem auto;
 `;
 
+const StyledLink = styled(Link)`
+  text-align: center;
+`;
+
 const StyledButton = styled(Button)`
   background-color: 293845;
   width: 200px;
@@ -26,17 +30,19 @@ function RenderHomePage() {
       <YDPNavBar titleName="YDP Dashboard" backgroundColor="#293845" />
       <StyledYDPPage>
         <h2 style={{ textAlign: 'center' }}>I want to...</h2>
-        <Link to="/scanner">
+        <StyledLink to="/scanner">
           <StyledButton size="large" type="primary">
             Check In
           </StyledButton>
-        </Link>
+        </StyledLink>
         <StyledButton size="large" type="primary">
           Choose Event
         </StyledButton>
-        <StyledButton size="large" type="primary">
-          Check Out
-        </StyledButton>
+        <StyledLink to="/scanner">
+          <StyledButton size="large" type="primary">
+            Check Out
+          </StyledButton>
+        </StyledLink>
       </StyledYDPPage>
     </>
   );

@@ -1,14 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Menu, Dropdown, Button } from 'antd';
-import {
-  MenuOutlined,
-  UserOutlined,
-  TeamOutlined,
-  LogoutOutlined,
-  LineChartOutlined,
-  CalendarOutlined,
-} from '@ant-design/icons';
+import { MenuOutlined, LogoutOutlined } from '@ant-design/icons';
 import logo from '../../assets/images/BGC-logo-header.png';
 import { useHistory } from 'react-router';
 
