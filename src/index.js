@@ -26,6 +26,7 @@ import { ViewPrograms } from './components/pages/Programs';
 import { ViewStaff } from './components/pages/Staff';
 import { ViewClubs } from './components/pages/Clubs';
 import { MemberScanner } from './components/pages/MemberScanner';
+import { EmojiSelector } from './components/pages/EmojiSelector';
 import { Roles } from './state/contexts/roles';
 
 ReactDOM.render(
@@ -55,6 +56,41 @@ function App() {
           <Route path="/implicit/callback" component={LoginCallback} />
           <Route path="/landing" component={LandingPage} />
 
+        {/* any of the routes you need secured should be registered as SecureRoutes */}
+        <SecureRoute
+          exact
+          path="/"
+          component={() => <HomePage LoadingComponent={LoadingComponent} />}
+        />
+        {/*Member scaner test*/}
+        <SecureRoute
+          path="/scanner"
+          component={() => (
+            <MemberScanner LoadingComponent={LoadingComponent} />
+          )}
+        />
+
+        {/* Emoji Selector test */}
+        <SecureRoute
+          path="/emojiselector"
+          render={props => <EmojiSelector {...props} />}
+        />
+
+        <SecureRoute path="/manage-members">
+          <ViewMembers />
+        </SecureRoute>
+        <SecureRoute path="/manage-programs">
+          <ViewPrograms />
+        </SecureRoute>
+        <SecureRoute path="/manage-staff">
+          <ViewStaff />
+        </SecureRoute>
+        <SecureRoute path="/manage-clubs">
+          <ViewClubs />
+        </SecureRoute>
+        <Route component={NotFoundPage} />
+      </Switch>
+    </Security>
           {/* any of the routes you need secured should be registered as SecureRoutes */}
           <SecureRoute
             exact
