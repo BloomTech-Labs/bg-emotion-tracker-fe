@@ -1,7 +1,14 @@
 import axios from 'axios';
 
+let URI = 'http://localhost:2019/';
+if (process.env.NODE_ENV === 'production') {
+  URI = process.env.REACT_APP_API_URI;
+}
+
 // we will define a bunch of API calls here.
-const apiUrl = `${process.env.REACT_APP_API_URI}/profiles`;
+const apiUrl = `${URI}profiles`;
+const profileUrl = `${URI}users/getuserinfo`;
+const profilesUrl = `${URI}profiles`;
 
 const sleep = time =>
   new Promise(resolve => {
@@ -18,7 +25,7 @@ const getAuthHeader = authState => {
   if (!authState.isAuthenticated) {
     throw new Error('Not authenticated');
   }
-  return { Authorization: `Bearer ${authState.idToken}` };
+  return { Authorization: `Bearer ${authState.accessToken}` };
 };
 
 const getDSData = (url, authState) => {
@@ -38,13 +45,18 @@ const apiAuthGet = authHeader => {
   return axios.get(apiUrl, { headers: authHeader });
 };
 
+const profileAuthGet = authHeader => {
+  return axios.get(profileUrl, { headers: authHeader });
+};
+
 const getProfileData = authState => {
   try {
-    return apiAuthGet(getAuthHeader(authState)).then(response => response.data);
+    return profileAuthGet(getAuthHeader(authState)).then(
+      response => response.data
+    );
   } catch (error) {
     return new Promise(() => {
-      console.log(error);
-      return [];
+      throw error;
     });
   }
 };
