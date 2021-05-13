@@ -1,14 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useOktaAuth } from '@okta/okta-react';
-import { UserContext } from '../../../state/contexts';
+import React, { useState } from 'react';
 
 import RenderYDPDashboard from './YDPDashboardPage';
-import { getUserProfile } from '../../../state/actions';
-import { useHistory } from 'react-router-dom';
 
-const HomeContainer = props => {
+const HomeContainer = () => {
   const [userInfo] = useState(null);
-  const context = useContext(UserContext);
 
   return (
     <>

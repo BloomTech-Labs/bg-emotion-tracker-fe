@@ -1,5 +1,5 @@
 import React from 'react';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import YDPNavBar from '../../common/YDPNavBar';
 import { Button } from 'antd';
@@ -26,11 +26,13 @@ function RenderHomePage() {
       <YDPNavBar titleName="YDP Dashboard" backgroundColor="#293845" />
       <StyledYDPPage>
         <h2 style={{ textAlign: 'center' }}>I want to...</h2>
+        <Link to="/scanner">
+          <StyledButton size="large" type="primary">
+            Check In
+          </StyledButton>
+        </Link>
         <StyledButton size="large" type="primary">
-          Check In
-        </StyledButton>
-        <StyledButton size="large" type="primary">
-          ChooseButton
+          Choose Event
         </StyledButton>
         <StyledButton size="large" type="primary">
           Check Out
