@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import {
   BrowserRouter as Router,
   Route,
   useHistory,
   Switch,
 } from 'react-router-dom';
+
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
+import { UserContextProvider } from './state/contexts';
 
 import 'antd/dist/antd.less';
 
@@ -14,6 +17,7 @@ import { NotFoundPage } from './components/pages/NotFound';
 import { LoginPage } from './components/pages/Login';
 import { Logout } from './components/common/Logout';
 import { HomePage } from './components/pages/Home';
+import { YDPDashboard } from './components/pages/YDPDashboard';
 import { LandingPage } from './components/pages/Landing';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
@@ -23,6 +27,7 @@ import { ViewStaff } from './components/pages/Staff';
 import { ViewClubs } from './components/pages/Clubs';
 import { MemberScanner } from './components/pages/MemberScanner';
 import { EmojiSelector } from './components/pages/EmojiSelector';
+import { Roles } from './state/contexts/roles';
 
 ReactDOM.render(
   <Router>
@@ -34,8 +39,6 @@ ReactDOM.render(
 );
 
 function App() {
-  // The reason to declare App this way is so that we can use any helper functions we'd need for business logic, in our case auth.
-  // React Router has a nifty useHistory hook we can use at this level to ensure we have security around our routes.
   const history = useHistory();
 
   const authHandler = () => {
@@ -45,12 +48,13 @@ function App() {
   };
 
   return (
-    <Security {...config} onAuthRequired={authHandler}>
-      <Switch>
-        <Route path="/login" component={LoginPage} />
-        <Route path="/logout" component={Logout} />
-        <Route path="/implicit/callback" component={LoginCallback} />
-        <Route path="/landing" component={LandingPage} />
+    <UserContextProvider>
+      <Security {...config} onAuthRequired={authHandler}>
+        <Switch>
+          <Route path="/login" component={LoginPage} />
+          <Route path="/logout" component={Logout} />
+          <Route path="/implicit/callback" component={LoginCallback} />
+          <Route path="/landing" component={LandingPage} />
 
         {/* any of the routes you need secured should be registered as SecureRoutes */}
         <SecureRoute
@@ -87,5 +91,48 @@ function App() {
         <Route component={NotFoundPage} />
       </Switch>
     </Security>
+          {/* any of the routes you need secured should be registered as SecureRoutes */}
+          <SecureRoute
+            exact
+            path="/"
+            component={() => (
+              <HomePage
+                authorize={[Roles[0], Roles[1]]}
+                LoadingComponent={LoadingComponent}
+              />
+            )}
+          />
+          <SecureRoute
+            exact
+            path="/YDPDashboard"
+            component={() => (
+              <YDPDashboard authorize={[Roles[0], Roles[1], Roles[2]]} />
+            )}
+          />
+          {/*Member scaner test*/}
+          <SecureRoute
+            exact
+            path="/scanner"
+            component={() => (
+              <MemberScanner LoadingComponent={LoadingComponent} />
+            )}
+          />
+
+          <SecureRoute path="/manage-members">
+            <ViewMembers />
+          </SecureRoute>
+          <SecureRoute path="/manage-programs">
+            <ViewPrograms />
+          </SecureRoute>
+          <SecureRoute path="/manage-staff">
+            <ViewStaff />
+          </SecureRoute>
+          <SecureRoute path="/manage-clubs">
+            <ViewClubs />
+          </SecureRoute>
+          <Route component={NotFoundPage} />
+        </Switch>
+      </Security>
+    </UserContextProvider>
   );
 }
