@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Menu, Dropdown, Button } from 'antd';
-import { MenuOutlined, LogoutOutlined } from '@ant-design/icons';
+import {
+  MenuOutlined,
+  LogoutOutlined,
+  LineChartOutlined,
+} from '@ant-design/icons';
 import logo from '../../assets/images/BGC-logo-header.png';
 import { useHistory } from 'react-router';
 
@@ -35,14 +39,13 @@ function NavBar(props) {
 
   const menu = (
     <Menu>
-      {/* <Menu.Item
+      <Menu.Item
         key="1"
         icon={<LineChartOutlined />}
-        onClick={() => history.push('/')}
+        onClick={() => history.push('/YDPDashboard')}
       >
         Home
       </Menu.Item>
-      */}
 
       <Menu.Item
         key="5"
