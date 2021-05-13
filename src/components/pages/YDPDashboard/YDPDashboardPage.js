@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import YDPNavBar from '../../common/YDPNavBar';
+import NavBar from '../../common/NavBar';
 import { Button } from 'antd';
 
 const StyledYDPPage = styled.header`
@@ -27,7 +27,7 @@ const StyledButton = styled(Button)`
 function RenderHomePage() {
   return (
     <>
-      <YDPNavBar titleName="YDP Dashboard" backgroundColor="#293845" />
+      <NavBar titleName="Dashboard" backgroundColor="#293845" />
       <StyledYDPPage>
         <h2 style={{ textAlign: 'center' }}>I want to...</h2>
         <StyledLink to="/scanner">
