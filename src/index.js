@@ -17,6 +17,7 @@ import { NotFoundPage } from './components/pages/NotFound';
 import { LoginPage } from './components/pages/Login';
 import { Logout } from './components/common/Logout';
 import { HomePage } from './components/pages/Home';
+import { YDPDashboard } from './components/pages/YDPDashboard';
 import { LandingPage } from './components/pages/Landing';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
@@ -25,6 +26,7 @@ import { ViewPrograms } from './components/pages/Programs';
 import { ViewStaff } from './components/pages/Staff';
 import { ViewClubs } from './components/pages/Clubs';
 import { MemberScanner } from './components/pages/MemberScanner';
+import { Roles } from './state/contexts/roles';
 
 ReactDOM.render(
   <Router>
@@ -57,7 +59,19 @@ function App() {
           <SecureRoute
             exact
             path="/"
-            component={() => <HomePage LoadingComponent={LoadingComponent} />}
+            component={() => (
+              <HomePage
+                authorize={[Roles[0], Roles[1]]}
+                LoadingComponent={LoadingComponent}
+              />
+            )}
+          />
+          <SecureRoute
+            exact
+            path="/YDPDashboard"
+            component={() => (
+              <YDPDashboard authorize={[Roles[0], Roles[1], Roles[2]]} />
+            )}
           />
           {/*Member scaner test*/}
           <SecureRoute

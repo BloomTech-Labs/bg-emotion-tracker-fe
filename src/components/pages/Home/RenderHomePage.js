@@ -13,8 +13,7 @@ const StyledHomePage = styled.header`
   margin: 3rem auto;
 `;
 
-function RenderHomePage(props) {
-  const { userInfo /*authService*/ } = props;
+function RenderHomePage() {
   return (
     <>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
