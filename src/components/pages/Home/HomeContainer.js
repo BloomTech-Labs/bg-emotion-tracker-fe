@@ -1,22 +1,22 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
+import { UserContext } from '../../../state/contexts';
 
 import RenderHomePage from './RenderHomePage';
-import { getProfileData } from '../../../api';
-import { userContext } from '../../../state/contexts/index';
+import { getUserProfile } from '../../../state/actions';
 
 function HomeContainer({ LoadingComponent }) {
-  const { authState, authService } = useOktaAuth();
   const [userInfo] = useState(null);
+  const { authState } = useOktaAuth();
+  const context = useContext(UserContext);
+
   useEffect(() => {
-    getProfileData(authState)
-      .then(res => console.log('result: ', res))
-      .catch(err => err);
-  });
+    getUserProfile(authState, context);
+  }, []);
 
   return (
     <>
-      <RenderHomePage userInfo={userInfo} authService={authService} />
+      <RenderHomePage userInfo={userInfo} />
     </>
   );
 }
