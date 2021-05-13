@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import YDPNavBar from '../../common/YDPNavBar';
-import { Button } from 'antd';
+import NavBar from '../../common/YDPNavBar';
+import { Button, Card } from 'antd';
 
 const StyledYDPPage = styled.header`
   display: flex;
@@ -27,20 +27,21 @@ const StyledButton = styled(Button)`
 function RenderHomePage() {
   return (
     <>
-      <YDPNavBar titleName="YDP Dashboard" backgroundColor="#293845" />
+      <NavBar titleName="Dashboard" backgroundColor="#293845" />
       <StyledYDPPage>
-        <h2 style={{ textAlign: 'center' }}>I want to...</h2>
-        <StyledLink to="/scanner">
+        <h2 style={{ textAlign: 'center' }}>Select Club</h2>
+        {/* <StyledLink to="/scanner">
           <StyledButton size="large" type="primary">
             Check In
           </StyledButton>
-        </StyledLink>
-        <StyledButton size="large" type="primary">
+        </StyledLink> */}
+        <div>CLUB-DROPDOWN</div>
+        {/* <StyledButton size="large" type="primary">
           Choose Event
-        </StyledButton>
-        <StyledLink to="/scanner">
+        </StyledButton> */}
+        <StyledLink to="/activity-select">
           <StyledButton size="large" type="primary">
-            Check Out
+            Confirm
           </StyledButton>
         </StyledLink>
       </StyledYDPPage>
@@ -48,3 +49,22 @@ function RenderHomePage() {
   );
 }
 export default RenderHomePage;
+
+{
+  /* <StyledYDPPage>
+<h2 style={{ textAlign: 'center' }}>I want to...</h2>
+<StyledLink to="/scanner">
+  <StyledButton size="large" type="primary">
+    Check In
+  </StyledButton>
+</StyledLink>
+<StyledButton size="large" type="primary">
+  Choose Event
+</StyledButton>
+<StyledLink to="/scanner">
+  <StyledButton size="large" type="primary">
+    Check Out
+  </StyledButton>
+</StyledLink>
+</StyledYDPPage> */
+}

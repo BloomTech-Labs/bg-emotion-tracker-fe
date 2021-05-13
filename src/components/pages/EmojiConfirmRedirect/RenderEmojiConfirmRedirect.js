@@ -1,5 +1,6 @@
 import React from 'react';
 //import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
@@ -17,6 +18,11 @@ const StyledEmojiConfirmRedirect = styled.header`
 function RenderEmojiConfirmRedirect(props) {
   const { userInfo /*authService*/ } = props;
   const history = useHistory();
+
+  setTimeout(() => {
+    history.push('/scanner');
+  }, 4000);
+
   return (
     <>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />

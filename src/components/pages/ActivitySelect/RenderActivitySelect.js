@@ -25,10 +25,7 @@ function RenderActivitySelect(props) {
         <Card>
           DROPDOWN HERE!
           <div>
-            <Button
-              type="primary"
-              onClick={() => history.push('/emoji-selectcheck')}
-            >
+            <Button type="primary" onClick={() => history.push('/scanner')}>
               Submit
             </Button>
           </div>
