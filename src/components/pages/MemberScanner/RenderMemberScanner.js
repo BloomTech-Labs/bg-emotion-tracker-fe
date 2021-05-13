@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from 'antd';
+import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { QRCodeReader } from '../QRCodeReader';
+import ManualMemberInput from './ManualMemberInput';
 
 const StyledMemberScanner = styled.header`
   display: flex;
@@ -16,16 +16,19 @@ const StyledMemberScanner = styled.header`
 
 function RenderMemberScanner(props) {
   const [QRdata, setQRdata] = useState('None');
+  const [scanStatus, setScanStatus] = useState(false);
+  const [scanError, setScanError] = useState(false);
+
+  const handleError = err => {
+    setScanError(true);
+    console.error(err);
+  };
 
   const handleScan = data => {
     if (data) {
       setQRdata(data);
+      setScanStatus(true);
     }
-  };
-
-  const onClick = e => {
-    e.preventDefault();
-    console.log('Redirected');
   };
 
   return (
@@ -33,11 +36,21 @@ function RenderMemberScanner(props) {
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
       <StyledMemberScanner>
         <h2>Scanner</h2>
-        <QRCodeReader handleScan={handleScan} />
-        <p>{QRdata}</p>
-        <Button type="primary" onClick={onClick}>
-          <Link to="/manage-members">Submit</Link>
-        </Button>
+        <QRCodeReader handleScan={handleScan} handleError={handleError} />
+        {scanStatus ? <p>Scan successful</p> : <p>Not scanned yet</p>}
+        {scanError ? <p>Some error happens</p> : null}
+        {scanStatus ? (
+          <Redirect
+            to={{
+              pathname: '/emojiselector',
+              state: { QRdata: QRdata },
+            }}
+          />
+        ) : null}
+        <ManualMemberInput
+          setQRdata={setQRdata}
+          setScanStatus={setScanStatus}
+        />
       </StyledMemberScanner>
     </>
   );
