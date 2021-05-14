@@ -49,6 +49,7 @@ const profileAuthGet = authHeader => {
   return axios.get(profileUrl, { headers: authHeader });
 };
 
+/*
 const getProfileData = authState => {
   try {
     return profileAuthGet(getAuthHeader(authState)).then(
@@ -59,6 +60,27 @@ const getProfileData = authState => {
       throw error;
     });
   }
+};*/
+
+const getProfileData = authState => {
+  // getting token from local storage
+  let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
+
+  // creating a promise for the axios request
+  const promise = axios.get(
+    'https://bg-emotion-tracker-be-b.herokuapp.com/users/getuserinfo',
+    {
+      headers: {
+        Authorization: `Bearer ${tokenObj.accessToken.accessToken}`,
+      },
+    }
+  );
+
+  // using .then, creating a new promise which extracts the data
+  const dataPromise = promise.then(response => response.data);
+
+  // return it
+  return dataPromise;
 };
 
 export { sleep, getExampleData, getProfileData, getDSData };

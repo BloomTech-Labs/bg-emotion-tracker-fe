@@ -18,6 +18,8 @@ import { LoginPage } from './components/pages/Login';
 import { Logout } from './components/common/Logout';
 import { HomePage } from './components/pages/Home';
 import { YDPDashboard } from './components/pages/YDPDashboard';
+import { ClubDirectorDashboard } from './components/pages/ClubDirectorDashboard';
+import { AdminDashboard } from './components/pages/AdminDashboard';
 import { LandingPage } from './components/pages/Landing';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
@@ -78,6 +80,18 @@ function App() {
             path="/YDPDashboard"
             component={() => (
               <YDPDashboard authorize={[Roles[0], Roles[1], Roles[2]]} />
+            )}
+          />
+          <SecureRoute
+            exact
+            path="/AdminDashboard"
+            component={() => <AdminDashboard authorize={[Roles[0]]} />}
+          />
+          <SecureRoute
+            exact
+            path="/ClubDirectorDashboard"
+            component={() => (
+              <ClubDirectorDashboard authorize={[Roles[0], Roles[1]]} />
             )}
           />
           {/*Member scaner test*/}

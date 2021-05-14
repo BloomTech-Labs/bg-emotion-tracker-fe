@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import { UserContext } from '../../../state/contexts';
 
@@ -7,7 +7,6 @@ import { getUserProfile } from '../../../state/actions';
 import { useHistory } from 'react-router-dom';
 
 const HomeContainer = props => {
-  const [userInfo] = useState(null);
   const { authState } = useOktaAuth();
   const context = useContext(UserContext);
   const { push } = useHistory();
@@ -18,13 +17,18 @@ const HomeContainer = props => {
 
   let role = context.user.roles && context.user.roles[0].role.name;
 
-  //   if (role === 'YDP') {
-  push('/YDPDashboard');
-  //   }
+  // initial redirect to correct user dashboard
+  if (role === 'ADMIN') {
+    push('./AdminDashboard');
+  } else if (role === 'CD') {
+    push('./ClubDirectorDashboard');
+  } else if (role === 'YDP') {
+    push('/YDPDashboard');
+  }
 
   return (
     <>
-      <RenderHomePage userInfo={userInfo} />
+      <RenderHomePage />
     </>
   );
 };
