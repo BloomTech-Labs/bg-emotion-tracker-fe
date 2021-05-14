@@ -5,7 +5,6 @@ import NavBar from '../../common/NavBar';
 import { Card, Menu, Dropdown, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
-
 const StyledYDPPage = styled.header`
   display: flex;
   flex-direction: column;
