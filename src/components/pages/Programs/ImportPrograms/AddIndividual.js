@@ -50,7 +50,7 @@ export const AddIndividual = props => {
         <Input />
       </Form.Item>
       <Form.Item
-        label="Club Name"
+        label="Club ID"
         name="clubId"
         rules={[{ required: true, message: 'Please enter a valid club name' }]}
       >

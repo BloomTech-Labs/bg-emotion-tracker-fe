@@ -4,7 +4,7 @@ import axios from 'axios';
 import { baseUrl } from '../../../../api/index';
 // const baseUrl = "http://localhost:2019";
 
-const userClubId = 20;
+// const userClubId = 20;
 // this will be handled in context state, hard coded for testing now.
 
 const initialTableData = {
@@ -26,34 +26,34 @@ const initialTableData = {
 };
 
 const ProgramList = ({ inputData }) => {
-  const [activities, setActivities] = useState([]);
+  // const [activities, setActivities] = useState([]);
   const [tableData, setTableData] = useState(initialTableData);
 
-  function fetchActivities() {
-    let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
-    axios
-      .get(`${baseUrl}/clubs/clubs`, {
-        headers: {
-          Authorization: `Bearer ${tokenObj.accessToken.accessToken}`,
-        },
-      })
-      .then(res =>
-        userClubId === 0
-          ? setActivities(res.data)
-          : setActivities(
-              // res.data
-              res.data.filter(club => club.clubid === userClubId)
-            )
-      )
-      .catch(e => console.log(e));
-  }
+  // function fetchActivities() {
+  //   let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
+  //   axios
+  //     .get(`${baseUrl}/clubs/clubs`, {
+  //       headers: {
+  //         Authorization: `Bearer ${tokenObj.accessToken.accessToken}`,
+  //       },
+  //     })
+  //     .then(res =>
+  //       userClubId === 0
+  //         ? setActivities(res.data)
+  //         : setActivities(
+  //             // res.data
+  //             res.data.filter(club => club.clubid === userClubId)
+  //           )
+  //     )
+  //     .catch(e => console.log(e));
+  // }
   // on component mount, stores programs data to state.
   // From there, data can be pruned and displayed as desired.
   // If data becomes too large, may need to handle pruning in this call.
 
-  useEffect(() => {
-    fetchActivities();
-  }, []);
+  // useEffect(() => {
+  //   fetchActivities();
+  // }, []);
 
   const dataToTable = () => {
     //Add Rows

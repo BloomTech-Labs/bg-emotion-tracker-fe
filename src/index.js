@@ -49,92 +49,79 @@ function App() {
 
   return (
     <UserContextProvider>
-      <Security {...config} onAuthRequired={authHandler}>
-        <Switch>
-          <Route path="/login" component={LoginPage} />
-          <Route path="/logout" component={Logout} />
-          <Route path="/implicit/callback" component={LoginCallback} />
-          <Route path="/landing" component={LandingPage} />
+      <ProgramContextProvider>
+        <Security {...config} onAuthRequired={authHandler}>
+          <Switch>
+            <Route path="/login" component={LoginPage} />
+            <Route path="/logout" component={Logout} />
+            <Route path="/implicit/callback" component={LoginCallback} />
+            <Route path="/landing" component={LandingPage} />
 
-          {/* any of the routes you need secured should be registered as SecureRoutes */}
-          <SecureRoute
-            exact
-            path="/"
-            component={() => <HomePage LoadingComponent={LoadingComponent} />}
-          />
+            {/* any of the routes you need secured should be registered as SecureRoutes */}
+            <SecureRoute
+              exact
+              path="/"
+              component={() => <HomePage LoadingComponent={LoadingComponent} />}
+            />
 
-          <SecureRoute
-            exact
-            path="/YDPDashboard"
-            component={() => (
-              <YDPDashboard authorize={[Roles[0], Roles[1], Roles[2]]} />
-            )}
-          />
+            <SecureRoute
+              exact
+              path="/YDPDashboard"
+              component={() => (
+                <YDPDashboard authorize={[Roles[0], Roles[1], Roles[2]]} />
+              )}
+            />
 
-          {/*Member scaner test*/}
-          <SecureRoute
-            path="/scanner"
-            component={() => (
-              <MemberScanner LoadingComponent={LoadingComponent} />
-            )}
-          />
+            {/*Member scaner test*/}
+            <SecureRoute
+              path="/scanner"
+              component={() => (
+                <MemberScanner LoadingComponent={LoadingComponent} />
+              )}
+            />
 
-          {/* Emoji Selector test */}
-          <SecureRoute
-            path="/emojiselector"
-            render={props => <EmojiSelector {...props} />}
-          />
+            {/* Emoji Selector test */}
+            <SecureRoute
+              path="/emojiselector"
+              render={props => <EmojiSelector {...props} />}
+            />
 
-          <SecureRoute path="/manage-members">
-            <ViewMembers />
-          </SecureRoute>
-          <ProgramContextProvider>
+            <SecureRoute path="/manage-members">
+              <ViewMembers />
+            </SecureRoute>
             <SecureRoute path="/manage-programs">
               <ViewPrograms />
             </SecureRoute>
-          </ProgramContextProvider>
-          <SecureRoute path="/manage-staff">
-            <ViewStaff />
-          </SecureRoute>
-          <SecureRoute path="/manage-clubs">
-            <ViewClubs />
-          </SecureRoute>
-          <Route component={NotFoundPage} />
-          {/* any of the routes you need secured should be registered as SecureRoutes */}
-          <SecureRoute
-            exact
-            path="/"
-            component={() => (
-              <HomePage
-                authorize={[Roles[0], Roles[1]]}
-                LoadingComponent={LoadingComponent}
-              />
-            )}
-          />
-          {/*Member scaner test*/}
-          <SecureRoute
-            exact
-            path="/scanner"
-            component={() => (
-              <MemberScanner LoadingComponent={LoadingComponent} />
-            )}
-          />
-
-          <SecureRoute path="/manage-members">
-            <ViewMembers />
-          </SecureRoute>
-          <SecureRoute path="/manage-programs">
-            <ViewPrograms />
-          </SecureRoute>
-          <SecureRoute path="/manage-staff">
-            <ViewStaff />
-          </SecureRoute>
-          <SecureRoute path="/manage-clubs">
-            <ViewClubs />
-          </SecureRoute>
-          <Route component={NotFoundPage} />
-        </Switch>
-      </Security>
+            <SecureRoute path="/manage-staff">
+              <ViewStaff />
+            </SecureRoute>
+            <SecureRoute path="/manage-clubs">
+              <ViewClubs />
+            </SecureRoute>
+            <Route component={NotFoundPage} />
+            {/* any of the routes you need secured should be registered as SecureRoutes */}
+            <SecureRoute
+              exact
+              path="/"
+              component={() => (
+                <HomePage
+                  authorize={[Roles[0], Roles[1]]}
+                  LoadingComponent={LoadingComponent}
+                />
+              )}
+            />
+            {/*Member scaner test*/}
+            <SecureRoute
+              exact
+              path="/scanner"
+              component={() => (
+                <MemberScanner LoadingComponent={LoadingComponent} />
+              )}
+            />
+            <Route component={NotFoundPage} />
+          </Switch>
+        </Security>
+      </ProgramContextProvider>
     </UserContextProvider>
   );
 }

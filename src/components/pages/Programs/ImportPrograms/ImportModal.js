@@ -72,7 +72,7 @@ const ImportModal = props => {
           />
         ) : null}
         <div>
-          <h2>Add a Single Program</h2>
+          <h2>Add New Program</h2>
           <AddIndividual
             setInputData={setInputData}
             inputData={inputData}
@@ -89,7 +89,7 @@ const ImportModal = props => {
           />
         </div>
         <div>
-          {/* <h3>Preview</h3> */}
+          <h3>Preview</h3>
           <ProgramList inputData={inputData} />
         </div>
       </Modal>
