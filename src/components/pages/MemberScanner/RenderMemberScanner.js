@@ -22,7 +22,7 @@ const StyledLink = styled(Link)`
 
 const StyledButton = styled(Button)`
   background-color: 293845;
-  width: 200px;
+  width: 115px;
   text-align: center;
   margin: 10px auto;
 `;

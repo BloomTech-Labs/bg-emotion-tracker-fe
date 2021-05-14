@@ -15,6 +15,13 @@ const StyledActivitySelect = styled.header`
   margin: 3rem auto;
 `;
 
+const StyledButton = styled(Button)`
+  background-color: 293845;
+  width: 200px;
+  text-align: center;
+  margin: 20px auto;
+`;
+
 function RenderActivitySelect(props) {
   const { userInfo /*authService*/ } = props;
   const history = useHistory();
@@ -36,20 +43,19 @@ function RenderActivitySelect(props) {
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
       <StyledActivitySelect>
         <h2>Select Activity</h2>
-        <Card>
+
+        <h2 style={{ textAlign: 'center' }}>
           <Dropdown overlay={menu} trigger={['click']}>
             <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
               Activity
               <DownOutlined />
             </a>
           </Dropdown>
+        </h2>
 
-          <div>
-            <Button type="primary" onClick={() => history.push('/scanner')}>
-              Submit
-            </Button>
-          </div>
-        </Card>
+        <StyledButton type="primary" onClick={() => history.push('/scanner')}>
+          Submit
+        </StyledButton>
       </StyledActivitySelect>
     </>
   );

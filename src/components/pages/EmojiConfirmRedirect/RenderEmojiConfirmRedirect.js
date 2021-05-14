@@ -15,6 +15,12 @@ const StyledEmojiConfirmRedirect = styled.header`
   margin: 3rem auto;
 `;
 
+const StyledEmojis = styled.div`
+  font-size: 3rem;
+  background: '#ffffff';
+  padding: '2px 0';
+`;
+
 function RenderEmojiConfirmRedirect(props) {
   const { userInfo /*authService*/ } = props;
   const history = useHistory();
@@ -28,9 +34,8 @@ function RenderEmojiConfirmRedirect(props) {
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
       <StyledEmojiConfirmRedirect>
         <h2>Success!</h2>
-        <Card>
-          EMOJI CONFIRMATION HERE AND REDIRECT TO SCANNER AFTER X SECONDS!
-        </Card>
+        <StyledEmojis>🙂</StyledEmojis>
+        EMOJI CONFIRMATION HERE AND REDIRECT TO SCANNER AFTER X SECONDS!
       </StyledEmojiConfirmRedirect>
     </>
   );
