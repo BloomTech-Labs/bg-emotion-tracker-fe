@@ -26,6 +26,12 @@ import { ViewPrograms } from './components/pages/Programs';
 import { ViewStaff } from './components/pages/Staff';
 import { ViewClubs } from './components/pages/Clubs';
 import { MemberScanner } from './components/pages/MemberScanner';
+
+import { ClubSelect } from './components/pages/ClubSelect';
+import { ActivitySelect } from './components/pages/ActivitySelect';
+import { EmojiSelectCheck } from './components/pages/EmojiSelectCheck';
+import { EmojiConfirmRedirect } from './components/pages/EmojiConfirmRedirect';
+
 import { EmojiSelector } from './components/pages/EmojiSelector';
 import { Roles } from './state/contexts/roles';
 
@@ -60,48 +66,6 @@ function App() {
           <SecureRoute
             exact
             path="/"
-            component={() => <HomePage LoadingComponent={LoadingComponent} />}
-          />
-
-          <SecureRoute
-            exact
-            path="/YDPDashboard"
-            component={() => (
-              <YDPDashboard authorize={[Roles[0], Roles[1], Roles[2]]} />
-            )}
-          />
-
-          {/*Member scaner test*/}
-          <SecureRoute
-            path="/scanner"
-            component={() => (
-              <MemberScanner LoadingComponent={LoadingComponent} />
-            )}
-          />
-
-          {/* Emoji Selector test */}
-          <SecureRoute
-            path="/emojiselector"
-            render={props => <EmojiSelector {...props} />}
-          />
-
-          <SecureRoute path="/manage-members">
-            <ViewMembers />
-          </SecureRoute>
-          <SecureRoute path="/manage-programs">
-            <ViewPrograms />
-          </SecureRoute>
-          <SecureRoute path="/manage-staff">
-            <ViewStaff />
-          </SecureRoute>
-          <SecureRoute path="/manage-clubs">
-            <ViewClubs />
-          </SecureRoute>
-          <Route component={NotFoundPage} />
-          {/* any of the routes you need secured should be registered as SecureRoutes */}
-          <SecureRoute
-            exact
-            path="/"
             component={() => (
               <HomePage
                 authorize={[Roles[0], Roles[1]]}
@@ -109,13 +73,55 @@ function App() {
               />
             )}
           />
-          {/*Member scaner test*/}
           <SecureRoute
             exact
+            path="/YDPDashboard"
+            component={() => (
+              <YDPDashboard authorize={[Roles[0], Roles[1], Roles[2]]} />
+            )}
+          />
+          {/*Member scaner test*/}
+
+          <SecureRoute
             path="/scanner"
             component={() => (
               <MemberScanner LoadingComponent={LoadingComponent} />
             )}
+          />
+
+          <SecureRoute
+            exact
+            path="/club-select"
+            component={() => <ClubSelect LoadingComponent={LoadingComponent} />}
+          />
+
+          <SecureRoute
+            exact
+            path="/activity-select"
+            component={() => (
+              <ActivitySelect LoadingComponent={LoadingComponent} />
+            )}
+          />
+
+          <SecureRoute
+            exact
+            path="/emoji-selectcheck"
+            component={() => (
+              <EmojiSelectCheck LoadingComponent={LoadingComponent} />
+            )}
+          />
+
+          <SecureRoute
+            exact
+            path="/emoji-confirm-redirect"
+            component={() => (
+              <EmojiConfirmRedirect LoadingComponent={LoadingComponent} />
+            )}
+          />
+          {/* Emoji Selector test */}
+          <SecureRoute
+            path="/emojiselector"
+            render={props => <EmojiSelector {...props} />}
           />
 
           <SecureRoute path="/manage-members">

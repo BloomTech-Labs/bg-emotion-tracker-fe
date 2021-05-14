@@ -18,9 +18,9 @@ const HomeContainer = props => {
 
   let role = context.user.roles && context.user.roles[0].role.name;
 
-  if (role === 'YDP') {
-    push('/YDPDashboard');
-  }
+  //   if (role === 'YDP') {
+  push('/YDPDashboard');
+  //   }
 
   return (
     <>

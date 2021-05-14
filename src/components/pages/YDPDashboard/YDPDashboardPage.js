@@ -2,7 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
-import { Button } from 'antd';
+import { Card, Menu, Dropdown, Button } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
+
 
 const StyledYDPPage = styled.header`
   display: flex;
@@ -25,22 +27,36 @@ const StyledButton = styled(Button)`
 `;
 
 function RenderHomePage() {
+  const menu = (
+    <Menu>
+      <Menu.Item key="0">1st Club</Menu.Item>
+      <Menu.Item key="1">2nd Club</Menu.Item>
+      <Menu.Divider />
+      <Menu.Item key="3">3rd Club</Menu.Item>
+    </Menu>
+  );
+
   return (
     <>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
       <StyledYDPPage>
-        <h2 style={{ textAlign: 'center' }}>I want to...</h2>
-        <StyledLink to="/scanner">
+        <h2 style={{ textAlign: 'center' }}>Select Club</h2>
+        {/* <StyledLink to="/scanner">
           <StyledButton size="large" type="primary">
             Check In
           </StyledButton>
-        </StyledLink>
-        <StyledButton size="large" type="primary">
+        </StyledLink> */}
+        <Dropdown overlay={menu} trigger={['click']}>
+          <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+            Clubs <DownOutlined />
+          </a>
+        </Dropdown>
+        {/* <StyledButton size="large" type="primary">
           Choose Event
-        </StyledButton>
-        <StyledLink to="/scanner">
+        </StyledButton> */}
+        <StyledLink to="/activity-select">
           <StyledButton size="large" type="primary">
-            Check Out
+            Confirm
           </StyledButton>
         </StyledLink>
       </StyledYDPPage>
@@ -48,3 +64,22 @@ function RenderHomePage() {
   );
 }
 export default RenderHomePage;
+
+{
+  /* <StyledYDPPage>
+<h2 style={{ textAlign: 'center' }}>I want to...</h2>
+<StyledLink to="/scanner">
+  <StyledButton size="large" type="primary">
+    Check In
+  </StyledButton>
+</StyledLink>
+<StyledButton size="large" type="primary">
+  Choose Event
+</StyledButton>
+<StyledLink to="/scanner">
+  <StyledButton size="large" type="primary">
+    Check Out
+  </StyledButton>
+</StyledLink>
+</StyledYDPPage> */
+}

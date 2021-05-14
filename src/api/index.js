@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-let URI = 'http://localhost:2019/';
+let URI = 'https://bg-emotion-tracker-be-a.herokuapp.com/';
 if (process.env.NODE_ENV === 'production') {
   URI = process.env.REACT_APP_API_URI;
 }

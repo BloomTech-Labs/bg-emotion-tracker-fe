@@ -90,11 +90,18 @@ function NavBar(props) {
         </Menu.Item>
       )}
       <Menu.Item
-        key="5"
+        key="6"
         icon={<LogoutOutlined />}
         onClick={() => history.push('/logout')}
       >
         Log Out
+      </Menu.Item>
+      <Menu.Item
+        key="7"
+        icon={<CalendarOutlined />}
+        onClick={() => history.push('/club-select')}
+      >
+        Tmp YDP Landing
       </Menu.Item>
     </Menu>
   );
