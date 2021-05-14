@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom';
 
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
-import { UserContextProvider } from './state/contexts';
+import { UserContextProvider, ProgramContextProvider } from './state/contexts';
 
 import 'antd/dist/antd.less';
 
@@ -88,9 +88,11 @@ function App() {
           <SecureRoute path="/manage-members">
             <ViewMembers />
           </SecureRoute>
-          <SecureRoute path="/manage-programs">
-            <ViewPrograms />
-          </SecureRoute>
+          <ProgramContextProvider>
+            <SecureRoute path="/manage-programs">
+              <ViewPrograms />
+            </SecureRoute>
+          </ProgramContextProvider>
           <SecureRoute path="/manage-staff">
             <ViewStaff />
           </SecureRoute>

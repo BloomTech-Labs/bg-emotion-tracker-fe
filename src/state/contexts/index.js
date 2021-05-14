@@ -1,13 +1,12 @@
 import React, { useState, createContext } from 'react';
 
+//user context
 export const UserContext = createContext({
   user: {},
-  programs: [],
   loading: false,
   error: false,
   message: '',
   setUser: () => {},
-  setPrograms: () => [],
 });
 
 export const UserContextProvider = props => {
@@ -15,13 +14,36 @@ export const UserContextProvider = props => {
     setState({ ...state, user: user });
   };
 
+  const initState = {
+    setUser: setUser,
+    user: {},
+    loading: false,
+    error: false,
+    message: '',
+  };
+
+  const [state, setState] = useState(initState);
+
+  return (
+    <UserContext.Provider value={state}>{props.children}</UserContext.Provider>
+  );
+};
+
+// program context
+export const ProgramContext = createContext({
+  programs: [],
+  loading: false,
+  error: false,
+  message: '',
+  setPrograms: () => [],
+});
+
+export const ProgramContextProvider = props => {
   const setPrograms = programs => {
     setState({ ...state, programs: programs });
   };
 
   const initState = {
-    setUser: setUser,
-    user: {},
     setPrograms: setPrograms,
     programs: [],
     loading: false,
@@ -32,6 +54,8 @@ export const UserContextProvider = props => {
   const [state, setState] = useState(initState);
 
   return (
-    <UserContext.Provider value={state}>{props.children}</UserContext.Provider>
+    <ProgramContext.Provider value={state}>
+      {props.children}
+    </ProgramContext.Provider>
   );
 };
