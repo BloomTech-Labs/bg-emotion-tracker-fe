@@ -89,7 +89,7 @@ const ImportModal = props => {
           />
         </div>
         <div>
-          <h3>Preview</h3>
+          <h2 style={{ textAlign: 'center' }}>Preview</h2>
           <ProgramList inputData={inputData} />
         </div>
       </Modal>
