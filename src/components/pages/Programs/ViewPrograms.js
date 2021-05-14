@@ -5,14 +5,20 @@ import { ProgramContext } from '../../../state/contexts';
 import axios from 'axios';
 import { baseUrl } from '../../../api/index';
 
-const initialTableData = {
-  rows: [{ programName: 'Sample Name', clubId: '20' }],
+const sampleTableData = {
+  rows: [{ programName: 'Program Name', activityId: '0', clubId: '0' }],
   columns: [
     {
       title: 'Program Name',
       dataIndex: 'programName',
       render: text => <p>{text}</p>,
       key: '1',
+    },
+    {
+      title: 'Activity ID',
+      dataIndex: 'activityId',
+      render: text => <p>{text}</p>,
+      key: '2',
     },
     {
       title: 'Club ID',
@@ -23,13 +29,10 @@ const initialTableData = {
   ],
 };
 
-function ViewPrograms(props) {
-  const { rows, columns } = props;
+function ViewPrograms() {
   const [programData, setProgramData] = useState([]);
-  const [tableData, setTableData] = useState(initialTableData);
+  const [tableData, setTableData] = useState(sampleTableData);
   const context = useContext(ProgramContext);
-
-  console.log('props ', props);
 
   useEffect(() => {
     fetchActivities();
@@ -37,6 +40,7 @@ function ViewPrograms(props) {
 
   useEffect(() => {
     context.setPrograms(programData);
+    programDataToTableData(programData);
   }, [programData]);
 
   function fetchActivities() {
@@ -50,7 +54,7 @@ function ViewPrograms(props) {
       .then(
         res => setProgramData(res.data)
 
-        // for filtering by club use this:
+        // /*for filtering by club:*/
         // userClubId === 0
         //   ? setActivities(res.data)
         //   : setActivities(
@@ -61,14 +65,30 @@ function ViewPrograms(props) {
       .catch(e => console.log(e));
   }
 
-  console.log('context ', context);
+  function programDataToTableData(arrayOfClubs) {
+    const newRows = [];
+    arrayOfClubs.forEach(club => {
+      club.activities.forEach(activity => {
+        const newRow = {
+          programName: activity.activity.activityname,
+          activityId: activity.activity.activityid,
+          clubId: club.clubid,
+        };
+        newRows.push(newRow);
+      });
+    });
+    setTableData({
+      ...tableData,
+      rows: newRows,
+    });
+  }
 
   return (
     <ViewSingleton
       headerName="Programs"
       titleName="All Programs"
-      rows={rows}
-      columns={columns}
+      rows={tableData.rows}
+      columns={tableData.columns}
       RenderAddButton={ImportPrograms}
       sortedBy="Name"
     />
