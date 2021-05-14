@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import { UserContext } from '../../../state/contexts';
+import axios from 'axios';
 
 import RenderHomePage from './RenderHomePage';
 import { getUserProfile } from '../../../state/actions';
@@ -18,9 +19,10 @@ const HomeContainer = props => {
 
   let role = context.user.roles && context.user.roles[0].role.name;
 
-  //   if (role === 'YDP') {
-  push('/YDPDashboard');
-  //   }
+  // initial redirect to correct user dashboard
+  if (role === 'YDP') {
+    push('/YDPDashboard');
+  }
 
   return (
     <>
