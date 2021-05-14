@@ -40,19 +40,13 @@ function RenderHomePage() {
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
       <StyledYDPPage>
         <h2 style={{ textAlign: 'center' }}>Select Club</h2>
-        {/* <StyledLink to="/scanner">
-          <StyledButton size="large" type="primary">
-            Check In
-          </StyledButton>
-        </StyledLink> */}
-        <Dropdown overlay={menu} trigger={['click']}>
-          <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-            Clubs <DownOutlined />
-          </a>
-        </Dropdown>
-        {/* <StyledButton size="large" type="primary">
-          Choose Event
-        </StyledButton> */}
+        <h2 style={{ textAlign: 'center' }}>
+          <Dropdown overlay={menu} trigger={['click']}>
+            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+              Clubs <DownOutlined />
+            </a>
+          </Dropdown>
+        </h2>
         <StyledLink to="/activity-select">
           <StyledButton size="large" type="primary">
             Confirm
@@ -63,22 +57,3 @@ function RenderHomePage() {
   );
 }
 export default RenderHomePage;
-
-{
-  /* <StyledYDPPage>
-<h2 style={{ textAlign: 'center' }}>I want to...</h2>
-<StyledLink to="/scanner">
-  <StyledButton size="large" type="primary">
-    Check In
-  </StyledButton>
-</StyledLink>
-<StyledButton size="large" type="primary">
-  Choose Event
-</StyledButton>
-<StyledLink to="/scanner">
-  <StyledButton size="large" type="primary">
-    Check Out
-  </StyledButton>
-</StyledLink>
-</StyledYDPPage> */
-}
