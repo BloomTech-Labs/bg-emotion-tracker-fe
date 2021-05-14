@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Menu, Dropdown, Button } from 'antd';
 import {
@@ -11,6 +11,7 @@ import {
 } from '@ant-design/icons';
 import logo from '../../assets/images/BGC-logo-header.png';
 import { useHistory } from 'react-router';
+import { UserContext } from '../../state/contexts';
 
 const StyledNavBar = styled.header`
   display: flex;
@@ -39,6 +40,9 @@ const StyledNavBar = styled.header`
 
 function NavBar(props) {
   const { userInfo, authService } = props;
+  const context = useContext(UserContext);
+  let role = context.user.roles && context.user.roles[0].role.name;
+  console.log(role);
 
   const menu = (
     <Menu>
@@ -49,43 +53,55 @@ function NavBar(props) {
       >
         Home
       </Menu.Item>
-
+      {(role === 'ADMIN' || role === 'CD') && (
+        <Menu.Item
+          key="2"
+          icon={<UserOutlined />}
+          onClick={() => history.push('/manage-members')}
+        >
+          Manage Members
+        </Menu.Item>
+      )}
+      {(role === 'ADMIN' || role === 'CD') && (
+        <Menu.Item
+          key="3"
+          icon={<CalendarOutlined />}
+          onClick={() => history.push('/manage-programs')}
+        >
+          Manage Programs
+        </Menu.Item>
+      )}
+      {(role === 'ADMIN' || role === 'CD') && (
+        <Menu.Item
+          key="4"
+          icon={<TeamOutlined />}
+          onClick={() => history.push('/manage-staff')}
+        >
+          Manage Staff
+        </Menu.Item>
+      )}
+      {(role === 'ADMIN' || role === 'CD') && (
+        <Menu.Item
+          key="5"
+          icon={<TeamOutlined />}
+          onClick={() => history.push('/manage-clubs')}
+        >
+          Manage Clubs
+        </Menu.Item>
+      )}
       <Menu.Item
-        key="2"
-        icon={<UserOutlined />}
-        onClick={() => history.push('/manage-members')}
-      >
-        Manage Members
-      </Menu.Item>
-
-      <Menu.Item
-        key="3"
-        icon={<CalendarOutlined />}
-        onClick={() => history.push('/manage-programs')}
-      >
-        Manage Programs
-      </Menu.Item>
-
-      <Menu.Item
-        key="4"
-        icon={<TeamOutlined />}
-        onClick={() => history.push('/manage-staff')}
-      >
-        Manage Staff
-      </Menu.Item>
-      <Menu.Item
-        key="5"
-        icon={<TeamOutlined />}
-        onClick={() => history.push('/manage-clubs')}
-      >
-        Manage Clubs
-      </Menu.Item>
-      <Menu.Item
-        key="5"
+        key="6"
         icon={<LogoutOutlined />}
         onClick={() => history.push('/logout')}
       >
         Log Out
+      </Menu.Item>
+      <Menu.Item
+        key="7"
+        icon={<CalendarOutlined />}
+        onClick={() => history.push('/club-select')}
+      >
+        Tmp YDP Landing
       </Menu.Item>
     </Menu>
   );

@@ -18,6 +18,8 @@ import { LoginPage } from './components/pages/Login';
 import { Logout } from './components/common/Logout';
 import { HomePage } from './components/pages/Home';
 import { YDPDashboard } from './components/pages/YDPDashboard';
+import { ClubDirectorDashboard } from './components/pages/ClubDirectorDashboard';
+import { AdminDashboard } from './components/pages/AdminDashboard';
 import { LandingPage } from './components/pages/Landing';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
@@ -26,6 +28,12 @@ import { ViewPrograms } from './components/pages/Programs';
 import { ViewStaff } from './components/pages/Staff';
 import { ViewClubs } from './components/pages/Clubs';
 import { MemberScanner } from './components/pages/MemberScanner';
+
+import { ClubSelect } from './components/pages/ClubSelect';
+import { ActivitySelect } from './components/pages/ActivitySelect';
+import { EmojiSelectCheck } from './components/pages/EmojiSelectCheck';
+import { EmojiConfirmRedirect } from './components/pages/EmojiConfirmRedirect';
+
 import { EmojiSelector } from './components/pages/EmojiSelector';
 import { Roles } from './state/contexts/roles';
 
@@ -61,9 +69,13 @@ function App() {
             <SecureRoute
               exact
               path="/"
-              component={() => <HomePage LoadingComponent={LoadingComponent} />}
+              component={() => (
+                <HomePage
+                  authorize={[Roles[0], Roles[1]]}
+                  LoadingComponent={LoadingComponent}
+                />
+              )}
             />
-
             <SecureRoute
               exact
               path="/YDPDashboard"
@@ -71,8 +83,20 @@ function App() {
                 <YDPDashboard authorize={[Roles[0], Roles[1], Roles[2]]} />
               )}
             />
-
+            <SecureRoute
+              exact
+              path="/AdminDashboard"
+              component={() => <AdminDashboard authorize={[Roles[0]]} />}
+            />
+            <SecureRoute
+              exact
+              path="/ClubDirectorDashboard"
+              component={() => (
+                <ClubDirectorDashboard authorize={[Roles[0], Roles[1]]} />
+              )}
+            />
             {/*Member scaner test*/}
+
             <SecureRoute
               path="/scanner"
               component={() => (
@@ -80,6 +104,37 @@ function App() {
               )}
             />
 
+            <SecureRoute
+              exact
+              path="/club-select"
+              component={() => (
+                <ClubSelect LoadingComponent={LoadingComponent} />
+              )}
+            />
+
+            <SecureRoute
+              exact
+              path="/activity-select"
+              component={() => (
+                <ActivitySelect LoadingComponent={LoadingComponent} />
+              )}
+            />
+
+            <SecureRoute
+              exact
+              path="/emoji-selectcheck"
+              component={() => (
+                <EmojiSelectCheck LoadingComponent={LoadingComponent} />
+              )}
+            />
+
+            <SecureRoute
+              exact
+              path="/emoji-confirm-redirect"
+              component={() => (
+                <EmojiConfirmRedirect LoadingComponent={LoadingComponent} />
+              )}
+            />
             {/* Emoji Selector test */}
             <SecureRoute
               path="/emojiselector"
@@ -98,26 +153,6 @@ function App() {
             <SecureRoute path="/manage-clubs">
               <ViewClubs />
             </SecureRoute>
-            <Route component={NotFoundPage} />
-            {/* any of the routes you need secured should be registered as SecureRoutes */}
-            <SecureRoute
-              exact
-              path="/"
-              component={() => (
-                <HomePage
-                  authorize={[Roles[0], Roles[1]]}
-                  LoadingComponent={LoadingComponent}
-                />
-              )}
-            />
-            {/*Member scaner test*/}
-            <SecureRoute
-              exact
-              path="/scanner"
-              component={() => (
-                <MemberScanner LoadingComponent={LoadingComponent} />
-              )}
-            />
             <Route component={NotFoundPage} />
           </Switch>
         </Security>
