@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import NavBar from '../../common/YDPNavBar';
+import NavBar from '../../common/NavBar';
 import { Card, Menu, Dropdown, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
+
 
 const StyledYDPPage = styled.header`
   display: flex;
