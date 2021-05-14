@@ -3,7 +3,8 @@ import React from 'react';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
-import { Card, Modal, Menu, Dropdown, Button, Alert } from 'antd';
+import { Card, Menu, Dropdown, Button } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 
 const StyledActivitySelect = styled.header`
   display: flex;
@@ -17,13 +18,32 @@ const StyledActivitySelect = styled.header`
 function RenderActivitySelect(props) {
   const { userInfo /*authService*/ } = props;
   const history = useHistory();
+
+  const menu = (
+    <Menu>
+      <Menu.Item key="0">Check-In</Menu.Item>
+      <Menu.Item key="1">Check-Out</Menu.Item>
+      <Menu.Divider />
+
+      <Menu.Item key="2">Act1</Menu.Item>
+      <Menu.Item key="3">Act2</Menu.Item>
+      <Menu.Item key="4">Act3</Menu.Item>
+    </Menu>
+  );
+
   return (
     <>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
       <StyledActivitySelect>
         <h2>Select Activity</h2>
         <Card>
-          DROPDOWN HERE!
+          <Dropdown overlay={menu} trigger={['click']}>
+            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+              Activity
+              <DownOutlined />
+            </a>
+          </Dropdown>
+
           <div>
             <Button type="primary" onClick={() => history.push('/scanner')}>
               Submit

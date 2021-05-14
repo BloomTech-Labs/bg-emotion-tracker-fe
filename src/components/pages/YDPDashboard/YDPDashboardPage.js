@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../../common/YDPNavBar';
-import { Button, Card } from 'antd';
+import { Card, Menu, Dropdown, Button } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 
 const StyledYDPPage = styled.header`
   display: flex;
@@ -25,6 +26,15 @@ const StyledButton = styled(Button)`
 `;
 
 function RenderHomePage() {
+  const menu = (
+    <Menu>
+      <Menu.Item key="0">1st Club</Menu.Item>
+      <Menu.Item key="1">2nd Club</Menu.Item>
+      <Menu.Divider />
+      <Menu.Item key="3">3rd Club</Menu.Item>
+    </Menu>
+  );
+
   return (
     <>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
@@ -35,7 +45,11 @@ function RenderHomePage() {
             Check In
           </StyledButton>
         </StyledLink> */}
-        <div>CLUB-DROPDOWN</div>
+        <Dropdown overlay={menu} trigger={['click']}>
+          <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+            Clubs <DownOutlined />
+          </a>
+        </Dropdown>
         {/* <StyledButton size="large" type="primary">
           Choose Event
         </StyledButton> */}

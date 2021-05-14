@@ -24,7 +24,7 @@ const StyledButton = styled(Button)`
   background-color: 293845;
   width: 200px;
   text-align: center;
-  margin: 20px auto;
+  margin: 10px auto;
 `;
 
 function RenderMemberScanner(props) {

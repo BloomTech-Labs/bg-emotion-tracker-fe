@@ -21,7 +21,7 @@ function RenderEmojiSelectCheck(props) {
     <>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
       <StyledEmojiSelectCheck>
-        <h2>How do you feel?</h2>
+        <h2>Select Emoji</h2>
         <Card>
           EMOJIS HERE!
           <div>
@@ -29,7 +29,7 @@ function RenderEmojiSelectCheck(props) {
               type="primary"
               onClick={() => history.push('/emoji-confirm-redirect')}
             >
-              Submit
+              Confirm
             </Button>
           </div>
         </Card>
