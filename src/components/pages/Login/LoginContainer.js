@@ -12,7 +12,7 @@ const LoginContainer = () => {
       baseUrl: issuer ? issuer.split('/oauth2')[0] : '',
       clientId,
       redirectUri,
-      tration: {
+      registration: {
         // there is more we can do to handle some errors here.
       },
       features: { registration: false },
