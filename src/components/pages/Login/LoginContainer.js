@@ -12,16 +12,18 @@ const LoginContainer = () => {
       baseUrl: issuer ? issuer.split('/oauth2')[0] : '',
       clientId,
       redirectUri,
-      registration: {
+      tration: {
         // there is more we can do to handle some errors here.
       },
       features: { registration: false },
       // turning this feature on allows your widget to use Okta for user registration
-      logo: 'path-to-your-logo',
+      // logo: 'path-to-your-logo',
+      logo:
+        'https://boysandgirls.org/wp-content/uploads/2016/06/Boys-and-Girls-Club-Resized-1.jpg',
       // add your custom logo to your signing/register widget here.
       i18n: {
         en: {
-          'primaryauth.title': 'Welcome to Labs Basic SPA Please sign in',
+          'primaryauth.title': 'Boys & Girls Club',
           // change title for your app
         },
       },
