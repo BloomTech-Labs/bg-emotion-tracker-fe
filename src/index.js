@@ -59,7 +59,7 @@ function App() {
   return (
     <UserContextProvider>
       <ProgramContextProvider>
-        <div className="StyleContainer">
+        <div className="MainContainer">
           <Security {...config} onAuthRequired={authHandler}>
             <Switch>
               <Route path="/login" component={LoginPage} />

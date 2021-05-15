@@ -11,7 +11,7 @@
   height: 530px;
   overflow: hidden;
 }
-.StyleContainer {
+.MainContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
