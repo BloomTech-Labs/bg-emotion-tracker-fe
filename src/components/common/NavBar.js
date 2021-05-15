@@ -97,13 +97,6 @@ function NavBar(props) {
       >
         Log Out
       </Menu.Item>
-      <Menu.Item
-        key="7"
-        icon={<CalendarOutlined />}
-        onClick={() => history.push('/club-select')}
-      >
-        Tmp YDP Landing
-      </Menu.Item>
     </Menu>
   );
   const history = useHistory();
