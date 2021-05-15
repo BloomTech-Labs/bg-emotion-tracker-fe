@@ -6,20 +6,12 @@ function LoadingComponent(props) {
   const { message } = props;
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <Spin
-        class="loading-spinner"
-        tip={message}
-        size="large"
-        style={{ margin: '0 auto', fontWeight: '600' }}
-      />
-    </div>
+    <Spin
+      class="loading-spinner"
+      tip={message}
+      size="large"
+      style={{ margin: '0 auto', fontWeight: '600' }}
+    />
   );
 }
 

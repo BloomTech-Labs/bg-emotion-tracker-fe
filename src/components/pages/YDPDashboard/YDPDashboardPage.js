@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { Card, Menu, Dropdown, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
+import { LayoutContainer } from '../../common';
 
 const StyledYDPPage = styled.header`
   display: flex;
@@ -36,7 +37,7 @@ function RenderHomePage() {
   );
 
   return (
-    <>
+    <LayoutContainer>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
       <StyledYDPPage>
         <h2 style={{ textAlign: 'center' }}>Select Club</h2>
@@ -53,7 +54,7 @@ function RenderHomePage() {
           </StyledButton>
         </StyledLink>
       </StyledYDPPage>
-    </>
+    </LayoutContainer>
   );
 }
 export default RenderHomePage;

@@ -4,6 +4,7 @@ import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { Card, Button, Row, Col, Divider } from 'antd';
+import { LayoutContainer } from '../../common';
 
 const StyledEmojiSelectCheck = styled.header`
   display: flex;
@@ -39,7 +40,7 @@ function RenderEmojiSelectCheck(props) {
   const { userInfo /*authService*/ } = props;
   const history = useHistory();
   return (
-    <>
+    <LayoutContainer>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
       <StyledEmojiSelectCheck>
         <h2>Select Emoji</h2>
@@ -74,7 +75,7 @@ function RenderEmojiSelectCheck(props) {
           Confirm
         </StyledButton>
       </StyledEmojiSelectCheck>
-    </>
+    </LayoutContainer>
   );
 }
 export default RenderEmojiSelectCheck;

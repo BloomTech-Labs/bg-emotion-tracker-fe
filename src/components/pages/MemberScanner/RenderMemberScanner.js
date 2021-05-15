@@ -6,6 +6,7 @@ import { QRCodeReader } from '../QRCodeReader';
 import ManualMemberInput from './ManualMemberInput';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
+import { LayoutContainer } from '../../common';
 
 const StyledMemberScanner = styled.header`
   display: flex;
@@ -45,7 +46,7 @@ function RenderMemberScanner(props) {
   };
 
   return (
-    <>
+    <LayoutContainer>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
 
       <StyledLink to="/activity-select">
@@ -72,7 +73,7 @@ function RenderMemberScanner(props) {
           setScanStatus={setScanStatus}
         />
       </StyledMemberScanner>
-    </>
+    </LayoutContainer>
   );
 }
 export default RenderMemberScanner;
