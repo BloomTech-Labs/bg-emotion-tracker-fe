@@ -20,6 +20,7 @@ const StyledNavBar = styled.header`
   margin: 0 auto;
   background-color: rgba(0, 129, 198, 1);
   text-align: center;
+  width: 100%;
   img,
   .menu-container {
     margin: 1.5rem;
