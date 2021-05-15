@@ -5,6 +5,7 @@ import { UserContext } from '../../../state/contexts';
 import RenderHomePage from './RenderHomePage';
 import { getUserProfile } from '../../../state/actions';
 import { useHistory } from 'react-router-dom';
+import { LoadingComponent } from '../../../components/common/index';
 
 const HomeContainer = props => {
   const { authState } = useOktaAuth();
@@ -26,11 +27,13 @@ const HomeContainer = props => {
     push('/YDPDashboard');
   }
 
-  return (
-    <>
-      <RenderHomePage />
-    </>
-  );
+  let home = <LoadingComponent message="loading" />;
+
+  if (!role) {
+    return home;
+  } else {
+    return <RenderHomePage />;
+  }
 };
 
 export default HomeContainer;
