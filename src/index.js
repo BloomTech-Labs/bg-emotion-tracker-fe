@@ -12,6 +12,7 @@ import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import { UserContextProvider, ProgramContextProvider } from './state/contexts';
 
 import 'antd/dist/antd.less';
+import './styles/styles.less';
 
 import { NotFoundPage } from './components/pages/NotFound';
 import { LoginPage } from './components/pages/Login';
