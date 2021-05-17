@@ -14,6 +14,7 @@ const StyledEmojiConfirmRedirect = styled.header`
   width: 1200px;
   max-width: 90%;
   margin: 3rem auto;
+  text-align: center;
 `;
 
 const StyledEmojis = styled.div`

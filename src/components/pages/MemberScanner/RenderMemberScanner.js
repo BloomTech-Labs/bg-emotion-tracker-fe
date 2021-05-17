@@ -12,19 +12,41 @@ const StyledMemberScanner = styled.header`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 1200px;
-  max-width: 90%;
-  margin: 3rem auto;
+  align-content: center;
+  /* width: 800px; */
+  /* max-width: 90%; */
+  /* margin: 3rem auto; */
+  text-align: center;
 `;
 
 const StyledLink = styled(Link)`
   text-align: center;
+  justify-content: center;
+  align-content: center;
+`;
+
+const StyledCenterB = styled(Link)`
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+`;
+
+const StyledCenterA = styled(Link)`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
 `;
 
 const StyledButton = styled(Button)`
   background-color: 293845;
-  width: 115px;
+  width: auto;
   text-align: center;
+  justify-content: center;
+  align-content: center;
   margin: 10px auto;
 `;
 
@@ -49,12 +71,15 @@ function RenderMemberScanner(props) {
     <LayoutContainer>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
 
+      {/* <StyledCenterA> */}
+
       <StyledLink to="/activity-select">
         <StyledButton size="large" type="primary">
-          Go Back
+          Choose Activity
         </StyledButton>
       </StyledLink>
 
+      {/* <StyledCenterB> */}
       <StyledMemberScanner>
         <h2>Scanner</h2>
         <QRCodeReader handleScan={handleScan} handleError={handleError} />
@@ -73,6 +98,8 @@ function RenderMemberScanner(props) {
           setScanStatus={setScanStatus}
         />
       </StyledMemberScanner>
+      {/* </StyledCenterB> */}
+      {/* </StyledCenterA> */}
     </LayoutContainer>
   );
 }
