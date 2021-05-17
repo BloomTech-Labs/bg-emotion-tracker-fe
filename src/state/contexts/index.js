@@ -32,10 +32,12 @@ export const UserContextProvider = props => {
 // program context
 export const ProgramContext = createContext({
   programs: [],
+  clubs: [],
   loading: false,
   error: false,
   message: '',
   setPrograms: () => [],
+  setClubs: () => [],
   //member object context
   memberObject: {},
   setMemberObject: () => {},
@@ -46,6 +48,10 @@ export const ProgramContextProvider = props => {
     setState({ ...state, programs: programs });
   };
 
+  const setClubs = clubs => {
+    setState({ ...state, clubs });
+  };
+
   //member object context
   const setMemberObject = memberObject => {
     setState({ ...state, memberObject: memberObject });
@@ -53,7 +59,9 @@ export const ProgramContextProvider = props => {
 
   const initState = {
     setPrograms: setPrograms,
+    setClubs,
     programs: [],
+    clubs: [],
     loading: false,
     error: false,
     message: '',

@@ -1,22 +1,24 @@
 import React, { useEffect, useContext } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
-import { UserContext } from '../../../state/contexts';
+import { UserContext, ProgramContext } from '../../../state/contexts';
 
 import RenderHomePage from './RenderHomePage';
-import { getUserProfile } from '../../../state/actions';
+import { getUserProfile, getClubs } from '../../../state/actions';
 import { useHistory } from 'react-router-dom';
 import { LoadingComponent } from '../../../components/common/index';
 
 const HomeContainer = props => {
   const { authState } = useOktaAuth();
-  const context = useContext(UserContext);
+  const userContext = useContext(UserContext);
+  const programContext = useContext(ProgramContext);
   const { push } = useHistory();
 
   useEffect(() => {
-    getUserProfile(authState, context);
+    getUserProfile(authState, userContext);
+    getClubs(authState, programContext);
   }, []);
 
-  let role = context.user.roles && context.user.roles[0].role.name;
+  let role = userContext.user.roles && userContext.user.roles[0].role.name;
 
   // initial redirect to correct user dashboard
   if (role === 'ADMIN') {
