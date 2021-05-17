@@ -11,6 +11,7 @@ const StyledActivitySelect = styled.header`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
   width: 1200px;
   max-width: 90%;
   margin: 3rem auto;
