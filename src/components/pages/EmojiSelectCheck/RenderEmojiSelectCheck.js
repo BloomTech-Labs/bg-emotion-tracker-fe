@@ -11,6 +11,8 @@ const StyledEmojiSelectCheck = styled.header`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-content: center;
+  text-align: center;
   width: 1200px;
   max-width: 90%;
   margin: 3rem auto;
@@ -24,11 +26,24 @@ const options = [
   { label: '😞', value: '1F61E' },
 ];
 
+const StyledEmojis = styled.div`
+  font-size: 3rem;
+  /* background: '#ffffff';
+  padding: '2px 0'; */
+`;
+
+const StyledColor = styled.div`
+  &.ant-typography {
+    color: 'white';
+  }
+`;
+
 const StyledButton = styled(Button)`
   background-color: 293845;
   width: 200px;
   text-align: center;
   margin: 10px auto;
+  margin-top: 30px;
 `;
 
 const InitMemberObject = {
@@ -57,6 +72,7 @@ function RenderEmojiSelectCheck(props) {
     console.log(memberObject);
     console.log(userInfo);
     sendMemberObject();
+    history.push('/emoji-confirm-redirect'); //turn off during final testing!!!
   };
 
   const sendMemberObject = () => {
@@ -84,8 +100,38 @@ function RenderEmojiSelectCheck(props) {
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
       <StyledEmojiSelectCheck>
         <h2>Select Emoji</h2>
-        <Divider orientation="left">***</Divider>
+        {/* <Divider orientation="left">***</Divider> */}
+
+        {/* <StyledColor> */}
         <Radio.Group
+          //   options={options}
+          //   optionType="button"
+          buttonStyle="solid"
+          size="large"
+          onChange={onChange}
+          defaultValue={memberReaction}
+
+          //   value={memberReaction}
+        >
+          <Radio.Button value={memberReaction}>
+            <StyledEmojis>😁</StyledEmojis>
+          </Radio.Button>
+          <Radio.Button value={memberReaction}>
+            <StyledEmojis>🙂</StyledEmojis>
+          </Radio.Button>
+          <Radio.Button value={memberReaction}>
+            <StyledEmojis>😐</StyledEmojis>
+          </Radio.Button>
+          <Radio.Button value={memberReaction}>
+            <StyledEmojis>🙁</StyledEmojis>
+          </Radio.Button>
+          <Radio.Button value={memberReaction}>
+            <StyledEmojis>😞</StyledEmojis>
+          </Radio.Button>
+        </Radio.Group>
+        {/* </StyledColor> */}
+
+        {/* <Radio.Group
           options={options}
           optionType="button"
           buttonStyle="solid"
@@ -93,6 +139,7 @@ function RenderEmojiSelectCheck(props) {
           onChange={onChange}
           value={memberReaction}
         />
+     */}
 
         <StyledButton type="primary" onClick={onConfirm}>
           Confirm
