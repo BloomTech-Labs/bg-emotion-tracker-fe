@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
-import { Card, Menu, Dropdown, Button } from 'antd';
+import { Menu, Dropdown, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { LayoutContainer } from '../../common';
+import { ProgramContext } from '../../../state/contexts/index';
 
 const StyledYDPPage = styled.header`
   display: flex;
@@ -27,6 +28,14 @@ const StyledButton = styled(Button)`
 `;
 
 function RenderHomePage() {
+  const { memberObject, setMemberObject } = useContext(ProgramContext);
+
+  const newMemberObject = { ...memberObject, clubId: '20' };
+
+  const onClick = () => {
+    setMemberObject(newMemberObject);
+  };
+
   const menu = (
     <Menu>
       <Menu.Item key="0">1st Club</Menu.Item>
@@ -49,7 +58,7 @@ function RenderHomePage() {
           </Dropdown>
         </h2>
         <StyledLink to="/activity-select">
-          <StyledButton size="large" type="primary">
+          <StyledButton size="large" type="primary" onClick={onClick}>
             Confirm
           </StyledButton>
         </StyledLink>

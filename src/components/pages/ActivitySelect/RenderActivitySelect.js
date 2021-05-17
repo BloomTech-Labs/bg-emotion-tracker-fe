@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-//import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
-import { Card, Menu, Dropdown, Button } from 'antd';
+import { Menu, Dropdown, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { LayoutContainer } from '../../common';
+import { ProgramContext } from '../../../state/contexts/index';
 
 const StyledActivitySelect = styled.header`
   display: flex;
@@ -15,6 +15,7 @@ const StyledActivitySelect = styled.header`
   width: 1200px;
   max-width: 90%;
   margin: 3rem auto;
+  text-align: center;
 `;
 
 const StyledButton = styled(Button)`
@@ -52,6 +53,15 @@ function RenderActivitySelect(props) {
   const history = useHistory();
   const [activity, setActivity] = useState('');
 
+  const { memberObject, setMemberObject } = useContext(ProgramContext);
+
+  const newMemberObject = { ...memberObject, activityId: '13' };
+
+  const onClick = () => {
+    setMemberObject(newMemberObject);
+    history.push('/scanner');
+  };
+
   const menu = (
     <Menu>
       {data.map(item => (
@@ -79,7 +89,7 @@ function RenderActivitySelect(props) {
           </Dropdown>
         </h2>
 
-        <StyledButton type="primary" onClick={() => history.push('/scanner')}>
+        <StyledButton type="primary" onClick={onClick}>
           Submit
         </StyledButton>
       </StyledActivitySelect>

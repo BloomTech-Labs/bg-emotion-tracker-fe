@@ -35,7 +35,6 @@ import { ActivitySelect } from './components/pages/ActivitySelect';
 import { EmojiSelectCheck } from './components/pages/EmojiSelectCheck';
 import { EmojiConfirmRedirect } from './components/pages/EmojiConfirmRedirect';
 
-import { EmojiSelector } from './components/pages/EmojiSelector';
 import { Roles } from './state/contexts/roles';
 
 ReactDOM.render(
@@ -125,8 +124,11 @@ function App() {
               <SecureRoute
                 exact
                 path="/emoji-selectcheck"
-                component={() => (
-                  <EmojiSelectCheck LoadingComponent={LoadingComponent} />
+                component={props => (
+                  <EmojiSelectCheck
+                    pageProps={props}
+                    LoadingComponent={LoadingComponent}
+                  />
                 )}
               />
 
@@ -136,11 +138,6 @@ function App() {
                 component={() => (
                   <EmojiConfirmRedirect LoadingComponent={LoadingComponent} />
                 )}
-              />
-              {/* Emoji Selector test */}
-              <SecureRoute
-                path="/emojiselector"
-                render={props => <EmojiSelector {...props} />}
               />
 
               <SecureRoute path="/manage-members">
