@@ -1,10 +1,18 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Spin } from 'antd';
 
 function LoadingComponent(props) {
   const { message } = props;
 
-  return <div>{message}</div>;
+  return (
+    <Spin
+      class="loading-spinner"
+      tip={message}
+      size="large"
+      style={{ margin: '0 auto', fontWeight: '600' }}
+    />
+  );
 }
 
 export default LoadingComponent;
