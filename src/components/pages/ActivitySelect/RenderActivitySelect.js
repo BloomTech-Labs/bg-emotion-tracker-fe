@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 //import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
@@ -24,21 +24,46 @@ const StyledButton = styled(Button)`
   margin: 20px auto;
 `;
 
+let data = [
+  {
+    id: 1,
+    activity: 'Check-In',
+  },
+  {
+    id: 2,
+    activity: 'Check-Out',
+  },
+  {
+    id: 3,
+    activity: 'Act 1',
+  },
+  {
+    id: 4,
+    activity: 'Act 2',
+  },
+  {
+    id: 5,
+    activity: 'Act 3',
+  },
+];
+
 function RenderActivitySelect(props) {
   const { userInfo /*authService*/ } = props;
   const history = useHistory();
+  const [activity, setActivity] = useState('');
 
   const menu = (
     <Menu>
-      <Menu.Item key="0">Check-In</Menu.Item>
-      <Menu.Item key="1">Check-Out</Menu.Item>
-      <Menu.Divider />
-
-      <Menu.Item key="2">Act1</Menu.Item>
-      <Menu.Item key="3">Act2</Menu.Item>
-      <Menu.Item key="4">Act3</Menu.Item>
+      {data.map(item => (
+        <Menu.Item key={item.id}>{item.activity}</Menu.Item>
+      ))}
     </Menu>
   );
+
+  const getActivity = e => {
+    e.preventDefault();
+    console.log(e);
+  };
 
   return (
     <LayoutContainer>
@@ -48,9 +73,8 @@ function RenderActivitySelect(props) {
 
         <h2 style={{ textAlign: 'center' }}>
           <Dropdown overlay={menu} trigger={['click']}>
-            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-              Activity
-              <DownOutlined />
+            <a className="ant-dropdown-link" onClick={getActivity}>
+              Activity <DownOutlined />
             </a>
           </Dropdown>
         </h2>
