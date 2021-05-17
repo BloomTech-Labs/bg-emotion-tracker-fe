@@ -19,11 +19,11 @@ const StyledEmojiSelectCheck = styled.header`
 //const style = { background: '#ffffff', padding: '2px 0' };
 
 const options = [
-  { label: '😁', value: 'U+1F601' },
-  { label: '🙂', value: 'U+1F642' },
-  { label: '😐', value: 'U+1F610' },
-  { label: '🙁', value: 'U+1F641' },
-  { label: '😞', value: 'U+1F61E' },
+  { label: '😁', value: '1F601' },
+  { label: '🙂', value: '1F642' },
+  { label: '😐', value: '1F610' },
+  { label: '🙁', value: '1F641' },
+  { label: '😞', value: '1F61E' },
 ];
 
 // const style= styled.div`
@@ -68,18 +68,25 @@ function RenderEmojiSelectCheck(props) {
       memberReaction: memberReaction,
     };
     setMemberObject(currentMemberObject);
+    console.log(memberObject);
+    console.log(userInfo);
     sendMemberObject();
   };
 
   const sendMemberObject = () => {
     let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
     axios
-      .post(`${baseUrl}/clubs/clubs`, {
-        headers: {
-          Authorization: `Bearer ${tokenObj.accessToken.accessToken}`,
-        },
-        memberObject,
-      })
+      .post(
+        `${baseUrl}/memberreactions/memberreaction/submit?mid=${
+          memberObject.memberId
+        }&aid=${13}&cid=${20}&rx=${memberObject.memberReaction}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${tokenObj.accessToken.accessToken}`,
+          },
+        }
+      )
       .then(res => {
         history.push('/emoji-confirm-redirect');
       })
