@@ -12,8 +12,8 @@ const ProgramList = ({ inputData }) => {
         key: '1',
       },
       {
-        title: 'Club ID',
-        dataIndex: 'clubId',
+        title: 'Club Name',
+        dataIndex: 'clubName',
         render: text => <p>{text}</p>,
         key: '2',
       },
@@ -31,11 +31,11 @@ const ProgramList = ({ inputData }) => {
     //Add Rows
     const newRows = [];
     inputData.individual.forEach(item => {
-      const newRow = { programName: item.programName, clubId: item.clubId };
+      const newRow = { programName: item.programName, clubName: item.clubName };
       newRows.push(newRow);
     });
     inputData.file.forEach(item => {
-      const newRow = { programName: item.programName, clubId: item.clubId };
+      const newRow = { programName: item.programName, clubName: item.clubName };
       newRows.push(newRow);
     });
     setTableData({

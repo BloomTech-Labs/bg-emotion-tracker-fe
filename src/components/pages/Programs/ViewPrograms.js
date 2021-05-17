@@ -15,14 +15,8 @@ const sampleTableData = {
       key: '1',
     },
     {
-      title: 'Activity ID',
-      dataIndex: 'activityId',
-      render: text => <p>{text}</p>,
-      key: '2',
-    },
-    {
-      title: 'Club ID',
-      dataIndex: 'clubId',
+      title: 'Club Name',
+      dataIndex: 'clubName',
       render: text => <p>{text}</p>,
       key: '2',
     },
@@ -71,8 +65,8 @@ function ViewPrograms() {
       club.activities.forEach(activity => {
         const newRow = {
           programName: activity.activity.activityname,
-          activityId: activity.activity.activityid,
-          clubId: club.clubid,
+          // activityId: activity.activity.activityid,
+          clubName: club.clubname,
         };
         newRows.push(newRow);
       });

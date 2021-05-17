@@ -3,6 +3,8 @@ import { Modal, Button, Alert } from 'antd';
 import ProgramList from './ProgramList';
 import AddIndividual from './AddIndividual';
 import ImportUpload from './ImportUpload';
+import axios from 'axios';
+import { baseUrl } from '../../../../api/index';
 
 const ImportModal = props => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -21,6 +23,8 @@ const ImportModal = props => {
   };
 
   const handleOk = () => {
+    // Create new activity in back end
+    // axios.post(`${baseUrl}/activities/activity/addclub/{clubid}`,{"activityname": "test"});
     setIsModalVisible(false);
     clearState();
   };
@@ -61,6 +65,7 @@ const ImportModal = props => {
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
+        okText="Submit"
         width={'70%'}
       >
         {alertData.isVisable ? (
