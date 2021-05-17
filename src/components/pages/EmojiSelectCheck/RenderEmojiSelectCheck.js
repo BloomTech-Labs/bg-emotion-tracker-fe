@@ -4,6 +4,8 @@ import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { Card, Button, Row, Col, Divider, Radio } from 'antd';
+import axios from 'axios';
+import { baseUrl } from '../../../api/index';
 
 const StyledEmojiSelectCheck = styled.header`
   display: flex;
@@ -58,7 +60,22 @@ function RenderEmojiSelectCheck(props) {
       memberReaction: memberReaction,
     };
     setMemberObject(currentMemberObject);
-    history.push('/emoji-confirm-redirect');
+    sendMemberObject();
+  };
+
+  const sendMemberObject = () => {
+    let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
+    axios
+      .post(`${baseUrl}/clubs/clubs`, {
+        headers: {
+          Authorization: `Bearer ${tokenObj.accessToken.accessToken}`,
+        },
+        memberObject,
+      })
+      .then(res => {
+        history.push('/emoji-confirm-redirect');
+      })
+      .catch(e => console.log(e));
   };
 
   return (
