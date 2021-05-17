@@ -18,6 +18,14 @@ const StyledEmojiSelectCheck = styled.header`
 
 //const style = { background: '#ffffff', padding: '2px 0' };
 
+const options = [
+  { label: '😁', value: 'U+1F601' },
+  { label: '🙂', value: 'U+1F642' },
+  { label: '😐', value: 'U+1F610' },
+  { label: '🙁', value: 'U+1F641' },
+  { label: '😞', value: 'U+1F61E' },
+];
+
 // const style= styled.div`
 // font-size:15rem;
 // background: '#ffffff';
@@ -83,11 +91,10 @@ function RenderEmojiSelectCheck(props) {
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
       <StyledEmojiSelectCheck>
         <h2>Select Emoji</h2>
-        <p>{memberId}</p>
+        {/*
         <StyledEmojis>
           <>
             <Divider orientation="left">***</Divider>
-            {/*
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
               <Col className="gutter-row" span={6}>
                 <div style={style} >😁</div>
@@ -105,16 +112,19 @@ function RenderEmojiSelectCheck(props) {
                 <div style={style}>😞</div>
               </Col>
             </Row>
-            */}
-            <Radio.Group onChange={onChange} value={memberReaction}>
-              <Radio value={'U+1F601'}>😁</Radio>
-              <Radio value={'U+1F642'}>🙂</Radio>
-              <Radio value={'U+1F610'}>😐</Radio>
-              <Radio value={'U+1F641'}>🙁</Radio>
-              <Radio value={'U+1F61E'}>😞</Radio>
-            </Radio.Group>
+            <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
           </>
         </StyledEmojis>
+        */}
+        <Divider orientation="left">***</Divider>
+        <Radio.Group
+          options={options}
+          optionType="button"
+          buttonStyle="solid"
+          size="large"
+          onChange={onChange}
+          value={memberReaction}
+        />
 
         <StyledButton type="primary" onClick={onConfirm}>
           Confirm
