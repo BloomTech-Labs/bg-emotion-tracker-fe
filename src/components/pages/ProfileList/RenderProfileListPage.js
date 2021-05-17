@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { LayoutContainer } from '../../common';
 
 const RenderProfileListPage = props => (
-  <div>
+  <LayoutContainer>
     <p>
       <Link to="/">Home</Link>
     </p>
@@ -15,7 +16,7 @@ const RenderProfileListPage = props => (
         </figcaption>
       </figure>
     ))}
-  </div>
+  </LayoutContainer>
 );
 
 export default RenderProfileListPage;

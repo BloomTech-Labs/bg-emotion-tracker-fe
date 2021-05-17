@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { Card, Menu, Dropdown, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
+import { LayoutContainer } from '../../common';
 
 const StyledClubSelect = styled.header`
   display: flex;
@@ -33,7 +34,7 @@ function RenderClubSelect(props) {
   );
 
   return (
-    <>
+    <LayoutContainer>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
       <StyledClubSelect>
         <h2>Select Club</h2>
@@ -54,7 +55,7 @@ function RenderClubSelect(props) {
           </div>
         </Card>
       </StyledClubSelect>
-    </>
+    </LayoutContainer>
   );
 }
 export default RenderClubSelect;

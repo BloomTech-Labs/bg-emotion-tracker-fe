@@ -20,6 +20,7 @@ const StyledNavBar = styled.header`
   margin: 0 auto;
   background-color: rgba(0, 129, 198, 1);
   text-align: center;
+  width: 100%;
   img,
   .menu-container {
     margin: 1.5rem;
@@ -95,13 +96,6 @@ function NavBar(props) {
         onClick={() => history.push('/logout')}
       >
         Log Out
-      </Menu.Item>
-      <Menu.Item
-        key="7"
-        icon={<CalendarOutlined />}
-        onClick={() => history.push('/club-select')}
-      >
-        Tmp YDP Landing
       </Menu.Item>
     </Menu>
   );

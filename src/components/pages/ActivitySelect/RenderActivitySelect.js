@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { Card, Menu, Dropdown, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
+import { LayoutContainer } from '../../common';
 
 const StyledActivitySelect = styled.header`
   display: flex;
@@ -39,7 +40,7 @@ function RenderActivitySelect(props) {
   );
 
   return (
-    <>
+    <LayoutContainer>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
       <StyledActivitySelect>
         <h2>Select Activity</h2>
@@ -57,7 +58,7 @@ function RenderActivitySelect(props) {
           Submit
         </StyledButton>
       </StyledActivitySelect>
-    </>
+    </LayoutContainer>
   );
 }
 export default RenderActivitySelect;

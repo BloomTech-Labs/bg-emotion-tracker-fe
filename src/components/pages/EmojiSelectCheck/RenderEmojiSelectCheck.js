@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
-import { Button, Divider, Radio } from 'antd';
+import { Button, Row, Col, Divider, Radio } from 'antd';
 import axios from 'axios';
+import { LayoutContainer } from '../../common';
 import { baseUrl } from '../../../api/index';
 
 const StyledEmojiSelectCheck = styled.header`
@@ -79,7 +80,7 @@ function RenderEmojiSelectCheck(props) {
   };
 
   return (
-    <>
+    <LayoutContainer>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
       <StyledEmojiSelectCheck>
         <h2>Select Emoji</h2>
@@ -97,7 +98,7 @@ function RenderEmojiSelectCheck(props) {
           Confirm
         </StyledButton>
       </StyledEmojiSelectCheck>
-    </>
+    </LayoutContainer>
   );
 }
 export default RenderEmojiSelectCheck;

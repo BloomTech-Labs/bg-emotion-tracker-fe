@@ -1,5 +1,5 @@
 import React from 'react';
-import { ViewSingleton } from '../../common/ViewSingleton';
+import { ViewSingleton, LayoutContainer } from '../../common';
 import { ImportMembers } from './ImportMember';
 // Mock data for member pull for backend
 const mockData = {
@@ -55,14 +55,16 @@ const mockData = {
 };
 function ViewMembers(props) {
   return (
-    <ViewSingleton
-      headerName="Members"
-      titleName="All Members"
-      RenderAddButton={ImportMembers}
-      rows={mockData.rows}
-      columns={mockData.columns}
-      sortedBy="ID"
-    />
+    <LayoutContainer>
+      <ViewSingleton
+        headerName="Members"
+        titleName="All Members"
+        RenderAddButton={ImportMembers}
+        rows={mockData.rows}
+        columns={mockData.columns}
+        sortedBy="ID"
+      />
+    </LayoutContainer>
   );
 }
 export default ViewMembers;
