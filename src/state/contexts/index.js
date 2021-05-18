@@ -32,14 +32,11 @@ export const UserContextProvider = props => {
 // program context
 export const ProgramContext = createContext({
   programs: [],
-  clubs: [],
   activity: {},
   loading: false,
   error: false,
   message: '',
   setPrograms: () => [],
-  setClubs: () => [],
-  setActivity: () => {},
   //member object context
   memberObject: {},
   setMemberObject: () => {},
@@ -50,14 +47,6 @@ export const ProgramContextProvider = props => {
     setState({ ...state, programs: programs });
   };
 
-  const setClubs = clubs => {
-    setState({ ...state, clubs });
-  };
-
-  const setActivity = activity => {
-    setState({ ...state, activity });
-  };
-
   //member object context
   const setMemberObject = memberObject => {
     setState({ ...state, memberObject: memberObject });
@@ -65,11 +54,7 @@ export const ProgramContextProvider = props => {
 
   const initState = {
     setPrograms: setPrograms,
-    setClubs,
-    setActivity,
     programs: [],
-    clubs: [],
-    activity: {},
     loading: false,
     error: false,
     message: '',
@@ -89,5 +74,62 @@ export const ProgramContextProvider = props => {
     <ProgramContext.Provider value={state}>
       {props.children}
     </ProgramContext.Provider>
+  );
+};
+
+// Activity Context
+
+export const ActivityContext = createContext({
+  activity: {},
+  loading: false,
+  error: false,
+  message: '',
+  setActivity: () => {},
+});
+
+export const ActivityContextProvider = props => {
+  const setActivity = activity => {
+    setState({ ...state, activity });
+  };
+
+  const initState = {
+    setActivity,
+  };
+
+  const [state, setState] = useState(initState);
+
+  return (
+    <ActivityContext.Provider value={state}>
+      {props.children}
+    </ActivityContext.Provider>
+  );
+};
+
+// Clubs Context
+
+export const ClubsContext = createContext({
+  clubs: [],
+  loading: false,
+  error: false,
+  message: '',
+  setClubs: () => [],
+});
+
+export const ClubsContextProvider = props => {
+  const setClubs = clubs => {
+    setState({ ...state, clubs });
+  };
+
+  const initState = {
+    clubs: [],
+    setClubs,
+  };
+
+  const [state, setState] = useState(initState);
+
+  return (
+    <ClubsContext.Provider value={state}>
+      {props.children}
+    </ClubsContext.Provider>
   );
 };

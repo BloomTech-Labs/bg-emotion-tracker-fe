@@ -6,7 +6,7 @@ import NavBar from '../../common/NavBar';
 import { Menu, Dropdown, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { LayoutContainer } from '../../common';
-import { ProgramContext } from '../../../state/contexts/index';
+import { ProgramContext, ActivityContext } from '../../../state/contexts/index';
 
 const StyledActivitySelect = styled.header`
   display: flex;
@@ -70,18 +70,18 @@ function RenderActivitySelect(props) {
   const { userInfo /*authService*/ } = props;
   const history = useHistory();
 
-  const { memberObject, setMemberObject, setActivity } = useContext(
+  const { memberObject, setMemberObject, setClubs } = useContext(
     ProgramContext
   );
 
-  const newMemberObject = { ...memberObject, activityId: '13' };
+  const { setActivity } = useContext(ActivityContext);
 
-  const con = useContext(ProgramContext);
+  // const newMemberObject = { ...memberObject, activityId: '13' };
 
-  const onClick = () => {
-    setMemberObject(newMemberObject);
-    history.push('/scanner');
-  };
+  // const onClick = () => {
+  //   setMemberObject(newMemberObject);
+  //   history.push('/scanner');
+  // };
 
   const selectActivity = (e, item) => {
     setActivity(item);
