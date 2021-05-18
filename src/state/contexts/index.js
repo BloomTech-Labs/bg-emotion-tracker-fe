@@ -113,6 +113,7 @@ export const ClubsContext = createContext({
   loading: false,
   error: false,
   message: '',
+  setClub: () => {},
   setClubs: () => [],
 });
 

@@ -30,7 +30,6 @@ const StyledButton = styled(Button)`
 
 function RenderHomePage() {
   const { memberObject, setMemberObject } = useContext(ProgramContext);
-  const { clubs } = useContext(ClubsContext);
   const context = useContext(ClubsContext);
 
   const newMemberObject = { ...memberObject, clubId: '20' };
@@ -45,7 +44,7 @@ function RenderHomePage() {
 
   const selectClub = (e, item) => {
     console.log('item: ', item);
-    getClub(item.clubid);
+    getClub(item.clubid, context);
     // setActivity(item);
     // api call to backend
   };

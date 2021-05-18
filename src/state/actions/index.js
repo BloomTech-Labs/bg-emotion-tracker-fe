@@ -38,8 +38,8 @@ export const getClubs = async (authState, context) => {
     });
 };
 
-export const getClub = async (authState, context) => {
-  await getClubData(authState)
+export const getClub = async (id, context) => {
+  await getClubData(id)
     .then(res => {
       context.setClub(res);
     })
