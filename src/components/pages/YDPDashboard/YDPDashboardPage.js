@@ -6,6 +6,7 @@ import { Menu, Dropdown, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { LayoutContainer } from '../../common';
 import { ProgramContext, ClubsContext } from '../../../state/contexts';
+import { getClub } from '../../../state/actions';
 
 const StyledYDPPage = styled.header`
   display: flex;
@@ -44,16 +45,15 @@ function RenderHomePage() {
 
   const selectClub = (e, item) => {
     console.log('item: ', item);
+    getClub(item.clubid);
     // setActivity(item);
+    // api call to backend
   };
 
   const menu = (
     <Menu>
       {context.clubs.map(item => (
-        <Menu.Item
-          key={item.clubid}
-          onClick={e => selectClub(e, item.clubname)}
-        >
+        <Menu.Item key={item.clubid} onClick={e => selectClub(e, item)}>
           {item.clubname}
         </Menu.Item>
       ))}

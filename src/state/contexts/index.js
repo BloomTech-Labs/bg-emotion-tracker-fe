@@ -108,6 +108,7 @@ export const ActivityContextProvider = props => {
 // Clubs Context
 
 export const ClubsContext = createContext({
+  club: {},
   clubs: [],
   loading: false,
   error: false,
@@ -120,8 +121,14 @@ export const ClubsContextProvider = props => {
     setState({ ...state, clubs });
   };
 
+  const setClub = club => {
+    setState({ ...state, club });
+  };
+
   const initState = {
     clubs: [],
+    club: {},
+    setClub,
     setClubs,
   };
 
