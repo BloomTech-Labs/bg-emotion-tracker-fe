@@ -5,7 +5,7 @@ import NavBar from '../../common/NavBar';
 import { Menu, Dropdown, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { LayoutContainer } from '../../common';
-import { ProgramContext } from '../../../state/contexts/index';
+import { ProgramContext, ClubsContext } from '../../../state/contexts/index';
 
 const StyledYDPPage = styled.header`
   display: flex;
@@ -29,6 +29,7 @@ const StyledButton = styled(Button)`
 
 function RenderHomePage() {
   const { memberObject, setMemberObject } = useContext(ProgramContext);
+  const { clubs } = useContext(ClubsContext);
 
   const newMemberObject = { ...memberObject, clubId: '20' };
 
@@ -52,16 +53,18 @@ function RenderHomePage() {
         <h2 style={{ textAlign: 'center' }}>Select Club</h2>
         <h2 style={{ textAlign: 'center' }}>
           <Dropdown overlay={menu} trigger={['click']}>
-            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+            <a className="ant-dropdown-link">
               Clubs <DownOutlined />
             </a>
           </Dropdown>
         </h2>
-        <StyledLink to="/activity-select">
-          <StyledButton size="large" type="primary" onClick={onClick}>
-            Confirm
-          </StyledButton>
-        </StyledLink>
+        <StyledButton
+          size="large"
+          type="primary"
+          onClick={e => e.preventDefault()}
+        >
+          <StyledLink to="/activity-select">Confirm</StyledLink>
+        </StyledButton>
       </StyledYDPPage>
     </LayoutContainer>
   );

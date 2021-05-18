@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
@@ -7,6 +7,7 @@ import ManualMemberInput from './ManualMemberInput';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
 import { LayoutContainer } from '../../common';
+import { ProgramContext } from '../../../state/contexts';
 
 const StyledMemberScanner = styled.header`
   display: flex;
@@ -55,9 +56,10 @@ function RenderMemberScanner(props) {
   const [scanStatus, setScanStatus] = useState(false);
   const [scanError, setScanError] = useState(false);
 
+  const con = useContext(ProgramContext);
+
   const handleError = err => {
     setScanError(true);
-    console.error(err);
   };
 
   const handleScan = data => {
