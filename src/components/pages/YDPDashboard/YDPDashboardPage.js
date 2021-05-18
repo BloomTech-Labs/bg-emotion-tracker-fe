@@ -5,7 +5,7 @@ import NavBar from '../../common/NavBar';
 import { Menu, Dropdown, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { LayoutContainer } from '../../common';
-import { ProgramContext, ClubsContext } from '../../../state/contexts/index';
+import { ProgramContext, ClubsContext } from '../../../state/contexts';
 
 const StyledYDPPage = styled.header`
   display: flex;
@@ -30,6 +30,7 @@ const StyledButton = styled(Button)`
 function RenderHomePage() {
   const { memberObject, setMemberObject } = useContext(ProgramContext);
   const { clubs } = useContext(ClubsContext);
+  const context = useContext(ClubsContext);
 
   const newMemberObject = { ...memberObject, clubId: '20' };
 
@@ -37,12 +38,25 @@ function RenderHomePage() {
     setMemberObject(newMemberObject);
   };
 
+  let data = {
+    clubs: [],
+  };
+
+  const selectClub = (e, item) => {
+    console.log('item: ', item);
+    // setActivity(item);
+  };
+
   const menu = (
     <Menu>
-      <Menu.Item key="0">1st Club</Menu.Item>
-      <Menu.Item key="1">2nd Club</Menu.Item>
-      <Menu.Divider />
-      <Menu.Item key="3">3rd Club</Menu.Item>
+      {context.clubs.map(item => (
+        <Menu.Item
+          key={item.clubid}
+          onClick={e => selectClub(e, item.clubname)}
+        >
+          {item.clubname}
+        </Menu.Item>
+      ))}
     </Menu>
   );
 
