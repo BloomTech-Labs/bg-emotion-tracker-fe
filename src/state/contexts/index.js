@@ -141,3 +141,30 @@ export const ClubsContextProvider = props => {
     </ClubsContext.Provider>
   );
 };
+
+// Club Context
+
+export const ClubContext = createContext({
+  club: {},
+  loading: false,
+  error: false,
+  message: '',
+  setClub: () => {},
+});
+
+export const ClubContextProvider = props => {
+  const setClub = club => {
+    setState({ ...state, club });
+  };
+
+  const initState = {
+    club: {},
+    setClub,
+  };
+
+  const [state, setState] = useState(initState);
+
+  return (
+    <ClubContext.Provider value={state}>{props.children}</ClubContext.Provider>
+  );
+};
