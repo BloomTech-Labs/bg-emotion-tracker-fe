@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { Redirect, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { QRCodeReader } from '../QRCodeReader';
 import ManualMemberInput from './ManualMemberInput';
-import { Link } from 'react-router-dom';
 import { Button } from 'antd';
 import { LayoutContainer } from '../../common';
+import { ProgramContext } from '../../../state/contexts/index';
 
 const StyledMemberScanner = styled.header`
   display: flex;
@@ -51,9 +51,10 @@ const StyledButton = styled(Button)`
 `;
 
 function RenderMemberScanner(props) {
-  const [QRdata, setQRdata] = useState('None');
   const [scanStatus, setScanStatus] = useState(false);
   const [scanError, setScanError] = useState(false);
+
+  const { memberObject, setMemberObject } = useContext(ProgramContext);
 
   const handleError = err => {
     setScanError(true);
@@ -62,7 +63,8 @@ function RenderMemberScanner(props) {
 
   const handleScan = data => {
     if (data) {
-      setQRdata(data);
+      const newMemberObject = { ...memberObject, memberId: data };
+      setMemberObject(newMemberObject);
       setScanStatus(true);
     }
   };
@@ -89,14 +91,10 @@ function RenderMemberScanner(props) {
           <Redirect
             to={{
               pathname: '/emoji-selectcheck',
-              state: { QRdata: QRdata },
             }}
           />
         ) : null}
-        <ManualMemberInput
-          setQRdata={setQRdata}
-          setScanStatus={setScanStatus}
-        />
+        <ManualMemberInput setScanStatus={setScanStatus} />
       </StyledMemberScanner>
       {/* </StyledCenterB> */}
       {/* </StyledCenterA> */}
