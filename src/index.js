@@ -12,6 +12,7 @@ import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import {
   ActivityContextProvider,
   ClubsContextProvider,
+  ClubContextProvider,
   UserContextProvider,
   ProgramContextProvider,
 } from './state/contexts';
@@ -64,110 +65,119 @@ function App() {
     <UserContextProvider>
       <ProgramContextProvider>
         <ClubsContextProvider>
-          <ActivityContextProvider>
-            <div className="MainContainer">
-              <Security {...config} onAuthRequired={authHandler}>
-                <Switch>
-                  <Route path="/login" component={LoginPage} />
-                  <Route path="/logout" component={Logout} />
-                  <Route path="/implicit/callback" component={LoginCallback} />
-                  <Route path="/landing" component={LandingPage} />
+          <ClubContextProvider>
+            <ActivityContextProvider>
+              <div className="MainContainer">
+                <Security {...config} onAuthRequired={authHandler}>
+                  <Switch>
+                    <Route path="/login" component={LoginPage} />
+                    <Route path="/logout" component={Logout} />
+                    <Route
+                      path="/implicit/callback"
+                      component={LoginCallback}
+                    />
+                    <Route path="/landing" component={LandingPage} />
 
-                  {/* any of the routes you need secured should be registered as SecureRoutes */}
-                  <SecureRoute
-                    exact
-                    path="/"
-                    component={() => (
-                      <HomePage
-                        authorize={[Roles[0], Roles[1]]}
-                        LoadingComponent={LoadingComponent}
-                      />
-                    )}
-                  />
-                  <SecureRoute
-                    exact
-                    path="/YDPDashboard"
-                    component={() => (
-                      <YDPDashboard
-                        authorize={[Roles[0], Roles[1], Roles[2]]}
-                      />
-                    )}
-                  />
-                  <SecureRoute
-                    exact
-                    path="/AdminDashboard"
-                    component={() => <AdminDashboard authorize={[Roles[0]]} />}
-                  />
-                  <SecureRoute
-                    exact
-                    path="/ClubDirectorDashboard"
-                    component={() => (
-                      <ClubDirectorDashboard authorize={[Roles[0], Roles[1]]} />
-                    )}
-                  />
-                  {/*Member scaner test*/}
+                    {/* any of the routes you need secured should be registered as SecureRoutes */}
+                    <SecureRoute
+                      exact
+                      path="/"
+                      component={() => (
+                        <HomePage
+                          authorize={[Roles[0], Roles[1]]}
+                          LoadingComponent={LoadingComponent}
+                        />
+                      )}
+                    />
+                    <SecureRoute
+                      exact
+                      path="/YDPDashboard"
+                      component={() => (
+                        <YDPDashboard
+                          authorize={[Roles[0], Roles[1], Roles[2]]}
+                        />
+                      )}
+                    />
+                    <SecureRoute
+                      exact
+                      path="/AdminDashboard"
+                      component={() => (
+                        <AdminDashboard authorize={[Roles[0]]} />
+                      )}
+                    />
+                    <SecureRoute
+                      exact
+                      path="/ClubDirectorDashboard"
+                      component={() => (
+                        <ClubDirectorDashboard
+                          authorize={[Roles[0], Roles[1]]}
+                        />
+                      )}
+                    />
+                    {/*Member scaner test*/}
 
-                  <SecureRoute
-                    path="/scanner"
-                    component={() => (
-                      <MemberScanner LoadingComponent={LoadingComponent} />
-                    )}
-                  />
+                    <SecureRoute
+                      path="/scanner"
+                      component={() => (
+                        <MemberScanner LoadingComponent={LoadingComponent} />
+                      )}
+                    />
 
-                  <SecureRoute
-                    exact
-                    path="/club-select"
-                    component={() => (
-                      <ClubSelect LoadingComponent={LoadingComponent} />
-                    )}
-                  />
+                    <SecureRoute
+                      exact
+                      path="/club-select"
+                      component={() => (
+                        <ClubSelect LoadingComponent={LoadingComponent} />
+                      )}
+                    />
 
-                  <SecureRoute
-                    exact
-                    path="/activity-select"
-                    component={() => (
-                      <ActivitySelect LoadingComponent={LoadingComponent} />
-                    )}
-                  />
+                    <SecureRoute
+                      exact
+                      path="/activity-select"
+                      component={() => (
+                        <ActivitySelect LoadingComponent={LoadingComponent} />
+                      )}
+                    />
 
-                  <SecureRoute
-                    exact
-                    path="/emoji-selectcheck"
-                    component={props => (
-                      <EmojiSelectCheck
-                        pageProps={props}
-                        LoadingComponent={LoadingComponent}
-                      />
-                    )}
-                  />
+                    <SecureRoute
+                      exact
+                      path="/emoji-selectcheck"
+                      component={props => (
+                        <EmojiSelectCheck
+                          pageProps={props}
+                          LoadingComponent={LoadingComponent}
+                        />
+                      )}
+                    />
 
-                  <SecureRoute
-                    exact
-                    path="/emoji-confirm-redirect"
-                    component={() => (
-                      <EmojiConfirmRedirect
-                        LoadingComponent={LoadingComponent}
-                      />
-                    )}
-                  />
+                    <SecureRoute
+                      exact
+                      path="/emoji-confirm-redirect"
+                      component={() => (
+                        <EmojiConfirmRedirect
+                          LoadingComponent={LoadingComponent}
+                        />
+                      )}
+                    />
 
-                  <SecureRoute path="/manage-members">
-                    <ViewMembers />
-                  </SecureRoute>
-                  <SecureRoute path="/manage-programs">
-                    <ViewPrograms />
-                  </SecureRoute>
-                  <SecureRoute path="/manage-staff">
-                    <ViewStaff />
-                  </SecureRoute>
-                  <SecureRoute path="/manage-clubs">
-                    <ViewClubs />
-                  </SecureRoute>
-                  <Route component={NotFoundPage} />
-                </Switch>
-              </Security>
-            </div>
-          </ActivityContextProvider>
+                    <SecureRoute path="/manage-members">
+                      <ViewMembers />
+                    </SecureRoute>
+                    <SecureRoute path="/manage-programs">
+                      <ViewPrograms />
+                    </SecureRoute>
+                    <SecureRoute path="/manage-staff">
+                      <ViewStaff />
+                    </SecureRoute>
+                    <SecureRoute path="/manage-clubs">
+                      <ViewClubs />
+                    </SecureRoute>
+                    <Route component={NotFoundPage} />
+                  </Switch>
+                </Security>
+              </div>
+            </ActivityContextProvider>
+          </ClubContextProvider>
         </ClubsContextProvider>
       </ProgramContextProvider>
     </UserContextProvider>
