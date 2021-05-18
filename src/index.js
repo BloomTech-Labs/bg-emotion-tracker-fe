@@ -96,15 +96,12 @@ function App() {
                   <ClubDirectorDashboard authorize={[Roles[0], Roles[1]]} />
                 )}
               />
-              {/*Member scaner test*/}
-
               <SecureRoute
                 path="/scanner"
                 component={() => (
                   <MemberScanner LoadingComponent={LoadingComponent} />
                 )}
               />
-
               <SecureRoute
                 exact
                 path="/club-select"
@@ -112,7 +109,6 @@ function App() {
                   <ClubSelect LoadingComponent={LoadingComponent} />
                 )}
               />
-
               <SecureRoute
                 exact
                 path="/activity-select"
@@ -120,18 +116,13 @@ function App() {
                   <ActivitySelect LoadingComponent={LoadingComponent} />
                 )}
               />
-
               <SecureRoute
                 exact
                 path="/emoji-selectcheck"
-                component={props => (
-                  <EmojiSelectCheck
-                    pageProps={props}
-                    LoadingComponent={LoadingComponent}
-                  />
+                component={() => (
+                  <EmojiSelectCheck LoadingComponent={LoadingComponent} />
                 )}
               />
-
               <SecureRoute
                 exact
                 path="/emoji-confirm-redirect"
@@ -139,7 +130,6 @@ function App() {
                   <EmojiConfirmRedirect LoadingComponent={LoadingComponent} />
                 )}
               />
-
               <SecureRoute path="/manage-members">
                 <ViewMembers />
               </SecureRoute>
