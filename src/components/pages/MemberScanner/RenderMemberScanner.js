@@ -11,13 +11,12 @@ import { ProgramContext } from '../../../state/contexts';
 
 const StyledMemberScanner = styled.header`
   display: flex;
+  margin-left: 25%;
+  margin-right: 25%;
   flex-direction: column;
-  justify-content: center;
-  align-content: center;
   /* width: 800px; */
   /* max-width: 90%; */
   /* margin: 3rem auto; */
-  text-align: center;
 `;
 
 const StyledLink = styled(Link)`
@@ -81,7 +80,6 @@ function RenderMemberScanner(props) {
         </StyledButton>
       </StyledLink>
 
-      {/* <StyledCenterB> */}
       <StyledMemberScanner>
         <h2>Scanner</h2>
         <QRCodeReader handleScan={handleScan} handleError={handleError} />
@@ -95,12 +93,13 @@ function RenderMemberScanner(props) {
             }}
           />
         ) : null}
+
         <ManualMemberInput
           setQRdata={setQRdata}
           setScanStatus={setScanStatus}
         />
       </StyledMemberScanner>
-      {/* </StyledCenterB> */}
+
       {/* </StyledCenterA> */}
     </LayoutContainer>
   );
