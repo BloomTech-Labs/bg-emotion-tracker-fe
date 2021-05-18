@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
@@ -15,6 +16,10 @@ const StyledActivitySelect = styled.header`
   width: 1200px;
   max-width: 90%;
   margin: 3rem auto;
+  text-align: center;
+`;
+
+const StyledLink = styled(Link)`
   text-align: center;
 `;
 
@@ -109,8 +114,15 @@ function RenderActivitySelect(props) {
           </Dropdown>
         </h2>
 
-        <StyledButton type="primary" onClick={onClick}>
+        {/* <StyledButton type="primary" onClick={onClick}>
           Submit
+        </StyledButton> */}
+        <StyledButton
+          size="large"
+          type="primary"
+          onClick={e => e.preventDefault()}
+        >
+          <StyledLink to="/scanner">Confirm</StyledLink>
         </StyledButton>
       </StyledActivitySelect>
     </LayoutContainer>

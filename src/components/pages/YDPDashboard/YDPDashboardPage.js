@@ -57,11 +57,13 @@ function RenderHomePage() {
             </a>
           </Dropdown>
         </h2>
-        <StyledLink to="/activity-select">
-          <StyledButton size="large" type="primary" onClick={onClick}>
-            Confirm
-          </StyledButton>
-        </StyledLink>
+        <StyledButton
+          size="large"
+          type="primary"
+          onClick={e => e.preventDefault()}
+        >
+          <StyledLink to="/activity-select">Confirm</StyledLink>
+        </StyledButton>
       </StyledYDPPage>
     </LayoutContainer>
   );
