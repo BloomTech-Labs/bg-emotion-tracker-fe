@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
-import { Button, Row, Col, Divider, Radio } from 'antd';
+import { Button, Radio } from 'antd';
 import axios from 'axios';
 import { LayoutContainer } from '../../common';
 import { baseUrl } from '../../../api/index';
+import { ProgramContext } from '../../../state/contexts/index';
 
 const StyledEmojiSelectCheck = styled.header`
   display: flex;
@@ -17,14 +18,6 @@ const StyledEmojiSelectCheck = styled.header`
   max-width: 90%;
   margin: 3rem auto;
 `;
-
-const options = [
-  { label: '😁', value: '1F601' },
-  { label: '🙂', value: '1F642' },
-  { label: '😐', value: '1F610' },
-  { label: '🙁', value: '1F641' },
-  { label: '😞', value: '1F61E' },
-];
 
 const StyledEmojis = styled.div`
   font-size: 3rem;
@@ -46,42 +39,22 @@ const StyledButton = styled(Button)`
   margin-top: 30px;
 `;
 
-const InitMemberObject = {
-  memberId: 'None',
-  memberReaction: 'None',
-};
-
 function RenderEmojiSelectCheck(props) {
   const { userInfo /*authService*/ } = props;
   const history = useHistory();
-  const memberId = props.pageProps.location.state.QRdata.memberId;
 
-  const [memberReaction, setMemberReaction] = useState('None');
-  const [memberObject, setMemberObject] = useState(InitMemberObject);
+  const { memberObject, setMemberObject } = useContext(ProgramContext);
 
   const onChange = e => {
-    setMemberReaction(e.target.value);
+    const newMemberObject = { ...memberObject, memberReaction: e.target.value };
+    setMemberObject(newMemberObject);
   };
 
   const onConfirm = () => {
-    const currentMemberObject = {
-      memberId: memberId,
-      memberReaction: memberReaction,
-    };
-    setMemberObject(currentMemberObject);
-    console.log(memberObject);
-    console.log(userInfo);
-    sendMemberObject();
-    history.push('/emoji-confirm-redirect'); //turn off during final testing!!!
-  };
-
-  const sendMemberObject = () => {
     let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
     axios
       .post(
-        `${baseUrl}/memberreactions/memberreaction/submit?mid=${
-          memberObject.memberId
-        }&aid=${13}&cid=${20}&rx=${memberObject.memberReaction}`,
+        `${baseUrl}/memberreactions/memberreaction/submit?mid=${memberObject.memberId}&aid=${memberObject.activityId}&cid=${memberObject.clubId}&rx=${memberObject.memberReaction}`,
         {},
         {
           headers: {
@@ -104,42 +77,30 @@ function RenderEmojiSelectCheck(props) {
 
         {/* <StyledColor> */}
         <Radio.Group
-          //   options={options}
-          //   optionType="button"
           buttonStyle="solid"
           size="large"
           onChange={onChange}
-          defaultValue={memberReaction}
+          defaultValue={'1F601'}
 
           //   value={memberReaction}
         >
-          <Radio.Button value={memberReaction}>
+          <Radio.Button value={'1F601'}>
             <StyledEmojis>😁</StyledEmojis>
           </Radio.Button>
-          <Radio.Button value={memberReaction}>
+          <Radio.Button value={'1F642'}>
             <StyledEmojis>🙂</StyledEmojis>
           </Radio.Button>
-          <Radio.Button value={memberReaction}>
+          <Radio.Button value={'1F610'}>
             <StyledEmojis>😐</StyledEmojis>
           </Radio.Button>
-          <Radio.Button value={memberReaction}>
+          <Radio.Button value={'1F641'}>
             <StyledEmojis>🙁</StyledEmojis>
           </Radio.Button>
-          <Radio.Button value={memberReaction}>
+          <Radio.Button value={'1F61E'}>
             <StyledEmojis>😞</StyledEmojis>
           </Radio.Button>
         </Radio.Group>
         {/* </StyledColor> */}
-
-        {/* <Radio.Group
-          options={options}
-          optionType="button"
-          buttonStyle="solid"
-          size="large"
-          onChange={onChange}
-          value={memberReaction}
-        />
-     */}
 
         <StyledButton type="primary" onClick={onConfirm}>
           Confirm
