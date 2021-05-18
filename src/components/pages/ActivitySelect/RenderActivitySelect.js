@@ -7,6 +7,7 @@ import { Menu, Dropdown, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { LayoutContainer } from '../../common';
 import { ProgramContext, ActivityContext } from '../../../state/contexts/index';
+import { ClubsContext } from '../../../state/contexts';
 
 const StyledActivitySelect = styled.header`
   display: flex;
@@ -30,42 +31,6 @@ const StyledButton = styled(Button)`
   margin: 20px auto;
 `;
 
-let data = {
-  clubid: 21,
-  activities: [
-    {
-      activity: {
-        activityid: 13,
-        activityname: 'Club Attendance',
-      },
-    },
-    {
-      activity: {
-        activityid: 14,
-        activityname: 'Check Out',
-      },
-    },
-    {
-      activity: {
-        activityid: 15,
-        activityname: 'Act 1',
-      },
-    },
-    {
-      activity: {
-        activityid: 16,
-        activityname: 'Act 2',
-      },
-    },
-    {
-      activity: {
-        activityid: 17,
-        activityname: 'Act 3',
-      },
-    },
-  ],
-};
-
 function RenderActivitySelect(props) {
   const { userInfo /*authService*/ } = props;
   const history = useHistory();
@@ -75,7 +40,11 @@ function RenderActivitySelect(props) {
   );
 
   const { setActivity, activity } = useContext(ActivityContext);
+  const context = useContext(ClubsContext);
 
+  const { club } = useContext(ClubsContext);
+
+  console.log('context' + club.activities);
   // const newMemberObject = { ...memberObject, activityId: '13' };
 
   // const onClick = () => {
@@ -85,18 +54,20 @@ function RenderActivitySelect(props) {
 
   const selectActivity = (e, item) => {
     setActivity(item);
+    console.log(context);
   };
 
   const menu = (
     <Menu>
-      {data.activities.map(item => (
-        <Menu.Item
-          key={item.activityid}
-          onClick={e => selectActivity(e, item.activity)}
-        >
-          {item.activity.activityname}
-        </Menu.Item>
-      ))}
+      {club.activities &&
+        club.activities.map(item => (
+          <Menu.Item
+            key={item.activityid}
+            onClick={e => selectActivity(e, item.activity)}
+          >
+            {item.activity.activityname}
+          </Menu.Item>
+        ))}
     </Menu>
   );
 

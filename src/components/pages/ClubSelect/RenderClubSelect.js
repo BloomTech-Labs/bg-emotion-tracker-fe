@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 //import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
@@ -16,20 +16,19 @@ const StyledClubSelect = styled.header`
   margin: 3rem auto;
 `;
 
+let data = [{ clubs: [] }];
+
 function RenderClubSelect(props) {
   const { userInfo /*authService*/ } = props;
   const history = useHistory();
 
   const menu = (
     <Menu>
-      <Menu.Item key="0">
-        <a href="https://www.antgroup.com">1st menu item</a>
-      </Menu.Item>
-      <Menu.Item key="1">
-        <a href="https://www.aliyun.com">2nd menu item</a>
-      </Menu.Item>
-      <Menu.Divider />
-      <Menu.Item key="3">3rd menu item</Menu.Item>
+      {data.clubs.map(item => (
+        <Menu.Item key={item.clubid} onClick={e => console.log('club')}>
+          {item.clubname}
+        </Menu.Item>
+      ))}
     </Menu>
   );
 
