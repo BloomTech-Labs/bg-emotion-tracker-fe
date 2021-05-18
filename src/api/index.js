@@ -89,7 +89,6 @@ const getProfileData = authState => {
 
 const getClubsData = authState => {
   let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
-  console.log('token" ', tokenObj);
 
   const promise = axios.get(
     'https://bg-emotion-tracker-be-b.herokuapp.com/clubs/summary',
@@ -101,7 +100,6 @@ const getClubsData = authState => {
   );
 
   const dataPromise = promise.then(response => {
-    console.log('res: ', response);
     return response.data;
   });
 

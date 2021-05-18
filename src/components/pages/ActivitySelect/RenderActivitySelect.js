@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
@@ -25,55 +25,75 @@ const StyledButton = styled(Button)`
   margin: 20px auto;
 `;
 
-let data = [
-  {
-    id: 1,
-    activity: 'Check-In',
-  },
-  {
-    id: 2,
-    activity: 'Check-Out',
-  },
-  {
-    id: 3,
-    activity: 'Act 1',
-  },
-  {
-    id: 4,
-    activity: 'Act 2',
-  },
-  {
-    id: 5,
-    activity: 'Act 3',
-  },
-];
+let data = {
+  clubid: 21,
+  activities: [
+    {
+      activity: {
+        activityid: 13,
+        activityname: 'Club Attendance',
+      },
+    },
+    {
+      activity: {
+        activityid: 14,
+        activityname: 'Check Out',
+      },
+    },
+    {
+      activity: {
+        activityid: 15,
+        activityname: 'Act 1',
+      },
+    },
+    {
+      activity: {
+        activityid: 16,
+        activityname: 'Act 2',
+      },
+    },
+    {
+      activity: {
+        activityid: 17,
+        activityname: 'Act 3',
+      },
+    },
+  ],
+};
 
 function RenderActivitySelect(props) {
   const { userInfo /*authService*/ } = props;
   const history = useHistory();
-  const [activity, setActivity] = useState('');
 
-  const { memberObject, setMemberObject } = useContext(ProgramContext);
+  const { memberObject, setMemberObject, setActivity } = useContext(
+    ProgramContext
+  );
 
   const newMemberObject = { ...memberObject, activityId: '13' };
+
+  const con = useContext(ProgramContext);
 
   const onClick = () => {
     setMemberObject(newMemberObject);
     history.push('/scanner');
   };
 
+  const selectActivity = (e, item) => {
+    setActivity(item);
+  };
+
   const menu = (
     <Menu>
-      {data.map(item => (
-        <Menu.Item key={item.id}>{item.activity}</Menu.Item>
+      {data.activities.map(item => (
+        <Menu.Item
+          key={item.activityid}
+          onClick={e => selectActivity(e, item.activity)}
+        >
+          {item.activity.activityname}
+        </Menu.Item>
       ))}
     </Menu>
   );
-
-  const getActivity = e => {
-    e.preventDefault();
-    console.log(e);
-  };
 
   return (
     <LayoutContainer>
@@ -83,7 +103,7 @@ function RenderActivitySelect(props) {
 
         <h2 style={{ textAlign: 'center' }}>
           <Dropdown overlay={menu} trigger={['click']}>
-            <a className="ant-dropdown-link" onClick={getActivity}>
+            <a className="ant-dropdown-link">
               Activity <DownOutlined />
             </a>
           </Dropdown>

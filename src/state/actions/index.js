@@ -21,7 +21,6 @@ export const setError = (dispatch, error) =>
 export const getUserProfile = async (authState, context) => {
   await getProfileData(authState)
     .then(res => {
-      console.log('user: ', res);
       context.setUser(res);
     })
     .catch(error => {
@@ -32,7 +31,6 @@ export const getUserProfile = async (authState, context) => {
 export const getClubs = async (authState, context) => {
   await getClubsData(authState)
     .then(res => {
-      console.log('clubs; ', res);
       context.setClubs(res);
     })
     .catch(error => {
