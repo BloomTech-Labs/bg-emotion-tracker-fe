@@ -74,7 +74,7 @@ function RenderActivitySelect(props) {
     ProgramContext
   );
 
-  const { setActivity } = useContext(ActivityContext);
+  const { setActivity, activity } = useContext(ActivityContext);
 
   // const newMemberObject = { ...memberObject, activityId: '13' };
 
@@ -113,10 +113,9 @@ function RenderActivitySelect(props) {
             </a>
           </Dropdown>
         </h2>
-
-        {/* <StyledButton type="primary" onClick={onClick}>
-          Submit
-        </StyledButton> */}
+        <h2 className="dropdownSelected">
+          {activity && activity.activityname}
+        </h2>
         <StyledButton
           size="large"
           type="primary"
