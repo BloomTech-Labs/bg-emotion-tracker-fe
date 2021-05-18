@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Form, Input, Button } from 'antd';
+import { ProgramContext } from '../../../state/contexts/index';
 
 const layout = {
   // wrapperCol: {
@@ -14,10 +15,12 @@ const tailLayout = {
 };
 
 function ManualMemberInput(props) {
-  const { setQRdata, setScanStatus } = props;
+  const { setScanStatus } = props;
+  const { memberObject, setMemberObject } = useContext(ProgramContext);
 
   const onFinish = values => {
-    setQRdata(values);
+    const newMemberObject = { ...memberObject, memberId: values.memberId };
+    setMemberObject(newMemberObject);
     setScanStatus(true);
   };
 
