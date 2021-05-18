@@ -19,6 +19,7 @@ const StyledYDPPage = styled.header`
   width: 1200px;
   max-width: 90%;
   margin: 3rem auto;
+  text-align: center;
 `;
 
 const StyledLink = styled(Link)`
@@ -74,6 +75,9 @@ function RenderHomePage() {
               Clubs <DownOutlined />
             </a>
           </Dropdown>
+        </h2>
+        <h2 className="dropdownSelected">
+          {clubContext.club && clubContext.club.clubname}
         </h2>
         <StyledButton
           size="large"
