@@ -6,7 +6,7 @@ import { QRCodeReader } from '../QRCodeReader';
 import ManualMemberInput from './ManualMemberInput';
 import { Button } from 'antd';
 import { LayoutContainer } from '../../common';
-import { ProgramContext } from '../../../state/contexts/index';
+import { MemberContext } from '../../../state/contexts/index';
 
 const StyledMemberScanner = styled.header`
   display: flex;
@@ -53,7 +53,7 @@ function RenderMemberScanner(props) {
   const [scanStatus, setScanStatus] = useState(false);
   const [scanError, setScanError] = useState(false);
 
-  const { memberObject, setMemberObject } = useContext(ProgramContext);
+  const { memberId, setMemberId } = useContext(MemberContext);
 
   const handleError = err => {
     setScanError(true);
@@ -61,8 +61,7 @@ function RenderMemberScanner(props) {
 
   const handleScan = data => {
     if (data) {
-      const newMemberObject = { ...memberObject, memberId: data };
-      setMemberObject(newMemberObject);
+      setMemberId(data);
       setScanStatus(true);
     }
   };
