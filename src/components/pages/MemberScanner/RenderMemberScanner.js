@@ -4,10 +4,9 @@ import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { QRCodeReader } from '../QRCodeReader';
 import ManualMemberInput from './ManualMemberInput';
-import { Button } from 'antd';
 import { LayoutContainer } from '../../common';
 import { MemberContext } from '../../../state/contexts/index';
-
+import BackButton from '../../common/BackButton';
 const StyledMemberScanner = styled.header`
   display: flex;
   margin-left: 25%;
@@ -16,12 +15,6 @@ const StyledMemberScanner = styled.header`
   /* width: 800px; */
   /* max-width: 90%; */
   /* margin: 3rem auto; */
-`;
-
-const StyledLink = styled(Link)`
-  text-align: center;
-  justify-content: center;
-  align-content: center;
 `;
 
 const StyledCenterB = styled(Link)`
@@ -38,15 +31,6 @@ const StyledCenterA = styled(Link)`
   text-align: center;
   justify-content: center;
   align-content: center;
-`;
-
-const StyledButton = styled(Button)`
-  background-color: 293845;
-  width: auto;
-  text-align: center;
-  justify-content: center;
-  align-content: center;
-  margin: 10px auto;
 `;
 
 function RenderMemberScanner(props) {
@@ -72,11 +56,9 @@ function RenderMemberScanner(props) {
 
       {/* <StyledCenterA> */}
 
-      <StyledLink to="/activity-select">
-        <StyledButton size="large" type="primary">
-          Choose Activity
-        </StyledButton>
-      </StyledLink>
+      <Link to="/activity-select">
+        <BackButton buttonText="Change Activity" classType="primary" />
+      </Link>
 
       <StyledMemberScanner>
         <h2>Scanner</h2>
