@@ -13,10 +13,11 @@ const StyledButton = styled(Button)`
   text-align: center;
   margin: 20px auto;
 `;
-export const StyledBtn = ({ path, onClick }) => {
+
+export const StyledBtn = ({ path, onClick, label }) => {
   return (
     <StyledButton size="large" type="primary" onClick={onClick}>
-      <StyledLink to={path}>Confirm</StyledLink>
+      <StyledLink to={path}>{label}</StyledLink>
     </StyledButton>
   );
 };
