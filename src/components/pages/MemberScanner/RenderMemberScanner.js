@@ -53,7 +53,7 @@ function RenderMemberScanner(props) {
   const [scanStatus, setScanStatus] = useState(false);
   const [scanError, setScanError] = useState(false);
 
-  const { memberId, setMemberId } = useContext(MemberContext);
+  const memberContext = useContext(MemberContext);
 
   const handleError = err => {
     setScanError(true);
@@ -61,7 +61,7 @@ function RenderMemberScanner(props) {
 
   const handleScan = data => {
     if (data) {
-      setMemberId(data);
+      memberContext.setMemberId({ memberId: data });
       setScanStatus(true);
     }
   };
