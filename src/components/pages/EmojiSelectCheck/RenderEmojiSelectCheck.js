@@ -54,7 +54,8 @@ const InitMemberObject = {
 function RenderEmojiSelectCheck(props) {
   const { userInfo /*authService*/ } = props;
   const history = useHistory();
-  const memberId = props.pageProps.location.state.QRdata.memberId;
+  const memberId =
+    props.pageProps && props.pageProps.location.state.QRdata.memberId;
 
   const [memberReaction, setMemberReaction] = useState('None');
   const [memberObject, setMemberObject] = useState(InitMemberObject);
