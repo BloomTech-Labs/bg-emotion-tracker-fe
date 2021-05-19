@@ -16,12 +16,11 @@ const tailLayout = {
 
 function ManualMemberInput(props) {
   const { setScanStatus } = props;
-  const { member, setMember } = useContext(MemberContext);
+  const memberContext = useContext(MemberContext);
 
   const onFinish = values => {
-    console.log('Member', member);
-    console.log('Values', values);
-    //setScanStatus(true);
+    memberContext.setMember(values);
+    setScanStatus(true);
   };
 
   const onFinishFailed = errorInfo => {
