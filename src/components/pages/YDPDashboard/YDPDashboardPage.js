@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { Menu, Dropdown, Button } from 'antd';
@@ -21,14 +21,15 @@ const StyledYDPPage = styled.header`
 function RenderHomePage() {
   const clubsContext = useContext(ClubsContext);
   const clubContext = useContext(ClubContext);
+  const [disabledBtn, setDisabledBtn] = useState(true);
 
   const onClick = e => {
     e.preventDefault();
-    console.log(clubContext);
   };
 
   const selectClub = (e, item) => {
     getClub(item.clubid, clubContext);
+    setDisabledBtn(false);
   };
 
   const menu = (
@@ -56,7 +57,12 @@ function RenderHomePage() {
         <h2 className="dropdownSelected">
           {clubContext.club && clubContext.club.clubname}
         </h2>
-        <StyledBtn label="Confirm" onClick={onClick} path="/activity-select" />
+        <StyledBtn
+          label="Confirm"
+          onClick={onClick}
+          path="/activity-select"
+          isDisabled={disabledBtn}
+        />
       </StyledYDPPage>
     </LayoutContainer>
   );
