@@ -27,11 +27,6 @@ function RenderActivitySelect(props) {
 
   console.log('Activity context ' + activity);
 
-  const tempOnClick = e => {
-    e.preventDefault();
-    setActivity({ activityId: '14' });
-  };
-
   const selectActivity = (e, item) => {
     setActivity(item);
   };
@@ -71,7 +66,7 @@ function RenderActivitySelect(props) {
         <h2 className="dropdownSelected">
           {activity && activity.activityname}
         </h2>
-        <StyledBtn label="Confirm" path="/scanner" onClick={tempOnClick} />
+        <StyledBtn label="Confirm" path="/scanner" />
       </StyledActivitySelect>
     </LayoutContainer>
   );
