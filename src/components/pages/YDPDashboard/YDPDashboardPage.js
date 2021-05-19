@@ -5,11 +5,7 @@ import NavBar from '../../common/NavBar';
 import { Menu, Dropdown, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { LayoutContainer } from '../../common';
-import {
-  ProgramContext,
-  ClubsContext,
-  ClubContext,
-} from '../../../state/contexts';
+import { ClubsContext, ClubContext } from '../../../state/contexts/index';
 import { getClub } from '../../../state/actions';
 
 const StyledYDPPage = styled.header`
@@ -34,18 +30,12 @@ const StyledButton = styled(Button)`
 `;
 
 function RenderHomePage() {
-  const { memberObject, setMemberObject } = useContext(ProgramContext);
   const clubsContext = useContext(ClubsContext);
   const clubContext = useContext(ClubContext);
 
-  const newMemberObject = { ...memberObject, clubId: '20' };
-
-  const onClick = () => {
-    setMemberObject(newMemberObject);
-  };
-
-  let data = {
-    clubs: [],
+  const onClick = e => {
+    e.preventDefault();
+    console.log(clubContext);
   };
 
   const selectClub = (e, item) => {
@@ -79,11 +69,7 @@ function RenderHomePage() {
         <h2 className="dropdownSelected">
           {clubContext.club && clubContext.club.clubname}
         </h2>
-        <StyledButton
-          size="large"
-          type="primary"
-          onClick={e => e.preventDefault()}
-        >
+        <StyledButton size="large" type="primary" onClick={onClick}>
           <StyledLink to="/activity-select">Confirm</StyledLink>
         </StyledButton>
       </StyledYDPPage>
