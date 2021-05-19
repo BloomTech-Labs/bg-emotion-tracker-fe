@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { Menu, Dropdown, Button } from 'antd';
@@ -7,6 +6,7 @@ import { DownOutlined } from '@ant-design/icons';
 import { LayoutContainer } from '../../common';
 import { ClubsContext, ClubContext } from '../../../state/contexts/index';
 import { getClub } from '../../../state/actions';
+import { StyledBtn } from '../../common';
 
 const StyledYDPPage = styled.header`
   display: flex;
@@ -16,17 +16,6 @@ const StyledYDPPage = styled.header`
   max-width: 90%;
   margin: 3rem auto;
   text-align: center;
-`;
-
-const StyledLink = styled(Link)`
-  text-align: center;
-`;
-
-const StyledButton = styled(Button)`
-  background-color: 293845;
-  width: 200px;
-  text-align: center;
-  margin: 20px auto;
 `;
 
 function RenderHomePage() {
@@ -40,8 +29,6 @@ function RenderHomePage() {
 
   const selectClub = (e, item) => {
     getClub(item.clubid, clubContext);
-    // setActivity(item);
-    // api call to backend
   };
 
   const menu = (
@@ -69,9 +56,7 @@ function RenderHomePage() {
         <h2 className="dropdownSelected">
           {clubContext.club && clubContext.club.clubname}
         </h2>
-        <StyledButton size="large" type="primary" onClick={onClick}>
-          <StyledLink to="/activity-select">Confirm</StyledLink>
-        </StyledButton>
+        <StyledBtn onClick={onClick} to="/activity-select" />
       </StyledYDPPage>
     </LayoutContainer>
   );
