@@ -27,9 +27,9 @@ function RenderEmojiConfirmRedirect(props) {
   const { userInfo /*authService*/ } = props;
   const history = useHistory();
 
-  setTimeout(() => {
-    history.push('/scanner');
-  }, 4000);
+  // setTimeout(() => {
+  //   history.push('/scanner');
+  // }, 4000);
 
   return (
     <LayoutContainer>

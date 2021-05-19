@@ -181,3 +181,32 @@ export const MemberContextProvider = props => {
     </MemberContext.Provider>
   );
 };
+
+// Emoji Context
+
+export const EmojiContext = createContext({
+  emoji: '',
+  loading: false,
+  error: false,
+  message: '',
+  setEmoji: () => '',
+});
+
+export const EmojiContextProvider = props => {
+  const setEmoji = emoji => {
+    setState({ ...state, emoji });
+  };
+
+  const initState = {
+    emoji: {},
+    setEmoji,
+  };
+
+  const [state, setState] = useState(initState);
+
+  return (
+    <EmojiContext.Provider value={state}>
+      {props.children}
+    </EmojiContext.Provider>
+  );
+};
