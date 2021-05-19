@@ -1,13 +1,12 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { Menu, Dropdown, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { LayoutContainer } from '../../common';
 import { ProgramContext, ActivityContext } from '../../../state/contexts/index';
-import { ClubsContext } from '../../../state/contexts';
+import { ClubContext } from '../../../state/contexts';
 
 const StyledActivitySelect = styled.header`
   display: flex;
@@ -32,17 +31,12 @@ const StyledButton = styled(Button)`
 `;
 
 function RenderActivitySelect(props) {
-  const { userInfo /*authService*/ } = props;
-  const history = useHistory();
-
   const { memberObject, setMemberObject, setClubs } = useContext(
     ProgramContext
   );
 
   const { setActivity, activity } = useContext(ActivityContext);
-  const context = useContext(ClubsContext);
-
-  const { club } = useContext(ClubsContext);
+  const { club } = useContext(ClubContext);
 
   console.log('context' + club.activities);
   // const newMemberObject = { ...memberObject, activityId: '13' };
@@ -54,7 +48,6 @@ function RenderActivitySelect(props) {
 
   const selectActivity = (e, item) => {
     setActivity(item);
-    console.log(context);
   };
 
   const menu = (

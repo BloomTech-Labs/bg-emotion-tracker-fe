@@ -5,7 +5,11 @@ import NavBar from '../../common/NavBar';
 import { Menu, Dropdown, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { LayoutContainer } from '../../common';
-import { ProgramContext, ClubsContext } from '../../../state/contexts';
+import {
+  ProgramContext,
+  ClubsContext,
+  ClubContext,
+} from '../../../state/contexts';
 import { getClub } from '../../../state/actions';
 
 const StyledYDPPage = styled.header`
@@ -15,6 +19,7 @@ const StyledYDPPage = styled.header`
   width: 1200px;
   max-width: 90%;
   margin: 3rem auto;
+  text-align: center;
 `;
 
 const StyledLink = styled(Link)`
@@ -30,7 +35,8 @@ const StyledButton = styled(Button)`
 
 function RenderHomePage() {
   const { memberObject, setMemberObject } = useContext(ProgramContext);
-  const context = useContext(ClubsContext);
+  const clubsContext = useContext(ClubsContext);
+  const clubContext = useContext(ClubContext);
 
   const newMemberObject = { ...memberObject, clubId: '20' };
 
@@ -43,15 +49,14 @@ function RenderHomePage() {
   };
 
   const selectClub = (e, item) => {
-    console.log('item: ', item);
-    getClub(item.clubid, context);
+    getClub(item.clubid, clubContext);
     // setActivity(item);
     // api call to backend
   };
 
   const menu = (
     <Menu>
-      {context.clubs.map(item => (
+      {clubsContext.clubs.map(item => (
         <Menu.Item key={item.clubid} onClick={e => selectClub(e, item)}>
           {item.clubname}
         </Menu.Item>
@@ -70,6 +75,9 @@ function RenderHomePage() {
               Clubs <DownOutlined />
             </a>
           </Dropdown>
+        </h2>
+        <h2 className="dropdownSelected">
+          {clubContext.club && clubContext.club.clubname}
         </h2>
         <StyledButton
           size="large"
