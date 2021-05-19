@@ -1,18 +1,27 @@
-import React from 'react';
-//import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
-import { Card, Menu, Dropdown, Button } from 'antd';
+import { Menu, Dropdown, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
+import { LayoutContainer } from '../../common';
+import { ProgramContext, ActivityContext } from '../../../state/contexts/index';
+import { ClubsContext } from '../../../state/contexts';
 
 const StyledActivitySelect = styled.header`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
   width: 1200px;
   max-width: 90%;
   margin: 3rem auto;
+  text-align: center;
+`;
+
+const StyledLink = styled(Link)`
+  text-align: center;
 `;
 
 const StyledButton = styled(Button)`
@@ -26,38 +35,67 @@ function RenderActivitySelect(props) {
   const { userInfo /*authService*/ } = props;
   const history = useHistory();
 
+  const { memberObject, setMemberObject, setClubs } = useContext(
+    ProgramContext
+  );
+
+  const { setActivity, activity } = useContext(ActivityContext);
+  const context = useContext(ClubsContext);
+
+  const { club } = useContext(ClubsContext);
+
+  console.log('context' + club.activities);
+  // const newMemberObject = { ...memberObject, activityId: '13' };
+
+  // const onClick = () => {
+  //   setMemberObject(newMemberObject);
+  //   history.push('/scanner');
+  // };
+
+  const selectActivity = (e, item) => {
+    setActivity(item);
+    console.log(context);
+  };
+
   const menu = (
     <Menu>
-      <Menu.Item key="0">Check-In</Menu.Item>
-      <Menu.Item key="1">Check-Out</Menu.Item>
-      <Menu.Divider />
-
-      <Menu.Item key="2">Act1</Menu.Item>
-      <Menu.Item key="3">Act2</Menu.Item>
-      <Menu.Item key="4">Act3</Menu.Item>
+      {club.activities &&
+        club.activities.map(item => (
+          <Menu.Item
+            key={item.activityid}
+            onClick={e => selectActivity(e, item.activity)}
+          >
+            {item.activity.activityname}
+          </Menu.Item>
+        ))}
     </Menu>
   );
 
   return (
-    <>
+    <LayoutContainer>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
       <StyledActivitySelect>
         <h2>Select Activity</h2>
 
         <h2 style={{ textAlign: 'center' }}>
           <Dropdown overlay={menu} trigger={['click']}>
-            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-              Activity
-              <DownOutlined />
+            <a className="ant-dropdown-link">
+              Activity <DownOutlined />
             </a>
           </Dropdown>
         </h2>
-
-        <StyledButton type="primary" onClick={() => history.push('/scanner')}>
-          Submit
+        <h2 className="dropdownSelected">
+          {activity && activity.activityname}
+        </h2>
+        <StyledButton
+          size="large"
+          type="primary"
+          onClick={e => e.preventDefault()}
+        >
+          <StyledLink to="/scanner">Confirm</StyledLink>
         </StyledButton>
       </StyledActivitySelect>
-    </>
+    </LayoutContainer>
   );
 }
 export default RenderActivitySelect;

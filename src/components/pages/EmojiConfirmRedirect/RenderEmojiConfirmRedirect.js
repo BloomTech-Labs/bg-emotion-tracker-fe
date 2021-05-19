@@ -5,6 +5,7 @@ import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { Card, Modal, Menu, Dropdown, Button, Alert } from 'antd';
+import { LayoutContainer } from '../../common';
 
 const StyledEmojiConfirmRedirect = styled.header`
   display: flex;
@@ -13,6 +14,7 @@ const StyledEmojiConfirmRedirect = styled.header`
   width: 1200px;
   max-width: 90%;
   margin: 3rem auto;
+  text-align: center;
 `;
 
 const StyledEmojis = styled.div`
@@ -30,14 +32,14 @@ function RenderEmojiConfirmRedirect(props) {
   }, 4000);
 
   return (
-    <>
+    <LayoutContainer>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
       <StyledEmojiConfirmRedirect>
         <h2>Success!</h2>
         <StyledEmojis>🙂</StyledEmojis>
         EMOJI CONFIRMATION HERE AND REDIRECT TO SCANNER AFTER X SECONDS!
       </StyledEmojiConfirmRedirect>
-    </>
+    </LayoutContainer>
   );
 }
 export default RenderEmojiConfirmRedirect;

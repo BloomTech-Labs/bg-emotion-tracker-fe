@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
-import { Card, Menu, Dropdown, Button } from 'antd';
+import { Menu, Dropdown, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
+import { LayoutContainer } from '../../common';
+import { ProgramContext, ClubsContext } from '../../../state/contexts';
+import { getClub } from '../../../state/actions';
 
 const StyledYDPPage = styled.header`
   display: flex;
@@ -26,34 +29,57 @@ const StyledButton = styled(Button)`
 `;
 
 function RenderHomePage() {
+  const { memberObject, setMemberObject } = useContext(ProgramContext);
+  const context = useContext(ClubsContext);
+
+  const newMemberObject = { ...memberObject, clubId: '20' };
+
+  const onClick = () => {
+    setMemberObject(newMemberObject);
+  };
+
+  let data = {
+    clubs: [],
+  };
+
+  const selectClub = (e, item) => {
+    console.log('item: ', item);
+    getClub(item.clubid, context);
+    // setActivity(item);
+    // api call to backend
+  };
+
   const menu = (
     <Menu>
-      <Menu.Item key="0">1st Club</Menu.Item>
-      <Menu.Item key="1">2nd Club</Menu.Item>
-      <Menu.Divider />
-      <Menu.Item key="3">3rd Club</Menu.Item>
+      {context.clubs.map(item => (
+        <Menu.Item key={item.clubid} onClick={e => selectClub(e, item)}>
+          {item.clubname}
+        </Menu.Item>
+      ))}
     </Menu>
   );
 
   return (
-    <>
+    <LayoutContainer>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
       <StyledYDPPage>
         <h2 style={{ textAlign: 'center' }}>Select Club</h2>
         <h2 style={{ textAlign: 'center' }}>
           <Dropdown overlay={menu} trigger={['click']}>
-            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+            <a className="ant-dropdown-link">
               Clubs <DownOutlined />
             </a>
           </Dropdown>
         </h2>
-        <StyledLink to="/activity-select">
-          <StyledButton size="large" type="primary">
-            Confirm
-          </StyledButton>
-        </StyledLink>
+        <StyledButton
+          size="large"
+          type="primary"
+          onClick={e => e.preventDefault()}
+        >
+          <StyledLink to="/activity-select">Confirm</StyledLink>
+        </StyledButton>
       </StyledYDPPage>
-    </>
+    </LayoutContainer>
   );
 }
 export default RenderHomePage;

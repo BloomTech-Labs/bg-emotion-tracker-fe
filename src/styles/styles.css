@@ -1,0 +1,34 @@
+/* override for okta login widget */
+#root {
+  height: 100%;
+}
+#sign-in-widget {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+#okta-sign-in.auth-container.main-container {
+  height: 530px;
+  overflow: hidden;
+}
+.MainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.layout {
+  width: 100%;
+  height: 100%;
+}
+/* PAGE specific styles */
+/* eof PAGE specific styles */
+/* COMPONENT specific styles */
+/* Select Button */
+.dropdownSelected {
+  margin: 20px;
+  font-size: 2rem;
+}
+/* eof Select Button */
+/* eof COMPONENT specific styles */
