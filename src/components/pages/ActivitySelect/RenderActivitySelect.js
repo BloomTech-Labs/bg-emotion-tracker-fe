@@ -31,18 +31,11 @@ const StyledButton = styled(Button)`
 `;
 
 function RenderActivitySelect(props) {
-  const { setActivity, activity } = useContext(ActivityContext);
+  const activityContext = useContext(ActivityContext);
   const { club } = useContext(ClubContext);
 
-  console.log('Activity context ' + activity);
-
-  const tempOnClick = e => {
-    e.preventDefault();
-    setActivity({ activityId: '14' });
-  };
-
   const selectActivity = (e, item) => {
-    setActivity(item);
+    activityContext.setActivity(item);
   };
 
   const menu = (
@@ -73,9 +66,13 @@ function RenderActivitySelect(props) {
           </Dropdown>
         </h2>
         <h2 className="dropdownSelected">
-          {activity && activity.activityname}
+          {activityContext.activity && activityContext.activity.activityname}
         </h2>
-        <StyledButton size="large" type="primary" onClick={tempOnClick}>
+        <StyledButton
+          size="large"
+          type="primary"
+          onClick={e => e.preventDefault()}
+        >
           <StyledLink to="/scanner">Confirm</StyledLink>
         </StyledButton>
       </StyledActivitySelect>
