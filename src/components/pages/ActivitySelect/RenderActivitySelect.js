@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
@@ -24,11 +24,11 @@ const StyledActivitySelect = styled.header`
 function RenderActivitySelect(props) {
   const { setActivity, activity } = useContext(ActivityContext);
   const { club } = useContext(ClubContext);
-
-  console.log('Activity context ' + activity);
+  const [disabledBtn, setDisabledBtn] = useState(true);
 
   const selectActivity = (e, item) => {
     setActivity(item);
+    setDisabledBtn(false);
   };
 
   const menu = (
@@ -66,7 +66,7 @@ function RenderActivitySelect(props) {
         <h2 className="dropdownSelected">
           {activity && activity.activityname}
         </h2>
-        <StyledBtn label="Confirm" path="/scanner" />
+        <StyledBtn label="Confirm" path="/scanner" isDisabled={disabledBtn} />
       </StyledActivitySelect>
     </LayoutContainer>
   );
