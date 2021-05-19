@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
@@ -6,7 +6,11 @@ import { Button, Radio } from 'antd';
 import axios from 'axios';
 import { LayoutContainer } from '../../common';
 import { baseUrl } from '../../../api/index';
-import { ProgramContext } from '../../../state/contexts/index';
+import {
+  ActivityContext,
+  ClubContext,
+  MemberContext,
+} from '../../../state/contexts/index';
 
 const StyledEmojiSelectCheck = styled.header`
   display: flex;
@@ -43,18 +47,23 @@ function RenderEmojiSelectCheck(props) {
   const { userInfo /*authService*/ } = props;
   const history = useHistory();
 
-  const { memberObject, setMemberObject } = useContext(ProgramContext);
+  const [memberReaction, setMemberReaction] = useState('None');
+
+  const { activity, setActivity } = useContext(ActivityContext);
+  const { club, setClub } = useContext(ClubContext);
+  const { member, setMember } = useContext(MemberContext);
+
+  console.log(member);
 
   const onChange = e => {
-    const newMemberObject = { ...memberObject, memberReaction: e.target.value };
-    setMemberObject(newMemberObject);
+    setMemberReaction(e.target.value);
   };
 
   const onConfirm = () => {
     let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
     axios
       .post(
-        `${baseUrl}/memberreactions/memberreaction/submit?mid=${memberObject.memberId}&aid=${memberObject.activityId}&cid=${memberObject.clubId}&rx=${memberObject.memberReaction}`,
+        `${baseUrl}/memberreactions/memberreaction/submit?mid=${member.memberId}&aid=${activity}&cid=${club}&rx=${memberReaction}`,
         {},
         {
           headers: {
