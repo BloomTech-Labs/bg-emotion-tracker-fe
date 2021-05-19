@@ -4,9 +4,8 @@ import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { QRCodeReader } from '../QRCodeReader';
 import ManualMemberInput from './ManualMemberInput';
-import { LayoutContainer } from '../../common';
+import { LayoutContainer, BackButton } from '../../common';
 import { MemberContext } from '../../../state/contexts/index';
-import BackButton from '../../common/BackButton';
 const StyledMemberScanner = styled.header`
   display: flex;
   margin-left: 25%;

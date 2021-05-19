@@ -40,7 +40,6 @@ import { ViewStaff } from './components/pages/Staff';
 import { ViewClubs } from './components/pages/Clubs';
 import { MemberScanner } from './components/pages/MemberScanner';
 
-import { ClubSelect } from './components/pages/ClubSelect';
 import { ActivitySelect } from './components/pages/ActivitySelect';
 import { EmojiSelectCheck } from './components/pages/EmojiSelectCheck';
 import { EmojiConfirmRedirect } from './components/pages/EmojiConfirmRedirect';

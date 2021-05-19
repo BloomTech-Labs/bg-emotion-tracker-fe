@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
@@ -7,7 +7,8 @@ import { DownOutlined } from '@ant-design/icons';
 import { LayoutContainer } from '../../common';
 import { ActivityContext } from '../../../state/contexts/index';
 import { ClubContext } from '../../../state/contexts';
-import BackButton from '../../common/BackButton';
+import { StyledBtn, BackButton } from '../../common';
+
 const StyledActivitySelect = styled.header`
   display: flex;
   flex-direction: column;
@@ -19,25 +20,14 @@ const StyledActivitySelect = styled.header`
   text-align: center;
 `;
 
-const StyledLink = styled(Link)`
-  text-align: center;
-`;
-
-const StyledButton = styled(Button)`
-  background-color: 293845;
-  width: 200px;
-  text-align: center;
-  margin: 20px auto;
-`;
-
 function RenderActivitySelect(props) {
   const { setActivity, activity } = useContext(ActivityContext);
   const { club } = useContext(ClubContext);
-
-  console.log('Activity context ' + activity);
+  const [disabledBtn, setDisabledBtn] = useState(true);
 
   const selectActivity = (e, item) => {
     setActivity(item);
+    setDisabledBtn(false);
   };
 
   const menu = (
@@ -75,9 +65,7 @@ function RenderActivitySelect(props) {
         <h2 className="dropdownSelected">
           {activity && activity.activityname}
         </h2>
-        <StyledButton size="large" type="primary">
-          <StyledLink to="/scanner">Confirm</StyledLink>
-        </StyledButton>
+        <StyledBtn label="Confirm" path="/scanner" isDisabled={disabledBtn} />
       </StyledActivitySelect>
     </LayoutContainer>
   );
