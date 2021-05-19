@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Form, Input, Button } from 'antd';
-import { ProgramContext } from '../../../state/contexts/index';
+import { MemberContext } from '../../../state/contexts/index';
 
 const layout = {
   // wrapperCol: {
@@ -16,12 +16,12 @@ const tailLayout = {
 
 function ManualMemberInput(props) {
   const { setScanStatus } = props;
-  const { memberObject, setMemberObject } = useContext(ProgramContext);
+  const { member, setMember } = useContext(MemberContext);
 
   const onFinish = values => {
-    const newMemberObject = { ...memberObject, memberId: values.memberId };
-    setMemberObject(newMemberObject);
-    setScanStatus(true);
+    console.log('Member', member);
+    console.log('Values', values);
+    //setScanStatus(true);
   };
 
   const onFinishFailed = errorInfo => {
