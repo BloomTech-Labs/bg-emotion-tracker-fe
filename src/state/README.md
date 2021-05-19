@@ -11,6 +11,24 @@ llama003@maildrop.cc -> CD
 - Users have access only to the pages that are on their navbar or links from pages from the pages derived from navbar.
 - Users cannot manually type in a url to reach a page, this causes a refresh in the browser which will wipe out the global state(ie. context api), the user will be redirected to the 'UnAuthorized Page' if this happens
 
+## How to add authorization to Routes
+
+- Authorization should only occur on <SecureRoute>
+- On the SecureRoute add a component prop and an arrow function for the value
+- The function should return an Authorization Component. This component is an HOC that requires a roles array and a component.
+- You can find what and change what the roles map to on the /state/contexts/roles.js file.
+- Example:
+
+```js
+<SecureRoute
+  exact
+  path="/emoji-selectcheck"
+  component={() =>
+    Authorization([Roles[0], Roles[1], Roles[2]], EmojiSelectCheck)
+  }
+/>
+```
+
 #### Resource Access
 
 | Role          | code  | AdminDashboard | ClubDirectorDashboard | YDPDashboard |
