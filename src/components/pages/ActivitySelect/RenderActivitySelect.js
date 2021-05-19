@@ -7,6 +7,7 @@ import { DownOutlined } from '@ant-design/icons';
 import { LayoutContainer } from '../../common';
 import { ActivityContext } from '../../../state/contexts/index';
 import { ClubContext } from '../../../state/contexts';
+import { StyledBtn } from '../../common';
 
 const StyledActivitySelect = styled.header`
   display: flex;
@@ -17,17 +18,6 @@ const StyledActivitySelect = styled.header`
   max-width: 90%;
   margin: 3rem auto;
   text-align: center;
-`;
-
-const StyledLink = styled(Link)`
-  text-align: center;
-`;
-
-const StyledButton = styled(Button)`
-  background-color: 293845;
-  width: 200px;
-  text-align: center;
-  margin: 20px auto;
 `;
 
 function RenderActivitySelect(props) {
@@ -75,9 +65,7 @@ function RenderActivitySelect(props) {
         <h2 className="dropdownSelected">
           {activity && activity.activityname}
         </h2>
-        <StyledButton size="large" type="primary" onClick={tempOnClick}>
-          <StyledLink to="/scanner">Confirm</StyledLink>
-        </StyledButton>
+        <StyledBtn label="Confirm" path="/scanner" onClick={tempOnClick} />
       </StyledActivitySelect>
     </LayoutContainer>
   );
