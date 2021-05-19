@@ -5,7 +5,7 @@ import NavBar from '../../common/NavBar';
 import { Menu, Dropdown, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { LayoutContainer } from '../../common';
-import { ProgramContext, ActivityContext } from '../../../state/contexts/index';
+import { ActivityContext } from '../../../state/contexts/index';
 import { ClubContext } from '../../../state/contexts';
 
 const StyledActivitySelect = styled.header`
@@ -31,20 +31,15 @@ const StyledButton = styled(Button)`
 `;
 
 function RenderActivitySelect(props) {
-  const { memberObject, setMemberObject, setClubs } = useContext(
-    ProgramContext
-  );
-
   const { setActivity, activity } = useContext(ActivityContext);
   const { club } = useContext(ClubContext);
 
-  console.log('context' + club.activities);
-  // const newMemberObject = { ...memberObject, activityId: '13' };
+  console.log('Activity context ' + activity);
 
-  // const onClick = () => {
-  //   setMemberObject(newMemberObject);
-  //   history.push('/scanner');
-  // };
+  const tempOnClick = e => {
+    e.preventDefault();
+    setActivity({ activityId: '14' });
+  };
 
   const selectActivity = (e, item) => {
     setActivity(item);
@@ -80,11 +75,7 @@ function RenderActivitySelect(props) {
         <h2 className="dropdownSelected">
           {activity && activity.activityname}
         </h2>
-        <StyledButton
-          size="large"
-          type="primary"
-          onClick={e => e.preventDefault()}
-        >
+        <StyledButton size="large" type="primary" onClick={tempOnClick}>
           <StyledLink to="/scanner">Confirm</StyledLink>
         </StyledButton>
       </StyledActivitySelect>
