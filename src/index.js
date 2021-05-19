@@ -7,6 +7,7 @@ import {
   useHistory,
   Switch,
 } from 'react-router-dom';
+import { Authorization } from './components/common/Authorization';
 
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import {
@@ -20,6 +21,7 @@ import {
 import 'antd/dist/antd.less';
 import './styles/styles.less';
 
+import { UnAuthorizedPage } from './components/pages/UnAuthorized';
 import { NotFoundPage } from './components/pages/NotFound';
 import { LoginPage } from './components/pages/Login';
 import { Logout } from './components/common/Logout';
@@ -82,96 +84,115 @@ function App() {
                     <SecureRoute
                       exact
                       path="/"
-                      component={() => (
-                        <HomePage
-                          authorize={[Roles[0], Roles[1]]}
-                          LoadingComponent={LoadingComponent}
-                        />
-                      )}
+                      component={() => <HomePage />}
                     />
                     <SecureRoute
                       exact
                       path="/YDPDashboard"
-                      component={() => (
-                        <YDPDashboard
-                          authorize={[Roles[0], Roles[1], Roles[2]]}
-                        />
-                      )}
+                      component={() =>
+                        Authorization(
+                          [Roles[0], Roles[1], Roles[2]],
+                          YDPDashboard
+                        )
+                      }
                     />
                     <SecureRoute
                       exact
                       path="/AdminDashboard"
-                      component={() => (
-                        <AdminDashboard authorize={[Roles[0]]} />
-                      )}
+                      component={() =>
+                        Authorization([Roles[0]], AdminDashboard)
+                      }
                     />
                     <SecureRoute
                       exact
                       path="/ClubDirectorDashboard"
-                      component={() => (
-                        <ClubDirectorDashboard
-                          authorize={[Roles[0], Roles[1]]}
-                        />
-                      )}
+                      component={() =>
+                        Authorization(
+                          [Roles[0], Roles[1]],
+                          ClubDirectorDashboard
+                        )
+                      }
                     />
                     {/*Member scaner test*/}
 
                     <SecureRoute
                       path="/scanner"
-                      component={() => (
-                        <MemberScanner LoadingComponent={LoadingComponent} />
-                      )}
+                      component={() =>
+                        Authorization(
+                          [Roles[0], Roles[1], Roles[2]],
+                          MemberScanner
+                        )
+                      }
                     />
 
                     <SecureRoute
                       exact
                       path="/club-select"
-                      component={() => (
-                        <ClubSelect LoadingComponent={LoadingComponent} />
-                      )}
+                      component={() =>
+                        Authorization(
+                          [Roles[0], Roles[1], Roles[2]],
+                          MemberScanner
+                        )
+                      }
                     />
 
                     <SecureRoute
                       exact
                       path="/activity-select"
-                      component={() => (
-                        <ActivitySelect LoadingComponent={LoadingComponent} />
-                      )}
+                      component={() =>
+                        Authorization(
+                          [Roles[0], Roles[1], Roles[2]],
+                          ActivitySelect
+                        )
+                      }
                     />
 
                     <SecureRoute
                       exact
                       path="/emoji-selectcheck"
-                      component={props => (
-                        <EmojiSelectCheck
-                          pageProps={props}
-                          LoadingComponent={LoadingComponent}
-                        />
-                      )}
+                      component={() =>
+                        Authorization(
+                          [Roles[0], Roles[1], Roles[2]],
+                          EmojiSelectCheck
+                        )
+                      }
                     />
 
                     <SecureRoute
                       exact
                       path="/emoji-confirm-redirect"
-                      component={() => (
-                        <EmojiConfirmRedirect
-                          LoadingComponent={LoadingComponent}
-                        />
-                      )}
+                      component={() =>
+                        Authorization(
+                          [Roles[0], Roles[1], Roles[2]],
+                          EmojiConfirmRedirect
+                        )
+                      }
                     />
-
-                    <SecureRoute path="/manage-members">
-                      <ViewMembers />
-                    </SecureRoute>
-                    <SecureRoute path="/manage-programs">
-                      <ViewPrograms />
-                    </SecureRoute>
-                    <SecureRoute path="/manage-staff">
-                      <ViewStaff />
-                    </SecureRoute>
-                    <SecureRoute path="/manage-clubs">
-                      <ViewClubs />
-                    </SecureRoute>
+                    <SecureRoute
+                      path="/manage-members"
+                      component={() =>
+                        Authorization([Roles[0], Roles[1]], ViewMembers)
+                      }
+                    />
+                    <SecureRoute
+                      path="/manage-programs"
+                      component={() =>
+                        Authorization([Roles[0], Roles[1]], ViewPrograms)
+                      }
+                    />
+                    <SecureRoute
+                      path="/manage-staff"
+                      component={() =>
+                        Authorization([Roles[0], Roles[1]], ViewStaff)
+                      }
+                    />
+                    <SecureRoute
+                      path="/manage-clubs"
+                      component={() =>
+                        Authorization([Roles[0], Roles[1]], ViewClubs)
+                      }
+                    />
+                    <Route path="/unauthorized" component={UnAuthorizedPage} />
                     <Route component={NotFoundPage} />
                   </Switch>
                 </Security>
