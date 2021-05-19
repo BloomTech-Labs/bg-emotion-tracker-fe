@@ -32,6 +32,7 @@ export const UserContextProvider = props => {
 // program context
 export const ProgramContext = createContext({
   programs: [],
+  activity: {},
   loading: false,
   error: false,
   message: '',
@@ -141,6 +142,7 @@ export const ClubContextProvider = props => {
   };
 
   const initState = {
+    club: {},
     setClub,
   };
 
@@ -158,7 +160,7 @@ export const MemberContext = createContext({
   loading: false,
   error: false,
   message: '',
-  setMember: () => [],
+  setMember: () => {},
 });
 
 export const MemberContextProvider = props => {
