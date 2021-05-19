@@ -46,16 +46,12 @@ const StyledButton = styled(Button)`
 function RenderEmojiSelectCheck(props) {
   const { userInfo /*authService*/ } = props;
   const history = useHistory();
-  const memberId =
-    props.pageProps && props.pageProps.location.state.QRdata.memberId;
 
   const [memberReaction, setMemberReaction] = useState('None');
 
-  const { activity, setActivity } = useContext(ActivityContext);
-  const { club, setClub } = useContext(ClubContext);
-  const { member, setMember } = useContext(MemberContext);
-
-  console.log(member);
+  const activityContext = useContext(ActivityContext);
+  const clubContext = useContext(ClubContext);
+  const memberContext = useContext(MemberContext);
 
   const onChange = e => {
     setMemberReaction(e.target.value);
@@ -65,7 +61,7 @@ function RenderEmojiSelectCheck(props) {
     let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
     axios
       .post(
-        `${baseUrl}/memberreactions/memberreaction/submit?mid=${member.memberId}&aid=${activity}&cid=${club}&rx=${memberReaction}`,
+        `${baseUrl}/memberreactions/memberreaction/submit?mid=${memberContext.member.memberId}&aid=${activityContext.activity.activityId}&cid=${clubContext.club.clubid}&rx=${memberReaction}`,
         {},
         {
           headers: {
