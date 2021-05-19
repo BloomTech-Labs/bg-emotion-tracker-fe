@@ -10,6 +10,8 @@ if (process.env.NODE_ENV === 'production') {
 const apiUrl = `${URI}profiles`;
 const profileUrl = `${URI}users/getuserinfo`;
 const profilesUrl = `${URI}profiles`;
+const clubsUrl = `${URI}clubs/clubs`;
+const clubUrl = `${URI}clubs/club/:id`;
 
 const sleep = time =>
   new Promise(resolve => {
@@ -51,6 +53,8 @@ const profileAuthGet = authHeader => {
 };
 
 /*
+This is the scaffold's way of api requests but currently doesn't work.  It is worthwhile to keep this code and try and fix for future api requests because it is more elegant than our current version which hard codes urls and has duplication. 
+
 const getProfileData = authState => {
   try {
     return profileAuthGet(getAuthHeader(authState)).then(
@@ -84,4 +88,52 @@ const getProfileData = authState => {
   return dataPromise;
 };
 
-export { sleep, getExampleData, getProfileData, getDSData, baseUrl };
+const getClubsData = authState => {
+  let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
+
+  const promise = axios.get(
+    'https://bg-emotion-tracker-be-b.herokuapp.com/clubs/summary',
+    {
+      headers: {
+        Authorization: `Bearer ${tokenObj.accessToken.accessToken}`,
+      },
+    }
+  );
+
+  const dataPromise = promise.then(response => {
+    return response.data;
+  });
+
+  return dataPromise;
+};
+
+// Get Club data
+const getClubData = id => {
+  let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
+
+  const promise = axios.get(
+    `https://bg-emotion-tracker-be-b.herokuapp.com/clubs/club/${id}`,
+    {
+      headers: {
+        Authorization: `Bearer ${tokenObj.accessToken.accessToken}`,
+      },
+    }
+  );
+
+  const dataPromise = promise.then(response => {
+    console.log('res: ', response.data);
+    return response.data;
+  });
+
+  return dataPromise;
+};
+
+export {
+  sleep,
+  getClubsData,
+  getClubData,
+  getExampleData,
+  getProfileData,
+  getDSData,
+  baseUrl,
+};

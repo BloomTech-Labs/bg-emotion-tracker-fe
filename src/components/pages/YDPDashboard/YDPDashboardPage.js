@@ -5,7 +5,12 @@ import NavBar from '../../common/NavBar';
 import { Menu, Dropdown, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { LayoutContainer } from '../../common';
-import { ProgramContext } from '../../../state/contexts/index';
+import {
+  ProgramContext,
+  ClubsContext,
+  ClubContext,
+} from '../../../state/contexts';
+import { getClub } from '../../../state/actions';
 
 const StyledYDPPage = styled.header`
   display: flex;
@@ -14,6 +19,7 @@ const StyledYDPPage = styled.header`
   width: 1200px;
   max-width: 90%;
   margin: 3rem auto;
+  text-align: center;
 `;
 
 const StyledLink = styled(Link)`
@@ -29,6 +35,8 @@ const StyledButton = styled(Button)`
 
 function RenderHomePage() {
   const { memberObject, setMemberObject } = useContext(ProgramContext);
+  const clubsContext = useContext(ClubsContext);
+  const clubContext = useContext(ClubContext);
 
   const newMemberObject = { ...memberObject, clubId: '20' };
 
@@ -36,12 +44,23 @@ function RenderHomePage() {
     setMemberObject(newMemberObject);
   };
 
+  let data = {
+    clubs: [],
+  };
+
+  const selectClub = (e, item) => {
+    getClub(item.clubid, clubContext);
+    // setActivity(item);
+    // api call to backend
+  };
+
   const menu = (
     <Menu>
-      <Menu.Item key="0">1st Club</Menu.Item>
-      <Menu.Item key="1">2nd Club</Menu.Item>
-      <Menu.Divider />
-      <Menu.Item key="3">3rd Club</Menu.Item>
+      {clubsContext.clubs.map(item => (
+        <Menu.Item key={item.clubid} onClick={e => selectClub(e, item)}>
+          {item.clubname}
+        </Menu.Item>
+      ))}
     </Menu>
   );
 
@@ -52,16 +71,21 @@ function RenderHomePage() {
         <h2 style={{ textAlign: 'center' }}>Select Club</h2>
         <h2 style={{ textAlign: 'center' }}>
           <Dropdown overlay={menu} trigger={['click']}>
-            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+            <a className="ant-dropdown-link">
               Clubs <DownOutlined />
             </a>
           </Dropdown>
         </h2>
-        <StyledLink to="/activity-select">
-          <StyledButton size="large" type="primary" onClick={onClick}>
-            Confirm
-          </StyledButton>
-        </StyledLink>
+        <h2 className="dropdownSelected">
+          {clubContext.club && clubContext.club.clubname}
+        </h2>
+        <StyledButton
+          size="large"
+          type="primary"
+          onClick={e => e.preventDefault()}
+        >
+          <StyledLink to="/activity-select">Confirm</StyledLink>
+        </StyledButton>
       </StyledYDPPage>
     </LayoutContainer>
   );

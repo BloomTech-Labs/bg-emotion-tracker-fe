@@ -1,19 +1,25 @@
 import React, { useContext } from 'react';
-import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { Menu, Dropdown, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { LayoutContainer } from '../../common';
-import { ProgramContext } from '../../../state/contexts/index';
+import { ProgramContext, ActivityContext } from '../../../state/contexts/index';
+import { ClubContext } from '../../../state/contexts';
 
 const StyledActivitySelect = styled.header`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
   width: 1200px;
   max-width: 90%;
   margin: 3rem auto;
+  text-align: center;
+`;
+
+const StyledLink = styled(Link)`
   text-align: center;
 `;
 
@@ -25,27 +31,36 @@ const StyledButton = styled(Button)`
 `;
 
 function RenderActivitySelect(props) {
-  const { userInfo /*authService*/ } = props;
-  const history = useHistory();
+  const { memberObject, setMemberObject, setClubs } = useContext(
+    ProgramContext
+  );
 
-  const { memberObject, setMemberObject } = useContext(ProgramContext);
+  const { setActivity, activity } = useContext(ActivityContext);
+  const { club } = useContext(ClubContext);
 
-  const newMemberObject = { ...memberObject, activityId: '13' };
+  console.log('context' + club.activities);
+  // const newMemberObject = { ...memberObject, activityId: '13' };
 
-  const onClick = () => {
-    setMemberObject(newMemberObject);
-    history.push('/scanner');
+  // const onClick = () => {
+  //   setMemberObject(newMemberObject);
+  //   history.push('/scanner');
+  // };
+
+  const selectActivity = (e, item) => {
+    setActivity(item);
   };
 
   const menu = (
     <Menu>
-      <Menu.Item key="0">Check-In</Menu.Item>
-      <Menu.Item key="1">Check-Out</Menu.Item>
-      <Menu.Divider />
-
-      <Menu.Item key="2">Act1</Menu.Item>
-      <Menu.Item key="3">Act2</Menu.Item>
-      <Menu.Item key="4">Act3</Menu.Item>
+      {club.activities &&
+        club.activities.map(item => (
+          <Menu.Item
+            key={item.activityid}
+            onClick={e => selectActivity(e, item.activity)}
+          >
+            {item.activity.activityname}
+          </Menu.Item>
+        ))}
     </Menu>
   );
 
@@ -57,15 +72,20 @@ function RenderActivitySelect(props) {
 
         <h2 style={{ textAlign: 'center' }}>
           <Dropdown overlay={menu} trigger={['click']}>
-            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-              Activity
-              <DownOutlined />
+            <a className="ant-dropdown-link">
+              Activity <DownOutlined />
             </a>
           </Dropdown>
         </h2>
-
-        <StyledButton type="primary" onClick={onClick}>
-          Submit
+        <h2 className="dropdownSelected">
+          {activity && activity.activityname}
+        </h2>
+        <StyledButton
+          size="large"
+          type="primary"
+          onClick={e => e.preventDefault()}
+        >
+          <StyledLink to="/scanner">Confirm</StyledLink>
         </StyledButton>
       </StyledActivitySelect>
     </LayoutContainer>
