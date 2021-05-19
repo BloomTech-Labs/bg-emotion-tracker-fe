@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
@@ -10,6 +10,7 @@ import {
   ActivityContext,
   ClubContext,
   MemberContext,
+  EmojiContext,
 } from '../../../state/contexts/index';
 
 const StyledEmojiSelectCheck = styled.header`
@@ -47,14 +48,19 @@ function RenderEmojiSelectCheck(props) {
   const { userInfo /*authService*/ } = props;
   const history = useHistory();
 
-  const [memberReaction, setMemberReaction] = useState('None');
-
+  const [memberReaction, setMemberReaction] = useState('1F601');
   const activityContext = useContext(ActivityContext);
   const clubContext = useContext(ClubContext);
   const memberContext = useContext(MemberContext);
+  const { setEmoji } = useContext(EmojiContext);
+
+  useEffect(() => {
+    setEmoji(memberReaction);
+  }, []);
 
   const onChange = e => {
     setMemberReaction(e.target.value);
+    setEmoji(e.target.value);
   };
 
   const onConfirm = () => {
@@ -87,7 +93,7 @@ function RenderEmojiSelectCheck(props) {
           buttonStyle="solid"
           size="large"
           onChange={onChange}
-          defaultValue={'1F601'}
+          defaultValue={memberReaction}
 
           //   value={memberReaction}
         >
