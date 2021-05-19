@@ -7,7 +7,7 @@ function LoadingComponent(props) {
 
   return (
     <Spin
-      class="loading-spinner"
+      className="loading-spinner"
       tip={message}
       size="large"
       style={{ margin: '0 auto', fontWeight: '600' }}

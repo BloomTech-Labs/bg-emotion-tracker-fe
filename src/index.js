@@ -7,6 +7,7 @@ import {
   useHistory,
   Switch,
 } from 'react-router-dom';
+import { Authorization } from './components/common/Authorization';
 
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import {
@@ -82,12 +83,13 @@ function App() {
                     <SecureRoute
                       exact
                       path="/"
-                      component={() => (
-                        <HomePage
-                          authorize={[Roles[0], Roles[1]]}
-                          LoadingComponent={LoadingComponent}
-                        />
-                      )}
+                      component={() =>
+                        Authorization([Roles[0], Roles[1]], HomePage)
+                      }
+                      // () => <HomePage
+                      //   authorize={[Roles[0], Roles[1]]}
+                      //   LoadingComponent={LoadingComponent}
+                      // />
                     />
                     <SecureRoute
                       exact
