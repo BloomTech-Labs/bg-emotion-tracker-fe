@@ -1,4 +1,4 @@
-import { StyledBtn } from './Buttons/Button';
+import { StyledBtn } from './Buttons/StyledBtn';
 import FormButton from './FormButton';
 import FormInput from './FormInput';
 import List from './List';
