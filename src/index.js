@@ -83,22 +83,17 @@ function App() {
                     <SecureRoute
                       exact
                       path="/"
-                      component={() =>
-                        Authorization([Roles[0], Roles[1]], HomePage)
-                      }
-                      // () => <HomePage
-                      //   authorize={[Roles[0], Roles[1]]}
-                      //   LoadingComponent={LoadingComponent}
-                      // />
+                      component={() => <HomePage />}
                     />
                     <SecureRoute
                       exact
                       path="/YDPDashboard"
-                      component={() => (
-                        <YDPDashboard
-                          authorize={[Roles[0], Roles[1], Roles[2]]}
-                        />
-                      )}
+                      component={() =>
+                        Authorization(
+                          [Roles[0], Roles[1], Roles[2]],
+                          YDPDashboard
+                        )
+                      }
                     />
                     <SecureRoute
                       exact
@@ -110,11 +105,12 @@ function App() {
                     <SecureRoute
                       exact
                       path="/ClubDirectorDashboard"
-                      component={() => (
-                        <ClubDirectorDashboard
-                          authorize={[Roles[0], Roles[1]]}
-                        />
-                      )}
+                      component={() =>
+                        Authorization(
+                          [Roles[0], Roles[1]],
+                          ClubDirectorDashboard
+                        )
+                      }
                     />
                     {/*Member scaner test*/}
 
