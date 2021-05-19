@@ -38,9 +38,9 @@ function RenderEmojiConfirmRedirect(props) {
   const context = useContext(EmojiContext);
   const [state, setState] = useState(<StyledEmojis>😁</StyledEmojis>);
 
-  // setTimeout(() => {
-  //   history.push('/scanner');
-  // }, 4000);
+  setTimeout(() => {
+    history.push('/scanner');
+  }, 4000);
 
   useEffect(() => {
     console.log('context emoji: ', context.emoji);
@@ -57,8 +57,6 @@ function RenderEmojiConfirmRedirect(props) {
       <StyledEmojiConfirmRedirect>
         <h2>Success!</h2>
         {state}
-        {/* <StyledEmojis>🙂</StyledEmojis> */}
-        EMOJI CONFIRMATION HERE AND REDIRECT TO SCANNER AFTER X SECONDS!
       </StyledEmojiConfirmRedirect>
     </LayoutContainer>
   );
