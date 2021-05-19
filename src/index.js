@@ -21,6 +21,7 @@ import {
 import 'antd/dist/antd.less';
 import './styles/styles.less';
 
+import { UnAuthorizedPage } from './components/pages/UnAuthorized';
 import { NotFoundPage } from './components/pages/NotFound';
 import { LoginPage } from './components/pages/Login';
 import { Logout } from './components/common/Logout';
@@ -170,6 +171,7 @@ function App() {
                     <SecureRoute path="/manage-clubs">
                       <ViewClubs />
                     </SecureRoute>
+                    <Route path="/unauthorized" component={UnAuthorizedPage} />
                     <Route component={NotFoundPage} />
                   </Switch>
                 </Security>
