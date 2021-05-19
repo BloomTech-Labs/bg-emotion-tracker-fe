@@ -7,9 +7,8 @@ import { DownOutlined } from '@ant-design/icons';
 import { LayoutContainer } from '../../common';
 import { ActivityContext } from '../../../state/contexts/index';
 import { ClubContext } from '../../../state/contexts';
-import { StyledBtn } from '../../common';
+import { StyledBtn, BackButton } from '../../common';
 
-import BackButton from '../../common/BackButton';
 const StyledActivitySelect = styled.header`
   display: flex;
   flex-direction: column;
