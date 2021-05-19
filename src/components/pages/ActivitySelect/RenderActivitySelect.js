@@ -7,7 +7,7 @@ import { DownOutlined } from '@ant-design/icons';
 import { LayoutContainer } from '../../common';
 import { ActivityContext } from '../../../state/contexts/index';
 import { ClubContext } from '../../../state/contexts';
-
+import BackButton from '../../common/BackButton';
 const StyledActivitySelect = styled.header`
   display: flex;
   flex-direction: column;
@@ -62,6 +62,11 @@ function RenderActivitySelect(props) {
   return (
     <LayoutContainer>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
+
+      <Link to="/YDPDashboard">
+        <BackButton buttonText="Change Club" classType="primary" />
+      </Link>
+
       <StyledActivitySelect>
         <h2>Select Activity</h2>
 
