@@ -56,7 +56,7 @@ function RenderHomePage() {
         <h2 className="dropdownSelected">
           {clubContext.club && clubContext.club.clubname}
         </h2>
-        <StyledBtn label="Confirm" onClick={onClick} to="/activity-select" />
+        <StyledBtn label="Confirm" onClick={onClick} path="/activity-select" />
       </StyledYDPPage>
     </LayoutContainer>
   );
