@@ -266,33 +266,6 @@ function RenderEmojiSelectCheck(props) {
           </button>
         </StyledEmojis>
 
-        {/* <Row justify="center" align="top">
-          <Radio.Group
-            buttonStyle="solid"
-            size="large"
-            onChange={onChange}
-            defaultValue={'1F601'}
-
-            //   value={memberReaction}
-          >
-            <Radio.Button value={'1F601'}>
-              <StyledEmojis>😁</StyledEmojis>
-            </Radio.Button>
-            <Radio.Button value={'1F642'}>
-              <StyledEmojis>🙂</StyledEmojis>
-            </Radio.Button>
-            <Radio.Button value={'1F610'}>
-              <StyledEmojis>😐</StyledEmojis>
-            </Radio.Button>
-            <Radio.Button value={'1F641'}>
-              <StyledEmojis>🙁</StyledEmojis>
-            </Radio.Button>
-            <Radio.Button value={'1F61E'}>
-              <StyledEmojis>😞</StyledEmojis>
-            </Radio.Button>
-          </Radio.Group>
-        </Row> */}
-
         <StyledButton type="primary" onClick={onConfirm}>
           Confirm
         </StyledButton>
