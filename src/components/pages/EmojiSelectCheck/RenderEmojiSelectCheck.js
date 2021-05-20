@@ -83,7 +83,7 @@ function RenderEmojiSelectCheck(props) {
 
   return (
     <LayoutContainer>
-      <NavBar titleName="Dashboard" backgroundColor="#293845" />
+      <NavBar hideMenu />
       <StyledEmojiSelectCheck>
         <h2>Select Emoji</h2>
         {/* <Divider orientation="left">***</Divider> */}
