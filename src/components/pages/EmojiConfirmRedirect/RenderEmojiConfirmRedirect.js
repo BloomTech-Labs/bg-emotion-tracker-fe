@@ -43,17 +43,15 @@ function RenderEmojiConfirmRedirect(props) {
   }, 4000);
 
   useEffect(() => {
-    console.log('context emoji: ', context.emoji);
     let selectedEmoji = emojiList.filter(emoji => {
       return context.emoji === emoji.id;
     });
-    console.log('selected: ', selectedEmoji);
     setState(selectedEmoji[0].component);
   }, [state]);
 
   return (
     <LayoutContainer>
-      <NavBar titleName="Dashboard" backgroundColor="#293845" />
+      <NavBar hideMenu />
       <StyledEmojiConfirmRedirect>
         <h2>Success!</h2>
         {state}
