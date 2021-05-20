@@ -1,6 +1,7 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Form, Input, Button } from 'antd';
 import { MemberContext } from '../../../state/contexts/index';
+import { getMember } from '../../../state/actions';
 
 const layout = {
   // wrapperCol: {
@@ -17,14 +18,34 @@ const tailLayout = {
 function ManualMemberInput(props) {
   const { setScanStatus } = props;
   const memberContext = useContext(MemberContext);
+  const [memberState, setMemberState] = useState(false);
+  const [form] = Form.useForm();
 
-  const onFinish = values => {
-    memberContext.setMember(values);
-    setScanStatus(true);
+  useEffect(() => {
+    console.log('memberState: ', memberState);
+    if (memberState.member === 'true') {
+      setScanStatus(true);
+    } else {
+      // error "Member doesn't exist"
+    }
+  }, [memberContext.member]);
+
+  const onFinish = async values => {
+    await getMember(values.memberId, memberContext);
+    setMemberState(memberContext.member);
   };
 
   const onFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo);
+  };
+
+  const onCheck = async () => {
+    try {
+      const values = await form.validateFields();
+      console.log('Success:', values);
+    } catch (errorInfo) {
+      console.log('Failed:', errorInfo);
+    }
   };
 
   return (
@@ -42,7 +63,12 @@ function ManualMemberInput(props) {
         <Form.Item
           label="Member ID"
           name="memberId"
-          rules={[{ required: false, message: 'Please a valid user id' }]}
+          rules={[
+            {
+              required: true,
+              message: 'Please input a Member ID',
+            },
+          ]}
           style={{ 'margin-bottom': '2rem' }}
         >
           <Input />

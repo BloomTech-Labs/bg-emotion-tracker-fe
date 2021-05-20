@@ -7,6 +7,7 @@ import ManualMemberInput from './ManualMemberInput';
 import { LayoutContainer, BackButton } from '../../common';
 import { MemberContext } from '../../../state/contexts/index';
 import axios from 'axios';
+import { getMember } from '../../../state/actions';
 
 const StyledMemberScanner = styled.header`
   display: flex;
@@ -45,21 +46,11 @@ function RenderMemberScanner(props) {
   };
 
   const handleScan = data => {
-    // make api request to get member data
     if (data) {
-      console.log('data: ', data);
-      let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
-      const promise = axios.get(
-        `https://bg-emotion-tracker-be-b.herokuapp.com/members/check?mid=${data}`,
-        {
-          headers: {
-            Authorization: `Bearer ${tokenObj.accessToken.accessToken}`,
-          },
-        }
-      );
-      promise.then(res => console.log('boolean: ', res));
-      memberContext.setMember({ memberId: data });
-      setScanStatus(true);
+      let existingMember = getMember(data, memberContext);
+      if (existingMember.member === 'true') {
+        setScanStatus(true);
+      }
     }
   };
 
