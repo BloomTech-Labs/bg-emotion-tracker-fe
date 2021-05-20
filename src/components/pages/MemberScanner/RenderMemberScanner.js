@@ -38,11 +38,13 @@ const StyledCenterA = styled(Link)`
 function RenderMemberScanner(props) {
   const [scanStatus, setScanStatus] = useState(false);
   const [scanError, setScanError] = useState(false);
+  const [error, setError] = useState('Internal Server Error.');
 
   const memberContext = useContext(MemberContext);
 
   const handleError = err => {
     setScanError(true);
+    setError(err);
   };
 
   const handleScan = data => {
@@ -68,7 +70,7 @@ function RenderMemberScanner(props) {
         <h2>Scanner</h2>
         <QRCodeReader handleScan={handleScan} handleError={handleError} />
         {scanStatus ? <p>Scan successful</p> : <p>Not scanned yet</p>}
-        {scanError ? <p>Some error happens</p> : null}
+        {scanError ? <p>{error}</p> : null}
         {scanStatus ? (
           <Redirect
             to={{
@@ -76,7 +78,10 @@ function RenderMemberScanner(props) {
             }}
           />
         ) : null}
-        <ManualMemberInput setScanStatus={setScanStatus} />
+        <ManualMemberInput
+          setScanStatus={setScanStatus}
+          handleError={handleError}
+        />
       </StyledMemberScanner>
 
       {/* </StyledCenterA> */}

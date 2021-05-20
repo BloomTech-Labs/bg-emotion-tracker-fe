@@ -16,16 +16,15 @@ const tailLayout = {
 };
 
 function ManualMemberInput(props) {
-  const { setScanStatus } = props;
+  const { setScanStatus, handleError } = props;
   const memberContext = useContext(MemberContext);
   const [form] = Form.useForm();
 
   useEffect(() => {
-    console.log(memberContext.member);
     if (memberContext.member === true) {
       setScanStatus(true);
-    } else {
-      console.log("Member doesn't exist");
+    } else if (memberContext.member === false) {
+      handleError('This member does not exist.');
     }
   }, [memberContext.member]);
 
