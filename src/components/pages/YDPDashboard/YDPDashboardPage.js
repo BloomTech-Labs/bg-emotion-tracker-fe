@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { Menu, Dropdown, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { LayoutContainer } from '../../common';
-import { ProgramContext, ClubsContext } from '../../../state/contexts';
+import { ClubsContext, ClubContext } from '../../../state/contexts/index';
 import { getClub } from '../../../state/actions';
+import { StyledBtn } from '../../common';
 
 const StyledYDPPage = styled.header`
   display: flex;
@@ -15,43 +15,33 @@ const StyledYDPPage = styled.header`
   width: 1200px;
   max-width: 90%;
   margin: 3rem auto;
-`;
-
-const StyledLink = styled(Link)`
   text-align: center;
-`;
-
-const StyledButton = styled(Button)`
-  background-color: 293845;
-  width: 200px;
-  text-align: center;
-  margin: 20px auto;
 `;
 
 function RenderHomePage() {
-  const { memberObject, setMemberObject } = useContext(ProgramContext);
-  const context = useContext(ClubsContext);
+  const clubsContext = useContext(ClubsContext);
+  const clubContext = useContext(ClubContext);
+  const [disabledBtn, setDisabledBtn] = useState(true);
 
-  const newMemberObject = { ...memberObject, clubId: '20' };
+  useEffect(() => {
+    // console.log('club: ', clubContext.club.clubname);
+    // if (!clubContext.club.clubname) {
+    //   setDisabledBtn(true);
+    // }
+  }, []);
 
-  const onClick = () => {
-    setMemberObject(newMemberObject);
-  };
-
-  let data = {
-    clubs: [],
+  const onClick = e => {
+    e.preventDefault();
   };
 
   const selectClub = (e, item) => {
-    console.log('item: ', item);
-    getClub(item.clubid, context);
-    // setActivity(item);
-    // api call to backend
+    getClub(item.clubid, clubContext);
+    setDisabledBtn(false);
   };
 
   const menu = (
     <Menu>
-      {context.clubs.map(item => (
+      {clubsContext.clubs.map(item => (
         <Menu.Item key={item.clubid} onClick={e => selectClub(e, item)}>
           {item.clubname}
         </Menu.Item>
@@ -61,7 +51,7 @@ function RenderHomePage() {
 
   return (
     <LayoutContainer>
-      <NavBar titleName="Dashboard" backgroundColor="#293845" />
+      <NavBar titleName="YDP Dashboard" backgroundColor="#293845" />
       <StyledYDPPage>
         <h2 style={{ textAlign: 'center' }}>Select Club</h2>
         <h2 style={{ textAlign: 'center' }}>
@@ -71,13 +61,16 @@ function RenderHomePage() {
             </a>
           </Dropdown>
         </h2>
-        <StyledButton
-          size="large"
-          type="primary"
-          onClick={e => e.preventDefault()}
-        >
-          <StyledLink to="/activity-select">Confirm</StyledLink>
-        </StyledButton>
+        <h2 className="dropdownSelected">
+          {clubContext.club && clubContext.club.clubname}
+        </h2>
+        <StyledBtn
+          label="Confirm"
+          onClick={onClick}
+          path="/activity-select"
+          isDisabled={disabledBtn}
+          // isDisabled={clubContext.club.clubname}
+        />
       </StyledYDPPage>
     </LayoutContainer>
   );

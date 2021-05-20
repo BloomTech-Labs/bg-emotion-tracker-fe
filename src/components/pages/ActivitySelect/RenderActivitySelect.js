@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { Menu, Dropdown, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { LayoutContainer } from '../../common';
-import { ProgramContext, ActivityContext } from '../../../state/contexts/index';
-import { ClubsContext } from '../../../state/contexts';
+import { ActivityContext } from '../../../state/contexts/index';
+import { ClubContext } from '../../../state/contexts';
+import { StyledBtn, BackButton } from '../../common';
 
 const StyledActivitySelect = styled.header`
   display: flex;
@@ -20,41 +20,14 @@ const StyledActivitySelect = styled.header`
   text-align: center;
 `;
 
-const StyledLink = styled(Link)`
-  text-align: center;
-`;
-
-const StyledButton = styled(Button)`
-  background-color: 293845;
-  width: 200px;
-  text-align: center;
-  margin: 20px auto;
-`;
-
 function RenderActivitySelect(props) {
-  const { userInfo /*authService*/ } = props;
-  const history = useHistory();
-
-  const { memberObject, setMemberObject, setClubs } = useContext(
-    ProgramContext
-  );
-
   const { setActivity, activity } = useContext(ActivityContext);
-  const context = useContext(ClubsContext);
-
-  const { club } = useContext(ClubsContext);
-
-  console.log('context' + club.activities);
-  // const newMemberObject = { ...memberObject, activityId: '13' };
-
-  // const onClick = () => {
-  //   setMemberObject(newMemberObject);
-  //   history.push('/scanner');
-  // };
+  const { club } = useContext(ClubContext);
+  const [disabledBtn, setDisabledBtn] = useState(true);
 
   const selectActivity = (e, item) => {
     setActivity(item);
-    console.log(context);
+    setDisabledBtn(false);
   };
 
   const menu = (
@@ -74,6 +47,11 @@ function RenderActivitySelect(props) {
   return (
     <LayoutContainer>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
+
+      <Link to="/YDPDashboard">
+        <BackButton buttonText="Change Club" classType="primary" />
+      </Link>
+
       <StyledActivitySelect>
         <h2>Select Activity</h2>
 
@@ -87,13 +65,7 @@ function RenderActivitySelect(props) {
         <h2 className="dropdownSelected">
           {activity && activity.activityname}
         </h2>
-        <StyledButton
-          size="large"
-          type="primary"
-          onClick={e => e.preventDefault()}
-        >
-          <StyledLink to="/scanner">Confirm</StyledLink>
-        </StyledButton>
+        <StyledBtn label="Confirm" path="/scanner" isDisabled={disabledBtn} />
       </StyledActivitySelect>
     </LayoutContainer>
   );
