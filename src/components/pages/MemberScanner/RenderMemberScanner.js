@@ -6,8 +6,9 @@ import { QRCodeReader } from '../QRCodeReader';
 import ManualMemberInput from './ManualMemberInput';
 import { LayoutContainer, BackButton } from '../../common';
 import { MemberContext } from '../../../state/contexts/index';
-import axios from 'axios';
 import { getMember } from '../../../state/actions';
+import { Typography } from 'antd';
+const { Text } = Typography;
 
 const StyledMemberScanner = styled.header`
   display: flex;
@@ -69,8 +70,16 @@ function RenderMemberScanner(props) {
       <StyledMemberScanner>
         <h2>Scanner</h2>
         <QRCodeReader handleScan={handleScan} handleError={handleError} />
-        {scanStatus ? <p>Scan successful</p> : <p>Not scanned yet</p>}
-        {scanError ? <p>{error}</p> : null}
+        {scanStatus ? (
+          <Text className="regularText">Scan successful</Text>
+        ) : (
+          <Text className="regularText">Not scanned yet</Text>
+        )}
+        {scanError ? (
+          <Text className="errorText" strong type="danger">
+            {error}
+          </Text>
+        ) : null}
         {scanStatus ? (
           <Redirect
             to={{
