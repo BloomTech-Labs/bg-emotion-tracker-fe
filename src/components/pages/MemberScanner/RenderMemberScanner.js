@@ -4,10 +4,8 @@ import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { QRCodeReader } from '../QRCodeReader';
 import ManualMemberInput from './ManualMemberInput';
-import { Button } from 'antd';
-import { LayoutContainer } from '../../common';
+import { LayoutContainer, BackButton } from '../../common';
 import { MemberContext } from '../../../state/contexts/index';
-
 const StyledMemberScanner = styled.header`
   display: flex;
   margin-left: 25%;
@@ -16,12 +14,6 @@ const StyledMemberScanner = styled.header`
   /* width: 800px; */
   /* max-width: 90%; */
   /* margin: 3rem auto; */
-`;
-
-const StyledLink = styled(Link)`
-  text-align: center;
-  justify-content: center;
-  align-content: center;
 `;
 
 const StyledCenterB = styled(Link)`
@@ -40,18 +32,11 @@ const StyledCenterA = styled(Link)`
   align-content: center;
 `;
 
-const StyledButton = styled(Button)`
-  background-color: 293845;
-  width: auto;
-  text-align: center;
-  justify-content: center;
-  align-content: center;
-  margin: 10px auto;
-`;
-
 function RenderMemberScanner(props) {
   const [scanStatus, setScanStatus] = useState(false);
   const [scanError, setScanError] = useState(false);
+
+  //   const [emojiPage, setEmojiPage] = useState(); //state for emoji page select
 
   const memberContext = useContext(MemberContext);
 
@@ -66,17 +51,19 @@ function RenderMemberScanner(props) {
     }
   };
 
+  // const handleEmojiPage = asdf => { //ftn to set the emoji page state
+
+  // };
+
   return (
     <LayoutContainer>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
 
       {/* <StyledCenterA> */}
 
-      <StyledLink to="/activity-select">
-        <StyledButton size="large" type="primary">
-          Choose Activity
-        </StyledButton>
-      </StyledLink>
+      <Link to="/activity-select">
+        <BackButton buttonText="Change Activity" classType="primary" />
+      </Link>
 
       <StyledMemberScanner>
         <h2>Scanner</h2>
@@ -86,7 +73,7 @@ function RenderMemberScanner(props) {
         {scanStatus ? (
           <Redirect
             to={{
-              pathname: '/emoji-selectcheck',
+              pathname: '/emoji-selectcheck', //needs to be a var state {emojiPageState}
             }}
           />
         ) : null}

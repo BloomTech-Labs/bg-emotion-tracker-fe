@@ -1,8 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
-import { Button, Radio } from 'antd';
+import { Button, Radio, Row, Col } from 'antd';
 import axios from 'axios';
 import { LayoutContainer } from '../../common';
 import { baseUrl } from '../../../api/index';
@@ -10,7 +10,9 @@ import {
   ActivityContext,
   ClubContext,
   MemberContext,
+  EmojiContext,
 } from '../../../state/contexts/index';
+import '../../../styles/styles.less';
 
 const StyledEmojiSelectActivity = styled.header`
   display: flex;
@@ -24,15 +26,15 @@ const StyledEmojiSelectActivity = styled.header`
 `;
 
 const StyledEmojis = styled.div`
-  font-size: 3rem;
-  /* background: '#ffffff';
-  padding: '2px 0'; */
-`;
-
-const StyledColor = styled.div`
-  &.ant-typography {
-    color: 'white';
-  }
+  width: 560px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 const StyledButton = styled(Button)`
@@ -43,25 +45,41 @@ const StyledButton = styled(Button)`
   margin-top: 30px;
 `;
 
+const emojiStyles = {
+  // width: "auto",
+  // fontSize: "20px",
+  borderRadius: '0px',
+  border: '1px solid #ffffff',
+  // color: "ffffff",
+  // margin: "0.5em 1em",
+  // padding: "0.25em 1em",
+  background: '#ffffff',
+};
+
 function RenderEmojiSelectActivity(props) {
   const { userInfo /*authService*/ } = props;
   const history = useHistory();
 
-  const [memberReaction, setMemberReaction] = useState('None');
-
+  const [memberReaction, setMemberReaction] = useState('1F601');
   const activityContext = useContext(ActivityContext);
   const clubContext = useContext(ClubContext);
   const memberContext = useContext(MemberContext);
+  const { setEmoji } = useContext(EmojiContext);
+
+  useEffect(() => {
+    setEmoji(memberReaction);
+  }, []);
 
   const onChange = e => {
     setMemberReaction(e.target.value);
+    setEmoji(e.target.value);
   };
 
   const onConfirm = () => {
     let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
     axios
       .post(
-        `${baseUrl}/memberreactions/memberreaction/submit?mid=${memberContext.member.memberId}&aid=${activityContext.activity.activityId}&cid=${clubContext.club.clubid}&rx=${memberReaction}`,
+        `${baseUrl}/memberreactions/memberreaction/submit?mid=${memberContext.member.memberId}&aid=${activityContext.activity.activityid}&cid=${clubContext.club.clubid}&rx=${memberReaction}`,
         {},
         {
           headers: {
@@ -77,37 +95,53 @@ function RenderEmojiSelectActivity(props) {
 
   return (
     <LayoutContainer>
-      <NavBar titleName="Dashboard" backgroundColor="#293845" />
+      <NavBar hideMenu />
       <StyledEmojiSelectActivity>
         <h2>Select Emoji</h2>
         {/* <Divider orientation="left">***</Divider> */}
 
-        {/* <StyledColor> */}
-        <Radio.Group
-          buttonStyle="solid"
-          size="large"
-          onChange={onChange}
-          defaultValue={'1F601'}
-
-          //   value={memberReaction}
-        >
-          <Radio.Button value={'1F601'}>
-            <StyledEmojis>😁</StyledEmojis>
-          </Radio.Button>
-          <Radio.Button value={'1F642'}>
-            <StyledEmojis>🙂</StyledEmojis>
-          </Radio.Button>
-          <Radio.Button value={'1F610'}>
-            <StyledEmojis>😐</StyledEmojis>
-          </Radio.Button>
-          <Radio.Button value={'1F641'}>
-            <StyledEmojis>🙁</StyledEmojis>
-          </Radio.Button>
-          <Radio.Button value={'1F61E'}>
-            <StyledEmojis>😞</StyledEmojis>
-          </Radio.Button>
-        </Radio.Group>
-        {/* </StyledColor> */}
+        <StyledEmojis>
+          <button
+            className="emojiBtn"
+            style={emojiStyles}
+            onClick={onChange}
+            value={'1F601'}
+          >
+            😁
+          </button>
+          <button
+            className="emojiBtn"
+            style={emojiStyles}
+            onClick={onChange}
+            value={'1F642'}
+          >
+            🙂
+          </button>
+          <button
+            className="emojiBtn"
+            style={emojiStyles}
+            onClick={onChange}
+            value={'1F610'}
+          >
+            😐
+          </button>
+          <button
+            className="emojiBtn"
+            style={emojiStyles}
+            onClick={onChange}
+            value={'1F641'}
+          >
+            🙁
+          </button>
+          <button
+            className="emojiBtn"
+            style={emojiStyles}
+            onClick={onChange}
+            value={'1F61E'}
+          >
+            😞
+          </button>
+        </StyledEmojis>
 
         <StyledButton type="primary" onClick={onConfirm}>
           Confirm
