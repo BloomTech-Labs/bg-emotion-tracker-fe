@@ -18,21 +18,19 @@ const tailLayout = {
 function ManualMemberInput(props) {
   const { setScanStatus } = props;
   const memberContext = useContext(MemberContext);
-  const [memberState, setMemberState] = useState(false);
   const [form] = Form.useForm();
 
   useEffect(() => {
-    console.log('memberState: ', memberState);
-    if (memberState.member === 'true') {
+    console.log(memberContext.member);
+    if (memberContext.member === true) {
       setScanStatus(true);
     } else {
-      // error "Member doesn't exist"
+      console.log("Member doesn't exist");
     }
   }, [memberContext.member]);
 
   const onFinish = async values => {
     await getMember(values.memberId, memberContext);
-    setMemberState(memberContext.member);
   };
 
   const onFinishFailed = errorInfo => {
