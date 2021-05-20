@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
-import { Button, Radio } from 'antd';
+import { Button, Radio, Row, Col } from 'antd';
 import axios from 'axios';
 import { LayoutContainer } from '../../common';
 import { baseUrl } from '../../../api/index';
@@ -11,6 +11,7 @@ import {
   ClubContext,
   MemberContext,
 } from '../../../state/contexts/index';
+import '../../../styles/styles.less';
 
 const StyledEmojiSelectCheck = styled.header`
   display: flex;
@@ -24,15 +25,15 @@ const StyledEmojiSelectCheck = styled.header`
 `;
 
 const StyledEmojis = styled.div`
-  font-size: 3rem;
-  /* background: '#ffffff';
-  padding: '2px 0'; */
-`;
-
-const StyledColor = styled.div`
-  &.ant-typography {
-    color: 'white';
-  }
+  width: 560px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 const StyledButton = styled(Button)`
@@ -42,6 +43,17 @@ const StyledButton = styled(Button)`
   margin: 10px auto;
   margin-top: 30px;
 `;
+
+const emojiStyles = {
+  // width: "auto",
+  // fontSize: "20px",
+  borderRadius: '0px',
+  border: '1px solid #ffffff',
+  // color: "ffffff",
+  // margin: "0.5em 1em",
+  // padding: "0.25em 1em",
+  background: '#ffffff',
+};
 
 function RenderEmojiSelectCheck(props) {
   const { userInfo /*authService*/ } = props;
@@ -82,32 +94,59 @@ function RenderEmojiSelectCheck(props) {
         <h2>Select Emoji</h2>
         {/* <Divider orientation="left">***</Divider> */}
 
-        {/* <StyledColor> */}
-        <Radio.Group
-          buttonStyle="solid"
-          size="large"
-          onChange={onChange}
-          defaultValue={'1F601'}
+        {/* <StyledEmojis>
+        <button className="emojiBtn" style={emojiStyles} onClick={onChange} value={'1F601'}>😁</button>
+        <button className="emojiBtn" style={emojiStyles} onClick={onChange} value={'1F642'}>🙂</button>
+        <button className="emojiBtn" style={emojiStyles} onClick={onChange} value={'1F610'}>😐</button>
+        <button className="emojiBtn" style={emojiStyles} onClick={onChange} value={'1F641'}>🙁</button>
+        <button className="emojiBtn" style={emojiStyles} onClick={onChange} value={'1F61E'}>😞</button>
 
-          //   value={memberReaction}
-        >
-          <Radio.Button value={'1F601'}>
-            <StyledEmojis>😁</StyledEmojis>
-          </Radio.Button>
-          <Radio.Button value={'1F642'}>
-            <StyledEmojis>🙂</StyledEmojis>
-          </Radio.Button>
-          <Radio.Button value={'1F610'}>
-            <StyledEmojis>😐</StyledEmojis>
-          </Radio.Button>
-          <Radio.Button value={'1F641'}>
-            <StyledEmojis>🙁</StyledEmojis>
-          </Radio.Button>
-          <Radio.Button value={'1F61E'}>
-            <StyledEmojis>😞</StyledEmojis>
-          </Radio.Button>
-        </Radio.Group>
-        {/* </StyledColor> */}
+        <button className="emojiBtn" style={emojiStyles} onClick={onChange} value={'1F601'}>😁</button>
+        <button className="emojiBtn" style={emojiStyles} onClick={onChange} value={'1F642'}>🙂</button>
+        <button className="emojiBtn" style={emojiStyles} onClick={onChange} value={'1F610'}>😐</button>
+        <button className="emojiBtn" style={emojiStyles} onClick={onChange} value={'1F641'}>🙁</button>
+        <button className="emojiBtn" style={emojiStyles} onClick={onChange} value={'1F61E'}>😞</button>
+        
+        <button className="emojiBtn" style={emojiStyles} onClick={onChange} value={'1F601'}>😁</button>
+        <button className="emojiBtn" style={emojiStyles} onClick={onChange} value={'1F642'}>🙂</button>
+        <button className="emojiBtn" style={emojiStyles} onClick={onChange} value={'1F610'}>😐</button>
+        <button className="emojiBtn" style={emojiStyles} onClick={onChange} value={'1F641'}>🙁</button>
+        <button className="emojiBtn" style={emojiStyles} onClick={onChange} value={'1F61E'}>😞</button>
+
+        <button className="emojiBtn" style={emojiStyles} onClick={onChange} value={'1F601'}>😁</button>
+        <button className="emojiBtn" style={emojiStyles} onClick={onChange} value={'1F642'}>🙂</button>
+        <button className="emojiBtn" style={emojiStyles} onClick={onChange} value={'1F610'}>😐</button>
+        <button className="emojiBtn" style={emojiStyles} onClick={onChange} value={'1F641'}>🙁</button>
+        <button className="emojiBtn" style={emojiStyles} onClick={onChange} value={'1F61E'}>😞</button>
+      
+    </StyledEmojis> */}
+
+        <Row justify="center" align="top">
+          <Radio.Group
+            buttonStyle="solid"
+            size="large"
+            onChange={onChange}
+            defaultValue={'1F601'}
+
+            //   value={memberReaction}
+          >
+            <Radio.Button value={'1F601'}>
+              <StyledEmojis>😁</StyledEmojis>
+            </Radio.Button>
+            <Radio.Button value={'1F642'}>
+              <StyledEmojis>🙂</StyledEmojis>
+            </Radio.Button>
+            <Radio.Button value={'1F610'}>
+              <StyledEmojis>😐</StyledEmojis>
+            </Radio.Button>
+            <Radio.Button value={'1F641'}>
+              <StyledEmojis>🙁</StyledEmojis>
+            </Radio.Button>
+            <Radio.Button value={'1F61E'}>
+              <StyledEmojis>😞</StyledEmojis>
+            </Radio.Button>
+          </Radio.Group>
+        </Row>
 
         <StyledButton type="primary" onClick={onConfirm}>
           Confirm
