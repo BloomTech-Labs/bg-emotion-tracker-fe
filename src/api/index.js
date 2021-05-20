@@ -12,6 +12,7 @@ const profileUrl = `${URI}users/getuserinfo`;
 const profilesUrl = `${URI}profiles`;
 const clubsUrl = `${URI}clubs/clubs`;
 const clubUrl = `${URI}clubs/club/:id`;
+const memberUrl = `${URI}members/check?mid=id`;
 
 const sleep = time =>
   new Promise(resolve => {
@@ -121,7 +122,25 @@ const getClubData = id => {
   );
 
   const dataPromise = promise.then(response => {
-    console.log('res: ', response.data);
+    return response.data;
+  });
+
+  return dataPromise;
+};
+
+const getMemberData = id => {
+  let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
+
+  const promise = axios.get(
+    `https://bg-emotion-tracker-be-b.herokuapp.com/members/check?mid=${id}`,
+    {
+      headers: {
+        Authorization: `Bearer ${tokenObj.accessToken.accessToken}`,
+      },
+    }
+  );
+
+  const dataPromise = promise.then(response => {
     return response.data;
   });
 
@@ -132,6 +151,7 @@ export {
   sleep,
   getClubsData,
   getClubData,
+  getMemberData,
   getExampleData,
   getProfileData,
   getDSData,
