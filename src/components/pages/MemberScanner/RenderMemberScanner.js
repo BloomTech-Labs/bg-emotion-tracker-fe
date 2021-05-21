@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import React, { useState, useContext, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { QRCodeReader } from '../QRCodeReader';
@@ -40,6 +40,8 @@ function RenderMemberScanner(props) {
   const [scanStatus, setScanStatus] = useState(false);
   const [scanError, setScanError] = useState(false);
   const [error, setError] = useState('Internal Server Error.');
+  const history = useHistory();
+  const [id, setId] = useState('');
 
   const memberContext = useContext(MemberContext);
 
@@ -48,12 +50,15 @@ function RenderMemberScanner(props) {
     setError(err);
   };
 
+  useEffect(() => {
+    memberContext.setId(id);
+    if (id) history.push('/emoji-selectcheck');
+  }, [id]);
+
   const handleScan = data => {
+    setId(data);
     if (data) {
-      let existingMember = getMember(data, memberContext);
-      if (existingMember.exists === 'true') {
-        setScanStatus(true);
-      }
+      getMember(data, memberContext);
     }
   };
 
@@ -79,13 +84,6 @@ function RenderMemberScanner(props) {
           <Text className="errorText" strong type="danger">
             {error}
           </Text>
-        ) : null}
-        {scanStatus ? (
-          <Redirect
-            to={{
-              pathname: '/emoji-selectcheck',
-            }}
-          />
         ) : null}
         <ManualMemberInput
           setScanStatus={setScanStatus}
