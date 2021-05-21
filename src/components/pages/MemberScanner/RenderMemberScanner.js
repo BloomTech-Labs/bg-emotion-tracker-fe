@@ -26,16 +26,16 @@ function RenderMemberScanner(props) {
   const [error, setError] = useState('Internal Server Error.');
   const history = useHistory();
   const [id, setId] = useState('');
-  const [checkAct, setCheckAct] = useState(true); //state for checking the check
+  const [checkAct, setCheckAct] = useState(false); //state for checking the check
 
   const activityContext = useContext(ActivityContext); //the act context
   const memberContext = useContext(MemberContext);
 
   const handleCheckTrue = checkAct => {
-    setCheckAct({ checkAct: true });
+    setCheckAct(true);
   };
   const handleCheckFalse = checkAct => {
-    setCheckAct({ checkAct: false });
+    setCheckAct(false);
   };
 
   const handleError = err => {
@@ -43,23 +43,30 @@ function RenderMemberScanner(props) {
     setError(err);
   };
 
-  useEffect(() => {
-    memberContext.setId(id);
-    if (id) history.push('/emoji-selectcheck');
-  }, [id]);
+  //   useEffect(() => {
+  //     if (checkAct) {
+  //     history.push ('/emoji-selectcheck');
+  //     } else {
+  //      history.push ('/emoji-selectactivity');}
+  //     }, [checkAct]);
 
   const handleScan = data => {
     setId(data);
     if (data) {
       getMember(data, memberContext);
-      memberContext.setMemberId({ memberId: data });
+      memberContext.setId(data);
+      handleCheck();
       setScanStatus(true);
     }
   };
 
   const handleCheck = check => {
+    // if (!memberContext.exists) {
+    //     handleError('Member Id invalid');
+    // }
+
     if (
-      activityContext.activity.activityname === 'Club Attendance' ||
+      activityContext.activity.activityname === 'Club Attendance' || //problem here!!!!!!!!
       activityContext.activity.activityname === 'Club Checkout'
     ) {
       //check it
@@ -67,7 +74,7 @@ function RenderMemberScanner(props) {
     } else {
       handleCheckFalse();
     }
-
+    console.log(activityContext.activity.activityname);
     console.log(checkAct);
   };
 
@@ -85,13 +92,11 @@ function RenderMemberScanner(props) {
         {scanStatus ? <p>Scan successful</p> : <p>Not scanned yet</p>}
         {scanError ? <p>Some error happens</p> : null}
         {scanStatus ? (
-          <Redirect
-            to={
-              checkAct
-                ? { pathname: '/emoji-selectcheck' }
-                : { pathname: '/emoji-selectactivity' }
-            }
-          />
+          checkAct ? (
+            <Redirect to="/emoji-selectcheck" />
+          ) : (
+            <Redirect to="/emoji-selectactivity" />
+          )
         ) : null}
         <ManualMemberInput
           setScanStatus={setScanStatus}
