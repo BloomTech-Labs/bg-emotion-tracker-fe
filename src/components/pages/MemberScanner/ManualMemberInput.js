@@ -18,15 +18,19 @@ const tailLayout = {
 function ManualMemberInput(props) {
   const { setScanStatus, handleError } = props;
   const memberContext = useContext(MemberContext);
+  const [memberId, setMemberId] = useState('');
   const [form] = Form.useForm();
 
   useEffect(() => {
-    if (memberContext.member === true) {
+    if (memberContext.exists === true) {
+      // set member context with memberId
+      memberContext.setMemberId(memberId);
+      memberContext.setMemberExists(true);
       setScanStatus(true);
-    } else if (memberContext.member === false) {
+    } else if (memberContext.exists === false) {
       handleError('This member does not exist.');
     }
-  }, [memberContext.member]);
+  }, [memberContext.exists]);
 
   const onFinish = async values => {
     await getMember(values.memberId, memberContext);
@@ -34,6 +38,10 @@ function ManualMemberInput(props) {
 
   const onFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo);
+  };
+
+  const onChange = e => {
+    setMemberId(e.target.value);
   };
 
   const onCheck = async () => {
@@ -68,7 +76,7 @@ function ManualMemberInput(props) {
           ]}
           style={{ 'margin-bottom': '2rem' }}
         >
-          <Input />
+          <Input onChange={onChange} />
         </Form.Item>
         <Form.Item {...tailLayout}>
           <Button type="primary" htmlType="submit">

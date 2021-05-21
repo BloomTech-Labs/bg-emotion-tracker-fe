@@ -156,21 +156,24 @@ export const ClubContextProvider = props => {
 // Member Context
 
 export const MemberContext = createContext({
-  member: {},
-  loading: false,
-  error: false,
-  message: '',
-  setMember: () => {},
+  id: '',
+  exists: false,
 });
 
 export const MemberContextProvider = props => {
-  const setMember = member => {
-    setState({ ...state, member });
+  const setMemberId = id => {
+    setState({ ...state, id });
+  };
+
+  const setMemberExists = exists => {
+    setState({ ...state, exists });
   };
 
   const initState = {
-    member: {},
-    setMember,
+    id: '',
+    exists: false,
+    setMemberExists,
+    setMemberId,
   };
 
   const [state, setState] = useState(initState);
