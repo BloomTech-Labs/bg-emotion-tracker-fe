@@ -72,7 +72,7 @@ const barToPie = bar => {
   return dt;
 };
 
-function ChartByClub({ mode, showAll, setShowAll }) {
+function ChartByClub({ mode, showAll, setShowAll, dateRange }) {
   const [plot, setPlot] = useState([
     {
       x: [],
@@ -91,7 +91,9 @@ function ChartByClub({ mode, showAll, setShowAll }) {
   const getActivitiesData = () => {
     axios
       .get(
-        `https://bg-emotion-tracker-be-b.herokuapp.com/report/club/${selectedClub}/activities/counts?from=2021-05-01&to=2022-04-01`,
+        `https://bg-emotion-tracker-be-b.herokuapp.com/report/club/${selectedClub}/activities/counts?from=${
+          dateRange.from ? dateRange.from : '1000-01-01'
+        }&to=${dateRange.to ? dateRange.to : '3000-01-01'}`,
         {
           headers: {
             Authorization: `Bearer ${authtoken}`,
@@ -160,6 +162,12 @@ function ChartByClub({ mode, showAll, setShowAll }) {
   }, [showAll]);
 
   useEffect(() => {
+    if (selectedClub != 0) {
+      getActivitiesData();
+    }
+  }, [dateRange]);
+
+  useEffect(() => {
     if (clubActivity === '') {
       plotRef.current.style.visibility = 'hidden';
     } else {
@@ -182,7 +190,7 @@ function ChartByClub({ mode, showAll, setShowAll }) {
   }, [clubActivity]);
 
   return (
-    <div style={{ margin: '1vh' }}>
+    <div style={{ margin: '0 1vh' }}>
       <label>
         Select Club
         <select
@@ -220,7 +228,7 @@ function ChartByClub({ mode, showAll, setShowAll }) {
         </select>
       </label>
       <label>
-        Select Chart Type
+        Chart Type
         <select
           style={{ margin: '1vh', padding: '0.2rem', fontSize: '1rem' }}
           onChange={e => {
@@ -241,8 +249,7 @@ function ChartByClub({ mode, showAll, setShowAll }) {
               <Plot
                 data={[barToPie(plot[clubActivity * 1])]}
                 layout={{
-                  width: '50vh',
-                  height: '40vh',
+                  autosize: true,
                   font: {
                     size: '20',
                   },
@@ -253,8 +260,7 @@ function ChartByClub({ mode, showAll, setShowAll }) {
               <Plot
                 data={[plot[clubActivity * 1]]}
                 layout={{
-                  width: '50vh',
-                  height: '40vh',
+                  autosize: true,
                   font: {
                     size: '20',
                   },
@@ -269,7 +275,7 @@ function ChartByClub({ mode, showAll, setShowAll }) {
   );
 }
 
-function ChartByMember({ mode, showAll, setShowAll }) {
+function ChartByMember({ mode, showAll, setShowAll, dateRange }) {
   const [clubSummary, setClubSummary] = useState([]);
   const [selectedClub, setSelectClub] = useState(0);
   const [member, setMember] = useState('');
@@ -295,6 +301,12 @@ function ChartByMember({ mode, showAll, setShowAll }) {
       getMembersData();
     }
   }, [showAll]);
+
+  useEffect(() => {
+    if (selectedClub != 0) {
+      getMembersData();
+    }
+  }, [dateRange]);
 
   useEffect(() => {
     if (member === '') {
@@ -323,7 +335,9 @@ function ChartByMember({ mode, showAll, setShowAll }) {
   const getMembersData = () => {
     axios
       .get(
-        `https://bg-emotion-tracker-be-b.herokuapp.com/report/club/${selectedClub}/members/counts`,
+        `https://bg-emotion-tracker-be-b.herokuapp.com/report/club/${selectedClub}/members/counts?from=${
+          dateRange.from ? dateRange.from : '1000-01-01'
+        }&to=${dateRange.to ? dateRange.to : '3000-01-01'}`,
         {
           headers: {
             Authorization: `Bearer ${authtoken}`,
@@ -364,7 +378,7 @@ function ChartByMember({ mode, showAll, setShowAll }) {
       });
   };
   return (
-    <div style={{ margin: '1vh' }}>
+    <div style={{ margin: '0 1vh' }}>
       <label>
         Select Club
         <select
@@ -401,7 +415,7 @@ function ChartByMember({ mode, showAll, setShowAll }) {
         </select>
       </label>
       <label style={{ padding: '1vh' }}>
-        Select Chart Type
+        Chart Type
         <select
           style={{ margin: '1vh', padding: '0.2rem', fontSize: '1rem' }}
           onChange={e => {
@@ -421,8 +435,7 @@ function ChartByMember({ mode, showAll, setShowAll }) {
               <Plot
                 data={[barToPie(plot[member * 1])]}
                 layout={{
-                  width: '50vh',
-                  height: '40vh',
+                  autosize: true,
                   font: {
                     size: '20',
                   },
@@ -430,12 +443,10 @@ function ChartByMember({ mode, showAll, setShowAll }) {
                 }}
               />
             ) : (
-              // <></>
               <Plot
                 data={[plot[member * 1]]}
                 layout={{
-                  width: '50vh',
-                  height: '40vh',
+                  autosize: true,
                   font: {
                     size: '20',
                   },
@@ -453,38 +464,77 @@ function ChartByMember({ mode, showAll, setShowAll }) {
 export default function ReportChartWidget() {
   const [mode, setMode] = useState('none');
   const [showAll, setShowAll] = useState(false);
+  const [dateRange, setDateRange] = useState({ from: '', to: '' });
+  const fromref = useRef();
+  const toref = useRef();
 
   return (
     <div style={{ margin: '1vh' }}>
-      <div style={{ display: 'flex' }}>
-        <label style={{ marginLeft: '1vh' }}>
-          Select Report Type
-          <select
-            style={{ marginLeft: '1vh', padding: '0.2rem', fontSize: '1rem' }}
-            onChange={e => setMode(e.target.value)}
-          >
-            <option value="none"> </option>
-            <option value="0"> Member Positivity </option>
-            <option value="1"> Activity Feedback </option>
-          </select>
-        </label>
-        <label
-          style={{
-            marginLeft: '1vh',
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
-          Show All Emotions
-          <input
-            type="checkbox"
-            style={{ width: '1.5vh', height: '1.5vh' }}
-            checked={showAll}
-            onChange={e => {
-              setShowAll(e.target.checked);
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', marginTop: '1vh' }}>
+          <label style={{ marginLeft: '1vh' }}>
+            Report Type
+            <select
+              style={{ marginLeft: '1vh', padding: '0.2rem', fontSize: '1rem' }}
+              onChange={e => setMode(e.target.value)}
+            >
+              <option value="none"> </option>
+              <option value="0"> Member Positivity </option>
+              <option value="1"> Activity Feedback </option>
+            </select>
+          </label>
+          <label
+            style={{
+              marginLeft: '1vh',
+              display: 'flex',
+              alignItems: 'center',
             }}
-          />
-        </label>
+          >
+            Show All Emotions
+            <input
+              type="checkbox"
+              style={{ width: '1.5vh', height: '1.5vh' }}
+              checked={showAll}
+              onChange={e => {
+                setShowAll(e.target.checked);
+              }}
+            />
+          </label>
+        </div>
+        <div style={{ display: 'flex', marginTop: '1vh' }}>
+          <label
+            style={{
+              marginLeft: '1vh',
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            From ‎
+            <input type="date" id="fromdate" name="fromdate" ref={fromref} />
+          </label>
+          <label
+            style={{
+              marginLeft: '1vh',
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            To ‎
+            <input type="date" id="todate" name="todate" ref={toref} />
+          </label>
+          <button
+            style={{ marginLeft: '1vh' }}
+            onClick={e => {
+              setDateRange({
+                from: fromref.current.value,
+                to: toref.current.value,
+              });
+            }}
+          >
+            {' '}
+            Set Date{' '}
+          </button>
+        </div>
       </div>
 
       {(mode => {
@@ -497,6 +547,7 @@ export default function ReportChartWidget() {
                 mode={mode}
                 showAll={showAll}
                 setShowAll={setShowAll}
+                dateRange={dateRange}
               />
             );
           case '1':
@@ -505,6 +556,7 @@ export default function ReportChartWidget() {
                 mode={mode}
                 showAll={showAll}
                 setShowAll={setShowAll}
+                dateRange={dateRange}
               />
             );
           default:
