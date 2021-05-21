@@ -8,16 +8,16 @@ import { LayoutContainer, BackButton } from '../../common';
 import { MemberContext } from '../../../state/contexts/index';
 import { getMember } from '../../../state/actions';
 import { Typography } from 'antd';
+
+const { Title } = Typography;
 const { Text } = Typography;
 
 const StyledMemberScanner = styled.header`
   display: flex;
-  margin-left: 25%;
-  margin-right: 25%;
+  margin-left: 30%;
+  margin-right: 30%;
   flex-direction: column;
-  /* width: 800px; */
-  /* max-width: 90%; */
-  /* margin: 3rem auto; */
+  text-align: center;
 `;
 
 const StyledCenterB = styled(Link)`
@@ -73,7 +73,7 @@ function RenderMemberScanner(props) {
       </Link>
 
       <StyledMemberScanner>
-        <h2>Scanner</h2>
+        <Title level={2}>Scanner</Title>
         <QRCodeReader handleScan={handleScan} handleError={handleError} />
         {/* {scanStatus ? (
           <Text className="regularText">Scan successful</Text>
