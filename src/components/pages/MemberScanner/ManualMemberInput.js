@@ -42,15 +42,6 @@ function ManualMemberInput(props) {
     setMemberId(e.target.value);
   };
 
-  const onCheck = async () => {
-    try {
-      const values = await form.validateFields();
-      console.log('Success:', values);
-    } catch (errorInfo) {
-      console.log('Failed:', errorInfo);
-    }
-  };
-
   return (
     <>
       <Form
