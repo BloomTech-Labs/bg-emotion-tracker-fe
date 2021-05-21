@@ -53,6 +53,7 @@ function ManualMemberInput(props) {
         }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
+        style={{ marginTop: '2rem', justifyContent: 'center' }}
       >
         <Form.Item
           label="Member ID"
@@ -63,7 +64,6 @@ function ManualMemberInput(props) {
               message: 'Please input a Member ID',
             },
           ]}
-          style={{ 'margin-bottom': '2rem' }}
         >
           <Input onChange={onChange} />
         </Form.Item>
