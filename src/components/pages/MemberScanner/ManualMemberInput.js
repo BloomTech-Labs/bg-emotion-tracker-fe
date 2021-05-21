@@ -23,9 +23,7 @@ function ManualMemberInput(props) {
 
   useEffect(() => {
     if (memberContext.exists === true) {
-      // set member context with memberId
-      memberContext.setMemberId(memberId);
-      memberContext.setMemberExists(true);
+      memberContext.setId(memberId);
       setScanStatus(true);
     } else if (memberContext.exists === false) {
       handleError('This member does not exist.');

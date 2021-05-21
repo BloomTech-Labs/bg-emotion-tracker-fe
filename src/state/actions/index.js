@@ -56,7 +56,7 @@ export const getClub = async (id, context) => {
 export const getMember = async (id, context) => {
   await getMemberData(id)
     .then(res => {
-      context.setMemberExists(res);
+      context.setExists(res);
     })
     .catch(error => {
       return error;

@@ -51,7 +51,7 @@ function RenderMemberScanner(props) {
   const handleScan = data => {
     if (data) {
       let existingMember = getMember(data, memberContext);
-      if (existingMember.member === 'true') {
+      if (existingMember.exists === 'true') {
         setScanStatus(true);
       }
     }
