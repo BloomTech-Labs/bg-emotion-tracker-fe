@@ -5,7 +5,8 @@ import NavBar from '../../common/NavBar';
 import { QRCodeReader } from '../QRCodeReader';
 import ManualMemberInput from './ManualMemberInput';
 import { LayoutContainer, BackButton } from '../../common';
-import { MemberContext } from '../../../state/contexts/index';
+import { ActivityContext, MemberContext } from '../../../state/contexts/index';
+
 const StyledMemberScanner = styled.header`
   display: flex;
   margin-left: 25%;
@@ -16,29 +17,20 @@ const StyledMemberScanner = styled.header`
   /* margin: 3rem auto; */
 `;
 
-const StyledCenterB = styled(Link)`
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-  justify-content: center;
-  align-content: center;
-`;
-
-const StyledCenterA = styled(Link)`
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  justify-content: center;
-  align-content: center;
-`;
-
 function RenderMemberScanner(props) {
   const [scanStatus, setScanStatus] = useState(false);
   const [scanError, setScanError] = useState(false);
+  const [checkAct, setCheckAct] = useState(true); //state for checking the check
 
-  //   const [emojiPage, setEmojiPage] = useState(); //state for emoji page select
-
+  const activityContext = useContext(ActivityContext); //the act context
   const memberContext = useContext(MemberContext);
+
+  const handleCheckTrue = checkAct => {
+    setCheckAct({ checkAct: true });
+  };
+  const handleCheckFalse = checkAct => {
+    setCheckAct({ checkAct: false });
+  };
 
   const handleError = err => {
     setScanError(true);
@@ -48,18 +40,27 @@ function RenderMemberScanner(props) {
     if (data) {
       memberContext.setMemberId({ memberId: data });
       setScanStatus(true);
+      //   handleCheck();
     }
   };
 
-  // const handleEmojiPage = asdf => { //ftn to set the emoji page state
+  const handleCheck = check => {
+    if (
+      activityContext.activity.activityname === 'Club Attendance' ||
+      activityContext.activity.activityname === 'Club Checkout'
+    ) {
+      //check it
+      handleCheckTrue();
+    } else {
+      handleCheckFalse();
+    }
 
-  // };
+    console.log(checkAct);
+  };
 
   return (
     <LayoutContainer>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
-
-      {/* <StyledCenterA> */}
 
       <Link to="/activity-select">
         <BackButton buttonText="Change Activity" classType="primary" />
@@ -72,15 +73,15 @@ function RenderMemberScanner(props) {
         {scanError ? <p>Some error happens</p> : null}
         {scanStatus ? (
           <Redirect
-            to={{
-              pathname: '/emoji-selectcheck', //needs to be a var state {emojiPageState}
-            }}
+            to={
+              checkAct
+                ? { pathname: '/emoji-selectcheck' }
+                : { pathname: '/emoji-selectactivity' }
+            }
           />
         ) : null}
         <ManualMemberInput setScanStatus={setScanStatus} />
       </StyledMemberScanner>
-
-      {/* </StyledCenterA> */}
     </LayoutContainer>
   );
 }

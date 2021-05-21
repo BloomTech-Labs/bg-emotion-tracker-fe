@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Form, Input, Button } from 'antd';
-import { MemberContext } from '../../../state/contexts/index';
+import { ActivityContext, MemberContext } from '../../../state/contexts/index';
 
 const layout = {
   // wrapperCol: {
@@ -16,6 +16,7 @@ const tailLayout = {
 
 function ManualMemberInput(props) {
   const { setScanStatus } = props;
+
   const memberContext = useContext(MemberContext);
 
   const onFinish = values => {
