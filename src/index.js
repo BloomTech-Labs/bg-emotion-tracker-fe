@@ -42,6 +42,7 @@ import { MemberScanner } from './components/pages/MemberScanner';
 
 import { ActivitySelect } from './components/pages/ActivitySelect';
 import { EmojiSelectCheck } from './components/pages/EmojiSelectCheck';
+import { EmojiSelectActivity } from './components/pages/EmojiSelectActivity';
 import { EmojiConfirmRedirect } from './components/pages/EmojiConfirmRedirect';
 
 import { Roles } from './state/contexts/roles';
@@ -156,6 +157,17 @@ function App() {
                             Authorization(
                               [Roles[0], Roles[1], Roles[2]],
                               EmojiSelectCheck
+                            )
+                          }
+                        />
+
+                        <SecureRoute
+                          exact
+                          path="/emoji-selectactivity"
+                          component={() =>
+                            Authorization(
+                              [Roles[0], Roles[1], Roles[2]],
+                              EmojiSelectActivity
                             )
                           }
                         />

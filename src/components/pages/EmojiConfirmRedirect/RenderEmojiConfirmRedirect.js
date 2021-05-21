@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { Card, Modal, Menu, Dropdown, Button, Alert } from 'antd';
 import { LayoutContainer } from '../../common';
-import { emoji, EmojiContext } from '../../../state/contexts';
+import { emoji, EmojiContext, MemberContext } from '../../../state/contexts';
 
 const StyledEmojiConfirmRedirect = styled.header`
   display: flex;
@@ -30,15 +30,36 @@ let emojiList = [
   { id: '1F610', component: <StyledEmojis>😐</StyledEmojis> },
   { id: '1F641', component: <StyledEmojis>🙁</StyledEmojis> },
   { id: '1F61E', component: <StyledEmojis>😞</StyledEmojis> },
+
+  { id: '1F605', component: <StyledEmojis>😅</StyledEmojis> },
+  { id: '1F61B', component: <StyledEmojis>😛</StyledEmojis> },
+  { id: '1F61C', component: <StyledEmojis>😜</StyledEmojis> },
+  { id: '1F61D', component: <StyledEmojis>😝</StyledEmojis> },
+  { id: '1F92A', component: <StyledEmojis>🤪</StyledEmojis> },
+
+  { id: '1F636', component: <StyledEmojis>😶</StyledEmojis> },
+  { id: '1F611', component: <StyledEmojis>😑</StyledEmojis> },
+  { id: '1F644', component: <StyledEmojis>🙄</StyledEmojis> },
+  { id: '1F971', component: <StyledEmojis>🥱</StyledEmojis> },
+  { id: '1F634', component: <StyledEmojis>😴</StyledEmojis> },
+
+  { id: '1F622', component: <StyledEmojis>😢</StyledEmojis> },
+  { id: '1F62D', component: <StyledEmojis>😭</StyledEmojis> },
+  { id: '1F628', component: <StyledEmojis>😨</StyledEmojis> },
+  { id: '1F620', component: <StyledEmojis>😠</StyledEmojis> },
+  { id: '1F624', component: <StyledEmojis>😤</StyledEmojis> },
 ];
 
 function RenderEmojiConfirmRedirect(props) {
   const { userInfo /*authService*/ } = props;
   const history = useHistory();
   const context = useContext(EmojiContext);
+  const member = useContext(MemberContext);
   const [state, setState] = useState(<StyledEmojis>😁</StyledEmojis>);
 
   setTimeout(() => {
+    member.setExists(false); // DO NOT REMOVE: or page will infinite loop
+    member.setId('');
     history.push('/scanner');
   }, 4000);
 
