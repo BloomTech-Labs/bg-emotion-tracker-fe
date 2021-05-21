@@ -14,7 +14,7 @@ import {
 } from '../../../state/contexts/index';
 import '../../../styles/styles.less';
 
-const StyledEmojiSelectCheck = styled.header`
+const StyledEmojiSelectActivity = styled.header`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -56,7 +56,7 @@ const emojiStyles = {
   background: '#ffffff',
 };
 
-function RenderEmojiSelectCheck(props) {
+function RenderEmojiSelectActivity(props) {
   const { userInfo /*authService*/ } = props;
   const history = useHistory();
 
@@ -79,7 +79,7 @@ function RenderEmojiSelectCheck(props) {
     let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
     axios
       .post(
-        `${baseUrl}/memberreactions/memberreaction/submit?mid=${memberContext.id}&aid=${activityContext.activity.activityid}&cid=${clubContext.club.clubid}&rx=${memberReaction}`,
+        `${baseUrl}/memberreactions/memberreaction/submit?mid=${memberContext.member.memberId}&aid=${activityContext.activity.activityid}&cid=${clubContext.club.clubid}&rx=${memberReaction}`,
         {},
         {
           headers: {
@@ -96,52 +96,11 @@ function RenderEmojiSelectCheck(props) {
   return (
     <LayoutContainer>
       <NavBar hideMenu />
-      <StyledEmojiSelectCheck>
+      <StyledEmojiSelectActivity>
         <h2>Select Emoji</h2>
         {/* <Divider orientation="left">***</Divider> */}
 
         <StyledEmojis>
-          <button
-            className="emojiBtn"
-            style={emojiStyles}
-            onClick={onChange}
-            value={'1F605'}
-          >
-            😅
-          </button>
-          <button
-            className="emojiBtn"
-            style={emojiStyles}
-            onClick={onChange}
-            value={'1F61B'}
-          >
-            😛
-          </button>
-          <button
-            className="emojiBtn"
-            style={emojiStyles}
-            onClick={onChange}
-            value={'1F61C'}
-          >
-            😜
-          </button>
-          <button
-            className="emojiBtn"
-            style={emojiStyles}
-            onClick={onChange}
-            value={'1F61D'}
-          >
-            😝
-          </button>
-          <button
-            className="emojiBtn"
-            style={emojiStyles}
-            onClick={onChange}
-            value={'1F92A'}
-          >
-            🤪
-          </button>
-
           <button
             className="emojiBtn"
             style={emojiStyles}
@@ -182,95 +141,13 @@ function RenderEmojiSelectCheck(props) {
           >
             😞
           </button>
-
-          <button
-            className="emojiBtn"
-            style={emojiStyles}
-            onClick={onChange}
-            value={'1F636'}
-          >
-            😶
-          </button>
-          <button
-            className="emojiBtn"
-            style={emojiStyles}
-            onClick={onChange}
-            value={'1F611'}
-          >
-            😑
-          </button>
-          <button
-            className="emojiBtn"
-            style={emojiStyles}
-            onClick={onChange}
-            value={'1F644'}
-          >
-            🙄
-          </button>
-          <button
-            className="emojiBtn"
-            style={emojiStyles}
-            onClick={onChange}
-            value={'1F971'}
-          >
-            🥱
-          </button>
-          <button
-            className="emojiBtn"
-            style={emojiStyles}
-            onClick={onChange}
-            value={'1F634'}
-          >
-            😴
-          </button>
-
-          <button
-            className="emojiBtn"
-            style={emojiStyles}
-            onClick={onChange}
-            value={'1F622'}
-          >
-            😢
-          </button>
-          <button
-            className="emojiBtn"
-            style={emojiStyles}
-            onClick={onChange}
-            value={'1F62D'}
-          >
-            😭
-          </button>
-          <button
-            className="emojiBtn"
-            style={emojiStyles}
-            onClick={onChange}
-            value={'1F628'}
-          >
-            😨
-          </button>
-          <button
-            className="emojiBtn"
-            style={emojiStyles}
-            onClick={onChange}
-            value={'1F620'}
-          >
-            😠
-          </button>
-          <button
-            className="emojiBtn"
-            style={emojiStyles}
-            onClick={onChange}
-            value={'1F624'}
-          >
-            😤
-          </button>
         </StyledEmojis>
 
         <StyledButton type="primary" onClick={onConfirm}>
           Confirm
         </StyledButton>
-      </StyledEmojiSelectCheck>
+      </StyledEmojiSelectActivity>
     </LayoutContainer>
   );
 }
-export default RenderEmojiSelectCheck;
+export default RenderEmojiSelectActivity;

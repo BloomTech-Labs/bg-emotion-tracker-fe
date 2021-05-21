@@ -1,13 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { QRCodeReader } from '../QRCodeReader';
 import ManualMemberInput from './ManualMemberInput';
 import { LayoutContainer, BackButton } from '../../common';
-import { MemberContext } from '../../../state/contexts/index';
 import { getMember } from '../../../state/actions';
 import { Typography } from 'antd';
+import { ActivityContext, MemberContext } from '../../../state/contexts/index';
 
 const { Title } = Typography;
 const { Text } = Typography;
@@ -20,30 +20,23 @@ const StyledMemberScanner = styled.header`
   text-align: center;
 `;
 
-const StyledCenterB = styled(Link)`
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-  justify-content: center;
-  align-content: center;
-`;
-
-const StyledCenterA = styled(Link)`
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  justify-content: center;
-  align-content: center;
-`;
-
 function RenderMemberScanner(props) {
   const [scanStatus, setScanStatus] = useState(false);
   const [scanError, setScanError] = useState(false);
   const [error, setError] = useState('Internal Server Error.');
   const history = useHistory();
   const [id, setId] = useState('');
+  const [checkAct, setCheckAct] = useState(true); //state for checking the check
 
+  const activityContext = useContext(ActivityContext); //the act context
   const memberContext = useContext(MemberContext);
+
+  const handleCheckTrue = checkAct => {
+    setCheckAct({ checkAct: true });
+  };
+  const handleCheckFalse = checkAct => {
+    setCheckAct({ checkAct: false });
+  };
 
   const handleError = err => {
     setScanError(true);
@@ -59,14 +52,28 @@ function RenderMemberScanner(props) {
     setId(data);
     if (data) {
       getMember(data, memberContext);
+      memberContext.setMemberId({ memberId: data });
+      setScanStatus(true);
     }
+  };
+
+  const handleCheck = check => {
+    if (
+      activityContext.activity.activityname === 'Club Attendance' ||
+      activityContext.activity.activityname === 'Club Checkout'
+    ) {
+      //check it
+      handleCheckTrue();
+    } else {
+      handleCheckFalse();
+    }
+
+    console.log(checkAct);
   };
 
   return (
     <LayoutContainer>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
-
-      {/* <StyledCenterA> */}
 
       <Link to="/activity-select">
         <BackButton buttonText="Change Activity" classType="primary" />
@@ -75,23 +82,22 @@ function RenderMemberScanner(props) {
       <StyledMemberScanner>
         <Title level={2}>Scanner</Title>
         <QRCodeReader handleScan={handleScan} handleError={handleError} />
-        {/* {scanStatus ? (
-          <Text className="regularText">Scan successful</Text>
-        ) : (
-          <Text className="regularText">Not scanned yet</Text>
-        )} */}
-        {scanError ? (
-          <Text className="errorText" strong type="danger">
-            {error}
-          </Text>
+        {scanStatus ? <p>Scan successful</p> : <p>Not scanned yet</p>}
+        {scanError ? <p>Some error happens</p> : null}
+        {scanStatus ? (
+          <Redirect
+            to={
+              checkAct
+                ? { pathname: '/emoji-selectcheck' }
+                : { pathname: '/emoji-selectactivity' }
+            }
+          />
         ) : null}
         <ManualMemberInput
           setScanStatus={setScanStatus}
           handleError={handleError}
         />
       </StyledMemberScanner>
-
-      {/* </StyledCenterA> */}
     </LayoutContainer>
   );
 }

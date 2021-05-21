@@ -30,6 +30,24 @@ let emojiList = [
   { id: '1F610', component: <StyledEmojis>😐</StyledEmojis> },
   { id: '1F641', component: <StyledEmojis>🙁</StyledEmojis> },
   { id: '1F61E', component: <StyledEmojis>😞</StyledEmojis> },
+
+  { id: '1F605', component: <StyledEmojis>😅</StyledEmojis> },
+  { id: '1F61B', component: <StyledEmojis>😛</StyledEmojis> },
+  { id: '1F61C', component: <StyledEmojis>😜</StyledEmojis> },
+  { id: '1F61D', component: <StyledEmojis>😝</StyledEmojis> },
+  { id: '1F92A', component: <StyledEmojis>🤪</StyledEmojis> },
+
+  { id: '1F636', component: <StyledEmojis>😶</StyledEmojis> },
+  { id: '1F611', component: <StyledEmojis>😑</StyledEmojis> },
+  { id: '1F644', component: <StyledEmojis>🙄</StyledEmojis> },
+  { id: '1F971', component: <StyledEmojis>🥱</StyledEmojis> },
+  { id: '1F634', component: <StyledEmojis>😴</StyledEmojis> },
+
+  { id: '1F622', component: <StyledEmojis>😢</StyledEmojis> },
+  { id: '1F62D', component: <StyledEmojis>😭</StyledEmojis> },
+  { id: '1F628', component: <StyledEmojis>😨</StyledEmojis> },
+  { id: '1F620', component: <StyledEmojis>😠</StyledEmojis> },
+  { id: '1F624', component: <StyledEmojis>😤</StyledEmojis> },
 ];
 
 function RenderEmojiConfirmRedirect(props) {
