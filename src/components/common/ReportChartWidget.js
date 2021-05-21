@@ -1,3 +1,4 @@
+import React from 'react';
 import Plot from 'react-plotly.js';
 import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
