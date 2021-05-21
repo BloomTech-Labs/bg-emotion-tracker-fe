@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { Card, Modal, Menu, Dropdown, Button, Alert } from 'antd';
 import { LayoutContainer } from '../../common';
-import { emoji, EmojiContext } from '../../../state/contexts';
+import { emoji, EmojiContext, MemberContext } from '../../../state/contexts';
 
 const StyledEmojiConfirmRedirect = styled.header`
   display: flex;
@@ -36,9 +36,12 @@ function RenderEmojiConfirmRedirect(props) {
   const { userInfo /*authService*/ } = props;
   const history = useHistory();
   const context = useContext(EmojiContext);
+  const member = useContext(MemberContext);
   const [state, setState] = useState(<StyledEmojis>😁</StyledEmojis>);
 
   setTimeout(() => {
+    member.setExists(false); // DO NOT REMOVE: or page will infinite loop
+    member.setId('');
     history.push('/scanner');
   }, 4000);
 
