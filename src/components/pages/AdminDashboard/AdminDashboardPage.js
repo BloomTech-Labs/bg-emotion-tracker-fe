@@ -10,23 +10,27 @@ import {
 } from '@ant-design/icons';
 import { ActivitiesWidget, MembersWidget } from '../../ReportsWidget';
 
-const { SubMenu } = Menu;
-const { Header, Content, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 const StyledAdminPage = styled.header`
   display: flex;
 `;
 function RenderHomePage() {
-  const [visible, setVisible] = useState(false);
-  const [mode, setMode] = useState(null);
+  const [mode, setMode] = useState('members');
 
-  const showDrawer = () => {
-    setVisible(true);
-  };
+  let widget = <div></div>;
 
-  const onClose = () => {
-    setVisible(false);
-  };
+  switch (mode) {
+    case 'members': {
+      widget = <MembersWidget setMode={setMode} mode={mode} />;
+      break;
+    }
+    case 'activities': {
+      widget = <ActivitiesWidget setMode={setMode} mode={mode} />;
+      break;
+    }
+    default:
+  }
 
   return (
     <LayoutContainer>
@@ -45,22 +49,25 @@ function RenderHomePage() {
                 key="1"
                 icon={<UserOutlined />}
                 onClick={() => {
-                  setMode(0);
+                  setMode('members');
                 }}
               >
                 Members
               </Menu.Item>
-              <Menu.Item key="2" icon={<TeamOutlined />}>
+              <Menu.Item
+                key="2"
+                icon={<TeamOutlined />}
+                onClick={() => {
+                  setMode('activities');
+                }}
+              >
                 Activities
               </Menu.Item>
             </Menu>
           </Sider>
           <Content style={{ padding: '0 50px' }}>
             <div className="site-layout-content">
-              <StyledAdminPage>
-                {/* <MembersWidget setMode={setMode} mode={mode} />
-                <ActivitiesWidget setMode={setMode} mode={mode} /> */}
-              </StyledAdminPage>
+              <StyledAdminPage>{widget}</StyledAdminPage>
             </div>
           </Content>
         </Layout>
