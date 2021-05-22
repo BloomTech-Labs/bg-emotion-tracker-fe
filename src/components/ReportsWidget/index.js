@@ -1,5 +1,6 @@
 import MembersWidget from './MembersWidget';
 import ActivitiesWidget from './ActivitiesWidget';
 import ChartWidget from './ChartWidget';
+import { DateRangeSelector } from './DateRangeSelector';
 
-export { MembersWidget, ActivitiesWidget, ChartWidget };
+export { DateRangeSelector, MembersWidget, ActivitiesWidget, ChartWidget };
