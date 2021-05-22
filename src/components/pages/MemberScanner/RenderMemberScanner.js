@@ -66,7 +66,11 @@ function RenderMemberScanner(props) {
         <Title level={2}>Scanner</Title>
         <QRCodeReader handleScan={handleScan} handleError={handleError} />
         {scanStatus ? <p>Scan successful</p> : <p>Not scanned yet</p>}
-        {scanError ? <p>Some error happens</p> : null}
+        {scanError ? (
+          <Text className="errorText" type="danger">
+            {error}
+          </Text>
+        ) : null}
         {(() => {
           if (memberContext.id && memberContext.exists && scanStatus) {
             if (checkValid) {
