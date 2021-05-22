@@ -40,10 +40,11 @@ const StyledNavBar = styled.header`
 `;
 
 function NavBar(props) {
-  const { userInfo, authService } = props;
+  const { hideMenu } = props;
   const context = useContext(UserContext);
+  const history = useHistory();
+
   let role = context.user.roles && context.user.roles[0].role.name;
-  console.log(role);
 
   const menu = (
     <Menu>
@@ -99,17 +100,19 @@ function NavBar(props) {
       </Menu.Item>
     </Menu>
   );
-  const history = useHistory();
+
   return (
     <>
       <StyledNavBar backgroundColor={props.backgroundColor}>
-        <div className="menu-container">
-          <Dropdown overlay={menu}>
-            <Button type="text" style={{ color: 'white', fontSize: '32px' }}>
-              <MenuOutlined />
-            </Button>
-          </Dropdown>
-        </div>
+        {!hideMenu && (
+          <div className="menu-container">
+            <Dropdown overlay={menu}>
+              <Button type="text" style={{ color: 'white', fontSize: '32px' }}>
+                <MenuOutlined />
+              </Button>
+            </Dropdown>
+          </div>
+        )}
         <h1>{props.titleName}</h1>
         <img src={logo} alt="Boys & Girls Club of Greater Conejo Valley" />
       </StyledNavBar>

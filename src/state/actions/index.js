@@ -3,7 +3,12 @@
 // Actions should be focused to a single purpose.
 // You can have multiple action creators per file if it makes sense to the purpose those action creators are serving.
 // Declare action TYPES at the top of the file
-import { getProfileData, getClubsData, getClubData } from '../../api';
+import {
+  getProfileData,
+  getClubsData,
+  getClubData,
+  getMemberData,
+} from '../../api';
 
 export const SET_USER = 'SET_USER';
 export const SET_ERROR = 'SET_ERROR';
@@ -48,10 +53,11 @@ export const getClub = async (id, context) => {
     });
 };
 
-export const getActivities = async (authState, context) => {
-  await getClubData(authState)
+export const getMember = async (id, context) => {
+  await getMemberData(id)
     .then(res => {
-      context.setClub(res);
+      context.setId(id);
+      context.setExists(res);
     })
     .catch(error => {
       return error;
