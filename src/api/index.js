@@ -148,7 +148,7 @@ const getMemberData = id => {
 };
 
 // Get Activities data
-const getActivityData = authState => {
+const getActivityData = () => {
   let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
 
   const promise = axios.get(
@@ -161,7 +161,6 @@ const getActivityData = authState => {
   );
 
   const dataPromise = promise.then(response => {
-    console.log('res: ', response.data);
     return response.data;
   });
 

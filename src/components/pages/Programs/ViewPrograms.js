@@ -2,9 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { ViewSingleton } from '../../common/ViewSingleton';
 import { ImportPrograms } from './ImportPrograms';
 import { ProgramContext } from '../../../state/contexts';
-import axios from 'axios';
-import { baseUrl } from '../../../api/index';
-import { LayoutContainer } from '../../common';
+import { getActivities } from '../../../state/actions';
 
 const sampleTableData = {
   rows: [{ programName: 'Program Name', activityId: '0', clubId: '0' }],
@@ -25,43 +23,17 @@ const sampleTableData = {
 };
 
 function ViewPrograms() {
-  const [programData, setProgramData] = useState([]);
   const [tableData, setTableData] = useState(sampleTableData);
   const context = useContext(ProgramContext);
 
   useEffect(() => {
-    fetchActivities();
-  }, []);
+    getActivities(context);
 
-  useEffect(() => {
-    context.setPrograms(programData);
-    programDataToTableData(programData);
-  }, [programData]);
-
-  function fetchActivities() {
-    let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
-    axios
-      .get(`${baseUrl}/clubs/clubs`, {
-        headers: {
-          Authorization: `Bearer ${tokenObj.accessToken.accessToken}`,
-        },
-      })
-      .then(
-        res => {
-          setProgramData(res.data);
-          console.log(res.data);
-        }
-
-        // /*for filtering by club:*/
-        // userClubId === 0
-        //   ? setActivities(res.data)
-        //   : setActivities(
-        //       // res.data
-        //       res.data.filter(club => club.clubid === userClubId)
-        //    )
-      )
-      .catch(e => console.log(e));
-  }
+    // loads table data after api call completes
+    if (context.loading === false) {
+      programDataToTableData(context.programs);
+    }
+  }, [context]);
 
   function programDataToTableData(arrayOfClubs) {
     const newRows = [];
