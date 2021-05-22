@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Modal, Button, Alert } from 'antd';
 import ProgramList from './ProgramList';
 import AddIndividual from './AddIndividual';
 import ImportUpload from './ImportUpload';
+import { ClubsContext } from '../../../../state/contexts';
+import { getClubs, postActivity } from '../../../../state/actions';
 
 const ImportModal = props => {
+  const { fetchActivities } = props;
+  const clubsContext = useContext(ClubsContext);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [alertData, setAlertData] = useState({
     isVisable: false,
@@ -16,13 +20,26 @@ const ImportModal = props => {
     file: [],
   });
 
+  useEffect(() => {
+    getClubs('authState', clubsContext);
+  }, []);
+
   const showModal = () => {
     setIsModalVisible(true);
   };
 
   const handleOk = () => {
+    // Create new activity in back end
+    if (inputData.individual.length > 0) {
+      inputData.individual.forEach(item => {
+        postActivity(item.club.clubid, item.programName);
+      });
+    }
     setIsModalVisible(false);
     clearState();
+    setTimeout(() => {
+      fetchActivities();
+    }, 2000);
   };
 
   const handleCancel = () => {
@@ -61,6 +78,7 @@ const ImportModal = props => {
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
+        okText="Submit"
         width={'70%'}
       >
         {alertData.isVisable ? (
@@ -77,6 +95,7 @@ const ImportModal = props => {
             setInputData={setInputData}
             inputData={inputData}
             showAlert={showAlert}
+            clubsContext={clubsContext}
           />
         </div>
         <div>
