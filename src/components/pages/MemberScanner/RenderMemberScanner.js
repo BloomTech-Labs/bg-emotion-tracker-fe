@@ -74,9 +74,6 @@ function RenderMemberScanner(props) {
     } else {
       handleCheckFalse();
     }
-    console.log(activityContext.activity.activityname);
-    console.log(checkAct);
-    console.log(memberContext.exists);
   };
 
   return (
