@@ -2,8 +2,6 @@ import React from 'react';
 import { useState, useRef } from 'react';
 import { ChartByMember } from './ChartByMember';
 import { ChartByActivity } from './ChartByActivity';
-import { DateRangeSelector } from './DateRangeSelector';
-import { AllEmotionsFilter } from './AllEmotionsFilter';
 import styled from 'styled-components';
 
 const StyledWidget = styled.section``;
@@ -36,13 +34,5 @@ export default function ChartWidget({ setMode, mode }) {
     );
   }
 
-  return (
-    <StyledWidget>
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-        <DateRangeSelector dateRange={dateRange} setDateRange={setDateRange} />
-      </div>
-      {/* <AllEmotionsFilter /> */}
-      {chart}
-    </StyledWidget>
-  );
+  return <StyledWidget>{chart}</StyledWidget>;
 }

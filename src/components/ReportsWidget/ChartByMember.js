@@ -2,8 +2,20 @@ import React, { useState, useEffect, useRef } from 'react';
 import Plot from 'react-plotly.js';
 import axios from 'axios';
 import { barToPie, mfull, msort, mfullr, m, mr } from './helpers';
+import { DateRangeSelector } from './DateRangeSelector';
+import { Typography } from 'antd';
+import { SelectClub } from './SelectClub';
+import { SelectMember } from './SelectMember';
 
-export const ChartByMember = ({ mode, showAll, setShowAll, dateRange }) => {
+const { Title } = Typography;
+
+export const ChartByMember = ({
+  mode,
+  showAll,
+  setShowAll,
+  dateRange,
+  setDateRange,
+}) => {
   const [clubSummary, setClubSummary] = useState([]);
   const [selectedClub, setSelectClub] = useState(0);
   const [member, setMember] = useState('');
@@ -107,41 +119,16 @@ export const ChartByMember = ({ mode, showAll, setShowAll, dateRange }) => {
   };
   return (
     <div style={{ margin: '0 1vh' }}>
-      <label>
-        Select Club
-        <select
-          style={{ margin: '1vh', padding: '0.2rem', fontSize: '1rem' }}
-          onChange={e => {
-            setSelectClub(e.target.value);
-            setMember('');
-          }}
-          value={selectedClub}
-        >
-          <option> </option>
-          {clubSummary.map((i, ind) => (
-            <option value={i.clubid} key={i + ind}>
-              {i.clubname.replace(/^\w/, c => c.toUpperCase())}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Select Member
-        <select
-          style={{ margin: '1vh', padding: '0.2rem', fontSize: '1rem' }}
-          onChange={e => {
-            setMember(e.target.value);
-          }}
-          value={member}
-        >
-          <option> </option>
-          {plot.map((i, ind) => (
-            <option value={ind} key={i + ind}>
-              {i?.label}
-            </option>
-          ))}
-        </select>
-      </label>
+      <Title level={2}>Members</Title>
+      <DateRangeSelector dateRange={dateRange} setDateRange={setDateRange} />
+      <SelectClub
+        setSelectClub={setSelectClub}
+        setMember={setMember}
+        selectedClub={selectedClub}
+        clubSummary={clubSummary}
+        label="Select Club"
+      />
+      <SelectMember setMember={setMember} member={member} plot={plot} />
       <label style={{ padding: '1vh' }}>
         Chart Type
         <select

@@ -2,6 +2,7 @@ import Plot from 'react-plotly.js';
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { mfull, msort, mfullr, m, mr } from './helpers';
+import { DateRangeSelector } from './DateRangeSelector';
 
 const strToEmoji = str => {
   return String.fromCodePoint(parseInt(str, 16));
@@ -16,7 +17,13 @@ const barToPie = bar => {
   return dt;
 };
 
-export const ChartByActivity = ({ mode, showAll, setShowAll, dateRange }) => {
+export const ChartByActivity = ({
+  mode,
+  showAll,
+  setShowAll,
+  dateRange,
+  setDateRange,
+}) => {
   const [plot, setPlot] = useState([
     {
       x: [],
@@ -135,6 +142,7 @@ export const ChartByActivity = ({ mode, showAll, setShowAll, dateRange }) => {
 
   return (
     <div style={{ margin: '0 1vh' }}>
+      <DateRangeSelector dateRange={dateRange} setDateRange={setDateRange} />
       <label>
         Select Club
         <select

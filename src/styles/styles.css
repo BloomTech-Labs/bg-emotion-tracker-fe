@@ -27,7 +27,7 @@
 .adminDashboardContent .ant-layout-content {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 /* RenderMemberScanner */
 .errorText,
