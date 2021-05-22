@@ -24,20 +24,9 @@ function RenderMemberScanner(props) {
   const [scanStatus, setScanStatus] = useState(false);
   const [scanError, setScanError] = useState(false);
   const [error, setError] = useState('Internal Server Error.');
-  const history = useHistory();
-  const [id, setId] = useState('');
-  const [checkAct, setCheckAct] = useState(false); //state for checking the check
   const [checkValid, setCheckValid] = useState(false);
-
   const activityContext = useContext(ActivityContext); //the act context
   const memberContext = useContext(MemberContext);
-
-  const handleCheckTrue = checkAct => {
-    setCheckAct(true);
-  };
-  const handleCheckFalse = checkAct => {
-    setCheckAct(false);
-  };
 
   const handleError = err => {
     setScanError(true);
@@ -56,27 +45,13 @@ function RenderMemberScanner(props) {
   }, [memberContext.exists]);
 
   const handleScan = data => {
-    setId(data);
     if (data) {
+      console.log(data);
       getMember(data, memberContext);
+
       memberContext.setId(data);
-      handleCheck();
       setScanStatus(true);
     }
-  };
-
-  const handleCheck = check => {
-    if (
-      activityContext.activity.activityname === 'Club Attendance' ||
-      activityContext.activity.activityname === 'Club Checkout'
-    ) {
-      handleCheckTrue();
-    } else {
-      handleCheckFalse();
-    }
-    console.log(activityContext.activity.activityname);
-    console.log(checkAct);
-    console.log(memberContext.exists);
   };
 
   return (
@@ -92,21 +67,23 @@ function RenderMemberScanner(props) {
         <QRCodeReader handleScan={handleScan} handleError={handleError} />
         {scanStatus ? <p>Scan successful</p> : <p>Not scanned yet</p>}
         {scanError ? <p>Some error happens</p> : null}
-        {scanStatus ? (
-          checkValid ? (
-            checkAct ? (
-              <Redirect to="/emoji-selectcheck" />
-            ) : (
-              <Redirect to="/emoji-selectactivity" />
-            )
-          ) : (
-            <Redirect to="/scanner" />
-          )
-        ) : null}
-
+        {(() => {
+          if (memberContext.id && memberContext.exists && scanStatus) {
+            if (checkValid) {
+              if (
+                activityContext.activity.activityname === 'Club Attendance' ||
+                activityContext.activity.activityname === 'Club Checkout'
+              ) {
+                return <Redirect to="/emoji-selectcheck" />;
+              } else {
+                return <Redirect to="/emoji-selectactivity" />;
+              }
+            }
+          }
+        })()}
         <ManualMemberInput
-          setScanStatus={setScanStatus}
           handleError={handleError}
+          setScanStatus={setScanStatus}
         />
       </StyledMemberScanner>
     </LayoutContainer>
