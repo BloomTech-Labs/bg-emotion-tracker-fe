@@ -4,7 +4,7 @@ import ProgramList from './ProgramList';
 import AddIndividual from './AddIndividual';
 import ImportUpload from './ImportUpload';
 import { ClubsContext } from '../../../../state/contexts';
-import { getClubs } from '../../../../state/actions';
+import { getClubs, postActivity } from '../../../../state/actions';
 
 const ImportModal = props => {
   const clubsContext = useContext(ClubsContext);
@@ -29,7 +29,11 @@ const ImportModal = props => {
 
   const handleOk = () => {
     // Create new activity in back end
-    // axios.post(`${baseUrl}/activities/activity/addclub/{clubid}`,{"activityname": "test"});
+    if (inputData.individual.length > 0) {
+      inputData.individual.forEach(item => {
+        postActivity(item.club.clubid, item.programName);
+      });
+    }
     setIsModalVisible(false);
     clearState();
   };

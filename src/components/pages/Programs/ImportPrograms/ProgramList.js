@@ -31,7 +31,10 @@ const ProgramList = ({ inputData }) => {
     //Add Rows
     const newRows = [];
     inputData.individual.forEach(item => {
-      const newRow = { programName: item.programName, clubName: item.clubName };
+      const newRow = {
+        programName: item.programName,
+        clubName: item.club.clubname,
+      };
       newRows.push(newRow);
     });
     inputData.file.forEach(item => {

@@ -18,7 +18,7 @@ export const AddIndividual = props => {
   const { inputData, setInputData } = props;
   const [currentIndividual, setCurrentIndividual] = useState({
     programName: '',
-    clubName: '',
+    club: {},
   });
 
   useEffect(() => {
@@ -28,7 +28,6 @@ export const AddIndividual = props => {
   }, [currentIndividual]);
 
   const onFinish = values => {
-    console.log(values.programName);
     setCurrentIndividual({
       ...currentIndividual,
       programName: values.programName,
@@ -51,8 +50,9 @@ export const AddIndividual = props => {
   const selectClub = (e, item) => {
     setCurrentIndividual({
       ...currentIndividual,
-      clubName: item.clubname,
+      club: item,
     });
+    console.log(currentIndividual);
   };
 
   const menu = (
@@ -92,7 +92,11 @@ export const AddIndividual = props => {
             Select Club <DownOutlined />
           </Button>
         </Dropdown>
-        {` Selected Club: ${currentIndividual.clubName}`}
+        {` Selected Club: ${
+          currentIndividual.club.clubname
+            ? currentIndividual.club.clubname
+            : 'none'
+        }`}
       </Form.Item>
       <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit">
