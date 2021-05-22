@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { LayoutContainer } from '../../common';
 import NavBar from '../../common/NavBar';
-import ReportChartWidget from '../../common/ReportChartWidget';
+import ReportChartWidget from '../../reports/ReportChartWidget';
 import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
 import {
   UserOutlined,
-  LaptopOutlined,
+  TeamOutlined,
   NotificationOutlined,
 } from '@ant-design/icons';
 
@@ -18,6 +18,7 @@ const StyledAdminPage = styled.header`
 `;
 function RenderHomePage() {
   const [visible, setVisible] = useState(false);
+  const [mode, setMode] = useState(0);
 
   const showDrawer = () => {
     setVisible(true);
@@ -30,7 +31,7 @@ function RenderHomePage() {
   return (
     <LayoutContainer>
       <Layout className="layout">
-        <NavBar titleName="Admin Dashboard" backgroundColor="#293845" />
+        <NavBar titleName="Admin Dashboard" />
         <Layout>
           <Sider width={200} className="site-layout-background">
             <Menu
@@ -39,26 +40,26 @@ function RenderHomePage() {
               defaultOpenKeys={['sub1']}
               style={{ height: '100%', borderRight: 0 }}
             >
-              <SubMenu
-                key="sub1"
+              <Menu.Item
+                style={{ marginTop: '30px' }}
+                key="1"
                 icon={<UserOutlined />}
-                title="Member Positivity"
+                onClick={() => {
+                  setMode(0);
+                  console.log('mode: ', mode);
+                }}
               >
-                <Menu.Item key="1">option1</Menu.Item>
-              </SubMenu>
-              <SubMenu
-                key="sub3"
-                icon={<NotificationOutlined />}
-                title="Activity Feedback"
-              >
-                <Menu.Item key="9">option9</Menu.Item>
-              </SubMenu>
+                Member Positivity
+              </Menu.Item>
+              {/* <Menu.Item key="2" icon={<TeamOutlined />}>
+                Activity Feedback
+              </Menu.Item> */}
             </Menu>
           </Sider>
           <Content style={{ padding: '0 50px' }}>
             <div className="site-layout-content">
               <StyledAdminPage>
-                <ReportChartWidget />
+                <ReportChartWidget setMode={setMode} mode={mode} />
               </StyledAdminPage>
             </div>
           </Content>
