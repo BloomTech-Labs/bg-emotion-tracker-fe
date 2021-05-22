@@ -9,7 +9,6 @@ export default function ReportChartWidget({ setMode, mode }) {
   const [dateRange, setDateRange] = useState({ from: '', to: '' });
   const fromref = useRef();
   const toref = useRef();
-  console.log('chart mode: ', mode);
 
   return (
     <div style={{ margin: '1vh' }}>
@@ -69,32 +68,18 @@ export default function ReportChartWidget({ setMode, mode }) {
         </div>
       </div>
 
-      {(mode => {
-        switch (mode) {
-          case 'none':
-            return <div></div>;
-          case '0':
-            return (
-              <ChartByMember
-                mode={mode}
-                showAll={showAll}
-                setShowAll={setShowAll}
-                dateRange={dateRange}
-              />
-            );
-          case '1':
-            return (
-              <ChartByClub
-                mode={mode}
-                showAll={showAll}
-                setShowAll={setShowAll}
-                dateRange={dateRange}
-              />
-            );
-          default:
-            break;
-        }
-      })(mode)}
+      <ChartByMember
+        mode={mode}
+        showAll={showAll}
+        setShowAll={setShowAll}
+        dateRange={dateRange}
+      />
+      <ChartByClub
+        mode={mode}
+        showAll={showAll}
+        setShowAll={setShowAll}
+        dateRange={dateRange}
+      />
     </div>
   );
 }

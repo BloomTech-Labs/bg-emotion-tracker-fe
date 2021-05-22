@@ -107,7 +107,12 @@ function NavBar(props) {
         {!hideMenu && (
           <div className="menu-container">
             <Dropdown overlay={menu}>
-              <Button type="text" style={{ color: 'white', fontSize: '32px' }}>
+              <Button
+                path=""
+                label="navbar"
+                type="text"
+                style={{ color: 'white', fontSize: '32px' }}
+              >
                 <MenuOutlined />
               </Button>
             </Dropdown>

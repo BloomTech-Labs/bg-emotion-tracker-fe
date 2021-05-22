@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { LayoutContainer } from '../../common';
 import NavBar from '../../common/NavBar';
-import ReportChartWidget from '../../reports/ReportChartWidget';
 import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
 import {
@@ -9,6 +8,7 @@ import {
   TeamOutlined,
   NotificationOutlined,
 } from '@ant-design/icons';
+import { ActivitiesWidget, MembersWidget } from '../../ReportsWidget';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -18,7 +18,7 @@ const StyledAdminPage = styled.header`
 `;
 function RenderHomePage() {
   const [visible, setVisible] = useState(false);
-  const [mode, setMode] = useState(0);
+  const [mode, setMode] = useState(null);
 
   const showDrawer = () => {
     setVisible(true);
@@ -46,20 +46,20 @@ function RenderHomePage() {
                 icon={<UserOutlined />}
                 onClick={() => {
                   setMode(0);
-                  console.log('mode: ', mode);
                 }}
               >
-                Member Positivity
+                Members
               </Menu.Item>
-              {/* <Menu.Item key="2" icon={<TeamOutlined />}>
-                Activity Feedback
-              </Menu.Item> */}
+              <Menu.Item key="2" icon={<TeamOutlined />}>
+                Activities
+              </Menu.Item>
             </Menu>
           </Sider>
           <Content style={{ padding: '0 50px' }}>
             <div className="site-layout-content">
               <StyledAdminPage>
-                <ReportChartWidget setMode={setMode} mode={mode} />
+                {/* <MembersWidget setMode={setMode} mode={mode} />
+                <ActivitiesWidget setMode={setMode} mode={mode} /> */}
               </StyledAdminPage>
             </div>
           </Content>
