@@ -6,6 +6,7 @@ import { DateRangeSelector } from './DateRangeSelector';
 import { Typography } from 'antd';
 import { SelectClub } from './SelectClub';
 import { SelectMember } from './SelectMember';
+import { ChartType } from './ChartType';
 
 const { Title } = Typography;
 
@@ -129,18 +130,7 @@ export const ChartByMember = ({
         label="Select Club"
       />
       <SelectMember setMember={setMember} member={member} plot={plot} />
-      <label style={{ padding: '1vh' }}>
-        Chart Type
-        <select
-          style={{ margin: '1vh', padding: '0.2rem', fontSize: '1rem' }}
-          onChange={e => {
-            setChartType(e.target.value);
-          }}
-        >
-          <option value={0}> Bar </option>
-          <option value={1}> Pie </option>
-        </select>
-      </label>
+      <ChartType setChartType={setChartType} />
       <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <h2 style={{ alignSelf: 'center' }}></h2>
