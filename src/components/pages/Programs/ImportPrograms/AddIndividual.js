@@ -28,6 +28,7 @@ export const AddIndividual = props => {
   }, [currentIndividual]);
 
   const onFinish = values => {
+    console.log(values.programName);
     setCurrentIndividual({
       ...currentIndividual,
       programName: values.programName,
