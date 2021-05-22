@@ -55,13 +55,14 @@ function RenderEmojiConfirmRedirect(props) {
   const history = useHistory();
   const context = useContext(EmojiContext);
   const member = useContext(MemberContext);
+  const [readyToGo, setReadyToGo] = useState(false);
   const [state, setState] = useState(<StyledEmojis>😁</StyledEmojis>);
 
   setTimeout(() => {
     member.setExists(false); // DO NOT REMOVE: or page will infinite loop
     member.setId('');
-    history.push('/scanner');
-  }, 4000);
+    setReadyToGo(true);
+  }, 3000);
 
   useEffect(() => {
     let selectedEmoji = emojiList.filter(emoji => {
@@ -77,6 +78,7 @@ function RenderEmojiConfirmRedirect(props) {
         <h2>Success!</h2>
         {state}
       </StyledEmojiConfirmRedirect>
+      {readyToGo ? <Redirect to="/scanner" /> : <></>}
     </LayoutContainer>
   );
 }
