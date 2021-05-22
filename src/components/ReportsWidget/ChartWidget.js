@@ -3,6 +3,10 @@ import { useState, useRef } from 'react';
 import { ChartByMember } from './ChartByMember';
 import { ChartByActivity } from './ChartByActivity';
 import { DateRangeSelector } from './DateRangeSelector';
+import { AllEmotionsFilter } from './AllEmotionsFilter';
+import styled from 'styled-components';
+
+const StyledWidget = styled.section``;
 
 export default function ChartWidget({ setMode, mode }) {
   const [showAll, setShowAll] = useState(false);
@@ -33,30 +37,12 @@ export default function ChartWidget({ setMode, mode }) {
   }
 
   return (
-    <div style={{ margin: '1vh' }}>
+    <StyledWidget>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         <DateRangeSelector dateRange={dateRange} setDateRange={setDateRange} />
-        {/* <div style={{ display: 'flex', marginTop: '1vh' }}>
-            <label
-              style={{
-                marginLeft: '1vh',
-                display: 'flex',
-                alignItems: 'center',
-              }}
-            >
-              Show All Emotions
-              <input
-                type="checkbox"
-                style={{ width: '1.5vh', height: '1.5vh' }}
-                checked={showAll}
-                onChange={e => {
-                  setShowAll(e.target.checked);
-                }}
-              />
-            </label>
-          </div> */}
       </div>
+      {/* <AllEmotionsFilter /> */}
       {chart}
-    </div>
+    </StyledWidget>
   );
 }

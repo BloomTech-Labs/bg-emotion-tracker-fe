@@ -23,6 +23,12 @@
   height: 100%;
 }
 /* PAGE specific styles */
+/* Admin Dashboard */
+.adminDashboardContent .ant-layout-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /* RenderMemberScanner */
 .errorText,
 .regularText {
@@ -37,3 +43,17 @@
 }
 /* eof Select Button */
 /* eof COMPONENT specific styles */
+.emojiBtn {
+  height: 100px;
+  width: 100px;
+  color: #000000;
+  font-size: 4rem;
+  opacity: 100%;
+}
+.emojiBtn:hover {
+  height: 115px;
+  width: 110px;
+  color: #000000;
+  font-size: 5rem;
+  opacity: 100%;
+}

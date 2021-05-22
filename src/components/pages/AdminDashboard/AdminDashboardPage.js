@@ -36,7 +36,7 @@ function RenderHomePage() {
     <LayoutContainer>
       <Layout className="layout">
         <NavBar titleName="Admin Dashboard" />
-        <Layout>
+        <Layout className="adminDashboardContent">
           <Sider width={200} className="site-layout-background">
             <Menu
               mode="inline"
@@ -65,7 +65,7 @@ function RenderHomePage() {
               </Menu.Item>
             </Menu>
           </Sider>
-          <Content style={{ padding: '0 50px' }}>
+          <Content>
             <div className="site-layout-content">
               <StyledAdminPage>{widget}</StyledAdminPage>
             </div>

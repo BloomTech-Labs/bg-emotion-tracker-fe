@@ -2,5 +2,12 @@ import MembersWidget from './MembersWidget';
 import ActivitiesWidget from './ActivitiesWidget';
 import ChartWidget from './ChartWidget';
 import { DateRangeSelector } from './DateRangeSelector';
+import { AllEmotionsFilter } from './AllEmotionsFilter';
 
-export { DateRangeSelector, MembersWidget, ActivitiesWidget, ChartWidget };
+export {
+  AllEmotionsFilter,
+  DateRangeSelector,
+  MembersWidget,
+  ActivitiesWidget,
+  ChartWidget,
+};
