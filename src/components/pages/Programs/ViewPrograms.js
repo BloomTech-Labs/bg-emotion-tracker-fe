@@ -47,7 +47,10 @@ function ViewPrograms() {
         },
       })
       .then(
-        res => setProgramData(res.data)
+        res => {
+          setProgramData(res.data);
+          console.log(res.data);
+        }
 
         // /*for filtering by club:*/
         // userClubId === 0

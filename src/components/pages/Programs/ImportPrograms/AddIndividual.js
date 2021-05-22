@@ -17,8 +17,6 @@ export const AddIndividual = props => {
   const { inputData, setInputData } = props;
 
   const onFinish = values => {
-    console.warn(values);
-    console.log('values: ', values);
     const newList = inputData.individual;
     newList.push({
       programName: values.programName,

@@ -47,3 +47,13 @@ export const getClub = async (id, context) => {
       return error;
     });
 };
+
+export const getActivities = async (authState, context) => {
+  await getClubData(authState)
+    .then(res => {
+      context.setClub(res);
+    })
+    .catch(error => {
+      return error;
+    });
+};
