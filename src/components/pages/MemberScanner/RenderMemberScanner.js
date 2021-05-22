@@ -27,6 +27,7 @@ function RenderMemberScanner(props) {
   const history = useHistory();
   const [id, setId] = useState('');
   const [checkAct, setCheckAct] = useState(false); //state for checking the check
+  const [checkValid, setCheckValid] = useState(false);
 
   const activityContext = useContext(ActivityContext); //the act context
   const memberContext = useContext(MemberContext);
@@ -41,14 +42,18 @@ function RenderMemberScanner(props) {
   const handleError = err => {
     setScanError(true);
     setError(err);
+    console.log('HErr Fires!');
   };
 
-  //   useEffect(() => {
-  //     if (checkAct) {
-  //     history.push ('/emoji-selectcheck');
-  //     } else {
-  //      history.push ('/emoji-selectactivity');}
-  //     }, [checkAct]);
+  useEffect(() => {
+    if (memberContext.exists === true) {
+      setCheckValid(true);
+      console.log('member True');
+    } else if (memberContext.exists === false) {
+      handleError('This member does not exist.');
+      console.log('member false');
+    }
+  }, [memberContext.exists]);
 
   const handleScan = data => {
     setId(data);
@@ -61,21 +66,17 @@ function RenderMemberScanner(props) {
   };
 
   const handleCheck = check => {
-    // if (!memberContext.exists) {
-    //     handleError('Member Id invalid');
-    // }
-
     if (
-      activityContext.activity.activityname === 'Club Attendance' || //problem here!!!!!!!!
+      activityContext.activity.activityname === 'Club Attendance' ||
       activityContext.activity.activityname === 'Club Checkout'
     ) {
-      //check it
       handleCheckTrue();
     } else {
       handleCheckFalse();
     }
     console.log(activityContext.activity.activityname);
     console.log(checkAct);
+    console.log(memberContext.exists);
   };
 
   return (
@@ -92,12 +93,17 @@ function RenderMemberScanner(props) {
         {scanStatus ? <p>Scan successful</p> : <p>Not scanned yet</p>}
         {scanError ? <p>Some error happens</p> : null}
         {scanStatus ? (
-          checkAct ? (
-            <Redirect to="/emoji-selectcheck" />
+          checkValid ? (
+            checkAct ? (
+              <Redirect to="/emoji-selectcheck" />
+            ) : (
+              <Redirect to="/emoji-selectactivity" />
+            )
           ) : (
-            <Redirect to="/emoji-selectactivity" />
+            <Redirect to="/scanner" />
           )
         ) : null}
+
         <ManualMemberInput
           setScanStatus={setScanStatus}
           handleError={handleError}
