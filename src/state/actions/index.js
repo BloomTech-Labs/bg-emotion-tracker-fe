@@ -8,6 +8,8 @@ import {
   getClubsData,
   getClubData,
   getMemberData,
+  getActivityData,
+  postActivityData,
 } from '../../api';
 
 export const SET_USER = 'SET_USER';
@@ -58,6 +60,27 @@ export const getMember = async (id, context) => {
     .then(res => {
       context.setId(id);
       context.setExists(res);
+    })
+    .catch(error => {
+      return error;
+    });
+};
+
+export const getActivities = async context => {
+  await getActivityData()
+    .then(res => {
+      console.log(res);
+      context.setPrograms(res);
+    })
+    .catch(error => {
+      return error;
+    });
+};
+
+export const postActivity = async (clubId, activityName) => {
+  await postActivityData(clubId, activityName)
+    .then(res => {
+      console.log(JSON.stringify(res));
     })
     .catch(error => {
       return error;
