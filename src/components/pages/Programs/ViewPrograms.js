@@ -2,9 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { ViewSingleton } from '../../common/ViewSingleton';
 import { ImportPrograms } from './ImportPrograms';
 import { ProgramContext } from '../../../state/contexts';
-import axios from 'axios';
-import { baseUrl } from '../../../api/index';
-import { LayoutContainer } from '../../common';
+import { getActivities } from '../../../state/actions';
 
 const sampleTableData = {
   rows: [{ programName: 'Program Name', activityId: '0', clubId: '0' }],
@@ -16,14 +14,8 @@ const sampleTableData = {
       key: '1',
     },
     {
-      title: 'Activity ID',
-      dataIndex: 'activityId',
-      render: text => <p>{text}</p>,
-      key: '2',
-    },
-    {
-      title: 'Club ID',
-      dataIndex: 'clubId',
+      title: 'Club Name',
+      dataIndex: 'clubName',
       render: text => <p>{text}</p>,
       key: '2',
     },
@@ -31,49 +23,26 @@ const sampleTableData = {
 };
 
 function ViewPrograms() {
-  const [programData, setProgramData] = useState([]);
   const [tableData, setTableData] = useState(sampleTableData);
   const context = useContext(ProgramContext);
-
+  // Get activities and set to context
   useEffect(() => {
-    fetchActivities();
+    getActivities(context);
   }, []);
 
   useEffect(() => {
-    context.setPrograms(programData);
-    programDataToTableData(programData);
-  }, [programData]);
+    programDataToTableData();
+  }, [context]);
 
-  function fetchActivities() {
-    let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
-    axios
-      .get(`${baseUrl}/clubs/clubs`, {
-        headers: {
-          Authorization: `Bearer ${tokenObj.accessToken.accessToken}`,
-        },
-      })
-      .then(
-        res => setProgramData(res.data)
-
-        // /*for filtering by club:*/
-        // userClubId === 0
-        //   ? setActivities(res.data)
-        //   : setActivities(
-        //       // res.data
-        //       res.data.filter(club => club.clubid === userClubId)
-        //    )
-      )
-      .catch(e => console.log(e));
-  }
-
-  function programDataToTableData(arrayOfClubs) {
+  // Updates table with new data
+  function programDataToTableData() {
     const newRows = [];
-    arrayOfClubs.forEach(club => {
+    context.programs.forEach(club => {
       club.activities.forEach(activity => {
         const newRow = {
           programName: activity.activity.activityname,
-          activityId: activity.activity.activityid,
-          clubId: club.clubid,
+          // activityId: activity.activity.activityid,
+          clubName: club.clubname,
         };
         newRows.push(newRow);
       });

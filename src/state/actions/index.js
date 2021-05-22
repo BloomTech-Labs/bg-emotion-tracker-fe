@@ -8,6 +8,7 @@ import {
   getClubsData,
   getClubData,
   getMemberData,
+  getActivityData,
 } from '../../api';
 
 export const SET_USER = 'SET_USER';
@@ -58,6 +59,17 @@ export const getMember = async (id, context) => {
     .then(res => {
       context.setId(id);
       context.setExists(res);
+    })
+    .catch(error => {
+      return error;
+    });
+};
+
+export const getActivities = async context => {
+  await getActivityData()
+    .then(res => {
+      console.log(res);
+      context.setPrograms(res);
     })
     .catch(error => {
       return error;

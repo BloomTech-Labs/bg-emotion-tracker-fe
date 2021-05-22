@@ -1,5 +1,6 @@
-import React from 'react';
-import { Form, Input, Button } from 'antd';
+import React, { useState } from 'react';
+import { Form, Input, Button, Menu, Dropdown } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 
 const layout = {
   wrapperCol: {
@@ -15,22 +16,50 @@ const tailLayout = {
 
 export const AddIndividual = props => {
   const { inputData, setInputData } = props;
+  const [currentIndividual, setCurrentIndividual] = useState({
+    programName: '',
+    clubName: '',
+  });
 
   const onFinish = values => {
-    console.warn(values);
-    console.log('values: ', values);
+    console.log(values.programName);
+    setCurrentIndividual({
+      ...currentIndividual,
+      programName: values.programName,
+    });
+
+    pushData();
+  };
+
+  const pushData = () => {
     const newList = inputData.individual;
-    newList.push({ programName: values.programName, clubId: values.clubId });
+    newList.push(currentIndividual);
     setInputData({
       ...inputData,
       individual: newList,
     });
-    console.log('inputData: ', inputData);
   };
 
   const onFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo);
   };
+
+  const selectClub = (e, item) => {
+    setCurrentIndividual({
+      ...currentIndividual,
+      clubName: item.clubname,
+    });
+  };
+
+  const menu = (
+    <Menu>
+      {props.clubsContext.clubs.map(item => (
+        <Menu.Item key={item.clubid} onClick={e => selectClub(e, item)}>
+          {item.clubname}
+        </Menu.Item>
+      ))}
+    </Menu>
+  );
 
   return (
     <Form
@@ -50,11 +79,16 @@ export const AddIndividual = props => {
         <Input />
       </Form.Item>
       <Form.Item
-        label="Club ID"
-        name="clubId"
-        rules={[{ required: true, message: 'Please enter a valid club name' }]}
+        label="Club Name"
+        name="clubName"
+        rules={[{ required: false, message: 'Please enter a valid club name' }]}
       >
-        <Input />
+        <Dropdown overlay={menu}>
+          <Button>
+            Select Club <DownOutlined />
+          </Button>
+        </Dropdown>
+        {` Selected Club: ${currentIndividual.clubName}`}
       </Form.Item>
       <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit">
@@ -64,4 +98,5 @@ export const AddIndividual = props => {
     </Form>
   );
 };
+
 export default AddIndividual;

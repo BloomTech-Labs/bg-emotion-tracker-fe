@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Modal, Button, Alert } from 'antd';
 import ProgramList from './ProgramList';
 import AddIndividual from './AddIndividual';
 import ImportUpload from './ImportUpload';
+import { ClubsContext } from '../../../../state/contexts';
+import { getClubs } from '../../../../state/actions';
 
 const ImportModal = props => {
+  const clubsContext = useContext(ClubsContext);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [alertData, setAlertData] = useState({
     isVisable: false,
@@ -16,11 +19,17 @@ const ImportModal = props => {
     file: [],
   });
 
+  useEffect(() => {
+    getClubs('authState', clubsContext);
+  }, []);
+
   const showModal = () => {
     setIsModalVisible(true);
   };
 
   const handleOk = () => {
+    // Create new activity in back end
+    // axios.post(`${baseUrl}/activities/activity/addclub/{clubid}`,{"activityname": "test"});
     setIsModalVisible(false);
     clearState();
   };
@@ -61,6 +70,7 @@ const ImportModal = props => {
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
+        okText="Submit"
         width={'70%'}
       >
         {alertData.isVisable ? (
@@ -77,6 +87,7 @@ const ImportModal = props => {
             setInputData={setInputData}
             inputData={inputData}
             showAlert={showAlert}
+            clubsContext={clubsContext}
           />
         </div>
         <div>
