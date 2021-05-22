@@ -14,8 +14,8 @@ const { Text } = Typography;
 
 const StyledMemberScanner = styled.header`
   display: flex;
-  margin-left: 30%;
-  margin-right: 30%;
+  margin-left: 34%;
+  margin-right: 34%;
   flex-direction: column;
   text-align: center;
 `;
