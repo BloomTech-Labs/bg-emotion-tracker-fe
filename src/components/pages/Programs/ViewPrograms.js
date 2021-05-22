@@ -25,19 +25,19 @@ const sampleTableData = {
 function ViewPrograms() {
   const [tableData, setTableData] = useState(sampleTableData);
   const context = useContext(ProgramContext);
-
+  // Get activities and set to context
   useEffect(() => {
     getActivities(context);
+  }, []);
 
-    // loads table data after api call completes
-    if (context.loading === false) {
-      programDataToTableData(context.programs);
-    }
+  useEffect(() => {
+    programDataToTableData();
   }, [context]);
 
-  function programDataToTableData(arrayOfClubs) {
+  // Updates table with new data
+  function programDataToTableData() {
     const newRows = [];
-    arrayOfClubs.forEach(club => {
+    context.programs.forEach(club => {
       club.activities.forEach(activity => {
         const newRow = {
           programName: activity.activity.activityname,

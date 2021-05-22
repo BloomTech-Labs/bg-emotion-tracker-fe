@@ -68,6 +68,7 @@ export const getMember = async (id, context) => {
 export const getActivities = async context => {
   await getActivityData()
     .then(res => {
+      console.log(res);
       context.setPrograms(res);
     })
     .catch(error => {

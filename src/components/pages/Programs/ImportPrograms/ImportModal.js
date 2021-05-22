@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Modal, Button, Alert } from 'antd';
 import ProgramList from './ProgramList';
 import AddIndividual from './AddIndividual';
 import ImportUpload from './ImportUpload';
-import axios from 'axios';
-import { baseUrl } from '../../../../api/index';
+import { ClubsContext } from '../../../../state/contexts';
+import { getClubs } from '../../../../state/actions';
 
 const ImportModal = props => {
+  const clubsContext = useContext(ClubsContext);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [alertData, setAlertData] = useState({
     isVisable: false,
@@ -17,6 +18,10 @@ const ImportModal = props => {
     individual: [],
     file: [],
   });
+
+  useEffect(() => {
+    getClubs('authState', clubsContext);
+  }, []);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -82,6 +87,7 @@ const ImportModal = props => {
             setInputData={setInputData}
             inputData={inputData}
             showAlert={showAlert}
+            clubsContext={clubsContext}
           />
         </div>
         <div>
