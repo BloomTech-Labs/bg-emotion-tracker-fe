@@ -16,7 +16,7 @@ const barToPie = bar => {
   return dt;
 };
 
-export const ChartByClub = ({ mode, showAll, setShowAll, dateRange }) => {
+export const ChartByActivity = ({ mode, showAll, setShowAll, dateRange }) => {
   const [plot, setPlot] = useState([
     {
       x: [],
