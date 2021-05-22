@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
@@ -21,14 +21,17 @@ export const AddIndividual = props => {
     clubName: '',
   });
 
+  useEffect(() => {
+    if (currentIndividual.programName) {
+      pushData();
+    }
+  }, [currentIndividual]);
+
   const onFinish = values => {
-    console.log(values.programName);
     setCurrentIndividual({
       ...currentIndividual,
       programName: values.programName,
     });
-
-    pushData();
   };
 
   const pushData = () => {
