@@ -79,7 +79,7 @@ function RenderEmojiSelectActivity(props) {
     let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
     axios
       .post(
-        `${baseUrl}/memberreactions/memberreaction/submit?mid=${memberContext.member.memberId}&aid=${activityContext.activity.activityid}&cid=${clubContext.club.clubid}&rx=${memberReaction}`,
+        `${baseUrl}/memberreactions/memberreaction/submit?mid=${memberContext.id}&aid=${activityContext.activity.activityid}&cid=${clubContext.club.clubid}&rx=${memberReaction}`,
         {},
         {
           headers: {

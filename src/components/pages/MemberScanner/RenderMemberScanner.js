@@ -91,7 +91,7 @@ function RenderMemberScanner(props) {
         <Title level={2}>Scanner</Title>
         <QRCodeReader handleScan={handleScan} handleError={handleError} />
         {scanStatus ? <p>Scan successful</p> : <p>Not scanned yet</p>}
-        {scanError ? <p>Some error happens</p> : null}
+        {scanError ? <p style={{ color: 'red' }}>{error}</p> : null}
         {scanStatus ? (
           checkValid ? (
             checkAct ? (
