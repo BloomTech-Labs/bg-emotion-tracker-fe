@@ -7,6 +7,7 @@ import { ClubsContext } from '../../../../state/contexts';
 import { getClubs, postActivity } from '../../../../state/actions';
 
 const ImportModal = props => {
+  const { fetchActivities } = props;
   const clubsContext = useContext(ClubsContext);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [alertData, setAlertData] = useState({
@@ -36,6 +37,9 @@ const ImportModal = props => {
     }
     setIsModalVisible(false);
     clearState();
+    setTimeout(() => {
+      fetchActivities();
+    }, 2000);
   };
 
   const handleCancel = () => {
