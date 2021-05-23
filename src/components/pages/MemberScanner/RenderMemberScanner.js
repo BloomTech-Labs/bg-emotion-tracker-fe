@@ -18,6 +18,8 @@ const StyledMemberScanner = styled.header`
   margin-right: 34%;
   flex-direction: column;
   text-align: center;
+  position: absolute;
+  top: 120px;
 `;
 
 function RenderMemberScanner(props) {
@@ -63,7 +65,7 @@ function RenderMemberScanner(props) {
       </Link>
 
       <StyledMemberScanner>
-        <Title level={2}>Scanner</Title>
+        <h2 className="scannerTitle">Scanner</h2>
         <QRCodeReader handleScan={handleScan} handleError={handleError} />
         {scanError ? (
           <Text className="errorText" type="danger">
