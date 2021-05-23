@@ -14,12 +14,10 @@ const { Text } = Typography;
 
 const StyledMemberScanner = styled.header`
   display: flex;
-  margin-left: 34%;
-  margin-right: 34%;
+  margin-left: 30%;
+  margin-right: 30%;
   flex-direction: column;
   text-align: center;
-  position: absolute;
-  top: 130px;
 `;
 
 function RenderMemberScanner(props) {
@@ -65,13 +63,14 @@ function RenderMemberScanner(props) {
       </Link>
 
       <StyledMemberScanner>
-        <h2 className="scannerTitle">Scanner</h2>
         <QRCodeReader handleScan={handleScan} handleError={handleError} />
         {scanError ? (
           <Text className="errorText" type="danger">
             {error}
           </Text>
-        ) : null}
+        ) : (
+          <Text style={{ height: '21px' }}></Text>
+        )}
         {(() => {
           if (memberContext.id && memberContext.exists && scanStatus) {
             if (checkValid) {

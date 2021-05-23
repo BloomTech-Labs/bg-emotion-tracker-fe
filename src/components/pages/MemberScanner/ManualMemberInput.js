@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Form, Input, Button } from 'antd';
-import { useHistory } from 'react-router-dom';
 import { MemberContext } from '../../../state/contexts/index';
 import { getMember } from '../../../state/actions';
 
@@ -57,7 +56,7 @@ function ManualMemberInput(props) {
         className="manualMemberInput"
       >
         <Form.Item
-          label="Member ID"
+          style={{ height: '100px' }}
           name="memberId"
           rules={[
             {
@@ -66,7 +65,11 @@ function ManualMemberInput(props) {
             },
           ]}
         >
-          <Input onChange={onChange} />
+          <Input
+            className="memberIDInput"
+            placeholder="MEMBER ID"
+            onChange={onChange}
+          />
         </Form.Item>
         <Form.Item {...tailLayout}>
           <Button type="primary" className="scannerBtn" htmlType="submit">

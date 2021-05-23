@@ -12,7 +12,7 @@ const QRCodeReader = props => {
         style={{ width: 'auto' }}
         onError={handleError}
         onScan={handleScan}
-        style={{ marginBottom: '2rem' }}
+        style={{ marginBottom: '1rem' }}
       />
     </div>
   );
