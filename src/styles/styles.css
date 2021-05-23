@@ -28,6 +28,9 @@
 .regularText {
   margin-bottom: 2rem;
 }
+.qrReader section section {
+  border-radius: 40px;
+}
 /* ManualMemberInput */
 .manualMemberInput {
   justify-content: center;

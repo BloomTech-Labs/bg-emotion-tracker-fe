@@ -5,7 +5,7 @@ const QRCodeReader = props => {
   const { handleScan, handleError } = props;
 
   return (
-    <div>
+    <div className="qrReader">
       <QrReader
         delay={300}
         facingMode={'environment'}
