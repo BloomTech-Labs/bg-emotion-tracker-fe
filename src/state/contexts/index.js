@@ -29,35 +29,19 @@ export const UserContextProvider = props => {
   );
 };
 
-// program context
-export const ProgramContext = createContext({
-  programs: [],
-  activity: {},
-  loading: false,
-  error: false,
-  message: '',
-  setPrograms: () => [],
-});
+// Admin Context
+export const AdminContext = createContext();
 
-export const ProgramContextProvider = props => {
-  const setPrograms = programs => {
-    setState({ ...state, programs: programs });
-  };
-
-  const initState = {
-    setPrograms: setPrograms,
-    programs: [],
-    loading: false,
-    error: false,
-    message: '',
-  };
-
-  const [state, setState] = useState(initState);
+export const AdminContextProvider = ({ children }) => {
+  const [members, setMembers] = useState([]);
+  const [programs, setPrograms] = useState([]);
 
   return (
-    <ProgramContext.Provider value={state}>
-      {props.children}
-    </ProgramContext.Provider>
+    <AdminContext.Provider
+      value={{ members, setMembers, programs, setPrograms }}
+    >
+      {children}
+    </AdminContext.Provider>
   );
 };
 

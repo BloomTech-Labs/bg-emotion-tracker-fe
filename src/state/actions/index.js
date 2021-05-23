@@ -10,6 +10,7 @@ import {
   getMemberData,
   getActivityData,
   postActivityData,
+  getMembersData,
 } from '../../api';
 
 export const SET_USER = 'SET_USER';
@@ -60,6 +61,16 @@ export const getMember = async (id, context) => {
     .then(res => {
       context.setId(id);
       context.setExists(res);
+    })
+    .catch(error => {
+      return error;
+    });
+};
+
+export const getMembers = async context => {
+  await getMembersData()
+    .then(res => {
+      context.setMembers(res);
     })
     .catch(error => {
       return error;

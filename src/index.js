@@ -16,8 +16,8 @@ import {
   ClubContextProvider,
   EmojiContextProvider,
   UserContextProvider,
-  ProgramContextProvider,
   MemberContextProvider,
+  AdminContextProvider,
 } from './state/contexts';
 
 import 'antd/dist/antd.less';
@@ -67,12 +67,12 @@ function App() {
 
   return (
     <UserContextProvider>
-      <ProgramContextProvider>
-        <ClubsContextProvider>
-          <ClubContextProvider>
-            <ActivityContextProvider>
-              <EmojiContextProvider>
-                <MemberContextProvider>
+      <ClubsContextProvider>
+        <ClubContextProvider>
+          <ActivityContextProvider>
+            <EmojiContextProvider>
+              <MemberContextProvider>
+                <AdminContextProvider>
                   <div className="MainContainer">
                     <Security {...config} onAuthRequired={authHandler}>
                       <Switch>
@@ -214,12 +214,12 @@ function App() {
                       </Switch>
                     </Security>
                   </div>
-                </MemberContextProvider>
-              </EmojiContextProvider>
-            </ActivityContextProvider>
-          </ClubContextProvider>
-        </ClubsContextProvider>
-      </ProgramContextProvider>
+                </AdminContextProvider>
+              </MemberContextProvider>
+            </EmojiContextProvider>
+          </ActivityContextProvider>
+        </ClubContextProvider>
+      </ClubsContextProvider>
     </UserContextProvider>
   );
 }
