@@ -34,7 +34,7 @@ function RenderActivitySelect(props) {
   };
 
   const menu = (
-    <Menu>
+    <Menu className="ydp-selection-dropdowns ">
       {club.activities &&
         club.activities.map(item => (
           <Menu.Item
