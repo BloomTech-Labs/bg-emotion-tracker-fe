@@ -31,22 +31,22 @@ function RenderMemberScanner(props) {
   const handleError = err => {
     setScanError(true);
     setError(err);
-    console.log('HErr Fires!');
   };
+
+  useEffect(() => {
+    memberContext.setExists('');
+  }, []);
 
   useEffect(() => {
     if (memberContext.exists === true) {
       setCheckValid(true);
-      console.log('member True');
     } else if (memberContext.exists === false) {
       handleError('This member does not exist.');
-      console.log('member false');
     }
   }, [memberContext.exists]);
 
   const handleScan = data => {
     if (data) {
-      console.log(data);
       getMember(data, memberContext);
 
       memberContext.setId(data);
