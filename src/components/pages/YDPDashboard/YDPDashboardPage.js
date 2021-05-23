@@ -43,7 +43,7 @@ function RenderHomePage() {
   };
 
   const menu = (
-    <Menu>
+    <Menu className="ydp-selection-dropdowns">
       {clubsContext.clubs.map(item => (
         <Menu.Item key={item.clubid} onClick={e => selectClub(e, item)}>
           {item.clubname}
