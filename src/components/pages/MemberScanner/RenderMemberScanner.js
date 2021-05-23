@@ -19,7 +19,7 @@ const StyledMemberScanner = styled.header`
   flex-direction: column;
   text-align: center;
   position: absolute;
-  top: 120px;
+  top: 130px;
 `;
 
 function RenderMemberScanner(props) {
