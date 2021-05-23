@@ -1,20 +1,16 @@
 import Plot from 'react-plotly.js';
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
-import { mfull, msort, mfullr, m, mr } from './helpers';
-import { DateRangeSelector } from './DateRangeSelector';
+import { barToPie, mfull, msort, mfullr, m, mr } from './helpers';
+import { Typography } from 'antd';
+import { SelectClub } from './SelectClub';
+import { SelectActivity } from './SelectActivity';
+import { ChartType } from './ChartType';
+import { ChartTemplate } from './ChartTemplate';
+import { Section } from '../common';
 
 const strToEmoji = str => {
   return String.fromCodePoint(parseInt(str, 16));
-};
-
-const barToPie = bar => {
-  const dt = {
-    values: bar?.y,
-    labels: bar?.x,
-    type: 'pie',
-  };
-  return dt;
 };
 
 export const ChartByActivity = ({
@@ -23,6 +19,8 @@ export const ChartByActivity = ({
   setShowAll,
   dateRange,
   setDateRange,
+  member,
+  setMember,
 }) => {
   const [plot, setPlot] = useState([
     {
@@ -141,88 +139,68 @@ export const ChartByActivity = ({
   }, [clubActivity]);
 
   return (
-    <div style={{ margin: '0 1vh' }}>
-      <DateRangeSelector dateRange={dateRange} setDateRange={setDateRange} />
-      <label>
-        Select Club
-        <select
-          style={{ margin: '1vh', padding: '0.2rem', fontSize: '1rem' }}
-          value={selectedClub}
-          onChange={e => {
-            setSelectClub(e.target.value);
-            setClubActivity('');
-          }}
-        >
-          <option> </option>
-          {clubSummary.map((i, ind) => (
-            <option value={i.clubid} key={i.clubid}>
-              {i.clubname.replace(/^\w/, c => c.toUpperCase())}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Select Activity
-        <select
-          style={{ margin: '1vh', padding: '0.2rem', fontSize: '1rem' }}
-          value={clubActivity}
-          onChange={e => {
-            setClubActivity(e.target.value);
-          }}
-        >
-          <option> </option>
-
-          {plot.map((i, ind) => (
-            <option value={ind} key={i + ind}>
-              {i?.label}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Chart Type
-        <select
-          style={{ margin: '1vh', padding: '0.2rem', fontSize: '1rem' }}
-          onChange={e => {
-            setChartType(e.target.value);
-          }}
-        >
-          <option value={0}> Bar </option>
-          <option value={1}> Pie </option>
-        </select>
-      </label>
-
-      <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <h2 style={{ alignSelf: 'center' }}></h2>
-          <div style={{ width: '50vh', alignSelf: 'center' }} ref={plotRef}>
-            {console.log(plot)}
-            {chartType == 1 ? (
-              <Plot
-                data={[barToPie(plot[clubActivity * 1])]}
-                layout={{
-                  autosize: true,
-                  font: {
-                    size: '20',
-                  },
-                  title: plot[clubActivity * 1]?.label,
-                }}
-              />
-            ) : (
-              <Plot
-                data={[plot[clubActivity * 1]]}
-                layout={{
-                  autosize: true,
-                  font: {
-                    size: '20',
-                  },
-                  title: plot[clubActivity * 1]?.label,
-                }}
-              />
-            )}
-          </div>
+    <ChartTemplate
+      title="Activities"
+      mode={mode}
+      showAll={showAll}
+      setShowAll={setShowAll}
+      dateRange={dateRange}
+      setDateRange={setDateRange}
+      plot={plot}
+      member={member}
+      setSelectClub={setSelectClub}
+      setMember={setMember}
+      clubSummary={clubSummary}
+      plotRef={plotRef}
+    >
+      <Section>
+        <SelectClub
+          setSelectClub={setSelectClub}
+          setMember={setMember}
+          selectedClub={selectedClub}
+          clubSummary={clubSummary}
+          label="Select Club"
+        />
+        <SelectActivity
+          clubActivity={clubActivity}
+          setClubActivity={setClubActivity}
+          plot={plot}
+          setChartType={setChartType}
+          plotRef={plotRef}
+          barToPie={barToPie}
+          chartType={chartType}
+          Plot={Plot}
+        />
+      </Section>
+      <Section>
+        <div style={{ width: '50vh', alignSelf: 'center' }} ref={plotRef}>
+          {console.log(plot)}
+          {chartType == 1 ? (
+            <Plot
+              data={[barToPie(plot[member * 1])]}
+              layout={{
+                autosize: true,
+                font: {
+                  size: '20',
+                },
+                title: plot[member * 1]?.label,
+              }}
+            />
+          ) : (
+            <Plot
+              data={[plot[member * 1]]}
+              layout={{
+                autosize: true,
+                font: {
+                  size: '20',
+                },
+                title: plot[member * 1]?.label,
+              }}
+            />
+          )}
         </div>
-      </div>
-    </div>
+      </Section>
+      {/* <ChartType setChartType={setChartType} /> */}
+    </ChartTemplate>
   );
 };

@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 const StyledSelector = styled.div`
   display: flex;
-  padding: 20px;
 `;
 
 export const DateRangeSelector = ({ dateRange, setDateRange }) => {
@@ -14,11 +13,11 @@ export const DateRangeSelector = ({ dateRange, setDateRange }) => {
   return (
     <StyledSelector>
       <label
-        style={{
-          marginLeft: '1vh',
-          display: 'flex',
-          alignItems: 'center',
-        }}
+      // style={{
+      //   marginLeft: '1vh',
+      //   display: 'flex',
+      //   alignItems: 'center',
+      // }}
       >
         From ‎
         <input type="date" id="fromdate" name="fromdate" ref={fromref} />

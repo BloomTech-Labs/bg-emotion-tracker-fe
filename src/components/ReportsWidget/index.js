@@ -4,6 +4,7 @@ import ChartWidget from './ChartWidget';
 import { DateRangeSelector } from './DateRangeSelector';
 import { AllEmotionsFilter } from './AllEmotionsFilter';
 import { SelectClub } from './SelectClub';
+import { SelectActivity } from './SelectActivity';
 import { SelectMember } from './SelectMember';
 import { ChartType } from './ChartType';
 import { ChartTemplate } from './ChartTemplate';
@@ -17,5 +18,6 @@ export {
   ChartType,
   ChartWidget,
   SelectClub,
+  SelectActivity,
   SelectMember,
 };

@@ -2,7 +2,6 @@ import React from 'react';
 
 export const SelectClub = ({
   setSelectClub,
-  setMember,
   selectedClub,
   clubSummary,
   label,
@@ -15,7 +14,6 @@ export const SelectClub = ({
           style={{ margin: '1vh', padding: '0.2rem', fontSize: '1rem' }}
           onChange={e => {
             setSelectClub(e.target.value);
-            setMember('');
           }}
           value={selectedClub}
         >

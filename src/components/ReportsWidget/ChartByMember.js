@@ -2,12 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import Plot from 'react-plotly.js';
 import axios from 'axios';
 import { barToPie, mfull, msort, mfullr, m, mr } from './helpers';
-import { DateRangeSelector } from './DateRangeSelector';
 import { Typography } from 'antd';
 import { SelectClub } from './SelectClub';
 import { SelectMember } from './SelectMember';
 import { ChartType } from './ChartType';
 import { ChartTemplate } from './ChartTemplate';
+import { Section } from '../common';
 
 const { Title } = Typography;
 
@@ -119,6 +119,7 @@ export const ChartByMember = ({
         setPlot(dts);
       });
   };
+
   return (
     <ChartTemplate
       title="Members"
@@ -133,6 +134,46 @@ export const ChartByMember = ({
       setMember={setMember}
       clubSummary={clubSummary}
       plotRef={plotRef}
-    />
+    >
+      <Section>
+        <SelectClub
+          setSelectClub={setSelectClub}
+          setMember={setMember}
+          selectedClub={selectedClub}
+          clubSummary={clubSummary}
+          label="Select Club"
+        />
+        <SelectMember setMember={setMember} member={member} plot={plot} />
+      </Section>
+      <Section>
+        <div style={{ width: '50vh', alignSelf: 'center' }} ref={plotRef}>
+          {console.log(plot)}
+          {chartType == 1 ? (
+            <Plot
+              data={[barToPie(plot[member * 1])]}
+              layout={{
+                autosize: true,
+                font: {
+                  size: '20',
+                },
+                title: plot[member * 1]?.label,
+              }}
+            />
+          ) : (
+            <Plot
+              data={[plot[member * 1]]}
+              layout={{
+                autosize: true,
+                font: {
+                  size: '20',
+                },
+                title: plot[member * 1]?.label,
+              }}
+            />
+          )}
+        </div>
+      </Section>
+      {/* <ChartType setChartType={setChartType} /> */}
+    </ChartTemplate>
   );
 };
