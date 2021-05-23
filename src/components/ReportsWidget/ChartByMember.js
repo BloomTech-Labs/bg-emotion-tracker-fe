@@ -7,6 +7,7 @@ import { Typography } from 'antd';
 import { SelectClub } from './SelectClub';
 import { SelectMember } from './SelectMember';
 import { ChartType } from './ChartType';
+import { ChartTemplate } from './ChartTemplate';
 
 const { Title } = Typography;
 
@@ -119,49 +120,19 @@ export const ChartByMember = ({
       });
   };
   return (
-    <div style={{ margin: '0 1vh' }}>
-      <Title level={2}>Members</Title>
-      <DateRangeSelector dateRange={dateRange} setDateRange={setDateRange} />
-      <SelectClub
-        setSelectClub={setSelectClub}
-        setMember={setMember}
-        selectedClub={selectedClub}
-        clubSummary={clubSummary}
-        label="Select Club"
-      />
-      <SelectMember setMember={setMember} member={member} plot={plot} />
-      <ChartType setChartType={setChartType} />
-      <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <h2 style={{ alignSelf: 'center' }}></h2>
-          <div style={{ width: '50vh', alignSelf: 'center' }} ref={plotRef}>
-            {console.log(plot)}
-            {chartType == 1 ? (
-              <Plot
-                data={[barToPie(plot[member * 1])]}
-                layout={{
-                  autosize: true,
-                  font: {
-                    size: '20',
-                  },
-                  title: plot[member * 1]?.label,
-                }}
-              />
-            ) : (
-              <Plot
-                data={[plot[member * 1]]}
-                layout={{
-                  autosize: true,
-                  font: {
-                    size: '20',
-                  },
-                  title: plot[member * 1]?.label,
-                }}
-              />
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
+    <ChartTemplate
+      title="Members"
+      mode={mode}
+      showAll={showAll}
+      setShowAll={setShowAll}
+      dateRange={dateRange}
+      setDateRange={setDateRange}
+      plot={plot}
+      member={member}
+      setSelectClub={setSelectClub}
+      setMember={setMember}
+      clubSummary={clubSummary}
+      plotRef={plotRef}
+    />
   );
 };
