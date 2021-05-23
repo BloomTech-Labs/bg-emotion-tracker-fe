@@ -54,7 +54,7 @@ function ManualMemberInput(props) {
         }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
-        style={{ marginTop: '2rem', justifyContent: 'center' }}
+        className="manualMemberInput"
       >
         <Form.Item
           label="Member ID"
@@ -69,7 +69,7 @@ function ManualMemberInput(props) {
           <Input onChange={onChange} />
         </Form.Item>
         <Form.Item {...tailLayout}>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" className="scannerBtn" htmlType="submit">
             Submit
           </Button>
         </Form.Item>
