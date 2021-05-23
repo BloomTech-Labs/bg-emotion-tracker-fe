@@ -65,7 +65,6 @@ function RenderMemberScanner(props) {
       <StyledMemberScanner>
         <Title level={2}>Scanner</Title>
         <QRCodeReader handleScan={handleScan} handleError={handleError} />
-        {scanStatus ? <p>Scan successful</p> : <p>Not scanned yet</p>}
         {scanError ? (
           <Text className="errorText" type="danger">
             {error}
