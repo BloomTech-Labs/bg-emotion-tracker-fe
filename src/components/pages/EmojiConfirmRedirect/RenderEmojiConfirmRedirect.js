@@ -19,7 +19,7 @@ const StyledEmojiConfirmRedirect = styled.header`
 `;
 
 const StyledEmojis = styled.div`
-  font-size: 7rem;
+  font-size: 11rem;
   background: '#ffffff';
   color: #000000;
   padding: '2px 0';
