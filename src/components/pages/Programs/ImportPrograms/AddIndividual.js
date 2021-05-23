@@ -89,14 +89,12 @@ export const AddIndividual = props => {
       >
         <Dropdown overlay={menu}>
           <Button>
-            Select Club <DownOutlined />
+            {currentIndividual.club.clubname
+              ? currentIndividual.club.clubname
+              : 'Select Club'}{' '}
+            <DownOutlined />
           </Button>
         </Dropdown>
-        {` Selected Club: ${
-          currentIndividual.club.clubname
-            ? currentIndividual.club.clubname
-            : 'none'
-        }`}
       </Form.Item>
       <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit">

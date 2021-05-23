@@ -10,7 +10,7 @@
 }
 
 #okta-sign-in.auth-container.main-container {
-  height: 530px;  
+  height: 530px;
   overflow: hidden;
 }
 
@@ -30,12 +30,53 @@
 /* PAGE specific styles */
 
 /* RenderMemberScanner */
-.errorText, .regularText {
-  margin: 14px;
+.errorText,
+.regularText {
+  margin-bottom: 0rem;
+}
+
+.qrReader {
+  section {
+    section {
+      border-radius: 40px;
+    }
+  }
+}
+
+.scannerTitle {
+  color: #0081C6;
+  font-size: 72px;
+  outline: none;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+  margin-bottom: 0;
+}
+
+
+/* ManualMemberInput */
+.manualMemberInput {
+  justify-content: center;
+  div, .ant-form-inline, .ant-form-item-with-help {
+    margin-bottom: 3px; 
+  }
+
+  .scannerBtn {
+    margin-top: 10px;
+    width: 120px;
+    height: 50px; 
+    font-size: 1.5rem;
+  }
+}
+
+.memberIDInput {
+  margin-top: 10px;
+  margin-left: 16px;
+  height: 50px;
+  width: 190px;
+  font-size: 1.4rem;
 }
 
 /* eof PAGE specific styles */
-
 
 /* COMPONENT specific styles */
 
@@ -46,26 +87,69 @@
 }
 /* eof Select Button */
 
-
-
 /* eof COMPONENT specific styles */
 
 .emojiBtn {
-    // border: 1px solid #ffffff;
-    // background-color: transparent;
-    height: 100px;
-    width: 100px;
-    color: #000000;
-    font-size: 4rem;
-    opacity: 100%;
+  // border: 1px solid #ffffff;
+  // background-color: transparent;
+  height: 100px;
+  width: 100px;
+  color: #000000;
+  font-size: 4rem;
+  opacity: 100%;
 }
 
 .emojiBtn:hover {
-    // border: 1px solid #ffffff;
-    // background-color: transparent;
-    height: 115px;
-    width: 110px;
-    color: #000000;
-    font-size: 5rem;
-    opacity: 100%;
+  // border: 1px solid #ffffff;
+  // background-color: transparent;
+  height: 115px;
+  width: 110px;
+  color: #000000;
+  font-size: 5rem;
+  opacity: 100%;
+}
+
+.mainhamburger {
+  li {
+    padding: 1.5vh;
+    svg {
+      margin-right: 1vh;
+      font-size: larger;
+    }
+    font-size: 1.3rem;
+
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-delay: 0.1s;
+  }
+
+  li:active {
+    background-color: rgba(214, 214, 214, 0.603);
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-delay: 0.1s;
+  }
+}
+
+.ydp-selection-dropdowns {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+
+  li {
+    padding: 2vh 1vh;
+    text-align: center;
+    svg {
+      margin-right: 1vh;
+      font-size: larger;
+    }
+    font-size: 2rem;
+
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-delay: 0.1s;
+  }
+
+  li:active {
+    background-color: rgba(214, 214, 214, 0.603);
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-delay: 0.1s;
+  }
 }

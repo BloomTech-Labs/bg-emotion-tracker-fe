@@ -14,8 +14,8 @@ const { Text } = Typography;
 
 const StyledMemberScanner = styled.header`
   display: flex;
-  margin-left: 34%;
-  margin-right: 34%;
+  margin-left: 30%;
+  margin-right: 30%;
   flex-direction: column;
   text-align: center;
 `;
@@ -31,22 +31,22 @@ function RenderMemberScanner(props) {
   const handleError = err => {
     setScanError(true);
     setError(err);
-    console.log('HErr Fires!');
   };
+
+  useEffect(() => {
+    memberContext.setExists('');
+  }, []);
 
   useEffect(() => {
     if (memberContext.exists === true) {
       setCheckValid(true);
-      console.log('member True');
     } else if (memberContext.exists === false) {
       handleError('This member does not exist.');
-      console.log('member false');
     }
   }, [memberContext.exists]);
 
   const handleScan = data => {
     if (data) {
-      console.log(data);
       getMember(data, memberContext);
 
       memberContext.setId(data);
@@ -63,10 +63,14 @@ function RenderMemberScanner(props) {
       </Link>
 
       <StyledMemberScanner>
-        <Title level={2}>Scanner</Title>
         <QRCodeReader handleScan={handleScan} handleError={handleError} />
-        {scanStatus ? <p>Scan successful</p> : <p>Not scanned yet</p>}
-        {scanError ? <p>Some error happens</p> : null}
+        {scanError ? (
+          <Text className="errorText" type="danger">
+            {error}
+          </Text>
+        ) : (
+          <Text style={{ height: '21px' }}></Text>
+        )}
         {(() => {
           if (memberContext.id && memberContext.exists && scanStatus) {
             if (checkValid) {
