@@ -60,7 +60,7 @@ function RenderEmojiConfirmRedirect(props) {
   const [state, setState] = useState(<StyledEmojis>😁</StyledEmojis>);
 
   setTimeout(() => {
-    member.setExists(false); // DO NOT REMOVE: or page will infinite loop
+    member.setExists(''); // DO NOT REMOVE: or page will infinite loop
     member.setId('');
     setReadyToGo(true);
   }, 3000);

@@ -16,12 +16,14 @@ const StyledYDPPage = styled.header`
   max-width: 90%;
   margin: 3rem auto;
   text-align: center;
+  font-size: 3rem !important;
 `;
 
 function RenderHomePage() {
   const clubsContext = useContext(ClubsContext);
   const clubContext = useContext(ClubContext);
   const [disabledBtn, setDisabledBtn] = useState(true);
+  const [dropDownName, setDropDownName] = useState('');
 
   useEffect(() => {
     // console.log('club: ', clubContext.club.clubname);
@@ -36,11 +38,12 @@ function RenderHomePage() {
 
   const selectClub = (e, item) => {
     getClub(item.clubid, clubContext);
+    setDropDownName(item.clubname);
     setDisabledBtn(false);
   };
 
   const menu = (
-    <Menu>
+    <Menu className="ydp-selection-dropdowns">
       {clubsContext.clubs.map(item => (
         <Menu.Item key={item.clubid} onClick={e => selectClub(e, item)}>
           {item.clubname}
@@ -53,17 +56,14 @@ function RenderHomePage() {
     <LayoutContainer>
       <NavBar titleName="YDP Dashboard" backgroundColor="#293845" />
       <StyledYDPPage>
-        <h2 style={{ textAlign: 'center' }}>Select Club</h2>
         <h2 style={{ textAlign: 'center' }}>
           <Dropdown overlay={menu} trigger={['click']}>
             <a className="ant-dropdown-link">
-              Clubs <DownOutlined />
+              {dropDownName ? dropDownName : 'Select Club'} <DownOutlined />
             </a>
           </Dropdown>
         </h2>
-        <h2 className="dropdownSelected">
-          {clubContext.club && clubContext.club.clubname}
-        </h2>
+
         <StyledBtn
           label="Confirm"
           onClick={onClick}
