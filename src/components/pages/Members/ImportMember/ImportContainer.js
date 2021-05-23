@@ -5,7 +5,7 @@ import ImportModal from './ImportModal';
 const ImportContainer = props => {
   return (
     <div>
-      <ImportModal />
+      <ImportModal fetchMembers={props.fetchMembers} />
     </div>
   );
 };

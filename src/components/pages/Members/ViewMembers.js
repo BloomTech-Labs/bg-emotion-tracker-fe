@@ -70,7 +70,7 @@ function ViewMembers(props) {
             title={'Members'}
             subTitle={`Sorted by id`}
           />
-          <ImportMembers />
+          <ImportMembers fetchMembers={fetchMembers} />
         </StyledView>
         <Table
           columns={tableData.columns}

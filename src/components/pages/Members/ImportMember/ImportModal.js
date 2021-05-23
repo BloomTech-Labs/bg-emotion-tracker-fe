@@ -4,8 +4,10 @@ import MemberTable from './MemberTable';
 import AddIndividual from './AddIndividual';
 import ImportUpload from './ImportUpload';
 import { QRCodeGenerator } from '../../QRCodeGenerator';
+import { postMember } from '../../../../state/actions';
 
 const ImportModal = props => {
+  const { fetchMembers } = props;
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [alertData, setAlertData] = useState({
     isVisable: false,
@@ -26,8 +28,16 @@ const ImportModal = props => {
 
   const handleOk = () => {
     // upload data to server
-    // generate id cards
-    // After Response show completed
+    if (inputData.individual.length > 0) {
+      inputData.individual.forEach(item => {
+        postMember(item);
+      });
+    }
+    setIsModalVisible(false);
+    clearState();
+    setTimeout(() => {
+      fetchMembers();
+    }, 2000);
     console.warn('submited');
     showAlert('Members successfully added', 'success');
     clearState();

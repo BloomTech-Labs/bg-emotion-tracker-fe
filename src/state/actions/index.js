@@ -11,6 +11,7 @@ import {
   getActivityData,
   postActivityData,
   getMembersData,
+  postMemberData,
 } from '../../api';
 
 export const SET_USER = 'SET_USER';
@@ -91,7 +92,17 @@ export const getActivities = async context => {
 export const postActivity = async (clubId, activityName) => {
   await postActivityData(clubId, activityName)
     .then(res => {
-      console.log(JSON.stringify(res));
+      console.log('Post activity: ' + res);
+    })
+    .catch(error => {
+      return error;
+    });
+};
+
+export const postMember = async member => {
+  await postMemberData(member)
+    .then(res => {
+      console.log('Post member: ' + res);
     })
     .catch(error => {
       return error;
