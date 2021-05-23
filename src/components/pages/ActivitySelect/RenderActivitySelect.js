@@ -18,20 +18,23 @@ const StyledActivitySelect = styled.header`
   max-width: 90%;
   margin: 3rem auto;
   text-align: center;
+  font-size: 3rem;
 `;
 
 function RenderActivitySelect(props) {
   const { setActivity, activity } = useContext(ActivityContext);
   const { club } = useContext(ClubContext);
   const [disabledBtn, setDisabledBtn] = useState(true);
+  const [dropDownName, setDropDownName] = useState('');
 
   const selectActivity = (e, item) => {
     setActivity(item);
+    setDropDownName(item.activityname);
     setDisabledBtn(false);
   };
 
   const menu = (
-    <Menu>
+    <Menu className="ydp-selection-dropdowns ">
       {club.activities &&
         club.activities.map(item => (
           <Menu.Item
@@ -53,17 +56,12 @@ function RenderActivitySelect(props) {
       </Link>
 
       <StyledActivitySelect>
-        <h2>Select Activity</h2>
-
         <h2 style={{ textAlign: 'center' }}>
           <Dropdown overlay={menu} trigger={['click']}>
             <a className="ant-dropdown-link">
-              Activity <DownOutlined />
+              {dropDownName ? dropDownName : 'Select Activity'} <DownOutlined />
             </a>
           </Dropdown>
-        </h2>
-        <h2 className="dropdownSelected">
-          {activity && activity.activityname}
         </h2>
         <StyledBtn label="Confirm" path="/scanner" isDisabled={disabledBtn} />
       </StyledActivitySelect>

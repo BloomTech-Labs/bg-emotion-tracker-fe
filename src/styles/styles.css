@@ -32,7 +32,40 @@
 /* RenderMemberScanner */
 .errorText,
 .regularText {
-  margin: 14px;
+  margin-bottom: 0rem;
+}
+.qrReader section section {
+  border-radius: 40px;
+}
+.scannerTitle {
+  color: #0081C6;
+  font-size: 72px;
+  outline: none;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+  margin-bottom: 0;
+}
+/* ManualMemberInput */
+.manualMemberInput {
+  justify-content: center;
+}
+.manualMemberInput div,
+.manualMemberInput .ant-form-inline,
+.manualMemberInput .ant-form-item-with-help {
+  margin-bottom: 3px;
+}
+.manualMemberInput .scannerBtn {
+  margin-top: 10px;
+  width: 120px;
+  height: 50px;
+  font-size: 1.5rem;
+}
+.memberIDInput {
+  margin-top: 10px;
+  margin-left: 16px;
+  height: 50px;
+  width: 190px;
+  font-size: 1.4rem;
 }
 /* eof PAGE specific styles */
 /* COMPONENT specific styles */
@@ -57,3 +90,42 @@
   font-size: 5rem;
   opacity: 100%;
 }
+<<<<<<< HEAD
+=======
+.mainhamburger li {
+  padding: 1.5vh;
+  font-size: 1.3rem;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-delay: 0.1s;
+}
+.mainhamburger li svg {
+  margin-right: 1vh;
+  font-size: larger;
+}
+.mainhamburger li:active {
+  background-color: rgba(214, 214, 214, 0.603);
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-delay: 0.1s;
+}
+.ydp-selection-dropdowns {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+.ydp-selection-dropdowns li {
+  padding: 2vh 1vh;
+  text-align: center;
+  font-size: 2rem;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-delay: 0.1s;
+}
+.ydp-selection-dropdowns li svg {
+  margin-right: 1vh;
+  font-size: larger;
+}
+.ydp-selection-dropdowns li:active {
+  background-color: rgba(214, 214, 214, 0.603);
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-delay: 0.1s;
+}
+>>>>>>> refactor/scanner-page

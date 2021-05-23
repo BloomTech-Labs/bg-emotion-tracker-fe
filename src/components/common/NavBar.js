@@ -27,11 +27,10 @@ const StyledNavBar = styled.header`
   }
   .menu-container {
     text-align: left;
-    width: 109px;
+    width: 10vh;
   }
   img {
-    height: 60px;
-    width: auto;
+    height: 6vh;
   }
   h1 {
     color: white;
@@ -47,7 +46,7 @@ function NavBar(props) {
   let role = context.user.roles && context.user.roles[0].role.name;
 
   const menu = (
-    <Menu>
+    <Menu className="mainhamburger">
       <Menu.Item
         key="1"
         icon={<LineChartOutlined />}
@@ -106,12 +105,10 @@ function NavBar(props) {
       <StyledNavBar backgroundColor={props.backgroundColor}>
         {!hideMenu && (
           <div className="menu-container">
-            <Dropdown overlay={menu}>
+            <Dropdown overlay={menu} trigger={['click']}>
               <Button
-                path=""
-                label="navbar"
                 type="text"
-                style={{ color: 'white', fontSize: '32px' }}
+                style={{ color: 'white', fontSize: '2.4rem' }}
               >
                 <MenuOutlined />
               </Button>
