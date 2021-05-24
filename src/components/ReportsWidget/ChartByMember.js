@@ -136,19 +136,39 @@ export const ChartByMember = ({
       clubSummary={clubSummary}
       plotRef={plotRef}
     >
-      <Section height="50px" style={{ display: 'flex', alignItems: 'center' }}>
-        <SelectClub
-          setSelectClub={setSelectClub}
-          setMember={setMember}
-          selectedClub={selectedClub}
-          clubSummary={clubSummary}
-          label="Select Club"
-        />
-        <SelectMember setMember={setMember} member={member} plot={plot} />
-        <AllEmotionsFilter
-          showAll={showAll}
-          setShowAll={setShowAll}
-        ></AllEmotionsFilter>
+      <Section
+        height="50px"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexWrap: 'wrap',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <SelectClub
+            setSelectClub={setSelectClub}
+            setMember={setMember}
+            selectedClub={selectedClub}
+            clubSummary={clubSummary}
+            label="Select Club"
+          />
+          <SelectMember setMember={setMember} member={member} plot={plot} />
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            alignSelf: 'flex-start',
+            marginBottom: '2vh',
+            marginLeft: '1vh',
+          }}
+        >
+          <AllEmotionsFilter
+            showAll={showAll}
+            setShowAll={setShowAll}
+          ></AllEmotionsFilter>
+          <ChartType setChartType={setChartType} />
+        </div>
       </Section>
       <Section>
         <div ref={plotRef}>
@@ -177,7 +197,6 @@ export const ChartByMember = ({
           )}
         </div>
       </Section>
-      {/* <ChartType setChartType={setChartType} /> */}
     </ChartTemplate>
   );
 };
