@@ -87,6 +87,14 @@ function RenderEmojiConfirmRedirect(props) {
         <div class="circleB"></div>
         <div class="circleC"></div>
         <div class="circleD"></div>
+        <div class="circleE"></div>
+        <div class="circleF"></div>
+        <div class="circleG"></div>
+        <div class="circleH"></div>
+        <div class="circleI"></div>
+        <div class="circleJ"></div>
+        <div class="circleK"></div>
+        <div class="circleL"></div>
       </StyledEmojiConfirmRedirect>
 
       {readyToGo ? <Redirect to="/scanner" /> : <></>}
