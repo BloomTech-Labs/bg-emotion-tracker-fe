@@ -29,6 +29,12 @@ function RenderMemberScanner(props) {
   const memberContext = useContext(MemberContext);
 
   const handleError = err => {
+    if (err.toString().search(/video source/i) >= 0) {
+      console.log(err);
+      setScanError(true);
+      setError('Camera Unavailable');
+      return;
+    }
     setScanError(true);
     setError(err);
   };
