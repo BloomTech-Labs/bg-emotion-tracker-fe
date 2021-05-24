@@ -107,6 +107,7 @@ function RenderEmojiSelectActivity(props) {
           >
             😁
           </button>
+
           <button
             className="emojiBtn"
             style={emojiStyles}
