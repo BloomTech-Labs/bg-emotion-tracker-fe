@@ -72,7 +72,7 @@ function ViewPrograms() {
 
   return (
     <LayoutContainer>
-      <NavBar titleName={'Programs'} backgroundColor="#293845" />
+      <NavBar titleName={'Manage Programs'} backgroundColor="#293845" />
       <StyledList>
         <StyledView>
           <PageHeader

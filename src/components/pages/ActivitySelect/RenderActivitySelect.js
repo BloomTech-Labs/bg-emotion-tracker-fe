@@ -50,7 +50,7 @@ function RenderActivitySelect(props) {
 
   return (
     <LayoutContainer>
-      <NavBar titleName="Dashboard" backgroundColor="#293845" />
+      <NavBar backgroundColor="#293845" />
 
       <Link to="/YDPDashboard">
         <BackButton buttonText="Change Club" classType="primary" />

@@ -17,7 +17,7 @@ const StyledHomePage = styled.header`
 function RenderHomePage() {
   return (
     <LayoutContainer>
-      <NavBar titleName="Dashboard" backgroundColor="#293845" />
+      <NavBar backgroundColor="#293845" />
       <StyledHomePage>
         <h2>You don't have access to that page.</h2>
       </StyledHomePage>
