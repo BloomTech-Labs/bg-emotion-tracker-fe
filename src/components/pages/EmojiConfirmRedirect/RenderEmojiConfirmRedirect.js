@@ -11,7 +11,6 @@ import { emoji, EmojiContext, MemberContext } from '../../../state/contexts';
 const StyledEmojiConfirmRedirect = styled.header`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   width: 1200px;
   max-width: 90%;
   margin: 3rem auto;
