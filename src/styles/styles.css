@@ -23,6 +23,12 @@
   height: 100%;
 }
 /* PAGE specific styles */
+/* Admin Dashboard */
+.adminDashboardContent .ant-layout-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
 /* RenderMemberScanner */
 .errorText,
 .regularText {
@@ -84,6 +90,8 @@
   font-size: 5rem;
   opacity: 100%;
 }
+<<<<<<< HEAD
+=======
 .mainhamburger li {
   padding: 1.5vh;
   font-size: 1.3rem;
@@ -120,3 +128,4 @@
   transition: cubic-bezier(0.075, 0.82, 0.165, 1);
   animation-delay: 0.1s;
 }
+>>>>>>> refactor/scanner-page
