@@ -67,7 +67,7 @@ function ManualMemberInput(props) {
         >
           <Input
             className="memberIDInput"
-            placeholder="MEMBER ID"
+            placeholder="Member ID"
             onChange={onChange}
           />
         </Form.Item>

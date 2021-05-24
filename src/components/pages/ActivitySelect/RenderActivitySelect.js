@@ -10,6 +10,7 @@ import { ClubContext } from '../../../state/contexts';
 import { StyledBtn, BackButton } from '../../common';
 
 const StyledActivitySelect = styled.header`
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
