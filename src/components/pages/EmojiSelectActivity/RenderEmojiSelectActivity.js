@@ -141,7 +141,11 @@ function RenderEmojiSelectActivity(props) {
           </button>
         </StyledEmojis>
 
-        <StyledButton type="primary" onClick={onConfirm}>
+        <StyledButton
+          type="primary"
+          className="emojiConfirmBtn"
+          onClick={onConfirm}
+        >
           Confirm
         </StyledButton>
       </StyledEmojiSelectActivity>
