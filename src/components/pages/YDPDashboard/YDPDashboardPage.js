@@ -53,7 +53,7 @@ function RenderHomePage() {
   );
 
   return (
-    <LayoutContainer>
+    <LayoutContainer className="ydp">
       <NavBar titleName="YDP Dashboard" backgroundColor="#293845" />
       <StyledYDPPage>
         <h2 style={{ textAlign: 'center' }}>

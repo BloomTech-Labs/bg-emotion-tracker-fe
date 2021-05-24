@@ -94,7 +94,7 @@ function RenderEmojiSelectActivity(props) {
   };
 
   return (
-    <LayoutContainer>
+    <LayoutContainer className="ydp">
       <NavBar hideMenu />
       <StyledEmojiSelectActivity>
         {/* <h2>Select Emoji</h2> */}

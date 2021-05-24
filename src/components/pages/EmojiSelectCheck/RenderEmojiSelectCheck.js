@@ -94,7 +94,7 @@ function RenderEmojiSelectCheck(props) {
   };
 
   return (
-    <LayoutContainer>
+    <LayoutContainer className="ydp">
       <NavBar hideMenu />
       <StyledEmojiSelectCheck>
         {/* <h2>Select Emoji</h2> */}
