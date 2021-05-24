@@ -33,10 +33,15 @@ function RenderMemberScanner(props) {
   const memberContext = useContext(MemberContext);
 
   const handleError = err => {
+    console.log(err);
     if (err.toString().search(/video source/i) >= 0) {
-      console.log(err);
       setScanError(true);
       setError('Camera Unavailable');
+      return;
+    }
+    if (err.toString().search(/Permission denied/i) >= 0) {
+      setScanError(true);
+      setError('Camera Permission Denied');
       return;
     }
     setScanError(true);
