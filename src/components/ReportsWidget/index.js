@@ -8,6 +8,7 @@ import { SelectActivity } from './SelectActivity';
 import { SelectMember } from './SelectMember';
 import { ChartType } from './ChartType';
 import { ChartTemplate } from './ChartTemplate';
+import { Title } from './Title';
 
 export {
   AllEmotionsFilter,
@@ -20,4 +21,5 @@ export {
   SelectClub,
   SelectActivity,
   SelectMember,
+  Title,
 };

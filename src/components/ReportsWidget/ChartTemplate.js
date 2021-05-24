@@ -1,10 +1,9 @@
 import React from 'react';
 import { DateRangeSelector } from './DateRangeSelector';
-import { Typography } from 'antd';
 import styled from 'styled-components';
 import { Section } from '../common';
+import { Title } from './Title';
 
-const { Title } = Typography;
 const StyledTemplate = styled.section`
   display: flex;
   flex-direction: column;
@@ -17,7 +16,7 @@ export const ChartTemplate = ({ dateRange, setDateRange, title, children }) => {
   return (
     <StyledTemplate>
       <Section>
-        <Title level={2}>{title}</Title>
+        <Title>{title}</Title>
       </Section>
       <Section>
         <DateRangeSelector dateRange={dateRange} setDateRange={setDateRange} />
