@@ -20,6 +20,8 @@ const StyledNavBar = styled.header`
   margin: 0 auto;
   background-color: rgba(0, 129, 198, 1);
   text-align: center;
+  position: fixed;
+  top: 0;
   width: 100%;
   img,
   .menu-container {
