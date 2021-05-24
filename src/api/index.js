@@ -233,6 +233,29 @@ const postActivityData = (clubId, activityName) => {
 
   return dataPromise;
 };
+
+// Post new club
+const postClubData = clubName => {
+  let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
+
+  const promise = axios.post(
+    `https://bg-emotion-tracker-be-b.herokuapp.com/clubs/club/newClub`,
+    {
+      clubname: clubName,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${tokenObj.accessToken.accessToken}`,
+      },
+    }
+  );
+
+  const dataPromise = promise.then(response => {
+    return response.data;
+  });
+
+  return dataPromise;
+};
 export {
   sleep,
   getClubsData,
@@ -245,5 +268,6 @@ export {
   postActivityData,
   getMembersData,
   postMemberData,
+  postClubData,
   baseUrl,
 };

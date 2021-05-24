@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Modal, Button, Alert } from 'antd';
+import { postClub } from '../../../../state/actions';
 import ClubTable from './ClubTable';
 import AddIndividual from './AddIndividual';
 
 const ImportModal = props => {
+  const { fetchClubs } = props;
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [alertData, setAlertData] = useState({
     isVisable: false,
@@ -20,8 +22,18 @@ const ImportModal = props => {
   };
 
   const handleOk = () => {
+    // Send data to backend
+    if (inputData.individual.length > 0) {
+      inputData.individual.forEach(item => {
+        console.log(item);
+        postClub(item);
+      });
+    }
     setIsModalVisible(false);
     clearState();
+    setTimeout(() => {
+      fetchClubs();
+    }, 2000);
   };
 
   const handleCancel = () => {

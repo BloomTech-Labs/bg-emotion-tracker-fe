@@ -18,6 +18,10 @@ const StyledMemberScanner = styled.header`
   margin-right: 30%;
   flex-direction: column;
   text-align: center;
+  @media (min-width: 1240px) {
+    margin-left: 38%;
+    margin-right: 38%;
+  }
 `;
 
 function RenderMemberScanner(props) {
@@ -62,7 +66,7 @@ function RenderMemberScanner(props) {
 
   return (
     <LayoutContainer>
-      <NavBar titleName="Dashboard" backgroundColor="#293845" />
+      <NavBar backgroundColor="#293845" />
 
       <Link to="/activity-select">
         <BackButton buttonText="Change Activity" classType="primary" />
