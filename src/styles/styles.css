@@ -19,6 +19,9 @@
   height: 100%;
 }
 .layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
   height: 100%;
 }
@@ -90,8 +93,6 @@
   font-size: 5rem;
   opacity: 100%;
 }
-<<<<<<< HEAD
-=======
 .mainhamburger li {
   padding: 1.5vh;
   font-size: 1.3rem;
@@ -128,4 +129,3 @@
   transition: cubic-bezier(0.075, 0.82, 0.165, 1);
   animation-delay: 0.1s;
 }
->>>>>>> refactor/scanner-page
