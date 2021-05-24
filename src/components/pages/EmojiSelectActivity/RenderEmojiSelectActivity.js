@@ -97,9 +97,7 @@ function RenderEmojiSelectActivity(props) {
     <LayoutContainer>
       <NavBar hideMenu />
       <StyledEmojiSelectActivity>
-        <h2>Select Emoji</h2>
-        {/* <Divider orientation="left">***</Divider> */}
-
+        {/* <h2>Select Emoji</h2> */}
         <StyledEmojis>
           <button
             className="emojiBtn"
