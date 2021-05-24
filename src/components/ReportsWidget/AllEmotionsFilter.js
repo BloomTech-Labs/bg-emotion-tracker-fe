@@ -2,7 +2,9 @@ import React from 'react';
 
 export const AllEmotionsFilter = ({ showAll, setShowAll }) => {
   return (
-    <div style={{ display: 'flex', marginTop: '1vh' }}>
+    <div
+      style={{ display: 'flex', marginTop: '0.2em', alignSelf: 'flex-start' }}
+    >
       <label
         style={{
           marginLeft: '1vh',
@@ -13,7 +15,7 @@ export const AllEmotionsFilter = ({ showAll, setShowAll }) => {
         Show All Emotions
         <input
           type="checkbox"
-          style={{ width: '1.5vh', height: '1.5vh' }}
+          style={{ width: '1.5vh', height: '1.5vh', marginLeft: '0.6vh' }}
           checked={showAll}
           onChange={e => {
             setShowAll(e.target.checked);

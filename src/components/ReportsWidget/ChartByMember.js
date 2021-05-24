@@ -8,6 +8,7 @@ import { SelectMember } from './SelectMember';
 import { ChartType } from './ChartType';
 import { ChartTemplate } from './ChartTemplate';
 import { Section } from '../common';
+import { AllEmotionsFilter } from './AllEmotionsFilter';
 
 const { Title } = Typography;
 
@@ -135,7 +136,7 @@ export const ChartByMember = ({
       clubSummary={clubSummary}
       plotRef={plotRef}
     >
-      <Section height="50px">
+      <Section height="50px" style={{ display: 'flex', alignItems: 'center' }}>
         <SelectClub
           setSelectClub={setSelectClub}
           setMember={setMember}
@@ -144,6 +145,10 @@ export const ChartByMember = ({
           label="Select Club"
         />
         <SelectMember setMember={setMember} member={member} plot={plot} />
+        <AllEmotionsFilter
+          showAll={showAll}
+          setShowAll={setShowAll}
+        ></AllEmotionsFilter>
       </Section>
       <Section>
         <div ref={plotRef}>
