@@ -16,6 +16,10 @@ const StyledEmojiConfirmRedirect = styled.header`
   max-width: 90%;
   margin: 3rem auto;
   text-align: center;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* position: relative; */
 `;
 
 const StyledEmojis = styled.div`
@@ -75,10 +79,16 @@ function RenderEmojiConfirmRedirect(props) {
   return (
     <LayoutContainer>
       <NavBar hideMenu />
-      <StyledEmojiConfirmRedirect>
-        <h2 className="fade-in-image">Success!</h2>
-        <div className="fade-in-image">{state}</div>
+
+      <StyledEmojiConfirmRedirect className="fade-in-image">
+        {/* <h2>Success!</h2> */}
+        <div className="item">{state}</div>
+        <div class="circleA"></div>
+        <div class="circleB"></div>
+        <div class="circleC"></div>
+        <div class="circleD"></div>
       </StyledEmojiConfirmRedirect>
+
       {readyToGo ? <Redirect to="/scanner" /> : <></>}
     </LayoutContainer>
   );
