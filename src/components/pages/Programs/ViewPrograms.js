@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ImportPrograms } from './ImportPrograms';
-import { ProgramContext } from '../../../state/contexts';
+import { AdminContext } from '../../../state/contexts';
 import { getActivities } from '../../../state/actions';
 import { PageHeader, Table } from 'antd';
 import styled from 'styled-components';
@@ -38,7 +38,7 @@ const StyledView = styled.header`
 `;
 function ViewPrograms() {
   const [tableData, setTableData] = useState(sampleTableData);
-  const context = useContext(ProgramContext);
+  const context = useContext(AdminContext);
   // Get activities and set to context
   useEffect(() => {
     fetchActivities();
