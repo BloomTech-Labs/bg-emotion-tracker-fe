@@ -128,6 +128,27 @@ const getClubData = id => {
   return dataPromise;
 };
 
+// Get Activities data
+const getActivityData = () => {
+  let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
+
+  const promise = axios.get(
+    `https://bg-emotion-tracker-be-b.herokuapp.com/clubs/clubs`,
+    {
+      headers: {
+        Authorization: `Bearer ${tokenObj.accessToken.accessToken}`,
+      },
+    }
+  );
+
+  const dataPromise = promise.then(response => {
+    return response.data;
+  });
+
+  return dataPromise;
+};
+
+// get member by id
 const getMemberData = id => {
   let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
 
@@ -147,12 +168,35 @@ const getMemberData = id => {
   return dataPromise;
 };
 
-// Get Activities data
-const getActivityData = () => {
+// Get all members
+const getMembersData = () => {
   let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
 
   const promise = axios.get(
-    `https://bg-emotion-tracker-be-b.herokuapp.com/clubs/clubs`,
+    `https://bg-emotion-tracker-be-b.herokuapp.com/members/members`,
+    {
+      headers: {
+        Authorization: `Bearer ${tokenObj.accessToken.accessToken}`,
+      },
+    }
+  );
+
+  const dataPromise = promise.then(response => {
+    return response.data;
+  });
+
+  return dataPromise;
+};
+
+// add member
+const postMemberData = member => {
+  let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
+
+  const promise = axios.post(
+    `https://bg-emotion-tracker-be-b.herokuapp.com/members/member`,
+    {
+      memberid: member,
+    },
     {
       headers: {
         Authorization: `Bearer ${tokenObj.accessToken.accessToken}`,
@@ -199,5 +243,7 @@ export {
   getDSData,
   getActivityData,
   postActivityData,
+  getMembersData,
+  postMemberData,
   baseUrl,
 };
