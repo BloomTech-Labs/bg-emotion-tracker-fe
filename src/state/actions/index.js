@@ -7,6 +7,7 @@ import {
   getProfileData,
   getClubsData,
   getClubData,
+  postClubData,
   getMemberData,
   getActivityData,
   postActivityData,
@@ -52,6 +53,16 @@ export const getClub = async (id, context) => {
   await getClubData(id)
     .then(res => {
       context.setClub(res);
+    })
+    .catch(error => {
+      return error;
+    });
+};
+
+export const postClub = async clubName => {
+  await postClubData(clubName)
+    .then(res => {
+      console.log('post club' + res);
     })
     .catch(error => {
       return error;
