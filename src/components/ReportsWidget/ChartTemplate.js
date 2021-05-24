@@ -13,7 +13,7 @@ export const ChartTemplate = ({ dateRange, setDateRange, title, children }) => {
   return (
     <StyledTemplate>
       <Section>
-        <Title>{title}</Title>
+        <Title margin="foo">{title}</Title>
       </Section>
       <Section>
         <DateRangeSelector dateRange={dateRange} setDateRange={setDateRange} />

@@ -8,6 +8,7 @@ const Styled = styled(Text)`
   font-size: 2rem;
   font-weight: 500;
   color: rgba(0, 129, 198, 1);
+  margin: ${props => props.margin || '40px 0 20px'};
 `;
 export const Title = ({ children }) => {
   return <Styled>{children}</Styled>;

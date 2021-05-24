@@ -173,28 +173,27 @@ export const ChartByActivity = ({
         />
       </Section>
       <Section>
-        <div style={{ width: '50vh', alignSelf: 'center' }} ref={plotRef}>
-          {console.log(plot)}
+        <div ref={plotRef}>
           {chartType == 1 ? (
             <Plot
-              data={[barToPie(plot[member * 1])]}
+              data={[barToPie(plot[clubActivity * 1])]}
               layout={{
                 autosize: true,
                 font: {
                   size: '20',
                 },
-                title: plot[member * 1]?.label,
+                title: plot[clubActivity * 1]?.label,
               }}
             />
           ) : (
             <Plot
-              data={[plot[member * 1]]}
+              data={[plot[clubActivity * 1]]}
               layout={{
                 autosize: true,
                 font: {
                   size: '20',
                 },
-                title: plot[member * 1]?.label,
+                title: plot[clubActivity * 1]?.label,
               }}
             />
           )}

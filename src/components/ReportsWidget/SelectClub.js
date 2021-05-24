@@ -21,7 +21,7 @@ export const SelectClub = ({ setSelectClub, clubSummary, label }) => {
               onChange={value => {
                 setSelectClub(value);
               }}
-              style={{ width: '200px' }}
+              style={{ width: '140px' }}
             >
               {clubSummary.map((i, ind) => (
                 <Select.Option value={i.clubid} key={i + ind}>

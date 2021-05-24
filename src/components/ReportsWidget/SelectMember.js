@@ -19,7 +19,7 @@ export const SelectMember = ({ setMember, member, plot }) => {
               onChange={value => {
                 setMember(value);
               }}
-              style={{ width: '200px' }}
+              style={{ width: '140px' }}
             >
               {plot.map((i, ind) => (
                 <Select.Option value={ind} key={i + ind}>
