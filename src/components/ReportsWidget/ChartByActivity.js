@@ -153,7 +153,7 @@ export const ChartByActivity = ({
       clubSummary={clubSummary}
       plotRef={plotRef}
     >
-      <Section>
+      <Section height="50px" style={{ display: 'flex', alignItems: 'center' }}>
         <SelectClub
           setSelectClub={setSelectClub}
           setMember={setMember}
@@ -171,6 +171,9 @@ export const ChartByActivity = ({
           chartType={chartType}
           Plot={Plot}
         />
+        <div style={{ marginBottom: '2vh' }}>
+          <ChartType setChartType={setChartType} />
+        </div>
       </Section>
       <Section>
         <div ref={plotRef}>

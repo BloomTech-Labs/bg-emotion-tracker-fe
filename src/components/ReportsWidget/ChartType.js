@@ -2,7 +2,7 @@ import React from 'react';
 
 export const ChartType = ({ setChartType }) => {
   return (
-    <div>
+    <div style={{ alignSelf: 'flex-start' }}>
       <label style={{ padding: '1vh' }}>
         Chart Type
         <select
