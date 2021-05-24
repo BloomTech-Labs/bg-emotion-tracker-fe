@@ -27,11 +27,10 @@ const StyledNavBar = styled.header`
   }
   .menu-container {
     text-align: left;
-    width: 109px;
+    width: 10vh;
   }
   img {
-    height: 60px;
-    width: auto;
+    height: 6vh;
   }
   h1 {
     color: white;
@@ -40,13 +39,14 @@ const StyledNavBar = styled.header`
 `;
 
 function NavBar(props) {
-  const { userInfo, authService } = props;
+  const { hideMenu } = props;
   const context = useContext(UserContext);
+  const history = useHistory();
+
   let role = context.user.roles && context.user.roles[0].role.name;
-  console.log(role);
 
   const menu = (
-    <Menu>
+    <Menu className="mainhamburger">
       <Menu.Item
         key="1"
         icon={<LineChartOutlined />}
@@ -99,17 +99,22 @@ function NavBar(props) {
       </Menu.Item>
     </Menu>
   );
-  const history = useHistory();
+
   return (
     <>
       <StyledNavBar backgroundColor={props.backgroundColor}>
-        <div className="menu-container">
-          <Dropdown overlay={menu}>
-            <Button type="text" style={{ color: 'white', fontSize: '32px' }}>
-              <MenuOutlined />
-            </Button>
-          </Dropdown>
-        </div>
+        {!hideMenu && (
+          <div className="menu-container">
+            <Dropdown overlay={menu} trigger={['click']}>
+              <Button
+                type="text"
+                style={{ color: 'white', fontSize: '2.4rem' }}
+              >
+                <MenuOutlined />
+              </Button>
+            </Dropdown>
+          </div>
+        )}
         <h1>{props.titleName}</h1>
         <img src={logo} alt="Boys & Girls Club of Greater Conejo Valley" />
       </StyledNavBar>

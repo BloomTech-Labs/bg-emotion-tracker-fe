@@ -29,35 +29,19 @@ export const UserContextProvider = props => {
   );
 };
 
-// program context
-export const ProgramContext = createContext({
-  programs: [],
-  activity: {},
-  loading: false,
-  error: false,
-  message: '',
-  setPrograms: () => [],
-});
+// Admin Context
+export const AdminContext = createContext();
 
-export const ProgramContextProvider = props => {
-  const setPrograms = programs => {
-    setState({ ...state, programs: programs });
-  };
-
-  const initState = {
-    setPrograms: setPrograms,
-    programs: [],
-    loading: false,
-    error: false,
-    message: '',
-  };
-
-  const [state, setState] = useState(initState);
+export const AdminContextProvider = ({ children }) => {
+  const [members, setMembers] = useState([]);
+  const [programs, setPrograms] = useState([]);
 
   return (
-    <ProgramContext.Provider value={state}>
-      {props.children}
-    </ProgramContext.Provider>
+    <AdminContext.Provider
+      value={{ members, setMembers, programs, setPrograms }}
+    >
+      {children}
+    </AdminContext.Provider>
   );
 };
 
@@ -155,29 +139,44 @@ export const ClubContextProvider = props => {
 
 // Member Context
 
-export const MemberContext = createContext({
-  member: {},
+export const MemberContext = createContext();
+
+export const MemberContextProvider = ({ children }) => {
+  const [id, setId] = useState('');
+  const [exists, setExists] = useState('');
+
+  return (
+    <MemberContext.Provider value={{ id, setId, exists, setExists }}>
+      {children}
+    </MemberContext.Provider>
+  );
+};
+
+// Emoji Context
+
+export const EmojiContext = createContext({
+  emoji: '',
   loading: false,
   error: false,
   message: '',
-  setMember: () => {},
+  setEmoji: () => '',
 });
 
-export const MemberContextProvider = props => {
-  const setMember = member => {
-    setState({ ...state, member });
+export const EmojiContextProvider = props => {
+  const setEmoji = emoji => {
+    setState({ ...state, emoji });
   };
 
   const initState = {
-    member: {},
-    setMember,
+    emoji: {},
+    setEmoji,
   };
 
   const [state, setState] = useState(initState);
 
   return (
-    <MemberContext.Provider value={state}>
+    <EmojiContext.Provider value={state}>
       {props.children}
-    </MemberContext.Provider>
+    </EmojiContext.Provider>
   );
 };

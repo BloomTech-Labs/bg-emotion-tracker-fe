@@ -1,67 +1,55 @@
-import React, { useState, useContext } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import React, { useState, useContext, useEffect } from 'react';
+import { Link, useHistory, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { QRCodeReader } from '../QRCodeReader';
 import ManualMemberInput from './ManualMemberInput';
-import { Button } from 'antd';
-import { LayoutContainer } from '../../common';
-import { MemberContext } from '../../../state/contexts/index';
+import { LayoutContainer, BackButton } from '../../common';
+import { getMember } from '../../../state/actions';
+import { Typography } from 'antd';
+import { ActivityContext, MemberContext } from '../../../state/contexts/index';
+
+const { Title } = Typography;
+const { Text } = Typography;
 
 const StyledMemberScanner = styled.header`
   display: flex;
-  margin-left: 25%;
-  margin-right: 25%;
-  flex-direction: column;
-  /* width: 800px; */
-  /* max-width: 90%; */
-  /* margin: 3rem auto; */
-`;
-
-const StyledLink = styled(Link)`
-  text-align: center;
-  justify-content: center;
-  align-content: center;
-`;
-
-const StyledCenterB = styled(Link)`
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-  justify-content: center;
-  align-content: center;
-`;
-
-const StyledCenterA = styled(Link)`
-  display: flex;
+  margin-left: 30%;
+  margin-right: 30%;
   flex-direction: column;
   text-align: center;
-  justify-content: center;
-  align-content: center;
-`;
-
-const StyledButton = styled(Button)`
-  background-color: 293845;
-  width: auto;
-  text-align: center;
-  justify-content: center;
-  align-content: center;
-  margin: 10px auto;
 `;
 
 function RenderMemberScanner(props) {
   const [scanStatus, setScanStatus] = useState(false);
   const [scanError, setScanError] = useState(false);
-
+  const [error, setError] = useState('Internal Server Error.');
+  const [checkValid, setCheckValid] = useState(false);
+  const activityContext = useContext(ActivityContext); //the act context
   const memberContext = useContext(MemberContext);
 
   const handleError = err => {
     setScanError(true);
+    setError(err);
   };
+
+  useEffect(() => {
+    memberContext.setExists('');
+  }, []);
+
+  useEffect(() => {
+    if (memberContext.exists === true) {
+      setCheckValid(true);
+    } else if (memberContext.exists === false) {
+      handleError('This member does not exist.');
+    }
+  }, [memberContext.exists]);
 
   const handleScan = data => {
     if (data) {
-      memberContext.setMemberId({ memberId: data });
+      getMember(data, memberContext);
+
+      memberContext.setId(data);
       setScanStatus(true);
     }
   };
@@ -70,30 +58,38 @@ function RenderMemberScanner(props) {
     <LayoutContainer>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
 
-      {/* <StyledCenterA> */}
-
-      <StyledLink to="/activity-select">
-        <StyledButton size="large" type="primary">
-          Choose Activity
-        </StyledButton>
-      </StyledLink>
+      <Link to="/activity-select">
+        <BackButton buttonText="Change Activity" classType="primary" />
+      </Link>
 
       <StyledMemberScanner>
-        <h2>Scanner</h2>
         <QRCodeReader handleScan={handleScan} handleError={handleError} />
-        {scanStatus ? <p>Scan successful</p> : <p>Not scanned yet</p>}
-        {scanError ? <p>Some error happens</p> : null}
-        {scanStatus ? (
-          <Redirect
-            to={{
-              pathname: '/emoji-selectcheck',
-            }}
-          />
-        ) : null}
-        <ManualMemberInput setScanStatus={setScanStatus} />
+        {scanError ? (
+          <Text className="errorText" type="danger">
+            {error}
+          </Text>
+        ) : (
+          <Text style={{ height: '21px' }}></Text>
+        )}
+        {(() => {
+          if (memberContext.id && memberContext.exists && scanStatus) {
+            if (checkValid) {
+              if (
+                activityContext.activity.activityname === 'Club Attendance' ||
+                activityContext.activity.activityname === 'Club Checkout'
+              ) {
+                return <Redirect to="/emoji-selectcheck" />;
+              } else {
+                return <Redirect to="/emoji-selectactivity" />;
+              }
+            }
+          }
+        })()}
+        <ManualMemberInput
+          handleError={handleError}
+          setScanStatus={setScanStatus}
+        />
       </StyledMemberScanner>
-
-      {/* </StyledCenterA> */}
     </LayoutContainer>
   );
 }

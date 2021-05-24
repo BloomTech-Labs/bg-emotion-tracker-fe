@@ -3,7 +3,16 @@
 // Actions should be focused to a single purpose.
 // You can have multiple action creators per file if it makes sense to the purpose those action creators are serving.
 // Declare action TYPES at the top of the file
-import { getProfileData, getClubsData, getClubData } from '../../api';
+import {
+  getProfileData,
+  getClubsData,
+  getClubData,
+  getMemberData,
+  getActivityData,
+  postActivityData,
+  getMembersData,
+  postMemberData,
+} from '../../api';
 
 export const SET_USER = 'SET_USER';
 export const SET_ERROR = 'SET_ERROR';
@@ -42,6 +51,58 @@ export const getClub = async (id, context) => {
   await getClubData(id)
     .then(res => {
       context.setClub(res);
+    })
+    .catch(error => {
+      return error;
+    });
+};
+
+export const getMember = async (id, context) => {
+  await getMemberData(id)
+    .then(res => {
+      context.setId(id);
+      context.setExists(res);
+    })
+    .catch(error => {
+      return error;
+    });
+};
+
+export const getMembers = async context => {
+  await getMembersData()
+    .then(res => {
+      context.setMembers(res);
+    })
+    .catch(error => {
+      return error;
+    });
+};
+
+export const getActivities = async context => {
+  await getActivityData()
+    .then(res => {
+      console.log(res);
+      context.setPrograms(res);
+    })
+    .catch(error => {
+      return error;
+    });
+};
+
+export const postActivity = async (clubId, activityName) => {
+  await postActivityData(clubId, activityName)
+    .then(res => {
+      console.log('Post activity: ' + res);
+    })
+    .catch(error => {
+      return error;
+    });
+};
+
+export const postMember = async member => {
+  await postMemberData(member)
+    .then(res => {
+      console.log('Post member: ' + res);
     })
     .catch(error => {
       return error;

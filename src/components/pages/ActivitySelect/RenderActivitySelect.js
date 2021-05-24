@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
@@ -7,6 +7,7 @@ import { DownOutlined } from '@ant-design/icons';
 import { LayoutContainer } from '../../common';
 import { ActivityContext } from '../../../state/contexts/index';
 import { ClubContext } from '../../../state/contexts';
+import { StyledBtn, BackButton } from '../../common';
 
 const StyledActivitySelect = styled.header`
   display: flex;
@@ -17,29 +18,23 @@ const StyledActivitySelect = styled.header`
   max-width: 90%;
   margin: 3rem auto;
   text-align: center;
-`;
-
-const StyledLink = styled(Link)`
-  text-align: center;
-`;
-
-const StyledButton = styled(Button)`
-  background-color: 293845;
-  width: 200px;
-  text-align: center;
-  margin: 20px auto;
+  font-size: 3rem;
 `;
 
 function RenderActivitySelect(props) {
   const activityContext = useContext(ActivityContext);
   const { club } = useContext(ClubContext);
+  const [disabledBtn, setDisabledBtn] = useState(true);
+  const [dropDownName, setDropDownName] = useState('');
 
   const selectActivity = (e, item) => {
     activityContext.setActivity(item);
+    setDropDownName(item.activityname);
+    setDisabledBtn(false);
   };
 
   const menu = (
-    <Menu>
+    <Menu className="ydp-selection-dropdowns ">
       {club.activities &&
         club.activities.map(item => (
           <Menu.Item
@@ -55,26 +50,20 @@ function RenderActivitySelect(props) {
   return (
     <LayoutContainer>
       <NavBar titleName="Dashboard" backgroundColor="#293845" />
-      <StyledActivitySelect>
-        <h2>Select Activity</h2>
 
+      <Link to="/YDPDashboard">
+        <BackButton buttonText="Change Club" classType="primary" />
+      </Link>
+
+      <StyledActivitySelect>
         <h2 style={{ textAlign: 'center' }}>
           <Dropdown overlay={menu} trigger={['click']}>
             <a className="ant-dropdown-link">
-              Activity <DownOutlined />
+              {dropDownName ? dropDownName : 'Select Activity'} <DownOutlined />
             </a>
           </Dropdown>
         </h2>
-        <h2 className="dropdownSelected">
-          {activityContext.activity && activityContext.activity.activityname}
-        </h2>
-        <StyledButton
-          size="large"
-          type="primary"
-          onClick={e => e.preventDefault()}
-        >
-          <StyledLink to="/scanner">Confirm</StyledLink>
-        </StyledButton>
+        <StyledBtn label="Confirm" path="/scanner" isDisabled={disabledBtn} />
       </StyledActivitySelect>
     </LayoutContainer>
   );

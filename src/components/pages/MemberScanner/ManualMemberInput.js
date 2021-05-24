@@ -1,6 +1,7 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Form, Input, Button } from 'antd';
 import { MemberContext } from '../../../state/contexts/index';
+import { getMember } from '../../../state/actions';
 
 const layout = {
   // wrapperCol: {
@@ -15,16 +16,30 @@ const tailLayout = {
 };
 
 function ManualMemberInput(props) {
-  const { setScanStatus } = props;
+  const { setScanStatus, handleError } = props;
   const memberContext = useContext(MemberContext);
+  const [memberId, setMemberId] = useState('');
+  const [form] = Form.useForm();
 
-  const onFinish = values => {
-    memberContext.setMember(values);
-    setScanStatus(true);
+  useEffect(() => {
+    if (memberContext.exists === true) {
+      memberContext.setId(memberId);
+      setScanStatus(true);
+    } else if (memberContext.exists === false) {
+      handleError('This member does not exist.');
+    }
+  }, [memberContext.exists]);
+
+  const onFinish = async values => {
+    await getMember(values.memberId, memberContext);
   };
 
   const onFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo);
+  };
+
+  const onChange = e => {
+    setMemberId(e.target.value);
   };
 
   return (
@@ -38,17 +53,26 @@ function ManualMemberInput(props) {
         }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
+        className="manualMemberInput"
       >
         <Form.Item
-          label="Member ID"
+          style={{ height: '100px' }}
           name="memberId"
-          rules={[{ required: false, message: 'Please a valid user id' }]}
-          style={{ 'margin-bottom': '2rem' }}
+          rules={[
+            {
+              required: true,
+              message: 'Please input a Member ID',
+            },
+          ]}
         >
-          <Input />
+          <Input
+            className="memberIDInput"
+            placeholder="MEMBER ID"
+            onChange={onChange}
+          />
         </Form.Item>
         <Form.Item {...tailLayout}>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" className="scannerBtn" htmlType="submit">
             Submit
           </Button>
         </Form.Item>

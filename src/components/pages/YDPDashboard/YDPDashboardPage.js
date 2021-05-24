@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { Menu, Dropdown, Button } from 'antd';
@@ -7,6 +6,7 @@ import { DownOutlined } from '@ant-design/icons';
 import { LayoutContainer } from '../../common';
 import { ClubsContext, ClubContext } from '../../../state/contexts/index';
 import { getClub } from '../../../state/actions';
+import { StyledBtn } from '../../common';
 
 const StyledYDPPage = styled.header`
   display: flex;
@@ -16,36 +16,34 @@ const StyledYDPPage = styled.header`
   max-width: 90%;
   margin: 3rem auto;
   text-align: center;
-`;
-
-const StyledLink = styled(Link)`
-  text-align: center;
-`;
-
-const StyledButton = styled(Button)`
-  background-color: 293845;
-  width: 200px;
-  text-align: center;
-  margin: 20px auto;
+  font-size: 3rem !important;
 `;
 
 function RenderHomePage() {
   const clubsContext = useContext(ClubsContext);
   const clubContext = useContext(ClubContext);
+  const [disabledBtn, setDisabledBtn] = useState(true);
+  const [dropDownName, setDropDownName] = useState('');
+
+  useEffect(() => {
+    // console.log('club: ', clubContext.club.clubname);
+    // if (!clubContext.club.clubname) {
+    //   setDisabledBtn(true);
+    // }
+  }, []);
 
   const onClick = e => {
     e.preventDefault();
-    console.log(clubContext);
   };
 
   const selectClub = (e, item) => {
     getClub(item.clubid, clubContext);
-    // setActivity(item);
-    // api call to backend
+    setDropDownName(item.clubname);
+    setDisabledBtn(false);
   };
 
   const menu = (
-    <Menu>
+    <Menu className="ydp-selection-dropdowns">
       {clubsContext.clubs.map(item => (
         <Menu.Item key={item.clubid} onClick={e => selectClub(e, item)}>
           {item.clubname}
@@ -56,22 +54,23 @@ function RenderHomePage() {
 
   return (
     <LayoutContainer>
-      <NavBar titleName="Dashboard" backgroundColor="#293845" />
+      <NavBar titleName="YDP Dashboard" backgroundColor="#293845" />
       <StyledYDPPage>
-        <h2 style={{ textAlign: 'center' }}>Select Club</h2>
         <h2 style={{ textAlign: 'center' }}>
           <Dropdown overlay={menu} trigger={['click']}>
             <a className="ant-dropdown-link">
-              Clubs <DownOutlined />
+              {dropDownName ? dropDownName : 'Select Club'} <DownOutlined />
             </a>
           </Dropdown>
         </h2>
-        <h2 className="dropdownSelected">
-          {clubContext.club && clubContext.club.clubname}
-        </h2>
-        <StyledButton size="large" type="primary" onClick={onClick}>
-          <StyledLink to="/activity-select">Confirm</StyledLink>
-        </StyledButton>
+
+        <StyledBtn
+          label="Confirm"
+          onClick={onClick}
+          path="/activity-select"
+          isDisabled={disabledBtn}
+          // isDisabled={clubContext.club.clubname}
+        />
       </StyledYDPPage>
     </LayoutContainer>
   );
