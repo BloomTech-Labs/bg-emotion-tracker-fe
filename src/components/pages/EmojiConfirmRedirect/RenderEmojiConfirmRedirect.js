@@ -76,8 +76,8 @@ function RenderEmojiConfirmRedirect(props) {
     <LayoutContainer>
       <NavBar hideMenu />
       <StyledEmojiConfirmRedirect>
-        <h2>Success!</h2>
-        {state}
+        <h2 className="fade-in-image">Success!</h2>
+        <div className="fade-in-image">{state}</div>
       </StyledEmojiConfirmRedirect>
       {readyToGo ? <Redirect to="/scanner" /> : <></>}
     </LayoutContainer>
