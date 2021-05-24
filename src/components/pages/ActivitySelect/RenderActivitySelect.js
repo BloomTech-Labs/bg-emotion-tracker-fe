@@ -17,6 +17,7 @@ const StyledActivitySelect = styled.header`
   width: 1200px;
   max-width: 90%;
   margin: 3rem auto;
+  margin-top: 15%;
   text-align: center;
   font-size: 3rem;
 `;
@@ -48,8 +49,8 @@ function RenderActivitySelect(props) {
   );
 
   return (
-    <LayoutContainer>
-      <NavBar titleName="Dashboard" backgroundColor="#293845" />
+    <LayoutContainer className="ydp">
+      <NavBar backgroundColor="#293845" />
 
       <Link to="/YDPDashboard">
         <BackButton buttonText="Change Club" classType="primary" />

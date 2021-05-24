@@ -94,12 +94,10 @@ function RenderEmojiSelectActivity(props) {
   };
 
   return (
-    <LayoutContainer>
+    <LayoutContainer className="ydp">
       <NavBar hideMenu />
       <StyledEmojiSelectActivity>
-        <h2>Select Emoji</h2>
-        {/* <Divider orientation="left">***</Divider> */}
-
+        {/* <h2>Select Emoji</h2> */}
         <StyledEmojis>
           <button
             className="emojiBtn"
@@ -109,6 +107,7 @@ function RenderEmojiSelectActivity(props) {
           >
             😁
           </button>
+
           <button
             className="emojiBtn"
             style={emojiStyles}
@@ -143,7 +142,11 @@ function RenderEmojiSelectActivity(props) {
           </button>
         </StyledEmojis>
 
-        <StyledButton type="primary" onClick={onConfirm}>
+        <StyledButton
+          type="primary"
+          className="emojiConfirmBtn"
+          onClick={onConfirm}
+        >
           Confirm
         </StyledButton>
       </StyledEmojiSelectActivity>

@@ -15,6 +15,8 @@ const StyledYDPPage = styled.header`
   width: 1200px;
   max-width: 90%;
   margin: 3rem auto;
+  margin-top: 15%;
+
   text-align: center;
   font-size: 3rem !important;
 `;
@@ -53,7 +55,7 @@ function RenderHomePage() {
   );
 
   return (
-    <LayoutContainer>
+    <LayoutContainer className="ydp">
       <NavBar titleName="YDP Dashboard" backgroundColor="#293845" />
       <StyledYDPPage>
         <h2 style={{ textAlign: 'center' }}>

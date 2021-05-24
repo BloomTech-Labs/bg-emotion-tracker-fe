@@ -94,12 +94,10 @@ function RenderEmojiSelectCheck(props) {
   };
 
   return (
-    <LayoutContainer>
+    <LayoutContainer className="ydp">
       <NavBar hideMenu />
       <StyledEmojiSelectCheck>
-        <h2>Select Emoji</h2>
-        {/* <Divider orientation="left">***</Divider> */}
-
+        {/* <h2>Select Emoji</h2> */}
         <StyledEmojis>
           <button
             className="emojiBtn"
@@ -266,7 +264,11 @@ function RenderEmojiSelectCheck(props) {
           </button>
         </StyledEmojis>
 
-        <StyledButton type="primary" onClick={onConfirm}>
+        <StyledButton
+          type="primary"
+          className="emojiConfirmBtn"
+          onClick={onConfirm}
+        >
           Confirm
         </StyledButton>
       </StyledEmojiSelectCheck>

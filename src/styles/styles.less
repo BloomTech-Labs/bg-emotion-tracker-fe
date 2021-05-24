@@ -23,11 +23,27 @@
 }
 
 .layout {
+
   width: 100%;
   height: 100%;
+
+  .ypd {
+    margin-top: 103px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+  }
 }
 
 /* PAGE specific styles */
+
+/* Admin Dashboard */
+.adminDashboardContent .ant-layout-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
 
 /* RenderMemberScanner */
 .errorText,
@@ -90,24 +106,49 @@
 /* eof COMPONENT specific styles */
 
 .emojiBtn {
-  // border: 1px solid #ffffff;
-  // background-color: transparent;
   height: 100px;
   width: 100px;
   color: #000000;
   font-size: 4rem;
   opacity: 100%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .emojiBtn:hover {
-  // border: 1px solid #ffffff;
-  // background-color: transparent;
-  height: 115px;
-  width: 110px;
-  color: #000000;
-  font-size: 5rem;
-  opacity: 100%;
+    height: 115px;
+    width: 110px;
+    color: #000000;
+    font-size: 5rem;
+    opacity: 100%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
+
+.emojiBtn:focus {
+    height: 115px;
+    width: 110px;
+    color: #000000;
+    font-size: 5rem;
+    opacity: 100%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.emojiConfirmBtn {
+    height: 90px;
+    width: 120px;
+    color: #ffffff;
+    font-size: 2rem;
+    opacity: 100%;
+  }
+  
 
 .mainhamburger {
   li {
@@ -153,3 +194,186 @@
     animation-delay: 0.1s;
   }
 }
+
+//fadein
+.fade-in-image {
+    animation: fadeIn 2s;
+    -webkit-animation: fadeIn 2s;
+    -moz-animation: fadeIn 2s;
+    -o-animation: fadeIn 2s;
+    -ms-animation: fadeIn 2s;
+  }
+  @keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-ms-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+
+//bgCircles
+  .circleA {
+    border-radius: 50%;
+    background-color: rgb(0, 140, 255);
+    width: 150px;
+    height: 150px;
+    margin-top: 17px;
+    position: absolute;
+    opacity: 0;
+    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
+    animation-delay: -3s;
+  }
+  .circleB {
+    border-radius: 50%;
+    background-color: rgb(0, 140, 255);
+    width: 150px;
+    height: 150px;
+    margin-top: 17px;
+    position: absolute;
+    opacity: 0;
+    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
+    animation-delay: -2.75s;
+  }
+  .circleC {
+    border-radius: 50%;
+    background-color: rgb(0, 140, 255);
+    width: 150px;
+    height: 150px;
+    margin-top: 17px;
+    position: absolute;
+    opacity: 0;
+    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
+    animation-delay: -2.5s;
+  }
+  .circleD {
+    border-radius: 50%;
+    background-color: rgb(0, 140, 255);
+    width: 150px;
+    height: 150px;
+    margin-top: 17px;
+    position: absolute;
+    opacity: 0;
+    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
+    animation-delay: -2.25s;
+  }
+  .circleE {
+    border-radius: 50%;
+    background-color: rgb(0, 140, 255);
+    width: 150px;
+    height: 150px;
+    margin-top: 17px;
+    position: absolute;
+    opacity: 0;
+    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
+    animation-delay: -2.0s;
+  }
+  .circleF {
+    border-radius: 50%;
+    background-color: rgb(0, 140, 255);
+    width: 150px;
+    height: 150px;
+    margin-top: 17px;
+    position: absolute;
+    opacity: 0;
+    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
+    animation-delay: -1.75s;
+  }
+  .circleG {
+    border-radius: 50%;
+    background-color: rgb(0, 140, 255);
+    width: 150px;
+    height: 150px;
+    margin-top: 17px;
+    position: absolute;
+    opacity: 0;
+    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
+    animation-delay: -1.5s;
+  }
+  .circleH {
+    border-radius: 50%;
+    background-color: rgb(0, 140, 255);
+    width: 150px;
+    height: 150px;
+    margin-top: 17px;
+    position: absolute;
+    opacity: 0;
+    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
+    animation-delay: -1.25s;
+  }
+  .circleI {
+    border-radius: 50%;
+    background-color: rgb(0, 140, 255);
+    width: 150px;
+    height: 150px;
+    margin-top: 17px;
+    position: absolute;
+    opacity: 0;
+    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
+    animation-delay: -1s;
+  }
+  .circleJ {
+    border-radius: 50%;
+    background-color: rgb(0, 140, 255);
+    width: 150px;
+    height: 150px;
+    margin-top: 17px;
+    position: absolute;
+    opacity: 0;
+    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
+    animation-delay: -0.75s;
+  }
+  .circleK {
+    border-radius: 50%;
+    background-color: rgb(0, 140, 255);
+    width: 150px;
+    height: 150px;
+    margin-top: 17px;
+    position: absolute;
+    opacity: 0;
+    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
+    animation-delay: -0.5s;
+  }
+  .circleL {
+    border-radius: 50%;
+    background-color: rgb(0, 140, 255);
+    width: 150px;
+    height: 150px;
+    margin-top: 17px;
+    position: absolute;
+    opacity: 0;
+    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
+    animation-delay: -0.25s;
+  }
+
+  .item {
+    z-index: 100;
+    padding: 5px;
+  }
+
+  @keyframes scaleIn {
+    from {
+      transform: scale(.5, .5);
+      opacity: .5;
+    }
+    to {
+      transform: scale(2.5, 2.5);
+      opacity: 0;
+    }
+  }

@@ -4,8 +4,8 @@ import { ImportStaff } from './ImportStaff';
 function ViewStaff(props) {
   return (
     <ViewSingleton
-      headerName="Staff"
-      titleName="All Staff"
+      headerName="Manage Staff"
+      titleName="Manage Staff"
       RenderAddButton={ImportStaff}
       sortedBy="ID"
     />

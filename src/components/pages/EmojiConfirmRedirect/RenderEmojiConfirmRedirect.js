@@ -11,16 +11,20 @@ import { emoji, EmojiContext, MemberContext } from '../../../state/contexts';
 const StyledEmojiConfirmRedirect = styled.header`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   width: 1200px;
   max-width: 90%;
   margin: 3rem auto;
   text-align: center;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* position: relative; */
 `;
 
 const StyledEmojis = styled.div`
-  font-size: 3rem;
+  font-size: 11rem;
   background: '#ffffff';
+  color: #000000;
   padding: '2px 0';
 `;
 
@@ -74,10 +78,24 @@ function RenderEmojiConfirmRedirect(props) {
   return (
     <LayoutContainer>
       <NavBar hideMenu />
-      <StyledEmojiConfirmRedirect>
-        <h2>Success!</h2>
-        {state}
+
+      <StyledEmojiConfirmRedirect className="fade-in-image">
+        {/* <h2>Success!</h2> */}
+        <div className="item">{state}</div>
+        <div class="circleA"></div>
+        <div class="circleB"></div>
+        <div class="circleC"></div>
+        <div class="circleD"></div>
+        <div class="circleE"></div>
+        <div class="circleF"></div>
+        <div class="circleG"></div>
+        <div class="circleH"></div>
+        <div class="circleI"></div>
+        <div class="circleJ"></div>
+        <div class="circleK"></div>
+        <div class="circleL"></div>
       </StyledEmojiConfirmRedirect>
+
       {readyToGo ? <Redirect to="/scanner" /> : <></>}
     </LayoutContainer>
   );

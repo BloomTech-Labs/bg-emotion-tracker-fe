@@ -22,7 +22,19 @@
   width: 100%;
   height: 100%;
 }
+.layout .ypd {
+  margin-top: 103px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 /* PAGE specific styles */
+/* Admin Dashboard */
+.adminDashboardContent .ant-layout-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
 /* RenderMemberScanner */
 .errorText,
 .regularText {
@@ -84,6 +96,20 @@
   font-size: 5rem;
   opacity: 100%;
 }
+.emojiBtn:focus {
+  height: 115px;
+  width: 110px;
+  color: #000000;
+  font-size: 5rem;
+  opacity: 100%;
+}
+.emojiConfirmBtn {
+  height: 90px;
+  width: 120px;
+  color: #ffffff;
+  font-size: 2rem;
+  opacity: 100%;
+}
 .mainhamburger li {
   padding: 1.5vh;
   font-size: 1.3rem;
@@ -119,4 +145,51 @@
   background-color: rgba(214, 214, 214, 0.603);
   transition: cubic-bezier(0.075, 0.82, 0.165, 1);
   animation-delay: 0.1s;
+}
+.fade-in-image {
+  animation: fadeIn 2s;
+  -webkit-animation: fadeIn 2s;
+  -moz-animation: fadeIn 2s;
+  -o-animation: fadeIn 2s;
+  -ms-animation: fadeIn 2s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

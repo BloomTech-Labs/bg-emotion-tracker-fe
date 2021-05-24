@@ -18,6 +18,12 @@ const StyledMemberScanner = styled.header`
   margin-right: 30%;
   flex-direction: column;
   text-align: center;
+  margin-top: 15%;
+
+  @media (min-width: 1240px) {
+    margin-left: 38%;
+    margin-right: 38%;
+  }
 `;
 
 function RenderMemberScanner(props) {
@@ -29,6 +35,17 @@ function RenderMemberScanner(props) {
   const memberContext = useContext(MemberContext);
 
   const handleError = err => {
+    console.log(err);
+    if (err.toString().search(/video source/i) >= 0) {
+      setScanError(true);
+      setError('Camera Unavailable');
+      return;
+    }
+    if (err.toString().search(/Permission denied/i) >= 0) {
+      setScanError(true);
+      setError('Camera Permission Denied');
+      return;
+    }
     setScanError(true);
     setError(err);
   };
@@ -56,7 +73,7 @@ function RenderMemberScanner(props) {
 
   return (
     <LayoutContainer>
-      <NavBar titleName="Dashboard" backgroundColor="#293845" />
+      <NavBar backgroundColor="#293845" />
 
       <Link to="/activity-select">
         <BackButton buttonText="Change Activity" classType="primary" />
