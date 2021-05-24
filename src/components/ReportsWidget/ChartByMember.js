@@ -122,7 +122,7 @@ export const ChartByMember = ({
 
   return (
     <ChartTemplate
-      title="Members"
+      title="Member Morale"
       mode={mode}
       showAll={showAll}
       setShowAll={setShowAll}
@@ -135,7 +135,7 @@ export const ChartByMember = ({
       clubSummary={clubSummary}
       plotRef={plotRef}
     >
-      <Section>
+      <Section height="50px">
         <SelectClub
           setSelectClub={setSelectClub}
           setMember={setMember}
@@ -146,8 +146,7 @@ export const ChartByMember = ({
         <SelectMember setMember={setMember} member={member} plot={plot} />
       </Section>
       <Section>
-        <div style={{ width: '50vh', alignSelf: 'center' }} ref={plotRef}>
-          {console.log(plot)}
+        <div ref={plotRef}>
           {chartType == 1 ? (
             <Plot
               data={[barToPie(plot[member * 1])]}

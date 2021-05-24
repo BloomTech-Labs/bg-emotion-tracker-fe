@@ -7,9 +7,6 @@ import { Title } from './Title';
 const StyledTemplate = styled.section`
   display: flex;
   flex-direction: column;
-  section:nth-child(1) {
-    margin: 40px auto 0;
-  }
 `;
 
 export const ChartTemplate = ({ dateRange, setDateRange, title, children }) => {
