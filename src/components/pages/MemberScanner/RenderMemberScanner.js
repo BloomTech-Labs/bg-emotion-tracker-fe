@@ -66,7 +66,7 @@ function RenderMemberScanner(props) {
 
   return (
     <LayoutContainer>
-      <NavBar titleName="Dashboard" backgroundColor="#293845" />
+      <NavBar backgroundColor="#293845" />
 
       <Link to="/activity-select">
         <BackButton buttonText="Change Activity" classType="primary" />

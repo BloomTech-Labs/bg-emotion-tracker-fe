@@ -62,7 +62,7 @@ function ViewMembers(props) {
   };
   return (
     <LayoutContainer>
-      <NavBar titleName={'All Members'} backgroundColor="#293845" />
+      <NavBar titleName={'Manage Members'} backgroundColor="#293845" />
       <StyledList>
         <StyledView>
           <PageHeader
