@@ -35,10 +35,11 @@ export const AdminContext = createContext();
 export const AdminContextProvider = ({ children }) => {
   const [members, setMembers] = useState([]);
   const [programs, setPrograms] = useState([]);
+  const [clubs, setClubs] = useState([]);
 
   return (
     <AdminContext.Provider
-      value={{ members, setMembers, programs, setPrograms }}
+      value={{ members, setMembers, programs, setPrograms, clubs, setClubs }}
     >
       {children}
     </AdminContext.Provider>
@@ -46,7 +47,6 @@ export const AdminContextProvider = ({ children }) => {
 };
 
 // Activity Context
-
 export const ActivityContext = createContext({
   activity: {},
   loading: false,

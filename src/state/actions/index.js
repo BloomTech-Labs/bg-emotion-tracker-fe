@@ -40,6 +40,7 @@ export const getUserProfile = async (authState, context) => {
 export const getClubs = async (authState, context) => {
   await getClubsData(authState)
     .then(res => {
+      console.log(res);
       context.setClubs(res);
     })
     .catch(error => {
