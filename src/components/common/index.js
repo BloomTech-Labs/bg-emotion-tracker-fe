@@ -5,7 +5,6 @@ import FormInput from './FormInput';
 import List from './List';
 import LoadingComponent from './LoadingComponent';
 import LayoutContainer from './LayoutContainer';
-import { ViewSingleton } from './ViewSingleton';
 import Button from './Button';
 import { Section } from './Section';
 // notice we're building out a 'package' of reusables here and exporting them as an object of component properties.
@@ -20,5 +19,4 @@ export {
   List,
   LoadingComponent,
   Button,
-  ViewSingleton,
 };
