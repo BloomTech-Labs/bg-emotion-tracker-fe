@@ -7,6 +7,7 @@ export const UserContext = createContext({
   error: false,
   message: '',
   setUser: () => {},
+  resetUser: () => {},
 });
 
 export const UserContextProvider = props => {
@@ -14,8 +15,13 @@ export const UserContextProvider = props => {
     setState({ ...state, user: user });
   };
 
+  const resetUser = () => {
+    setState({});
+  };
+
   const initState = {
     setUser: setUser,
+    resetUser,
     user: {},
     loading: false,
     error: false,
