@@ -6,11 +6,9 @@ import styled from 'styled-components';
 
 const StyledWidget = styled.section``;
 
-export default function ChartWidget({ setMode, mode }) {
+export default function ChartWidget({ setMode, mode, setDateRange }) {
   const [showAll, setShowAll] = useState(false);
-  const [dateRange, setDateRange] = useState({ from: '', to: '' });
-  const fromref = useRef();
-  const toref = useRef();
+  const [dateRange] = useState({ from: '', to: '' });
 
   let chart = <div></div>;
 
@@ -21,6 +19,7 @@ export default function ChartWidget({ setMode, mode }) {
         showAll={showAll}
         setShowAll={setShowAll}
         dateRange={dateRange}
+        setDateRange={setDateRange}
       />
     );
   } else {
