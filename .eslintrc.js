@@ -17,6 +17,7 @@ module.exports = {
     'jsx-a11y/anchor-is-valid': 'off',
     'jsx-a11y/accessible-emoji': 'off',
     eqeqeq: 'off',
+    'react/jsx-no-comment-textnodes': 'off',
   },
   overrides: [
     {
