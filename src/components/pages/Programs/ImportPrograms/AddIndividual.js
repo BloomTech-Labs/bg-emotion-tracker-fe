@@ -15,7 +15,7 @@ const tailLayout = {
 };
 
 export const AddIndividual = props => {
-  const { inputData, setInputData } = props;
+  const { inputData, setInputData, adminContext } = props;
   const [currentIndividual, setCurrentIndividual] = useState({
     programName: '',
     club: {},
@@ -57,7 +57,7 @@ export const AddIndividual = props => {
 
   const menu = (
     <Menu>
-      {props.clubsContext.clubs.map(item => (
+      {adminContext.clubs.map(item => (
         <Menu.Item key={item.clubid} onClick={e => selectClub(e, item)}>
           {item.clubname}
         </Menu.Item>

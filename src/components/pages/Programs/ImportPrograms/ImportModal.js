@@ -95,6 +95,7 @@ const ImportModal = props => {
             setInputData={setInputData}
             inputData={inputData}
             showAlert={showAlert}
+            adminContext={AdminContext}
           />
         </div>
         <div>

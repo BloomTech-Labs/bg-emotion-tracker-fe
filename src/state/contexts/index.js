@@ -22,13 +22,10 @@ export const UserContext = createContext();
 
 export const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
-  const [club, setClub] = useState({});
   const [clubs, setClubs] = useState([]);
 
   return (
-    <UserContext.Provider
-      value={{ user, setUser, club, setClub, clubs, setClubs }}
-    >
+    <UserContext.Provider value={{ user, setUser, clubs, setClubs }}>
       {children}
     </UserContext.Provider>
   );
