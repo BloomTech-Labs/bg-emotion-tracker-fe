@@ -33,15 +33,15 @@ let emojiList = [
   { id: '1F641', component: <StyledEmojis>🙁</StyledEmojis> },
   { id: '1F61E', component: <StyledEmojis>😞</StyledEmojis> },
 
-  { id: '1F605', component: <StyledEmojis>😅</StyledEmojis> },
-  { id: '1F61B', component: <StyledEmojis>😛</StyledEmojis> },
-  { id: '1F61C', component: <StyledEmojis>😜</StyledEmojis> },
+  { id: '1F603', component: <StyledEmojis>😃</StyledEmojis> },
+  { id: '1F60A', component: <StyledEmojis>😊</StyledEmojis> },
+  { id: '1F60C', component: <StyledEmojis>😌</StyledEmojis> },
   { id: '1F61D', component: <StyledEmojis>😝</StyledEmojis> },
-  { id: '1F92A', component: <StyledEmojis>🤪</StyledEmojis> },
+  { id: '1F60E', component: <StyledEmojis>😎</StyledEmojis> },
 
-  { id: '1F636', component: <StyledEmojis>😶</StyledEmojis> },
-  { id: '1F611', component: <StyledEmojis>😑</StyledEmojis> },
-  { id: '1F644', component: <StyledEmojis>🙄</StyledEmojis> },
+  { id: '1F62E', component: <StyledEmojis>😮</StyledEmojis> },
+  { id: '1F915', component: <StyledEmojis>🤕</StyledEmojis> },
+  { id: '1F974', component: <StyledEmojis>🥴</StyledEmojis> },
   { id: '1F971', component: <StyledEmojis>🥱</StyledEmojis> },
   { id: '1F634', component: <StyledEmojis>😴</StyledEmojis> },
 
