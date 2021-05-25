@@ -1,34 +1,5 @@
 import React, { useState, createContext } from 'react';
 
-//user context
-export const UserContext = createContext({
-  user: {},
-  loading: false,
-  error: false,
-  message: '',
-  setUser: () => {},
-});
-
-export const UserContextProvider = props => {
-  const setUser = user => {
-    setState({ ...state, user: user });
-  };
-
-  const initState = {
-    setUser: setUser,
-    user: {},
-    loading: false,
-    error: false,
-    message: '',
-  };
-
-  const [state, setState] = useState(initState);
-
-  return (
-    <UserContext.Provider value={state}>{props.children}</UserContext.Provider>
-  );
-};
-
 // Admin Context
 export const AdminContext = createContext();
 
@@ -43,6 +14,23 @@ export const AdminContextProvider = ({ children }) => {
     >
       {children}
     </AdminContext.Provider>
+  );
+};
+
+// User Context
+export const UserContext = createContext();
+
+export const UserContextProvider = ({ children }) => {
+  const [user, setUser] = useState({});
+  const [club, setClub] = useState({});
+  const [clubs, setClubs] = useState([]);
+
+  return (
+    <UserContext.Provider
+      value={{ user, setUser, club, setClub, clubs, setClubs }}
+    >
+      {children}
+    </UserContext.Provider>
   );
 };
 
@@ -74,7 +62,6 @@ export const ActivityContextProvider = props => {
 };
 
 // Clubs Context
-
 export const ClubsContext = createContext({
   club: {},
   clubs: [],
