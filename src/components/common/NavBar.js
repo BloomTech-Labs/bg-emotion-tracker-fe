@@ -74,15 +74,6 @@ function NavBar(props) {
       )}
       {(role === 'ADMIN' || role === 'CD') && (
         <Menu.Item
-          key="4"
-          icon={<TeamOutlined />}
-          onClick={() => history.push('/manage-staff')}
-        >
-          Manage Staff
-        </Menu.Item>
-      )}
-      {(role === 'ADMIN' || role === 'CD') && (
-        <Menu.Item
           key="5"
           icon={<TeamOutlined />}
           onClick={() => history.push('/manage-clubs')}
