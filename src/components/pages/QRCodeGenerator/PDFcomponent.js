@@ -8,7 +8,7 @@ import {
   StyleSheet,
 } from '@react-pdf/renderer';
 
-//import logo from './BGLogo.png';
+import logo from './BGLogo.png';
 
 const PDFcomponent = props => {
   const { PDFImageIds } = props;
@@ -35,7 +35,7 @@ const PDFcomponent = props => {
       size: '11em',
     },
     logoImage: {
-      width: '50%',
+      width: '25%',
       height: '50%',
     },
   });
@@ -56,6 +56,9 @@ const PDFcomponent = props => {
             <View style={styles.view}>
               <Text style={styles.text}>{IdsArray[id]}</Text>
             </View>
+            <View style={styles.view}>
+              <Image src={logo} style={styles.logoImage} />
+            </View>
           </Page>
         );
       })}
@@ -64,10 +67,3 @@ const PDFcomponent = props => {
 };
 
 export default PDFcomponent;
-
-//<Image src={logo} style={styles.logoImage} />
-/*
-<View style={styles.view}>
-              
-            </View>
-            */

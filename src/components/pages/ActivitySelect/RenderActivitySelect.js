@@ -23,13 +23,13 @@ const StyledActivitySelect = styled.header`
 `;
 
 function RenderActivitySelect(props) {
-  const { setActivity, activity } = useContext(ActivityContext);
+  const activityContext = useContext(ActivityContext);
   const { club } = useContext(ClubContext);
   const [disabledBtn, setDisabledBtn] = useState(true);
   const [dropDownName, setDropDownName] = useState('');
 
   const selectActivity = (e, item) => {
-    setActivity(item);
+    activityContext.setActivity(item);
     setDropDownName(item.activityname);
     setDisabledBtn(false);
   };
