@@ -28,6 +28,10 @@
     <script>
       // See https://github.com/facebook/react/issues/20829#issuecomment-802088260
       if (!crossOriginIsolated) SharedArrayBuffer = ArrayBuffer;
+      // enable this block below if we want to disable react dev tools
+      // if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === 'object') {
+      //   __REACT_DEVTOOLS_GLOBAL_HOOK__.inject = function() {};
+      // }
     </script>
   </head>
 
