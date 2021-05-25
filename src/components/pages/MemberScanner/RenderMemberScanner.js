@@ -93,8 +93,8 @@ function RenderMemberScanner(props) {
             if (checkValid) {
               if (
                 activityContext.activity.activityname.search(
-                  /check(in|out)$/i >= 0
-                )
+                  /check(in|out)$/i
+                ) >= 0
               ) {
                 return <Redirect to="/emoji-selectcheck" />;
               } else {
