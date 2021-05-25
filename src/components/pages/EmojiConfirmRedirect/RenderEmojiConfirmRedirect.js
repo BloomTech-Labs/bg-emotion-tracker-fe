@@ -10,20 +10,32 @@ const StyledEmojiConfirmRedirect = styled.header`
   display: flex;
   flex-direction: column;
   width: 1200px;
+  height: 500px;
   max-width: 90%;
   margin: 3rem auto;
+  /* padding-top: 500px; */
   text-align: center;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  /* position: relative; */
+  position: relative;
+`;
+
+const StyledEmojisOffset = styled.div`
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  /* left: 0%; */
+  /* margin-left: -250px; */
+  /* top: 50%; */
+  /* margin-top: -750px; */
 `;
 
 const StyledEmojis = styled.div`
   font-size: 11rem;
   background: '#ffffff';
   color: #000000;
-  padding: '2px 0';
+  /* padding: '2px 0'; */
 `;
 
 let emojiList = [
@@ -77,19 +89,21 @@ function RenderEmojiConfirmRedirect(props) {
 
       <StyledEmojiConfirmRedirect className="fade-in-image">
         {/* <h2>Success!</h2> */}
-        <div className="item">{state}</div>
-        <div className="circleA"></div>
-        <div className="circleB"></div>
-        <div className="circleC"></div>
-        <div className="circleD"></div>
-        <div className="circleE"></div>
-        <div className="circleF"></div>
-        <div className="circleG"></div>
-        <div className="circleH"></div>
-        <div className="circleI"></div>
-        <div className="circleJ"></div>
-        <div className="circleK"></div>
-        <div className="circleL"></div>
+        <StyledEmojisOffset>
+          <div className="item">{state}</div>
+          <div className="circleA"></div>
+          <div className="circleB"></div>
+          <div className="circleC"></div>
+          <div className="circleD"></div>
+          <div className="circleE"></div>
+          <div className="circleF"></div>
+          <div className="circleG"></div>
+          <div className="circleH"></div>
+          <div className="circleI"></div>
+          <div className="circleJ"></div>
+          <div className="circleK"></div>
+          <div className="circleL"></div>
+        </StyledEmojisOffset>
       </StyledEmojiConfirmRedirect>
 
       {readyToGo ? <Redirect to="/scanner" /> : <></>}
