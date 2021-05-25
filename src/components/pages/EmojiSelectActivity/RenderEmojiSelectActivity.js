@@ -44,6 +44,7 @@ const StyledEmojis = styled.div`
 const StyledButton = styled(Button)`
   background-color: 293845;
   width: 200px;
+  height: 80px;
   position: absolute;
   left: 50%;
   margin-left: -100px;
