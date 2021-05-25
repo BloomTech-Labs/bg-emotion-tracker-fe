@@ -4,14 +4,14 @@ import { UserContext, ClubsContext } from '../../../state/contexts';
 
 import RenderHomePage from './RenderHomePage';
 import { getUserProfile, getClubs } from '../../../state/actions';
-import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { LoadingComponent } from '../../../components/common/index';
 
 const HomeContainer = props => {
   const { authState } = useOktaAuth();
   const userContext = useContext(UserContext);
   const clubsContext = useContext(ClubsContext);
-  const { push } = useHistory();
+  // const { push } = useHistory();
 
   useEffect(() => {
     getUserProfile(authState, userContext);
@@ -22,11 +22,11 @@ const HomeContainer = props => {
 
   // initial redirect to correct user dashboard
   if (role === 'ADMIN') {
-    push('./AdminDashboard');
+    return <Redirect to="./AdminDashboard" />;
   } else if (role === 'CD') {
-    push('./ClubDirectorDashboard');
+    return <Redirect to="/ClubDirectorDashboard" />;
   } else if (role === 'YDP') {
-    push('/YDPDashboard');
+    return <Redirect to="/YDPDashboard" />;
   }
 
   let home = <LoadingComponent message="loading" />;
