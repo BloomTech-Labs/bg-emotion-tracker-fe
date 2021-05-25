@@ -13,7 +13,6 @@ const StyledEmojiConfirmRedirect = styled.header`
   height: 500px;
   max-width: 90%;
   margin: 3rem auto;
-  /* padding-top: 500px; */
   text-align: center;
   align-items: center;
   justify-content: center;
@@ -25,17 +24,12 @@ const StyledEmojisOffset = styled.div`
   width: 200px;
   height: 200px;
   position: absolute;
-  /* left: 0%; */
-  /* margin-left: -250px; */
-  /* top: 50%; */
-  /* margin-top: -750px; */
 `;
 
 const StyledEmojis = styled.div`
   font-size: 11rem;
   background: '#ffffff';
   color: #000000;
-  /* padding: '2px 0'; */
 `;
 
 let emojiList = [
