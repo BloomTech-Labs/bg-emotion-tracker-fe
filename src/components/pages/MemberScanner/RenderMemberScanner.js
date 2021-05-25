@@ -92,8 +92,9 @@ function RenderMemberScanner(props) {
           if (memberContext.id && memberContext.exists && scanStatus) {
             if (checkValid) {
               if (
-                activityContext.activity.activityname === 'Club Attendance' ||
-                activityContext.activity.activityname === 'Club Checkout'
+                activityContext.activity.activityname.search(
+                  /check(in|out)$/i >= 0
+                )
               ) {
                 return <Redirect to="/emoji-selectcheck" />;
               } else {

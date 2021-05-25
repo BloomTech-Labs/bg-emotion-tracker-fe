@@ -1,12 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-//import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
-import { Card, Modal, Menu, Dropdown, Button, Alert } from 'antd';
 import { LayoutContainer } from '../../common';
-import { emoji, EmojiContext, MemberContext } from '../../../state/contexts';
+import { EmojiContext, MemberContext } from '../../../state/contexts';
 
 const StyledEmojiConfirmRedirect = styled.header`
   display: flex;
@@ -35,15 +33,15 @@ let emojiList = [
   { id: '1F641', component: <StyledEmojis>🙁</StyledEmojis> },
   { id: '1F61E', component: <StyledEmojis>😞</StyledEmojis> },
 
-  { id: '1F605', component: <StyledEmojis>😅</StyledEmojis> },
-  { id: '1F61B', component: <StyledEmojis>😛</StyledEmojis> },
-  { id: '1F61C', component: <StyledEmojis>😜</StyledEmojis> },
+  { id: '1F603', component: <StyledEmojis>😃</StyledEmojis> },
+  { id: '1F60A', component: <StyledEmojis>😊</StyledEmojis> },
+  { id: '1F60C', component: <StyledEmojis>😌</StyledEmojis> },
   { id: '1F61D', component: <StyledEmojis>😝</StyledEmojis> },
-  { id: '1F92A', component: <StyledEmojis>🤪</StyledEmojis> },
+  { id: '1F60E', component: <StyledEmojis>😎</StyledEmojis> },
 
-  { id: '1F636', component: <StyledEmojis>😶</StyledEmojis> },
-  { id: '1F611', component: <StyledEmojis>😑</StyledEmojis> },
-  { id: '1F644', component: <StyledEmojis>🙄</StyledEmojis> },
+  { id: '1F62E', component: <StyledEmojis>😮</StyledEmojis> },
+  { id: '1F915', component: <StyledEmojis>🤕</StyledEmojis> },
+  { id: '1F974', component: <StyledEmojis>🥴</StyledEmojis> },
   { id: '1F971', component: <StyledEmojis>🥱</StyledEmojis> },
   { id: '1F634', component: <StyledEmojis>😴</StyledEmojis> },
 
@@ -55,8 +53,6 @@ let emojiList = [
 ];
 
 function RenderEmojiConfirmRedirect(props) {
-  const { userInfo /*authService*/ } = props;
-  const history = useHistory();
   const context = useContext(EmojiContext);
   const member = useContext(MemberContext);
   const [readyToGo, setReadyToGo] = useState(false);
@@ -73,7 +69,7 @@ function RenderEmojiConfirmRedirect(props) {
       return context.emoji === emoji.id;
     });
     setState(selectedEmoji[0].component);
-  }, [state]);
+  }, [state, context.emoji]);
 
   return (
     <LayoutContainer>
@@ -82,18 +78,18 @@ function RenderEmojiConfirmRedirect(props) {
       <StyledEmojiConfirmRedirect className="fade-in-image">
         {/* <h2>Success!</h2> */}
         <div className="item">{state}</div>
-        <div class="circleA"></div>
-        <div class="circleB"></div>
-        <div class="circleC"></div>
-        <div class="circleD"></div>
-        <div class="circleE"></div>
-        <div class="circleF"></div>
-        <div class="circleG"></div>
-        <div class="circleH"></div>
-        <div class="circleI"></div>
-        <div class="circleJ"></div>
-        <div class="circleK"></div>
-        <div class="circleL"></div>
+        <div className="circleA"></div>
+        <div className="circleB"></div>
+        <div className="circleC"></div>
+        <div className="circleD"></div>
+        <div className="circleE"></div>
+        <div className="circleF"></div>
+        <div className="circleG"></div>
+        <div className="circleH"></div>
+        <div className="circleI"></div>
+        <div className="circleJ"></div>
+        <div className="circleK"></div>
+        <div className="circleL"></div>
       </StyledEmojiConfirmRedirect>
 
       {readyToGo ? <Redirect to="/scanner" /> : <></>}

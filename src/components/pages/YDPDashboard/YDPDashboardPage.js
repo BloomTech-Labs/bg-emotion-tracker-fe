@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
-import { Menu, Dropdown, Button } from 'antd';
+import { Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
-import { LayoutContainer } from '../../common';
+import { LayoutContainer, StyledBtn } from '../../common';
 import { ClubsContext, ClubContext } from '../../../state/contexts/index';
 import { getClub } from '../../../state/actions';
-import { StyledBtn } from '../../common';
 
 const StyledYDPPage = styled.header`
   display: flex;
