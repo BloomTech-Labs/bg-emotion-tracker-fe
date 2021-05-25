@@ -2,12 +2,11 @@ import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
-import { Menu, Dropdown, Button } from 'antd';
+import { Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
-import { LayoutContainer } from '../../common';
+import { LayoutContainer, StyledBtn, BackButton } from '../../common';
 import { ActivityContext } from '../../../state/contexts/index';
 import { ClubContext } from '../../../state/contexts';
-import { StyledBtn, BackButton } from '../../common';
 
 const StyledActivitySelect = styled.header`
   display: flex;
@@ -37,11 +36,8 @@ function RenderActivitySelect(props) {
   const menu = (
     <Menu className="ydp-selection-dropdowns ">
       {club.activities &&
-        club.activities.map(item => (
-          <Menu.Item
-            key={item.activityid}
-            onClick={e => selectActivity(e, item.activity)}
-          >
+        club.activities.map((item, key) => (
+          <Menu.Item key={key} onClick={e => selectActivity(e, item.activity)}>
             {item.activity.activityname}
           </Menu.Item>
         ))}

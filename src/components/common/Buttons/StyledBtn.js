@@ -29,8 +29,8 @@ export const StyledBtn = ({ path, onClick, label, isDisabled }) => {
 };
 
 Button.propTypes = {
-  disabled: PropTypes.string,
-  path: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
+  path: PropTypes.string,
+  label: PropTypes.string,
   onClick: PropTypes.func,
 };
