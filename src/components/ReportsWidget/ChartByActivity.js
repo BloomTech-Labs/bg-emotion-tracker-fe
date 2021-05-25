@@ -128,10 +128,7 @@ export const ChartByActivity = ({
       plotRef.current.style.visibility = 'visible';
     }
 
-    if (
-      plot[clubActivity * 1]?.label == 'Club Attendance' ||
-      plot[clubActivity * 1]?.label == 'Club Checkout'
-    ) {
+    if (plot[clubActivity * 1]?.label?.search(/check(in|out)$/i) >= 0) {
       if (!showAll) {
         setShowAll(true);
       }
