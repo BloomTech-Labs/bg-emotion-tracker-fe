@@ -49,12 +49,6 @@ const StyledButton = styled(Button)`
   margin-left: -100px;
   top: 50%;
   margin-top: 220px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: center;
-  text-align: center;
 `;
 
 const emojiStyles = {
