@@ -16,6 +16,7 @@ const HomeContainer = props => {
   useEffect(() => {
     getUserProfile(authState, userContext);
     getClubs(authState, clubsContext);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   let role = userContext.user.roles && userContext.user.roles[0].role.name;
