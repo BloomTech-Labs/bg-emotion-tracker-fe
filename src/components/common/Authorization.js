@@ -10,6 +10,8 @@ export const Authorization = (roles, WrappedComponent) => {
     if (!role && !roles.includes(role)) {
       history.push('/unauthorized');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [role]);
   return <WrappedComponent />;
 };

@@ -17,12 +17,19 @@ const StyledAdminPage = styled.header`
 `;
 function RenderHomePage() {
   const [mode, setMode] = useState('members');
+  const [dateRange, setDateRange] = useState(null);
 
   let widget = <div></div>;
 
   switch (mode) {
     case 'members': {
-      widget = <MembersWidget setMode={setMode} mode={mode} />;
+      widget = (
+        <MembersWidget
+          setMode={setMode}
+          mode={mode}
+          setDateRange={setDateRange}
+        />
+      );
       break;
     }
     case 'activities': {

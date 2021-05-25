@@ -12,7 +12,7 @@ const StyledSelector = styled.div`
   }
 `;
 
-export const DateRangeSelector = ({ dateRange, setDateRange }) => {
+export const DateRangeSelector = ({ setDateRange }) => {
   const fromref = useRef();
   const toref = useRef();
 

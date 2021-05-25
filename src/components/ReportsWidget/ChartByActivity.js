@@ -1,7 +1,9 @@
+/*eslint eqeqeq:0*/
 import Plot from 'react-plotly.js';
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { barToPie, mfull, msort, mfullr, m, mr } from './helpers';
+
 import { Typography } from 'antd';
 import { SelectClub } from './SelectClub';
 import { SelectActivity } from './SelectActivity';
@@ -99,18 +101,21 @@ export const ChartByActivity = ({
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line
     if (selectedClub != 0) {
       getActivitiesData();
     }
   }, [selectedClub]);
 
   useEffect(() => {
+    // eslint-disable-next-line
     if (selectedClub != 0) {
       getActivitiesData();
     }
   }, [showAll]);
 
   useEffect(() => {
+    // eslint-disable-next-line
     if (selectedClub != 0) {
       getActivitiesData();
     }
@@ -177,6 +182,7 @@ export const ChartByActivity = ({
       </Section>
       <Section>
         <div ref={plotRef}>
+          // eslint-disable-next-line
           {chartType == 1 ? (
             <Plot
               data={[barToPie(plot[clubActivity * 1])]}
