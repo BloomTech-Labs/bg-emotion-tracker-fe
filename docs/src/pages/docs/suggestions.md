@@ -1,6 +1,6 @@
 # Suggestions
 
--   Consolidate Style frameworks. Currently we use Less and Styled-components which is a bad practice. We suggest to just remove styled-components and just use Less because the antd framework uses Less.
+-   Consolidate Style frameworks. Currently we use Less and Styled-components which isn't ideal. We suggest to just pick on or the other (styled-components or Less).
 
 -   All pages should be responsive and look good on mobile
 
@@ -15,3 +15,12 @@
 *   ReportsWidget should be more organized.
 
 *   Relook at state management.
+
+*   Lots of duplicate components that could be consolidated to one and put into the commons directory ie. buttons, cards, etc
+
+*   Duplicate logic in some areas that are possible candidates for custom hooks.
+    All errors and warnings in the devtools console should be cleaned out.
+
+*   Convert common components to antd components
+
+*   Style the 404 page
