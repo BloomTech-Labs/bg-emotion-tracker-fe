@@ -1,12 +1,5 @@
-# Get Started
+# Dev Guide
 
-Boys & Girls Club Experience Tracker Documentation
+## How to use the state management
 
-## Key Features
-
--   Create project with libzy cli
--   Markdown support
--   MDX support
--   react-live support
--   Build ready
--   Easy configurable
+## How to make API calls

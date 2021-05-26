@@ -8,6 +8,7 @@ const Suggestions = require('./src/pages/docs/suggestions.md').default;
 const Bugs = require('./src/pages/docs/bugs.md').default;
 const LiveCodeExample = require('./src/pages/docs/live-code-example.mdx')
     .default;
+const UsersManual = require('./src/pages/docs/users-manual.md').default;
 
 module.exports = {
     title: 'B&G Club XP Tracker Documentation',
@@ -27,12 +28,12 @@ module.exports = {
 
                         button: {
                             path: '/docs/get-started',
-                            text: 'Get Started'
+                            text: 'more'
                         }
                     },
                     {
                         title: 'The State of the App',
-                        text: 'pending',
+                        text: '',
                         button: {
                             path: '/docs/state-of-app',
                             text: 'More'
@@ -40,7 +41,7 @@ module.exports = {
                     },
                     {
                         title: 'Pages',
-                        text: 'pending',
+                        text: '',
                         button: {
                             path: '/docs/state-of-app',
                             text: 'More'
@@ -48,7 +49,7 @@ module.exports = {
                     },
                     {
                         title: 'Common Components',
-                        text: 'pending',
+                        text: '',
                         button: {
                             path: '/docs/components',
                             text: 'More'
@@ -56,7 +57,7 @@ module.exports = {
                     },
                     {
                         title: 'State',
-                        text: 'pending',
+                        text: '',
                         button: {
                             path: '/docs/state',
                             text: 'More'
@@ -64,7 +65,7 @@ module.exports = {
                     },
                     {
                         title: 'Suggestions for Future Development',
-                        text: 'pending',
+                        text: '',
                         button: {
                             path: '/docs/suggestions',
                             text: 'More'
@@ -72,7 +73,7 @@ module.exports = {
                     },
                     {
                         title: 'Known Bugs',
-                        text: 'pending',
+                        text: '',
                         button: {
                             path: '/docs/bugs',
                             text: 'More'
@@ -85,7 +86,7 @@ module.exports = {
             path: 'docs',
             tree: [
                 {
-                    text: 'Get Started',
+                    text: 'Dev Guide',
                     path: 'get-started',
                     component: GetStarted
                 },
@@ -123,6 +124,11 @@ module.exports = {
                     text: 'Live Code Example',
                     path: 'live-code-example',
                     component: LiveCodeExample
+                },
+                {
+                    text: 'Users Manual',
+                    path: 'users-manual',
+                    component: UsersManual
                 }
             ]
         }

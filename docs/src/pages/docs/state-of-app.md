@@ -1,7 +1,9 @@
 # State of the App
 
-Boys & Girls Club Experience Tracker Documentation
+## Key App Features
 
-## Pending
+-   Emotions Capture
 
--   Pending
+*   QR Scanner
+
+-   Member Experience Analytics
