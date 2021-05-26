@@ -3,7 +3,6 @@ const GetStarted = require('./src/pages/docs/get-started.md').default;
 const StateOfApp = require('./src/pages/docs/state-of-app.md').default;
 const Pages = require('./src/pages/docs/pages.md').default;
 const Components = require('./src/pages/docs/components.md').default;
-const State = require('./src/pages/docs/state.md').default;
 const Suggestions = require('./src/pages/docs/suggestions.md').default;
 const Bugs = require('./src/pages/docs/bugs.md').default;
 const LiveCodeExample = require('./src/pages/docs/live-code-example.mdx')
@@ -120,11 +119,6 @@ module.exports = {
                     text: 'Common Components',
                     path: 'components',
                     component: Components
-                },
-                {
-                    text: 'State',
-                    path: 'state',
-                    component: State
                 },
                 {
                     text: 'Suggestions',
