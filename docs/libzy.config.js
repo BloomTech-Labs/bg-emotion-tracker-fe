@@ -1,75 +1,143 @@
 const MainPage = require('libzy-lib').MainPage;
 const GetStarted = require('./src/pages/docs/get-started.md').default;
-const Install = require('./src/pages/docs/install.md').default;
-const LiveCodeExample = require('./src/pages/docs/live-code-example.mdx').default;
+const StateOfApp = require('./src/pages/docs/state-of-app.md').default;
+const Pages = require('./src/pages/docs/pages.md').default;
+const Components = require('./src/pages/docs/components.md').default;
+const State = require('./src/pages/docs/state.md').default;
+const Suggestions = require('./src/pages/docs/suggestions.md').default;
+const Bugs = require('./src/pages/docs/bugs.md').default;
+const LiveCodeExample = require('./src/pages/docs/live-code-example.mdx')
+    .default;
 
 module.exports = {
-  title: 'Libzy',
-  subTitle: 'Make documentation faster',
-  github: 'https://github.com/mbrn/libzy',  
-  githubShort: 'mbrn/libzy',  
-  menuTree: [
-    {
-      path: '',
-      component: MainPage,
-      data: {
-        features: [
-          {
-            title: 'Easy to start',
-            text: 'You can start documentation easily. Just install libzy and create your new documentation project. It is done. Lets do :)',
-            button: {
-              path: '/docs/get-started',
-              text: 'Get Started'
-            }
-          },
-          {
-            title: 'MDX Support',
-            text: 'You don\'t have to write your pages as code. You can add your pages as md, mdx or react component.',
-          },
-          {
-            title: 'react-live Support',
-            text: 'You can add your react components to let user play with it.',
-          },
-          {
-            title: 'Build ready',
-            text: 'Libzy is configured ready for ES5 build.',
-          },
+    title: 'B&G Club XP Tracker Documentation',
+    subTitle: 'Whatever it Takes to Build Great Futures.',
+    github: 'https://github.com/Lambda-School-Labs/bg-emotion-tracker-fe-b',
+    githubShort: 'Lambda-School-Labs/bg-emotion-tracker-fe-b',
+    menuTree: [
+        {
+            path: '',
+            component: MainPage,
+            data: {
+                features: [
+                    {
+                        title: 'Dev Guide',
+                        text:
+                            'The aims of this document are (1) to provide documentation of the current state of the application, to (2) to provide suggestions for future development, and (3) to identify and document known issues that should be fixed.',
 
-        ]
-      }
-    },
-    {
-      path: 'docs',
-      tree: [
-        {
-          text: 'Get Started',
-          path: 'get-started',
-          component: GetStarted
+                        button: {
+                            path: '/docs/get-started',
+                            text: 'Get Started'
+                        }
+                    },
+                    {
+                        title: 'The State of the App',
+                        text: 'pending',
+                        button: {
+                            path: '/docs/state-of-app',
+                            text: 'More'
+                        }
+                    },
+                    {
+                        title: 'Pages',
+                        text: 'pending',
+                        button: {
+                            path: '/docs/state-of-app',
+                            text: 'More'
+                        }
+                    },
+                    {
+                        title: 'Common Components',
+                        text: 'pending',
+                        button: {
+                            path: '/docs/components',
+                            text: 'More'
+                        }
+                    },
+                    {
+                        title: 'State',
+                        text: 'pending',
+                        button: {
+                            path: '/docs/state',
+                            text: 'More'
+                        }
+                    },
+                    {
+                        title: 'Suggestions for Future Development',
+                        text: 'pending',
+                        button: {
+                            path: '/docs/suggestions',
+                            text: 'More'
+                        }
+                    },
+                    {
+                        title: 'Known Bugs',
+                        text: 'pending',
+                        button: {
+                            path: '/docs/bugs',
+                            text: 'More'
+                        }
+                    }
+                ]
+            }
         },
         {
-          text: 'Install',
-          path: 'install',
-          component: Install
-        },
-        {
-          text: 'Live Code Example',
-          path: 'live-code-example',
-          component: LiveCodeExample
+            path: 'docs',
+            tree: [
+                {
+                    text: 'Get Started',
+                    path: 'get-started',
+                    component: GetStarted
+                },
+                {
+                    text: 'State of the App',
+                    path: 'state-of-app',
+                    component: StateOfApp
+                },
+                {
+                    text: 'Pages',
+                    path: 'pages',
+                    component: Pages
+                },
+                {
+                    text: 'Common Components',
+                    path: 'components',
+                    component: Components
+                },
+                {
+                    text: 'State',
+                    path: 'state',
+                    component: State
+                },
+                {
+                    text: 'Suggestions',
+                    path: 'suggestions',
+                    component: Suggestions
+                },
+                {
+                    text: 'Bugs',
+                    path: 'bugs',
+                    component: Bugs
+                },
+                {
+                    text: 'Live Code Example',
+                    path: 'live-code-example',
+                    component: LiveCodeExample
+                }
+            ]
         }
-      ]
+    ],
+    theme: {
+        palette: {
+            primary: {
+                main: '#0081C6'
+            },
+            secondary: {
+                main: '#e65100'
+            }
+        }
+    },
+    options: {
+        routerType: 'hash' // hash | browser
     }
-  ],
-  theme: {
-    palette: {
-      primary: {
-        main: '#01579b'
-      },
-      secondary: {
-        main: '#e65100',
-      },
-    }
-  },
-  options: {
-    routerType: 'hash', // hash | browser
-  }
-}
+};
