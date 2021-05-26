@@ -15,3 +15,12 @@
 *   ReportsWidget should be more organized.
 
 *   Relook at state management.
+
+*   Lots of duplicate components that could be consolidated to one and put into the commons directory ie. buttons, cards, etc
+
+*   duplicate logic in some areas that are possible candidates for custom hooks.
+    All errors and warnings in the devtools console should be cleaned out.
+
+*   Convert common components to antd components
+
+*   Style the 404 page
