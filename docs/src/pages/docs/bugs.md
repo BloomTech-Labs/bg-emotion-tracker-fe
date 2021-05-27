@@ -7,3 +7,5 @@
 *   Login page shouldn't be available when logged in.
 
 *   Scanner should clear state instead of the redirect page.
+
+*   If emoji on redirect page is off centered with animation - we think it has to do with font and styling- we suggest using an Emoji Image on the Redirect Page instead of the Emoji code. 
