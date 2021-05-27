@@ -10,6 +10,7 @@ const LiveCodeExample = require('./src/pages/docs/live-code-example.mdx')
 const UsersManual = require('./src/pages/docs/users-manual.md').default;
 const API = require('./src/pages/docs/api.md').default;
 const StateMgmt = require('./src/pages/docs/state-management.md').default;
+const Introduction = require('./src/pages/docs/introduction.md').default;
 
 module.exports = {
     title: 'B&G Club XP Tracker Documentation',
@@ -92,15 +93,18 @@ module.exports = {
                     component: GetStarted,
                     tree: [
                         {
+                            text: 'Introduction',
+                            path: 'introduction',
+                            component: Introduction
+                        },
+                        {
                             text: 'State Management',
                             path: 'state-management',
-                            // id: uuidv4(),
                             component: StateMgmt
                         },
                         {
                             text: 'API Requests',
                             path: 'api',
-                            // id: uuidv4(),
                             component: API
                         }
                     ]
