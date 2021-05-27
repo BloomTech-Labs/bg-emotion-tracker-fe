@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
-import { LayoutContainer, StyledBtn, BackButton } from '../../common';
-import { ActivityContext } from '../../../state/contexts/index';
-import { ClubContext } from '../../../state/contexts';
+import { LayoutContainer } from '../../common';
+import { YouthContext } from '../../../state/contexts/index';
+import { StyledBtn, BackButton } from '../../common';
 
 const StyledActivitySelect = styled.header`
   display: flex;
@@ -22,22 +22,24 @@ const StyledActivitySelect = styled.header`
 `;
 
 function RenderActivitySelect(props) {
-  const activityContext = useContext(ActivityContext);
-  const { club } = useContext(ClubContext);
+  const youthContext = useContext(YouthContext);
   const [disabledBtn, setDisabledBtn] = useState(true);
   const [dropDownName, setDropDownName] = useState('');
 
   const selectActivity = (e, item) => {
-    activityContext.setActivity(item);
+    youthContext.setActivity(item);
     setDropDownName(item.activityname);
     setDisabledBtn(false);
   };
 
   const menu = (
     <Menu className="ydp-selection-dropdowns ">
-      {club.activities &&
-        club.activities.map((item, key) => (
-          <Menu.Item key={key} onClick={e => selectActivity(e, item.activity)}>
+      {youthContext.club.activities &&
+        youthContext.club.activities.map(item => (
+          <Menu.Item
+            key={item.activityid}
+            onClick={e => selectActivity(e, item.activity)}
+          >
             {item.activity.activityname}
           </Menu.Item>
         ))}

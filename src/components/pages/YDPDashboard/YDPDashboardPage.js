@@ -4,7 +4,7 @@ import NavBar from '../../common/NavBar';
 import { Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { LayoutContainer, StyledBtn } from '../../common';
-import { ClubsContext, ClubContext } from '../../../state/contexts/index';
+import { YouthContext } from '../../../state/contexts/index';
 import { getClub } from '../../../state/actions';
 
 const StyledYDPPage = styled.header`
@@ -21,8 +21,7 @@ const StyledYDPPage = styled.header`
 `;
 
 function RenderHomePage() {
-  const clubsContext = useContext(ClubsContext);
-  const clubContext = useContext(ClubContext);
+  const youthContext = useContext(YouthContext);
   const [disabledBtn, setDisabledBtn] = useState(true);
   const [dropDownName, setDropDownName] = useState('');
 
@@ -38,14 +37,14 @@ function RenderHomePage() {
   };
 
   const selectClub = (e, item) => {
-    getClub(item.clubid, clubContext);
+    getClub(item.clubid, youthContext);
     setDropDownName(item.clubname);
     setDisabledBtn(false);
   };
 
   const menu = (
     <Menu className="ydp-selection-dropdowns">
-      {clubsContext.clubs.map(item => (
+      {youthContext.clubs.map(item => (
         <Menu.Item key={item.clubid} onClick={e => selectClub(e, item)}>
           {item.clubname}
         </Menu.Item>

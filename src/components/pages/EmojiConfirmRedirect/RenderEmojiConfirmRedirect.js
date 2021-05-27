@@ -4,7 +4,7 @@ import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { LayoutContainer } from '../../common';
-import { EmojiContext, MemberContext } from '../../../state/contexts';
+import { YouthContext } from '../../../state/contexts';
 
 const StyledEmojiConfirmRedirect = styled.header`
   display: flex;
@@ -59,23 +59,24 @@ let emojiList = [
 ];
 
 function RenderEmojiConfirmRedirect(props) {
-  const context = useContext(EmojiContext);
-  const member = useContext(MemberContext);
+  const { userInfo /*authService*/ } = props;
+  const history = useHistory();
+  const youthContext = useContext(YouthContext);
   const [readyToGo, setReadyToGo] = useState(false);
   const [state, setState] = useState(<StyledEmojis>😁</StyledEmojis>);
 
   setTimeout(() => {
-    member.setExists(''); // DO NOT REMOVE: or page will infinite loop
-    member.setId('');
+    youthContext.setExists(''); // DO NOT REMOVE: or page will infinite loop
+    youthContext.setId('');
     setReadyToGo(true);
   }, 3000);
 
   useEffect(() => {
     let selectedEmoji = emojiList.filter(emoji => {
-      return context.emoji === emoji.id;
+      return youthContext.emoji === emoji.id;
     });
     setState(selectedEmoji[0].component);
-  }, [state, context.emoji]);
+  }, [state, youthContext.emoji]);
 
   return (
     <LayoutContainer>
