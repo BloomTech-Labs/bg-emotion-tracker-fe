@@ -9,10 +9,9 @@ const QRCodeReader = props => {
       <QrReader
         delay={300}
         facingMode={'environment'}
-        style={{ width: 'auto' }}
+        style={{ width: 'auto', marginBottom: 'rem' }}
         onError={handleError}
         onScan={handleScan}
-        style={{ marginBottom: '1rem' }}
       />
     </div>
   );

@@ -1,7 +1,9 @@
+/*eslint eqeqeq:0*/
 import Plot from 'react-plotly.js';
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { barToPie, mfull, msort, mfullr, m, mr } from './helpers';
+
 import { Typography } from 'antd';
 import { SelectClub } from './SelectClub';
 import { SelectActivity } from './SelectActivity';
@@ -123,10 +125,7 @@ export const ChartByActivity = ({
       plotRef.current.style.visibility = 'visible';
     }
 
-    if (
-      plot[clubActivity * 1]?.label == 'Club Attendance' ||
-      plot[clubActivity * 1]?.label == 'Club Checkout'
-    ) {
+    if (plot[clubActivity * 1]?.label?.search(/check(in|out)$/i) >= 0) {
       if (!showAll) {
         setShowAll(true);
       }

@@ -15,4 +15,11 @@ module.exports = {
       },
     },
   ],
+  eslint: {
+    // mode: ESLINT_MODES.extends,
+    configure: () => {
+      // Workaround for broken ESLINT_MODES.file mode
+      return require('./.eslintrc');
+    },
+  },
 };

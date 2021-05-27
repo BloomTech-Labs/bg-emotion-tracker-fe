@@ -22,32 +22,34 @@ const StyledEmojiSelectActivity = styled.header`
 
 const StyledEmojis = styled.div`
   width: 560px;
+  height: 420px;
+  position: absolute;
+  left: 50%;
+  margin-left: -280px;
+  top: 50%;
+  margin-top: -280px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
   text-align: center;
-  margin-left: auto;
-  margin-right: auto;
 `;
 
 const StyledButton = styled(Button)`
   background-color: 293845;
   width: 200px;
-  text-align: center;
-  margin: 10px auto;
-  margin-top: 30px;
+  height: 80px;
+  position: absolute;
+  left: 50%;
+  margin-left: -100px;
+  top: 50%;
+  margin-top: 100px;
 `;
 
 const emojiStyles = {
-  // width: "auto",
-  // fontSize: "20px",
   borderRadius: '0px',
   border: '1px solid #ffffff',
-  // color: "ffffff",
-  // margin: "0.5em 1em",
-  // padding: "0.25em 1em",
   background: '#ffffff',
 };
 

@@ -22,32 +22,34 @@ const StyledEmojiSelectCheck = styled.header`
 
 const StyledEmojis = styled.div`
   width: 560px;
+  height: 420px;
+  position: absolute;
+  left: 50%;
+  margin-left: -280px;
+  top: 50%;
+  margin-top: -280px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
   text-align: center;
-  margin-left: auto;
-  margin-right: auto;
 `;
 
 const StyledButton = styled(Button)`
   background-color: 293845;
   width: 200px;
-  text-align: center;
-  margin: 10px auto;
-  margin-top: 30px;
+  height: 80px;
+  position: absolute;
+  left: 50%;
+  margin-left: -100px;
+  top: 50%;
+  margin-top: 220px;
 `;
 
 const emojiStyles = {
-  // width: "auto",
-  // fontSize: "20px",
   borderRadius: '0px',
   border: '1px solid #ffffff',
-  // color: "ffffff",
-  // margin: "0.5em 1em",
-  // padding: "0.25em 1em",
   background: '#ffffff',
 };
 
@@ -89,30 +91,32 @@ function RenderEmojiSelectCheck(props) {
       <NavBar hideMenu />
       <StyledEmojiSelectCheck>
         {/* <h2>Select Emoji</h2> */}
+
         <StyledEmojis>
           <button
             className="emojiBtn"
             style={emojiStyles}
             onClick={onChange}
-            value={'1F605'}
+            value={'1F603'}
           >
-            😅
+            😃
+          </button>
+
+          <button
+            className="emojiBtn"
+            style={emojiStyles}
+            onClick={onChange}
+            value={'1F60A'}
+          >
+            😊
           </button>
           <button
             className="emojiBtn"
             style={emojiStyles}
             onClick={onChange}
-            value={'1F61B'}
+            value={'1F60C'}
           >
-            😛
-          </button>
-          <button
-            className="emojiBtn"
-            style={emojiStyles}
-            onClick={onChange}
-            value={'1F61C'}
-          >
-            😜
+            😌
           </button>
           <button
             className="emojiBtn"
@@ -126,9 +130,9 @@ function RenderEmojiSelectCheck(props) {
             className="emojiBtn"
             style={emojiStyles}
             onClick={onChange}
-            value={'1F92A'}
+            value={'1F60E'}
           >
-            🤪
+            😎
           </button>
 
           <button
@@ -176,25 +180,25 @@ function RenderEmojiSelectCheck(props) {
             className="emojiBtn"
             style={emojiStyles}
             onClick={onChange}
-            value={'1F636'}
+            value={'1F62E'}
           >
-            😶
+            😮
           </button>
           <button
             className="emojiBtn"
             style={emojiStyles}
             onClick={onChange}
-            value={'1F611'}
+            value={'1F915'}
           >
-            😑
+            🤕
           </button>
           <button
             className="emojiBtn"
             style={emojiStyles}
             onClick={onChange}
-            value={'1F644'}
+            value={'1F974'}
           >
-            🙄
+            🥴
           </button>
           <button
             className="emojiBtn"

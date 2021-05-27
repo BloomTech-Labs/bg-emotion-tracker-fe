@@ -32,7 +32,6 @@ import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 import { ViewMembers } from './components/pages/Members';
 import { ViewPrograms } from './components/pages/Programs';
-import { ViewStaff } from './components/pages/Staff';
 import { ViewClubs } from './components/pages/Clubs';
 import { MemberScanner } from './components/pages/MemberScanner';
 
@@ -163,12 +162,6 @@ function App() {
                   path="/manage-programs"
                   component={() =>
                     Authorization([Roles[0], Roles[1]], ViewPrograms)
-                  }
-                />
-                <SecureRoute
-                  path="/manage-staff"
-                  component={() =>
-                    Authorization([Roles[0], Roles[1]], ViewStaff)
                   }
                 />
                 <SecureRoute

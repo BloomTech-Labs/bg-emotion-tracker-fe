@@ -1,3 +1,4 @@
+/*eslint eqeqeq:0*/
 import React, { useState, useEffect, useRef } from 'react';
 import Plot from 'react-plotly.js';
 import axios from 'axios';
