@@ -36,12 +36,22 @@ export const YouthContext = createContext();
 
 export const YouthContextProvider = ({ children }) => {
   const [activity, setActivity] = useState({});
+  const [activities, setActivities] = useState([]);
   const [clubs, setClubs] = useState([]);
   const [club, setClub] = useState({});
 
   return (
     <YouthContext.Provider
-      value={{ activity, setActivity, clubs, setClubs, club, setClub }}
+      value={{
+        activity,
+        setActivity,
+        clubs,
+        setClubs,
+        club,
+        setClub,
+        activities,
+        setActivities,
+      }}
     >
       {children}
     </YouthContext.Provider>

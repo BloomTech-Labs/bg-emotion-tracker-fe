@@ -2,11 +2,10 @@ import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
-import { Menu, Dropdown, Button } from 'antd';
+import { Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { LayoutContainer } from '../../common';
-import { ActivityContext } from '../../../state/contexts/index';
-import { ClubContext } from '../../../state/contexts';
+import { YouthContext } from '../../../state/contexts/index';
 import { StyledBtn, BackButton } from '../../common';
 
 const StyledActivitySelect = styled.header`
@@ -23,21 +22,20 @@ const StyledActivitySelect = styled.header`
 `;
 
 function RenderActivitySelect(props) {
-  const { setActivity, activity } = useContext(ActivityContext);
-  const { club } = useContext(ClubContext);
+  const youthContext = useContext(YouthContext);
   const [disabledBtn, setDisabledBtn] = useState(true);
   const [dropDownName, setDropDownName] = useState('');
 
   const selectActivity = (e, item) => {
-    setActivity(item);
+    youthContext.setActivity(item);
     setDropDownName(item.activityname);
     setDisabledBtn(false);
   };
 
   const menu = (
     <Menu className="ydp-selection-dropdowns ">
-      {club.activities &&
-        club.activities.map(item => (
+      {youthContext.club.activities &&
+        youthContext.club.activities.map(item => (
           <Menu.Item
             key={item.activityid}
             onClick={e => selectActivity(e, item.activity)}
