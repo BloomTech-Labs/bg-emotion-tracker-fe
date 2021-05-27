@@ -1,40 +1,5 @@
 import React, { useState, createContext } from 'react';
 
-//user context
-export const UserContext = createContext({
-  user: {},
-  loading: false,
-  error: false,
-  message: '',
-  setUser: () => {},
-  resetUser: () => {},
-});
-
-export const UserContextProvider = props => {
-  const setUser = user => {
-    setState({ ...state, user: user });
-  };
-
-  const resetUser = () => {
-    setState({});
-  };
-
-  const initState = {
-    setUser: setUser,
-    resetUser,
-    user: {},
-    loading: false,
-    error: false,
-    message: '',
-  };
-
-  const [state, setState] = useState(initState);
-
-  return (
-    <UserContext.Provider value={state}>{props.children}</UserContext.Provider>
-  );
-};
-
 // Admin Context
 export const AdminContext = createContext();
 
@@ -52,137 +17,57 @@ export const AdminContextProvider = ({ children }) => {
   );
 };
 
-// Activity Context
-export const ActivityContext = createContext({
-  activity: {},
-  loading: false,
-  error: false,
-  message: '',
-  setActivity: () => {},
-});
+// User Context
+export const UserContext = createContext();
 
-export const ActivityContextProvider = props => {
-  const setActivity = activity => {
-    setState({ ...state, activity });
+export const UserContextProvider = ({ children }) => {
+  const [user, setUser] = useState({});
+  const [clubs, setClubs] = useState([]);
+
+  const resetUser = () => {
+    setUser({});
+    setClubs({});
   };
-
-  const initState = {
-    setActivity,
-  };
-
-  const [state, setState] = useState(initState);
 
   return (
-    <ActivityContext.Provider value={state}>
-      {props.children}
-    </ActivityContext.Provider>
+    <UserContext.Provider value={{ user, setUser, clubs, setClubs, resetUser }}>
+      {children}
+    </UserContext.Provider>
   );
 };
 
-// Clubs Context
+// YDP Context
+export const YouthContext = createContext();
 
-export const ClubsContext = createContext({
-  club: {},
-  clubs: [],
-  loading: false,
-  error: false,
-  message: '',
-  setClub: () => {},
-  setClubs: () => [],
-});
-
-export const ClubsContextProvider = props => {
-  const setClubs = clubs => {
-    setState({ ...state, clubs });
-  };
-
-  const setClub = club => {
-    setState({ ...state, club });
-  };
-
-  const initState = {
-    clubs: [],
-    club: {},
-    setClub,
-    setClubs,
-  };
-
-  const [state, setState] = useState(initState);
-
-  return (
-    <ClubsContext.Provider value={state}>
-      {props.children}
-    </ClubsContext.Provider>
-  );
-};
-
-// Club Context
-
-export const ClubContext = createContext({
-  club: {},
-  loading: false,
-  error: false,
-  message: '',
-  setClub: () => {},
-});
-
-export const ClubContextProvider = props => {
-  const setClub = club => {
-    setState({ ...state, club });
-  };
-
-  const initState = {
-    club: {},
-    setClub,
-  };
-
-  const [state, setState] = useState(initState);
-
-  return (
-    <ClubContext.Provider value={state}>{props.children}</ClubContext.Provider>
-  );
-};
-
-// Member Context
-
-export const MemberContext = createContext();
-
-export const MemberContextProvider = ({ children }) => {
+export const YouthContextProvider = ({ children }) => {
+  const [activity, setActivity] = useState({});
+  const [activities, setActivities] = useState([]);
+  const [clubs, setClubs] = useState([]);
+  const [club, setClub] = useState({});
   const [id, setId] = useState('');
   const [exists, setExists] = useState('');
+  const [emoji, setEmoji] = useState('');
 
   return (
-    <MemberContext.Provider value={{ id, setId, exists, setExists }}>
+    <YouthContext.Provider
+      value={{
+        id,
+        setId,
+        exists,
+        setExists,
+        emoji,
+        setEmoji,
+        activity,
+        setActivity,
+        clubs,
+        setClubs,
+        club,
+        setClub,
+        activities,
+        setActivities,
+      }}
+    >
       {children}
-    </MemberContext.Provider>
-  );
-};
-
-// Emoji Context
-
-export const EmojiContext = createContext({
-  emoji: '',
-  loading: false,
-  error: false,
-  message: '',
-  setEmoji: () => '',
-});
-
-export const EmojiContextProvider = props => {
-  const setEmoji = emoji => {
-    setState({ ...state, emoji });
-  };
-
-  const initState = {
-    emoji: {},
-    setEmoji,
-  };
-
-  const [state, setState] = useState(initState);
-
-  return (
-    <EmojiContext.Provider value={state}>
-      {props.children}
-    </EmojiContext.Provider>
+    </YouthContext.Provider>
   );
 };

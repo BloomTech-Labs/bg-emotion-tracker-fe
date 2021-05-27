@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Link, useHistory, Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
 import { QRCodeReader } from '../QRCodeReader';
@@ -7,7 +7,7 @@ import ManualMemberInput from './ManualMemberInput';
 import { LayoutContainer, BackButton } from '../../common';
 import { getMember } from '../../../state/actions';
 import { Typography } from 'antd';
-import { ActivityContext, MemberContext } from '../../../state/contexts/index';
+import { YouthContext } from '../../../state/contexts/index';
 
 const { Title } = Typography;
 const { Text } = Typography;
@@ -16,10 +16,9 @@ const StyledMemberScanner = styled.header`
   display: flex;
   margin-left: 30%;
   margin-right: 30%;
+  margin-top: 10%;
   flex-direction: column;
   text-align: center;
-  margin-top: 15%;
-
   @media (min-width: 1240px) {
     margin-left: 38%;
     margin-right: 38%;
@@ -31,8 +30,7 @@ function RenderMemberScanner(props) {
   const [scanError, setScanError] = useState(false);
   const [error, setError] = useState('Internal Server Error.');
   const [checkValid, setCheckValid] = useState(false);
-  const activityContext = useContext(ActivityContext); //the act context
-  const memberContext = useContext(MemberContext);
+  const youthContext = useContext(YouthContext);
 
   const handleError = err => {
     console.log(err);
@@ -51,22 +49,22 @@ function RenderMemberScanner(props) {
   };
 
   useEffect(() => {
-    memberContext.setExists('');
+    youthContext.setExists('');
   }, []);
 
   useEffect(() => {
-    if (memberContext.exists === true) {
+    if (youthContext.exists === true) {
       setCheckValid(true);
-    } else if (memberContext.exists === false) {
+    } else if (youthContext.exists === false) {
       handleError('This member does not exist.');
     }
-  }, [memberContext.exists]);
+  }, [youthContext.exists]);
 
   const handleScan = data => {
     if (data) {
-      getMember(data, memberContext);
+      getMember(data, youthContext);
 
-      memberContext.setId(data);
+      youthContext.setId(data);
       setScanStatus(true);
     }
   };
@@ -89,12 +87,11 @@ function RenderMemberScanner(props) {
           <Text style={{ height: '21px' }}></Text>
         )}
         {(() => {
-          if (memberContext.id && memberContext.exists && scanStatus) {
+          if (youthContext.id && youthContext.exists && scanStatus) {
             if (checkValid) {
               if (
-                activityContext.activity.activityname.search(
-                  /check(in|out)$/i
-                ) >= 0
+                youthContext.activity.activityname === 'Club Checkin' ||
+                youthContext.activity.activityname === 'Club Checkout'
               ) {
                 return <Redirect to="/emoji-selectcheck" />;
               } else {

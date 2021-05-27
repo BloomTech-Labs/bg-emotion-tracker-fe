@@ -2,16 +2,11 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import NavBar from '../../common/NavBar';
-import { Button, Radio, Row, Col } from 'antd';
+import { Button } from 'antd';
 import axios from 'axios';
 import { LayoutContainer } from '../../common';
 import { baseUrl } from '../../../api/index';
-import {
-  ActivityContext,
-  ClubContext,
-  MemberContext,
-  EmojiContext,
-} from '../../../state/contexts/index';
+import { YouthContext } from '../../../state/contexts/index';
 import '../../../styles/styles.less';
 
 const StyledEmojiSelectActivity = styled.header`
@@ -63,25 +58,22 @@ function RenderEmojiSelectActivity(props) {
   const history = useHistory();
 
   const [memberReaction, setMemberReaction] = useState('1F601');
-  const activityContext = useContext(ActivityContext);
-  const clubContext = useContext(ClubContext);
-  const memberContext = useContext(MemberContext);
-  const { setEmoji } = useContext(EmojiContext);
+  const youthContext = useContext(YouthContext);
 
   useEffect(() => {
-    setEmoji(memberReaction);
+    youthContext.setEmoji(memberReaction);
   }, []);
 
   const onChange = e => {
     setMemberReaction(e.target.value);
-    setEmoji(e.target.value);
+    youthContext.setEmoji(e.target.value);
   };
 
   const onConfirm = () => {
     let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
     axios
       .post(
-        `${baseUrl}/memberreactions/memberreaction/submit?mid=${memberContext.id}&aid=${activityContext.activity.activityid}&cid=${clubContext.club.clubid}&rx=${memberReaction}`,
+        `${baseUrl}/memberreactions/memberreaction/submit?mid=${youthContext.id}&aid=${youthContext.activity.activityid}&cid=${youthContext.club.clubid}&rx=${memberReaction}`,
         {},
         {
           headers: {
@@ -96,7 +88,7 @@ function RenderEmojiSelectActivity(props) {
   };
 
   return (
-    <LayoutContainer className="ydp">
+    <LayoutContainer>
       <NavBar hideMenu />
       <StyledEmojiSelectActivity>
         {/* <h2>Select Emoji</h2> */}

@@ -3,12 +3,12 @@ import { Modal, Button, Alert } from 'antd';
 import ProgramList from './ProgramList';
 import AddIndividual from './AddIndividual';
 import ImportUpload from './ImportUpload';
-import { ClubsContext } from '../../../../state/contexts';
+import { AdminContext } from '../../../../state/contexts';
 import { getClubs, postActivity } from '../../../../state/actions';
 
 const ImportModal = props => {
   const { fetchActivities } = props;
-  const clubsContext = useContext(ClubsContext);
+  const adminContext = useContext(AdminContext);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [alertData, setAlertData] = useState({
     isVisable: false,
@@ -21,7 +21,7 @@ const ImportModal = props => {
   });
 
   useEffect(() => {
-    getClubs('authState', clubsContext);
+    getClubs('authState', adminContext);
   }, []);
 
   const showModal = () => {
@@ -95,7 +95,6 @@ const ImportModal = props => {
             setInputData={setInputData}
             inputData={inputData}
             showAlert={showAlert}
-            clubsContext={clubsContext}
           />
         </div>
         <div>

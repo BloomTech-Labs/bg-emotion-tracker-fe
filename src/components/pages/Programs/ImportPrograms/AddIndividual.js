@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Form, Input, Button, Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
+import { AdminContext } from '../../../../state/contexts';
 
 const layout = {
   wrapperCol: {
@@ -20,6 +21,7 @@ export const AddIndividual = props => {
     programName: '',
     club: {},
   });
+  const adminContext = useContext(AdminContext);
 
   useEffect(() => {
     if (currentIndividual.programName) {
@@ -57,7 +59,7 @@ export const AddIndividual = props => {
 
   const menu = (
     <Menu>
-      {props.clubsContext.clubs.map(item => (
+      {adminContext.clubs.map(item => (
         <Menu.Item key={item.clubid} onClick={e => selectClub(e, item)}>
           {item.clubname}
         </Menu.Item>
