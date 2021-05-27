@@ -1,8 +1,8 @@
 # Suggestions
 
--   Consolidate Style frameworks. Currently we use Less and Styled-components which is a bad practice. We suggest to just remove styled-components and just use Less because the antd framework uses Less.
+*   Consolidate Style frameworks. Currently we use Less and Styled-components which isn't ideal. We suggest to just pick on or the other (styled-components or Less).
 
--   All pages should be responsive and look good on mobile
+*   All pages should be responsive and look good on mobile.
 
 *   Review icons for menu. Some icons don't seem to match their links.
 
