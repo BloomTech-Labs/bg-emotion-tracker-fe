@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Form, Input, Button } from 'antd';
-import { MemberContext } from '../../../state/contexts/index';
+import { YouthContext } from '../../../state/contexts/index';
 import { getMember } from '../../../state/actions';
 
 const layout = {
@@ -17,21 +17,21 @@ const tailLayout = {
 
 function ManualMemberInput(props) {
   const { setScanStatus, handleError } = props;
-  const memberContext = useContext(MemberContext);
+  const youthContext = useContext(YouthContext);
   const [memberId, setMemberId] = useState('');
   const [form] = Form.useForm();
 
   useEffect(() => {
-    if (memberContext.exists === true) {
-      memberContext.setId(memberId);
+    if (youthContext.exists === true) {
+      youthContext.setId(memberId);
       setScanStatus(true);
-    } else if (memberContext.exists === false) {
+    } else if (youthContext.exists === false) {
       handleError('This member does not exist.');
     }
-  }, [memberContext.exists]);
+  }, [youthContext.exists]);
 
   const onFinish = async values => {
-    await getMember(values.memberId, memberContext);
+    await getMember(values.memberId, youthContext);
   };
 
   const onFinishFailed = errorInfo => {

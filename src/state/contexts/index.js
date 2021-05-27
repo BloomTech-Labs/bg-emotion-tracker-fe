@@ -39,10 +39,19 @@ export const YouthContextProvider = ({ children }) => {
   const [activities, setActivities] = useState([]);
   const [clubs, setClubs] = useState([]);
   const [club, setClub] = useState({});
+  const [id, setId] = useState('');
+  const [exists, setExists] = useState('');
+  const [emoji, setEmoji] = useState('');
 
   return (
     <YouthContext.Provider
       value={{
+        id,
+        setId,
+        exists,
+        setExists,
+        emoji,
+        setEmoji,
         activity,
         setActivity,
         clubs,
