@@ -16,7 +16,7 @@ const StyledMemberScanner = styled.header`
   display: flex;
   margin-left: 30%;
   margin-right: 30%;
-  margin-top: 15%;
+  margin-top: 10%;
   flex-direction: column;
   text-align: center;
   @media (min-width: 1240px) {
