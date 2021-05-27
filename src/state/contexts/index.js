@@ -31,6 +31,23 @@ export const UserContextProvider = ({ children }) => {
   );
 };
 
+// YDP Context
+export const YouthContext = createContext();
+
+export const YouthContextProvider = ({ children }) => {
+  const [activity, setActivity] = useState({});
+  const [clubs, setClubs] = useState([]);
+  const [club, setClub] = useState({});
+
+  return (
+    <YouthContext.Provider
+      value={{ activity, setActivity, clubs, setClubs, club, setClub }}
+    >
+      {children}
+    </YouthContext.Provider>
+  );
+};
+
 // Activity Context
 export const ActivityContext = createContext({
   activity: {},
@@ -55,42 +72,6 @@ export const ActivityContextProvider = props => {
     <ActivityContext.Provider value={state}>
       {props.children}
     </ActivityContext.Provider>
-  );
-};
-
-// Clubs Context
-export const ClubsContext = createContext({
-  club: {},
-  clubs: [],
-  loading: false,
-  error: false,
-  message: '',
-  setClub: () => {},
-  setClubs: () => [],
-});
-
-export const ClubsContextProvider = props => {
-  const setClubs = clubs => {
-    setState({ ...state, clubs });
-  };
-
-  const setClub = club => {
-    setState({ ...state, club });
-  };
-
-  const initState = {
-    clubs: [],
-    club: {},
-    setClub,
-    setClubs,
-  };
-
-  const [state, setState] = useState(initState);
-
-  return (
-    <ClubsContext.Provider value={state}>
-      {props.children}
-    </ClubsContext.Provider>
   );
 };
 
