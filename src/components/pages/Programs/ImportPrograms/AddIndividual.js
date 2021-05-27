@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Form, Input, Button, Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
+import { AdminContext } from '../../../../state/contexts';
 
 const layout = {
   wrapperCol: {
@@ -15,11 +16,12 @@ const tailLayout = {
 };
 
 export const AddIndividual = props => {
-  const { inputData, setInputData, adminContext } = props;
+  const { inputData, setInputData } = props;
   const [currentIndividual, setCurrentIndividual] = useState({
     programName: '',
     club: {},
   });
+  const adminContext = useContext(AdminContext);
 
   useEffect(() => {
     if (currentIndividual.programName) {
