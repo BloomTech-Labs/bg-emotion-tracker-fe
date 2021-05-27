@@ -7,11 +7,7 @@ import ManualMemberInput from './ManualMemberInput';
 import { LayoutContainer, BackButton } from '../../common';
 import { getMember } from '../../../state/actions';
 import { Typography } from 'antd';
-import {
-  ActivityContext,
-  MemberContext,
-  YouthContext,
-} from '../../../state/contexts/index';
+import { YouthContext } from '../../../state/contexts/index';
 
 const { Title } = Typography;
 const { Text } = Typography;
@@ -93,7 +89,7 @@ function RenderMemberScanner(props) {
           if (youthContext.id && youthContext.exists && scanStatus) {
             if (checkValid) {
               if (
-                youthContext.activity.activityname === 'Club Attendance' ||
+                youthContext.activity.activityname === 'Club Checkin' ||
                 youthContext.activity.activityname === 'Club Checkout'
               ) {
                 return <Redirect to="/emoji-selectcheck" />;
