@@ -10,7 +10,6 @@
 }
 
 #okta-sign-in.auth-container.main-container {
-  height: 530px;
   overflow: hidden;
 }
 
@@ -23,7 +22,6 @@
 }
 
 .layout {
-
   width: 100%;
   height: 100%;
 
@@ -32,7 +30,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-
   }
 }
 
@@ -60,7 +57,7 @@
 }
 
 .scannerTitle {
-  color: #0081C6;
+  color: #0081c6;
   font-size: 72px;
   outline: none;
   -webkit-transition: color 0.3s;
@@ -68,18 +65,19 @@
   margin-bottom: 0;
 }
 
-
 /* ManualMemberInput */
 .manualMemberInput {
   justify-content: center;
-  div, .ant-form-inline, .ant-form-item-with-help {
-    margin-bottom: 3px; 
+  div,
+  .ant-form-inline,
+  .ant-form-item-with-help {
+    margin-bottom: 3px;
   }
 
   .scannerBtn {
     margin-top: 10px;
     width: 120px;
-    height: 50px; 
+    height: 50px;
     font-size: 1.5rem;
   }
 }
@@ -117,38 +115,36 @@
 }
 
 .emojiBtn:hover {
-    height: 115px;
-    width: 110px;
-    color: #000000;
-    font-size: 5rem;
-    opacity: 100%;
-    display: flex;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
+  height: 115px;
+  width: 110px;
+  color: #000000;
+  font-size: 5rem;
+  opacity: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .emojiBtn:focus {
-    height: 115px;
-    width: 110px;
-    color: #000000;
-    font-size: 5rem;
-    opacity: 100%;
-    display: flex;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
+  height: 115px;
+  width: 110px;
+  color: #000000;
+  font-size: 5rem;
+  opacity: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
-
 .emojiConfirmBtn {
-    height: 90px;
-    width: 120px;
-    color: #ffffff;
-    font-size: 2rem;
-    opacity: 100%;
-  }
-  
+  height: 90px;
+  width: 120px;
+  color: #ffffff;
+  font-size: 2rem;
+  opacity: 100%;
+}
 
 .mainhamburger {
   li {
@@ -197,236 +193,257 @@
 
 //fadein
 .fade-in-image {
-    animation: fadeIn 2s;
-    -webkit-animation: fadeIn 2s;
-    -moz-animation: fadeIn 2s;
-    -o-animation: fadeIn 2s;
-    -ms-animation: fadeIn 2s;
-  }
-  @keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
-  
-  @-moz-keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
-  
-  @-webkit-keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
-  
-  @-o-keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
-  
-  @-ms-keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
-
-//bgCircles
-  .circleA {
-    border-radius: 50%;
-    background-color: rgb(0, 140, 255);
-    width: 150px;
-    height: 150px;
-    position: absolute;
-    left: 50%;
-    margin-left: -75px;
-    top: 50%;
-    margin-top: -10px;
+  animation: fadeIn 2s;
+  -webkit-animation: fadeIn 2s;
+  -moz-animation: fadeIn 2s;
+  -o-animation: fadeIn 2s;
+  -ms-animation: fadeIn 2s;
+}
+@keyframes fadeIn {
+  0% {
     opacity: 0;
-    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
-    animation-delay: -3s;
-    z-index: -100;
   }
-  .circleB {
-    border-radius: 50%;
-    background-color: rgb(0, 140, 255);
-    width: 150px;
-    height: 150px;
-    position: absolute;
-    left: 50%;
-    margin-left: -75px;
-    top: 50%;
-    margin-top: -10px;
-    opacity: 0;
-    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
-    animation-delay: -2.75s;
-    z-index: -100;
+  100% {
+    opacity: 1;
   }
-  .circleC {
-    border-radius: 50%;
-    background-color: rgb(0, 140, 255);
-    width: 150px;
-    height: 150px;
-    position: absolute;
-    left: 50%;
-    margin-left: -75px;
-    top: 50%;
-    margin-top: -10px;
-    opacity: 0;
-    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
-    animation-delay: -2.5s;
-    z-index: -100;
-  }
-  .circleD {
-    border-radius: 50%;
-    background-color: rgb(0, 140, 255);
-    width: 150px;
-    height: 150px;
-    position: absolute;
-    left: 50%;
-    margin-left: -75px;
-    top: 50%;
-    margin-top: -10px;
-    opacity: 0;
-    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
-    animation-delay: -2.25s;
-    z-index: -100;
-  }
-  .circleE {
-    border-radius: 50%;
-    background-color: rgb(0, 140, 255);
-    width: 150px;
-    height: 150px;
-    position: absolute;
-    left: 50%;
-    margin-left: -75px;
-    top: 50%;
-    margin-top: -10px;
-    opacity: 0;
-    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
-    animation-delay: -2.0s;
-    z-index: -100;
-  }
-  .circleF {
-    border-radius: 50%;
-    background-color: rgb(0, 140, 255);
-    width: 150px;
-    height: 150px;
-    position: absolute;
-    left: 50%;
-    margin-left: -75px;
-    top: 50%;
-    margin-top: -10px;
-    opacity: 0;
-    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
-    animation-delay: -1.75s;
-    z-index: -100;
-  }
-  .circleG {
-    border-radius: 50%;
-    background-color: rgb(0, 140, 255);
-    width: 150px;
-    height: 150px;
-    position: absolute;
-    left: 50%;
-    margin-left: -75px;
-    top: 50%;
-    margin-top: -10px;
-    opacity: 0;
-    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
-    animation-delay: -1.5s;
-    z-index: -100;
-  }
-  .circleH {
-    border-radius: 50%;
-    background-color: rgb(0, 140, 255);
-    width: 150px;
-    height: 150px;
-    position: absolute;
-    left: 50%;
-    margin-left: -75px;
-    top: 50%;
-    margin-top: -10px;
-    opacity: 0;
-    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
-    animation-delay: -1.25s;
-    z-index: -100;
-  }
-  .circleI {
-    border-radius: 50%;
-    background-color: rgb(0, 140, 255);
-    width: 150px;
-    height: 150px;
-    position: absolute;
-    left: 50%;
-    margin-left: -75px;
-    top: 50%;
-    margin-top: -10px;
-    opacity: 0;
-    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
-    animation-delay: -1s;
-    z-index: -100;
-  }
-  .circleJ {
-    border-radius: 50%;
-    background-color: rgb(0, 140, 255);
-    width: 150px;
-    height: 150px;
-    position: absolute;    left: 50%;
-    margin-left: -75px;
-    top: 50%;
-    margin-top: -10px;
-    opacity: 0;
-    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
-    animation-delay: -0.75s;
-    z-index: -100;
-  }
-  .circleK {
-    border-radius: 50%;
-    background-color: rgb(0, 140, 255);
-    width: 150px;
-    height: 150px;
-    position: absolute;
-    left: 50%;
-    margin-left: -75px;
-    top: 50%;
-    margin-top: -10px;
-    opacity: 0;
-    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
-    animation-delay: -0.5s;
-    z-index: -100;
-  }
-  .circleL {
-    border-radius: 50%;
-    background-color: rgb(0, 140, 255);
-    width: 150px;
-    height: 150px;
-    position: absolute;
-    left: 50%;
-    margin-left: -75px;
-    top: 50%;
-    margin-top: -10px;
-    opacity: 0;
-    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
-    animation-delay: -0.25s;
-    z-index: -100;
-  }
-
-  .item {
-    width: 150px;
-    height: 150px;
-    position: absolute;
-    left: 50%;
-    margin-left: -120px;
-    top: 50%;
-    margin-top: -85px;
-    z-index: 100;
 }
 
-  @keyframes scaleIn {
-    from {
-      transform: scale(.5, .5);
-      opacity: .5;
-    }
-    to {
-      transform: scale(2.5, 2.5);
-      opacity: 0;
-    }
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
   }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+//bgCircles
+.circleA {
+  border-radius: 50%;
+  background-color: rgb(0, 140, 255);
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  left: 50%;
+  margin-left: -75px;
+  top: 50%;
+  margin-top: -10px;
+  opacity: 0;
+  animation: scaleIn 4s infinite cubic-bezier(0.36, 0.11, 0.89, 0.32);
+  animation-delay: -3s;
+  z-index: -100;
+}
+.circleB {
+  border-radius: 50%;
+  background-color: rgb(0, 140, 255);
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  left: 50%;
+  margin-left: -75px;
+  top: 50%;
+  margin-top: -10px;
+  opacity: 0;
+  animation: scaleIn 4s infinite cubic-bezier(0.36, 0.11, 0.89, 0.32);
+  animation-delay: -2.75s;
+  z-index: -100;
+}
+.circleC {
+  border-radius: 50%;
+  background-color: rgb(0, 140, 255);
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  left: 50%;
+  margin-left: -75px;
+  top: 50%;
+  margin-top: -10px;
+  opacity: 0;
+  animation: scaleIn 4s infinite cubic-bezier(0.36, 0.11, 0.89, 0.32);
+  animation-delay: -2.5s;
+  z-index: -100;
+}
+.circleD {
+  border-radius: 50%;
+  background-color: rgb(0, 140, 255);
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  left: 50%;
+  margin-left: -75px;
+  top: 50%;
+  margin-top: -10px;
+  opacity: 0;
+  animation: scaleIn 4s infinite cubic-bezier(0.36, 0.11, 0.89, 0.32);
+  animation-delay: -2.25s;
+  z-index: -100;
+}
+.circleE {
+  border-radius: 50%;
+  background-color: rgb(0, 140, 255);
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  left: 50%;
+  margin-left: -75px;
+  top: 50%;
+  margin-top: -10px;
+  opacity: 0;
+  animation: scaleIn 4s infinite cubic-bezier(0.36, 0.11, 0.89, 0.32);
+  animation-delay: -2s;
+  z-index: -100;
+}
+.circleF {
+  border-radius: 50%;
+  background-color: rgb(0, 140, 255);
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  left: 50%;
+  margin-left: -75px;
+  top: 50%;
+  margin-top: -10px;
+  opacity: 0;
+  animation: scaleIn 4s infinite cubic-bezier(0.36, 0.11, 0.89, 0.32);
+  animation-delay: -1.75s;
+  z-index: -100;
+}
+.circleG {
+  border-radius: 50%;
+  background-color: rgb(0, 140, 255);
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  left: 50%;
+  margin-left: -75px;
+  top: 50%;
+  margin-top: -10px;
+  opacity: 0;
+  animation: scaleIn 4s infinite cubic-bezier(0.36, 0.11, 0.89, 0.32);
+  animation-delay: -1.5s;
+  z-index: -100;
+}
+.circleH {
+  border-radius: 50%;
+  background-color: rgb(0, 140, 255);
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  left: 50%;
+  margin-left: -75px;
+  top: 50%;
+  margin-top: -10px;
+  opacity: 0;
+  animation: scaleIn 4s infinite cubic-bezier(0.36, 0.11, 0.89, 0.32);
+  animation-delay: -1.25s;
+  z-index: -100;
+}
+.circleI {
+  border-radius: 50%;
+  background-color: rgb(0, 140, 255);
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  left: 50%;
+  margin-left: -75px;
+  top: 50%;
+  margin-top: -10px;
+  opacity: 0;
+  animation: scaleIn 4s infinite cubic-bezier(0.36, 0.11, 0.89, 0.32);
+  animation-delay: -1s;
+  z-index: -100;
+}
+.circleJ {
+  border-radius: 50%;
+  background-color: rgb(0, 140, 255);
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  left: 50%;
+  margin-left: -75px;
+  top: 50%;
+  margin-top: -10px;
+  opacity: 0;
+  animation: scaleIn 4s infinite cubic-bezier(0.36, 0.11, 0.89, 0.32);
+  animation-delay: -0.75s;
+  z-index: -100;
+}
+.circleK {
+  border-radius: 50%;
+  background-color: rgb(0, 140, 255);
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  left: 50%;
+  margin-left: -75px;
+  top: 50%;
+  margin-top: -10px;
+  opacity: 0;
+  animation: scaleIn 4s infinite cubic-bezier(0.36, 0.11, 0.89, 0.32);
+  animation-delay: -0.5s;
+  z-index: -100;
+}
+.circleL {
+  border-radius: 50%;
+  background-color: rgb(0, 140, 255);
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  left: 50%;
+  margin-left: -75px;
+  top: 50%;
+  margin-top: -10px;
+  opacity: 0;
+  animation: scaleIn 4s infinite cubic-bezier(0.36, 0.11, 0.89, 0.32);
+  animation-delay: -0.25s;
+  z-index: -100;
+}
+
+.item {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  left: 50%;
+  margin-left: -120px;
+  top: 50%;
+  margin-top: -85px;
+  z-index: 100;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.5, 0.5);
+    opacity: 0.5;
+  }
+  to {
+    transform: scale(2.5, 2.5);
+    opacity: 0;
+  }
+}
