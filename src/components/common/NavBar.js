@@ -81,8 +81,17 @@ function NavBar(props) {
           Manage Clubs
         </Menu.Item>
       )}
+      {(role === 'ADMIN' || role === 'CD') && (
+        <Menu.Item
+          key="6"
+          icon={<UserOutlined />}
+          onClick={() => history.push('/leaderboard')}
+        >
+          Leaderboard
+        </Menu.Item>
+      )}
       <Menu.Item
-        key="6"
+        key="7"
         icon={<LogoutOutlined />}
         onClick={() => history.push('/logout')}
       >
