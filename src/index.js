@@ -41,6 +41,7 @@ import { EmojiSelectActivity } from './components/pages/EmojiSelectActivity';
 import { EmojiConfirmRedirect } from './components/pages/EmojiConfirmRedirect';
 
 import { Roles } from './state/contexts/roles';
+import HiddenRoute from './utils/HiddenRoute';
 
 ReactDOM.render(
   <Router>
@@ -67,7 +68,7 @@ function App() {
           <div className="MainContainer">
             <Security {...config} onAuthRequired={authHandler}>
               <Switch>
-                <Route path="/login" component={LoginPage} />
+                <HiddenRoute path="/login" component={LoginPage} />
                 <Route path="/logout" component={Logout} />
                 <Route path="/implicit/callback" component={LoginCallback} />
                 <Route path="/landing" component={LandingPage} />
