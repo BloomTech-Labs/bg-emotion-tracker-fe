@@ -8,6 +8,7 @@ import {
   LogoutOutlined,
   LineChartOutlined,
   CalendarOutlined,
+  UpSquareOutlined,
 } from '@ant-design/icons';
 import logo from '../../assets/images/BGC-logo-header.png';
 import { useHistory } from 'react-router';
@@ -84,7 +85,7 @@ function NavBar(props) {
       {(role === 'ADMIN' || role === 'CD') && (
         <Menu.Item
           key="6"
-          icon={<UserOutlined />}
+          icon={<UpSquareOutlined />}
           onClick={() => history.push('/leaderboard')}
         >
           Leaderboard
