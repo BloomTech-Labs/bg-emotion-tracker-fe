@@ -34,6 +34,7 @@ import { ViewMembers } from './components/pages/Members';
 import { ViewPrograms } from './components/pages/Programs';
 import { ViewClubs } from './components/pages/Clubs';
 import { MemberScanner } from './components/pages/MemberScanner';
+import { Leaderboard } from './components/pages/Leaderboard';
 
 import { ActivitySelect } from './components/pages/ActivitySelect';
 import { EmojiSelectCheck } from './components/pages/EmojiSelectCheck';
@@ -107,6 +108,14 @@ function App() {
                   path="/club-select"
                   component={() =>
                     Authorization([Roles[0], Roles[1], Roles[2]], MemberScanner)
+                  }
+                />
+
+                <SecureRoute
+                  exact
+                  path="/leaderboard"
+                  component={() =>
+                    Authorization([Roles[0], Roles[1]], Leaderboard)
                   }
                 />
 
