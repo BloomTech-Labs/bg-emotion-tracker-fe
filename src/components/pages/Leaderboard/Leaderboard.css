@@ -29,23 +29,27 @@ ul {
     border-radius: 25px;
     width: 60%;
     height: 6vh;
-    margin-bottom: 0.5%;
+    margin-bottom: 1%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     box-shadow: 5px 2.75px 2.75px #0081C6;
 }
 
+.li-container:hover {
+    transform: scale(1.25);
+}
+
 .gold {
-    background-color: gold;
+    background-color: #FFDF00;
 }
 
 .silver {
-    background-color: silver;
+    background-color: #C0C0C0;
 }
 
 .bronze {
-    background-color: brown;
+    background-color: #cd7f32;
 }
 
 .li-container li {
@@ -54,4 +58,23 @@ ul {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.toggle {
+    border: 2px black solid;
+    width: 60%;
+    height: vh;
+    display: flex;
+}
+
+.highest-sentiment {
+    width: 50%;
+    text-align: center;
+    border-right: 1px black solid;
+}
+
+.most-improved {
+    width: 50%;
+    text-align: center;
+    border-left: 1px solid black;
 }

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LayoutContainer } from '../../common/';
 import NavBar from '../../common/NavBar';
 import './Leaderboard.css';
+import { Tabs } from 'antd';
 
 const dummyData = [
   { clubname: 'Anderson', rating: 4.87 },
@@ -50,20 +51,85 @@ for (var i = 0; i < sortedDummyData.length; i++) {
   sortedDummyData[i].id = i + 1;
 }
 
+const TabPane = Tabs;
+function callback(key) {
+  console.log(key);
+}
+
 function RenderLeaderboard(props) {
+  const [toggle, setToggle] = useState(false);
+
   return (
     <LayoutContainer>
       <NavBar titleName={'Leaderboard'} backgroundColor="#293845" />
       <ul>
-        {sortedDummyData.map(elem => (
-          <div className={`li-container`}>
-            <li>
-              <h2 className="place">{elem.id}</h2>
-              <h2 className="place">{elem.clubname}</h2>
-              <h2 className="rating">{elem.rating}</h2>
-            </li>
-          </div>
-        ))}
+        <div className={`li-container gold`}>
+          <li>
+            <h2 className="place">{sortedDummyData[0].id}</h2>
+            <h2 className="place">{sortedDummyData[0].clubname}</h2>
+            <h2 className="rating">{sortedDummyData[0].rating}</h2>
+          </li>
+        </div>
+        <div className={`li-container silver`}>
+          <li>
+            <h2 className="place">{sortedDummyData[1].id}</h2>
+            <h2 className="place">{sortedDummyData[1].clubname}</h2>
+            <h2 className="rating">{sortedDummyData[1].rating}</h2>
+          </li>
+        </div>
+        <div className={`li-container bronze`}>
+          <li>
+            <h2 className="place">{sortedDummyData[2].id}</h2>
+            <h2 className="place">{sortedDummyData[2].clubname}</h2>
+            <h2 className="rating">{sortedDummyData[2].rating}</h2>
+          </li>
+        </div>
+        <div className={`li-container`}>
+          <li>
+            <h2 className="place">{sortedDummyData[3].id}</h2>
+            <h2 className="place">{sortedDummyData[3].clubname}</h2>
+            <h2 className="rating">{sortedDummyData[3].rating}</h2>
+          </li>
+        </div>
+        <div className={`li-container`}>
+          <li>
+            <h2 className="place">{sortedDummyData[4].id}</h2>
+            <h2 className="place">{sortedDummyData[4].clubname}</h2>
+            <h2 className="rating">{sortedDummyData[4].rating}</h2>
+          </li>
+        </div>
+        <div className={`li-container`}>
+          <li>
+            <h2 className="place">{sortedDummyData[5].id}</h2>
+            <h2 className="place">{sortedDummyData[5].clubname}</h2>
+            <h2 className="rating">{sortedDummyData[5].rating}</h2>
+          </li>
+        </div>
+        <div className={`li-container`}>
+          <li>
+            <h2 className="place">{sortedDummyData[6].id}</h2>
+            <h2 className="place">{sortedDummyData[6].clubname}</h2>
+            <h2 className="rating">{sortedDummyData[6].rating}</h2>
+          </li>
+        </div>
+        <div className={`li-container`}>
+          <li>
+            <h2 className="place">{sortedDummyData[7].id}</h2>
+            <h2 className="place">{sortedDummyData[7].clubname}</h2>
+            <h2 className="rating">{sortedDummyData[7].rating}</h2>
+          </li>
+        </div>
+        <div className={`li-container`}>
+          <li>
+            <h2 className="place">{sortedDummyData[8].id}</h2>
+            <h2 className="place">{sortedDummyData[8].clubname}</h2>
+            <h2 className="rating">{sortedDummyData[8].rating}</h2>
+          </li>
+        </div>
+        <Tabs defaultActiveKey="1" onChange={callback}>
+          <TabPane tab="Highest Sentiment Last Week" key="1"></TabPane>
+          <TabPane tab="Most Improved Since Last Mon" key="2"></TabPane>
+        </Tabs>
       </ul>
     </LayoutContainer>
   );
