@@ -114,7 +114,7 @@ function App() {
                   exact
                   path="/leaderboard"
                   component={() =>
-                    Authorization([Roles[0], Roles[1], Roles[2]], Leaderboard)
+                    Authorization([Roles[0], Roles[1]], Leaderboard)
                   }
                 />
 
