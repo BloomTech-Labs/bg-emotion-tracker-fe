@@ -3,12 +3,12 @@ import { DashboardAlerts } from '.';
 
 import RenderDashboardAlerts from './RenderDashboardAlerts';
 
-const DBA = () => {
+function DashboardAlert() {
   return (
     <>
       <RenderDashboardAlerts />
     </>
   );
-};
+}
 
-export default DBA;
+export default DashboardAlert;
