@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { LayoutContainer } from '../../common';
 import NavBar from '../../common/NavBar';
+
 import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
 import {
@@ -9,6 +10,7 @@ import {
   NotificationOutlined,
 } from '@ant-design/icons';
 import { ActivitiesWidget, MembersWidget } from '../../ReportsWidget';
+import { DashboardAlerts } from '../DashboardAlerts';
 
 const { Content, Sider } = Layout;
 
@@ -51,7 +53,8 @@ function RenderHomePage() {
               defaultOpenKeys={['sub1']}
               style={{ height: '100%', borderRight: 0 }}
             >
-              <Menu.Item
+              <DashboardAlerts />
+              {/* <Menu.Item
                 style={{ marginTop: '30px' }}
                 key="1"
                 icon={<UserOutlined />}
@@ -69,13 +72,13 @@ function RenderHomePage() {
                 }}
               >
                 Activities
-              </Menu.Item>
+              </Menu.Item> */}
             </Menu>
           </Sider>
           <Content>
-            <div className="site-layout-content">
+            {/* <div className="site-layout-content">
               <StyledAdminPage>{widget}</StyledAdminPage>
-            </div>
+            </div> */}
           </Content>
         </Layout>
       </Layout>
