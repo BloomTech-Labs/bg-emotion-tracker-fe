@@ -1,0 +1,20 @@
+.alerts .container {
+    margin: 2rem;
+    display: flex;
+}
+
+.alerts .header {
+    margin: 1rem;
+}
+
+.alert {
+    display: flex;
+    flex-direction: row;
+    
+    margin: 1rem;
+}
+
+.badge {
+    margin: .75rem;
+}
+
