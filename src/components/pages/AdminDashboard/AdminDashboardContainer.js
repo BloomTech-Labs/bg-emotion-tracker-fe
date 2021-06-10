@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import GraphCard from '../../common/GraphCard';
 
 import AdminDashboardPage from './AdminDashboardPage';
 
