@@ -1,3 +1,8 @@
+/*
+ * This dummy datais to represent the json data that will be coming from the back end about member
+ * who reported a negitive sentament.
+ */
+
 export const dummyData = [
   {
     clubid: 1,
@@ -15,7 +20,7 @@ export const dummyData = [
             },
             reactionvalue: '10D3',
             intigerValue: 1,
-            resolved: false, //need to set local state of bool as well as on hte backend
+            resolved: false, //need to set local state of bool as well as on the backend
           },
         ],
       },
