@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LayoutContainer } from '../../common/';
 import NavBar from '../../common/NavBar';
 import './Leaderboard.css';
+import { Tabs } from 'antd';
 
 const dummyData = [
   { clubname: 'Anderson', rating: 4.87 },
@@ -50,6 +51,11 @@ for (var i = 0; i < sortedDummyData.length; i++) {
   sortedDummyData[i].id = i + 1;
 }
 
+const TabPane = Tabs;
+function callback(key) {
+  console.log(key);
+}
+
 function RenderLeaderboard(props) {
   return (
     <LayoutContainer>
@@ -64,6 +70,10 @@ function RenderLeaderboard(props) {
             </li>
           </div>
         ))}
+        <Tabs defaultActiveKey="1" onChange={callback}>
+          <TabPane tab="Highest Sentiment Last Week" key="1"></TabPane>
+          <TabPane tab="Most Improved Since Last Mon" key="2"></TabPane>
+        </Tabs>
       </ul>
     </LayoutContainer>
   );
