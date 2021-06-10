@@ -18,22 +18,22 @@ h2 {
 
 ul {
     list-style-type: none;
-    margin-top: 1%;
+    margin-top: 0.5%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .li-container {
-    border: 2px darkgray solid;
-    border-radius: 25px;
+    border: solid 0.75px rgba(0, 129, 198, 1);
+    border-radius: 20px;
     width: 60%;
     height: 6vh;
     margin-bottom: 1%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 5px 2.75px 2.75px #0081C6;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .li-container:hover {

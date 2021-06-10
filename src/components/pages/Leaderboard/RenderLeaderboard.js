@@ -58,6 +58,10 @@ function RenderLeaderboard(props) {
     <LayoutContainer>
       <NavBar titleName={'Leaderboard'} backgroundColor="#293845" />
       <ul>
+        <Tabs defaultActiveKey="1" size={'large'}>
+          <TabPane tab="HIGHEST SENTIMENT LAST WEEK" key="1"></TabPane>
+          <TabPane tab="MOST IMPROVED LAST MONTH" key="2"></TabPane>
+        </Tabs>
         {sortedDummyData.map(elem => (
           <div className={`li-container`}>
             <li>
@@ -67,10 +71,6 @@ function RenderLeaderboard(props) {
             </li>
           </div>
         ))}
-        <Tabs defaultActiveKey="1">
-          <TabPane tab="Highest Sentiment Last Week" key="1"></TabPane>
-          <TabPane tab="Most Improved Since Last Mon" key="2"></TabPane>
-        </Tabs>
       </ul>
     </LayoutContainer>
   );

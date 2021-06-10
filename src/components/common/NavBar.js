@@ -9,6 +9,7 @@ import {
   LineChartOutlined,
   CalendarOutlined,
   UpSquareOutlined,
+  BellOutlined,
 } from '@ant-design/icons';
 import logo from '../../assets/images/BGC-logo-header.png';
 import { useHistory } from 'react-router';
@@ -89,6 +90,15 @@ function NavBar(props) {
           onClick={() => history.push('/leaderboard')}
         >
           Leaderboard
+        </Menu.Item>
+      )}
+      {(role === 'ADMIN' || role === 'CD') && (
+        <Menu.Item
+          key="6"
+          icon={<BellOutlined />}
+          onClick={() => history.push('/alerts')}
+        >
+          Alerts
         </Menu.Item>
       )}
       <Menu.Item
