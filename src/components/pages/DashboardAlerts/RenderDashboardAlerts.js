@@ -4,6 +4,11 @@ import { Badge } from 'antd';
 import { dummyData } from './AlertsDummyData';
 
 function RenderDashboardAlerts() {
+  /*
+   * This function combines the locations into one object with the value of the
+   * number of times the location appears. Main pourpous is to not have repeating locations and have a number coralating
+   * to the number of alerts.
+   */
   const combineFlags = dummyData => {
     const rtn = {};
     dummyData.forEach(location => {
