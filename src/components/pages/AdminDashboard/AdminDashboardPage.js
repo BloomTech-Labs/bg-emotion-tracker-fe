@@ -9,11 +9,12 @@ import {
   NotificationOutlined,
 } from '@ant-design/icons';
 import { ActivitiesWidget, MembersWidget } from '../../ReportsWidget';
+import GraphCard from '../../common/GraphCard';
 
 const { Content, Sider } = Layout;
 
 const StyledAdminPage = styled.header`
-  display: flex;
+  margin-top: 5%;
 `;
 function RenderHomePage() {
   const [mode, setMode] = useState('members');

@@ -52,9 +52,6 @@ for (var i = 0; i < sortedDummyData.length; i++) {
 }
 
 const TabPane = Tabs;
-function callback(key) {
-  console.log(key);
-}
 
 function RenderLeaderboard(props) {
   return (
@@ -70,7 +67,7 @@ function RenderLeaderboard(props) {
             </li>
           </div>
         ))}
-        <Tabs defaultActiveKey="1" onChange={callback}>
+        <Tabs defaultActiveKey="1">
           <TabPane tab="Highest Sentiment Last Week" key="1"></TabPane>
           <TabPane tab="Most Improved Since Last Mon" key="2"></TabPane>
         </Tabs>
