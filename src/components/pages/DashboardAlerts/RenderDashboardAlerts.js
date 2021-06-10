@@ -1,72 +1,36 @@
 import React, { useContext, useState } from 'react';
-import ReactDOM from 'react-dom';
-import 'antd/dist/antd.css';
-import './index.css';
+import './DashboardAlerts.css';
 import { Badge } from 'antd';
-import { ClockCircleOutlined } from '@ant-design/icons';
+import { dummyData } from './AlertsDummyData';
 
-const RenderDashboardAlerts = () => {
-  const negatives = [
-    {
-      clubid: 1,
-      clubname: 'Jackson',
-      clubmembers: [
-        // for each member there is an alert
-        {
-          memberid: 1,
-          reactions: [
-            {
-              clubid: 1,
-              activity: {
-                activityid: 1,
-                activityname: 'bowling',
-              },
-              reactionvalue: '10D3',
-              intigerValue: 1,
-              resolved: false, //need to set local state of bool as well as on hte backend
-            },
-          ],
-        },
-      ],
-    },
-    {
-      clubid: 2,
-      clubname: 'Anderson',
-      clubmembers: [
-        // for each member there is an alert
-        {
-          memberid: 2,
-          reactions: [
-            {
-              clubid: 2,
-              activity: {
-                activityid: 1,
-                activityname: 'bowling',
-              },
-              reactionvalue: '10D3',
-              intigerValue: 1,
-              resolved: false, //need to set local state of bool as well as on hte backend
-            },
-          ],
-        },
-      ],
-    },
-  ];
+function RenderDashboardAlerts() {
+  const combineFlags = dummyData => {
+    const rtn = {};
+    dummyData.forEach(location => {
+      if (!(location.clubname in rtn)) {
+        rtn[location.clubname] = 0;
+      }
+      rtn[location.clubname] += 1;
+    });
+    return rtn;
+  };
+
+  let flagObj = combineFlags(dummyData);
 
   return (
     <>
-      <h2> Alerts</h2>
       <div className="alerts container">
-        {negatives.forEach(location => {
-          <div>
-            <h3>{location.clubName}</h3>
-            <Badge count={1}>
+        <h2 className="alerts header"> Alerts</h2>
+        {Object.keys(flagObj).map(location => (
+          <div className="alert div" key={location}>
+            <h3>{location}</h3>
+            <Badge count={flagObj[location]} className="badge">
               <a href="#" className="alertLink" />
             </Badge>
-          </div>;
-        })}
+          </div>
+        ))}
       </div>
     </>
   );
-};
+}
 export default RenderDashboardAlerts;
