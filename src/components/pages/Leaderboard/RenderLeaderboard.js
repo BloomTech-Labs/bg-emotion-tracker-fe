@@ -2,7 +2,19 @@ import React, { useState } from 'react';
 import { LayoutContainer } from '../../common/';
 import NavBar from '../../common/NavBar';
 import './Leaderboard.css';
-import { Tabs } from 'antd';
+import Tabs from '../../common/Tabs';
+
+const prevDummyData = [
+  { clubname: 'Anderson', rating: 4.84 },
+  { clubname: 'Caitlin', rating: 4.85 },
+  { clubname: 'Grossman', rating: 4.86 },
+  { clubname: 'Johnston', rating: 4.89 },
+  { clubname: 'Marley', rating: 4.87 },
+  { clubname: 'Morton', rating: 4.83 },
+  { clubname: 'Notter', rating: 4.82 },
+  { clubname: 'Stelle', rating: 4.81 },
+  { clubname: 'Jefferson', rating: 4.88 },
+];
 
 const dummyData = [
   { clubname: 'Anderson', rating: 4.87 },
@@ -14,6 +26,18 @@ const dummyData = [
   { clubname: 'Notter', rating: 4.83 },
   { clubname: 'Stelle', rating: 4.82 },
   { clubname: 'Jefferson', rating: 4.81 },
+];
+
+const dummyImprovedData = [
+  { clubname: 'Anderson', rating: 0.7 },
+  { clubname: 'Caitlin', rating: 0.6 },
+  { clubname: 'Grossman', rating: 0.5 },
+  { clubname: 'Johnston', rating: 0.4 },
+  { clubname: 'Marley', rating: 0.3 },
+  { clubname: 'Morton', rating: 0.2 },
+  { clubname: 'Notter', rating: 0.1 },
+  { clubname: 'Stelle', rating: 0.0 },
+  { clubname: 'Jefferson', rating: -0.1 },
 ];
 
 function merge(left, right) {
@@ -51,27 +75,44 @@ for (var i = 0; i < sortedDummyData.length; i++) {
   sortedDummyData[i].id = i + 1;
 }
 
-const TabPane = Tabs;
+const sortedDummyImprovedData = mergeSort(dummyImprovedData).reverse();
+
+for (var k = 0; k < sortedDummyImprovedData.length; k++) {
+  sortedDummyImprovedData[k].id = k + 1;
+}
 
 function RenderLeaderboard(props) {
   return (
     <LayoutContainer>
       <NavBar titleName={'Leaderboard'} backgroundColor="#293845" />
-      <ul>
-        {sortedDummyData.map(elem => (
-          <div className={`li-container`}>
-            <li>
-              <h2 className="place">{elem.id}</h2>
-              <h2 className="place">{elem.clubname}</h2>
-              <h2 className="rating">{elem.rating}</h2>
-            </li>
-          </div>
-        ))}
-        <Tabs defaultActiveKey="1">
-          <TabPane tab="Highest Sentiment Last Week" key="1"></TabPane>
-          <TabPane tab="Most Improved Since Last Mon" key="2"></TabPane>
-        </Tabs>
-      </ul>
+      <Tabs>
+        <div label="HIGHEST SENTIMENT LAST WEEK">
+          <ul>
+            {sortedDummyData.map(elem => (
+              <div className={`li-container`}>
+                <li>
+                  <h2 className="place">{elem.id}</h2>
+                  <h2 className="place">{elem.clubname}</h2>
+                  <h2 className="rating">{elem.rating}</h2>
+                </li>
+              </div>
+            ))}
+          </ul>
+        </div>
+        <div label="MOST IMPROVED LAST MONTH">
+          <ul>
+            {sortedDummyImprovedData.map(elem => (
+              <div className={`li-container`}>
+                <li>
+                  <h2 className="place">{elem.id}</h2>
+                  <h2 className="place">{elem.clubname}</h2>
+                  <h2 className="rating">{elem.rating}</h2>
+                </li>
+              </div>
+            ))}
+          </ul>
+        </div>
+      </Tabs>
     </LayoutContainer>
   );
 }
