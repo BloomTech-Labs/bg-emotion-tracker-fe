@@ -30,18 +30,19 @@ ul {
     border: solid 0.75px lightgray;
     width: 60%;
     height: 6vh;
-    margin-bottom: 1%;
+    margin-bottom: 0.75%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    transition: .3s ease-in;
 }
 
-.li-container:hover {
+/* .li-container:hover {
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     transform: scale(1.1);
     box-shadow: 0 0px 0px rgba(0,0,0,0.16), 0 0px 0px rgba(0,0,0,0.23), 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-}
+} */
 
 .li-container li {
     margin: 0;
@@ -94,5 +95,6 @@ ul {
     background-color: white;
     border-bottom: 4px solid rgba(0, 129, 198, 1);
     color: rgba(0, 129, 198, 1);
+    transition: .3s ease-in;
     /* transition: all 0.3s cubic-bezier(.78,.14,.15,.86); */
   }
