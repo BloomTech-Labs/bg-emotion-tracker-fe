@@ -25,7 +25,6 @@ function RenderDashboardAlerts() {
       }
       rtn[alert.clubactivity.club.clubname] += 1;
     });
-    console.log(rtn);
     return rtn;
   }
 
