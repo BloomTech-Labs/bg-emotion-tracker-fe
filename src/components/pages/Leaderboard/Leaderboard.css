@@ -79,8 +79,9 @@ ul {
     list-style: none;
     width: 30%;
     font-size: 1.2rem;
-    color: black; 
+    color: lightgray; 
     margin-bottom: -1px;
+    border-bottom: 4px solid lightgray;
     padding: 0.5rem 0.75rem;
     
     /* box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); */
@@ -95,6 +96,6 @@ ul {
     background-color: white;
     border-bottom: 4px solid rgba(0, 129, 198, 1);
     color: rgba(0, 129, 198, 1);
-    transition: .3s ease-in;
+    transition: .5s ease-in-out;
     /* transition: all 0.3s cubic-bezier(.78,.14,.15,.86); */
   }
