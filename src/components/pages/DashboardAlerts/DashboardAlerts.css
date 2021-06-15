@@ -10,11 +10,14 @@
 .alert {
     display: flex;
     flex-direction: row;
-    
     margin: 1rem;
 }
 
 .badge {
     margin: .75rem;
+}
+
+.mi {
+    text-transform: capitalize;
 }
 
