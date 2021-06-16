@@ -3,13 +3,14 @@ import './DashboardAlerts.css';
 import { Badge, Menu } from 'antd';
 import { dummyData } from './AlertsDummyData';
 import { AdminContext } from '../../../state/contexts';
-import { getClubs } from '../../../state/actions';
+import { getMembersReaction } from '../../../state/actions';
+
 import axios from 'axios';
 import MenuItem from 'antd/lib/menu/MenuItem';
 
 function RenderDashboardAlerts() {
   const context = useContext(AdminContext);
-  let [reactions, setReactions] = useState([]);
+  // let [reactions, setReactions] = useState([]);
 
   /*
    * This function combines the locations into one object with the value of the
@@ -20,46 +21,15 @@ function RenderDashboardAlerts() {
     const rtn = {};
 
     arr.forEach(alert => {
-      if (!(alert.clubactivity.club.clubname in rtn)) {
-        rtn[alert.clubactivity.club.clubname] = 0;
+      if (!(alert.clubname in rtn)) {
+        rtn[alert.clubname] = 0;
       }
-      rtn[alert.clubactivity.club.clubname] += 1;
+      rtn[alert.clubname] += 1;
     });
     return rtn;
   }
 
-  const fetchClubs = () => {
-    getClubs('authState', context);
-  };
-
-  useEffect(() => {
-    fetchClubs();
-  }, []);
-
-  // Get all membersreactions
-  const getMembersReaction = () => {
-    let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
-
-    const promise = axios.get(
-      `https://bg-emotion-tracker-be-b.herokuapp.com/memberreactions/alert`,
-      {
-        headers: {
-          Authorization: `Bearer ${tokenObj.accessToken.accessToken}`,
-        },
-      }
-    );
-
-    const dataPromise = promise.then(res => {
-      setReactions(res.data);
-      return res.data;
-    });
-    return dataPromise;
-  };
-
-  useEffect(() => {
-    getMembersReaction();
-  }, []);
-  let flagObj = combine_flags(reactions);
+  let flagObj = combine_flags(context.memberReactions);
 
   return (
     <>
@@ -68,7 +38,13 @@ function RenderDashboardAlerts() {
           <div className="club alert" key={club.clubid}>
             <h3 className="mi">{club.clubname}</h3>
             <Badge count={flagObj[club.clubname]} className="badge">
-              <a href="/alerts" className="alertLink" />
+              <a
+                href="/alerts"
+                className="alertLink"
+                alt="redirects to the alerts tab"
+              >
+                {' '}
+              </a>
             </Badge>
           </div>
         ))}
