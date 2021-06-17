@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import { LayoutContainer } from '../../common';
 import NavBar from '../../common/NavBar';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+
 import { Layout, Menu } from 'antd';
 import axios from 'axios';
 import Plot from 'react-plotly.js';
@@ -13,6 +14,9 @@ import {
 } from '@ant-design/icons';
 import { ActivitiesWidget, MembersWidget } from '../../ReportsWidget';
 import { DashboardAlerts } from '../DashboardAlerts';
+import { getClubs } from '../../../state/actions';
+import { AdminContext } from '../../../state/contexts';
+import { getMembersReaction } from '../../../state/actions';
 
 const { Content, Sider } = Layout;
 
@@ -22,6 +26,16 @@ const StyledAdminPage = styled.header`
 function RenderHomePage() {
   const [mode, setMode] = useState('members');
   const [dateRange, setDateRange] = useState(null);
+  const context = useContext(AdminContext);
+
+  const fetchClubs = () => {
+    getClubs('authState', context);
+  };
+
+  useEffect(() => {
+    fetchClubs();
+    getMembersReaction('authState', context);
+  }, []);
 
   const [authtoken, setAuthtoken] = useState('');
 

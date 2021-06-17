@@ -35,22 +35,21 @@ function ViewClubs(props) {
   const [tableData, setTableData] = useState(sampleTableData);
   const context = useContext(AdminContext);
 
-  // Get activities and set to context
+  /*
+   * Makes axios call if the context is empty when the page is reloaded.
+   */
   useEffect(() => {
-    fetchClubs();
+    if (context.clubs.length === 0) {
+      getClubs('authState', context);
+    }
   }, []);
 
   useEffect(() => {
     programDataToTableData();
   }, [context]);
 
-  const fetchClubs = () => {
-    getClubs('authState', context);
-  };
-
   // Updates table with new data
   function programDataToTableData() {
-    console.log('data to table' + context.clubs);
     const newRows = [];
     context.clubs.forEach(club => {
       const newRow = {
@@ -73,7 +72,7 @@ function ViewClubs(props) {
             title={'Clubs'}
             subTitle={`Sorted by clubs`}
           />
-          <ImportClubs fetchClubs={fetchClubs} />
+          <ImportClubs fetchClubs={() => getClubs('authState', context)} />
         </StyledView>
         <Table
           columns={tableData.columns}
