@@ -68,6 +68,27 @@ const getProfileData = authState => {
   }
 };*/
 
+// get Leaderboard
+
+const getLeaderboard = id => {
+  let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
+
+  const promise = axios.get(
+    `https://bg-emotion-tracker-be-b.herokuapp.com/leaderboard/leaderboard`,
+    {
+      headers: {
+        Authorization: `Bearer ${tokenObj.accessToken.accessToken}`,
+      },
+    }
+  );
+
+  const dataPromise = promise.then(response => {
+    return response.data;
+  });
+
+  return dataPromise;
+};
+
 const getProfileData = authState => {
   // getting token from local storage
   let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
@@ -277,6 +298,7 @@ const fetchMembersReaction = () => {
 };
 export {
   sleep,
+  getLeaderboard,
   getClubsData,
   getClubData,
   getMemberData,
