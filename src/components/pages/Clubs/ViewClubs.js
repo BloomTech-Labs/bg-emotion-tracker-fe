@@ -38,22 +38,21 @@ function ViewClubs(props) {
   const [tableData, setTableData] = useState(sampleTableData);
   const context = useContext(AdminContext);
 
-  // Get activities and set to context
+  /*
+   * Makes axios call if the context is empty when the page is reloaded.
+   */
   useEffect(() => {
-    fetchClubs();
+    if (context.clubs.length === 0) {
+      getClubs('authState', context);
+    }
   }, []);
 
   useEffect(() => {
     programDataToTableData();
   }, [context]);
 
-  const fetchClubs = () => {
-    getClubs('authState', context);
-  };
-
   // Updates table with new data
   function programDataToTableData() {
-    console.log('data to table' + context.clubs);
     const newRows = [];
     context.clubs.forEach(club => {
       const newRow = {
@@ -74,14 +73,14 @@ function ViewClubs(props) {
           <NavMenu />
         </Sider>
         <Content>
-          <StyledList>
+         <StyledList>
             <StyledView>
               <PageHeader
                 className="site-page-header"
                 title={'Clubs'}
                 subTitle={`Sorted by clubs`}
               />
-              <ImportClubs fetchClubs={fetchClubs} />
+              <ImportClubs fetchClubs={() => getClubs('authState', context)} />
             </StyledView>
             <Table
               columns={tableData.columns}
@@ -89,10 +88,10 @@ function ViewClubs(props) {
               style={{ paddingLeft: 8 }}
               pagination={{ position: ['none', 'bottomRight'] }}
             />
-          </StyledList>
-        </Content>
-      </Layout>
-    </LayoutContainer>
+        </StyledList>
+      </Content>
+   </Layout>
+</LayoutContainer>
   );
 }
 export default ViewClubs;

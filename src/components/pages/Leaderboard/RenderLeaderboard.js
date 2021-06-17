@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LayoutContainer } from '../../common/';
 import NavBar from '../../common/NavBar';
 import './Leaderboard.css';
+import axios from 'axios';
 import Tabs from '../../common/Tabs';
 import { Layout } from 'antd';
 import NavMenu from '../../common/NavMenu';
@@ -85,6 +86,35 @@ for (var k = 0; k < sortedDummyImprovedData.length; k++) {
 }
 
 function RenderLeaderboard(props) {
+  const [authtoken, setAuthtoken] = useState('');
+
+  useEffect(() => {
+    let tokenObj = {};
+    if (typeof window !== 'undefined') {
+      tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
+      setAuthtoken(tokenObj.accessToken.accessToken);
+    }
+  }, []);
+
+  useEffect(() => {
+    getLeaderboard();
+  }, []);
+
+  const getLeaderboard = () => {
+    axios
+      .get(
+        `https://bg-emotion-tracker-be-b.herokuapp.com/leaderboard/leaderboard`,
+        {
+          headers: {
+            Authorization: `Bearer ${authtoken}`,
+          },
+        }
+      )
+      .then(e => {
+        console.log(e);
+      });
+  };
+
   return (
     <LayoutContainer>
       <NavBar titleName={'Leaderboard'} backgroundColor="#293845" />
