@@ -10,6 +10,7 @@ import {
   postClubData,
   getMemberData,
   fetchMembersReaction,
+  fetchLeaderboard,
   getActivityData,
   postActivityData,
   getMembersData,
@@ -53,6 +54,16 @@ export const getMembersReaction = async (authState, context) => {
   await fetchMembersReaction(authState)
     .then(res => {
       context.setMemberReactions(res);
+    })
+    .catch(error => {
+      return error;
+    });
+};
+
+export const getLeaderboard = async (authState, context) => {
+  await fetchLeaderboard(authState)
+    .then(res => {
+      context.setLeaderboard(res);
     })
     .catch(error => {
       return error;
