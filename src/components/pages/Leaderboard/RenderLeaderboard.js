@@ -3,6 +3,9 @@ import { LayoutContainer } from '../../common/';
 import NavBar from '../../common/NavBar';
 import './Leaderboard.css';
 import Tabs from '../../common/Tabs';
+import { Layout } from 'antd';
+import NavMenu from '../../common/NavMenu';
+const { Content, Sider } = Layout;
 
 const prevDummyData = [
   { clubname: 'Anderson', rating: 4.84 },
@@ -85,34 +88,41 @@ function RenderLeaderboard(props) {
   return (
     <LayoutContainer>
       <NavBar titleName={'Leaderboard'} backgroundColor="#293845" />
-      <Tabs>
-        <div label="HIGHEST SENTIMENT LAST WEEK">
-          <ul>
-            {sortedDummyData.map(elem => (
-              <div className={`li-container`}>
-                <li>
-                  <h2 className="place">{elem.id}</h2>
-                  <h2 className="place">{elem.clubname}</h2>
-                  <h2 className="rating">{elem.rating}</h2>
-                </li>
-              </div>
-            ))}
-          </ul>
-        </div>
-        <div label="MOST IMPROVED LAST MONTH">
-          <ul>
-            {sortedDummyImprovedData.map(elem => (
-              <div className={`li-container`}>
-                <li>
-                  <h2 className="place">{elem.id}</h2>
-                  <h2 className="place">{elem.clubname}</h2>
-                  <h2 className="rating">{elem.rating}</h2>
-                </li>
-              </div>
-            ))}
-          </ul>
-        </div>
-      </Tabs>
+      <Layout>
+        <Sider width={230} className="navSider">
+          <NavMenu />
+        </Sider>
+        <Content>
+          <Tabs>
+            <div label="HIGHEST SENTIMENT LAST WEEK">
+              <ul>
+                {sortedDummyData.map(elem => (
+                  <div className={`li-container`}>
+                    <li>
+                      <h2 className="place">{elem.id}</h2>
+                      <h2 className="place">{elem.clubname}</h2>
+                      <h2 className="rating">{elem.rating}</h2>
+                    </li>
+                  </div>
+                ))}
+              </ul>
+            </div>
+            <div label="MOST IMPROVED LAST MONTH">
+              <ul>
+                {sortedDummyImprovedData.map(elem => (
+                  <div className={`li-container`}>
+                    <li>
+                      <h2 className="place">{elem.id}</h2>
+                      <h2 className="place">{elem.clubname}</h2>
+                      <h2 className="rating">{elem.rating}</h2>
+                    </li>
+                  </div>
+                ))}
+              </ul>
+            </div>
+          </Tabs>
+        </Content>
+      </Layout>
     </LayoutContainer>
   );
 }

@@ -20,10 +20,10 @@ function RenderDashboardAlerts() {
     const rtn = {};
 
     arr.forEach(alert => {
-      if (!(alert.clubactivity.club.clubname in rtn)) {
-        rtn[alert.clubactivity.club.clubname] = 0;
+      if (!(alert.clubname in rtn)) {
+        rtn[alert.clubname] = 0;
       }
-      rtn[alert.clubactivity.club.clubname] += 1;
+      rtn[alert.clubname] += 1;
     });
     return rtn;
   }

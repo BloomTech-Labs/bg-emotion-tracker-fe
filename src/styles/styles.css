@@ -153,6 +153,8 @@
   -o-animation: fadeIn 2s;
   -ms-animation: fadeIn 2s;
 }
+
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
