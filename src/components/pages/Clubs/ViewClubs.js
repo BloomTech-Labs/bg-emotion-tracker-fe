@@ -6,6 +6,9 @@ import { PageHeader, Table } from 'antd';
 import styled from 'styled-components';
 import { LayoutContainer } from '../../common/';
 import NavBar from '../../common/NavBar';
+import { Layout } from 'antd';
+import NavMenu from '../../common/NavMenu';
+const { Content, Sider } = Layout;
 
 const StyledList = styled.div`
   max-width: 1200px;
@@ -65,23 +68,30 @@ function ViewClubs(props) {
   return (
     <LayoutContainer>
       <NavBar titleName={'Manage Clubs'} backgroundColor="#293845" />
-      <StyledList>
-        <StyledView>
-          <PageHeader
-            className="site-page-header"
-            title={'Clubs'}
-            subTitle={`Sorted by clubs`}
-          />
-          <ImportClubs fetchClubs={() => getClubs('authState', context)} />
-        </StyledView>
-        <Table
-          columns={tableData.columns}
-          dataSource={tableData.rows}
-          style={{ paddingLeft: 8 }}
-          pagination={{ position: ['none', 'bottomRight'] }}
-        />
-      </StyledList>
-    </LayoutContainer>
+      <Layout>
+        <Sider className="navSider" width={230}>
+          <NavMenu />
+        </Sider>
+        <Content>
+         <StyledList>
+            <StyledView>
+              <PageHeader
+                className="site-page-header"
+                title={'Clubs'}
+                subTitle={`Sorted by clubs`}
+              />
+              <ImportClubs fetchClubs={() => getClubs('authState', context)} />
+            </StyledView>
+            <Table
+              columns={tableData.columns}
+              dataSource={tableData.rows}
+              style={{ paddingLeft: 8 }}
+              pagination={{ position: ['none', 'bottomRight'] }}
+            />
+        </StyledList>
+      </Content>
+   </Layout>
+</LayoutContainer>
   );
 }
 export default ViewClubs;

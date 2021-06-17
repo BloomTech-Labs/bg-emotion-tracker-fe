@@ -6,8 +6,10 @@ import { QRCodeReader } from '../QRCodeReader';
 import ManualMemberInput from './ManualMemberInput';
 import { LayoutContainer, BackButton } from '../../common';
 import { getMember } from '../../../state/actions';
-import { Typography } from 'antd';
+import { Typography, Layout } from 'antd';
 import { YouthContext } from '../../../state/contexts/index';
+import NavMenu from '../../common/NavMenu';
+const { Sider, Content } = Layout;
 
 const { Title } = Typography;
 const { Text } = Typography;
@@ -72,39 +74,46 @@ function RenderMemberScanner(props) {
   return (
     <LayoutContainer>
       <NavBar backgroundColor="#293845" />
+      <Layout>
+        <Sider className="navSider" width={230}>
+          <NavMenu />
+        </Sider>
 
-      <Link to="/activity-select">
-        <BackButton buttonText="Change Activity" classType="primary" />
-      </Link>
+        <Content>
+          <Link to="/activity-select">
+            <BackButton buttonText="Change Activity" classType="primary" />
+          </Link>
 
-      <StyledMemberScanner>
-        <QRCodeReader handleScan={handleScan} handleError={handleError} />
-        {scanError ? (
-          <Text className="errorText" type="danger">
-            {error}
-          </Text>
-        ) : (
-          <Text style={{ height: '21px' }}></Text>
-        )}
-        {(() => {
-          if (youthContext.id && youthContext.exists && scanStatus) {
-            if (checkValid) {
-              if (
-                youthContext.activity.activityname === 'Club Checkin' ||
-                youthContext.activity.activityname === 'Club Checkout'
-              ) {
-                return <Redirect to="/emoji-selectcheck" />;
-              } else {
-                return <Redirect to="/emoji-selectactivity" />;
+          <StyledMemberScanner>
+            <QRCodeReader handleScan={handleScan} handleError={handleError} />
+            {scanError ? (
+              <Text className="errorText" type="danger">
+                {error}
+              </Text>
+            ) : (
+              <Text style={{ height: '21px' }}></Text>
+            )}
+            {(() => {
+              if (youthContext.id && youthContext.exists && scanStatus) {
+                if (checkValid) {
+                  if (
+                    youthContext.activity.activityname === 'Club Checkin' ||
+                    youthContext.activity.activityname === 'Club Checkout'
+                  ) {
+                    return <Redirect to="/emoji-selectcheck" />;
+                  } else {
+                    return <Redirect to="/emoji-selectactivity" />;
+                  }
+                }
               }
-            }
-          }
-        })()}
-        <ManualMemberInput
-          handleError={handleError}
-          setScanStatus={setScanStatus}
-        />
-      </StyledMemberScanner>
+            })()}
+            <ManualMemberInput
+              handleError={handleError}
+              setScanStatus={setScanStatus}
+            />
+          </StyledMemberScanner>
+        </Content>
+      </Layout>
     </LayoutContainer>
   );
 }

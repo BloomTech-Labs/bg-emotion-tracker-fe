@@ -6,6 +6,9 @@ import { AdminContext } from '../../../state/contexts';
 import { PageHeader, Table } from 'antd';
 import { getMembers } from '../../../state/actions';
 import styled from 'styled-components';
+import NavMenu from '../../common/NavMenu';
+import { Layout } from 'antd';
+const { Content, Sider } = Layout;
 
 const StyledList = styled.div`
   max-width: 1200px;
@@ -33,6 +36,7 @@ const sampleTableData = {
 function ViewMembers(props) {
   const [tableData, setTableData] = useState(sampleTableData);
   const context = useContext(AdminContext);
+
   useEffect(() => {
     fetchMembers();
   }, []);
@@ -63,22 +67,31 @@ function ViewMembers(props) {
   return (
     <LayoutContainer>
       <NavBar titleName={'Manage Members'} backgroundColor="#293845" />
-      <StyledList>
-        <StyledView>
-          <PageHeader
-            className="site-page-header"
-            title={'Members'}
-            subTitle={`Sorted by id`}
-          />
-          <ImportMembers fetchMembers={fetchMembers} />
-        </StyledView>
-        <Table
-          columns={tableData.columns}
-          dataSource={tableData.rows}
-          style={{ paddingLeft: 8 }}
-          pagination={{ position: ['none', 'bottomRight'] }}
-        />
-      </StyledList>
+
+      <Layout>
+        <Sider className="navSider" width={230}>
+          <NavMenu />
+        </Sider>
+
+        <Content>
+          <StyledList>
+            <StyledView>
+              <PageHeader
+                className="site-page-header"
+                title={'Members'}
+                subTitle={`Sorted by id`}
+              />
+              <ImportMembers fetchMembers={fetchMembers} />
+            </StyledView>
+            <Table
+              columns={tableData.columns}
+              dataSource={tableData.rows}
+              style={{ paddingLeft: 8 }}
+              pagination={{ position: ['none', 'bottomRight'] }}
+            />
+          </StyledList>
+        </Content>
+      </Layout>
     </LayoutContainer>
   );
 }

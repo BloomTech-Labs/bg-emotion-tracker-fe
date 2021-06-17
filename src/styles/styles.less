@@ -13,6 +13,10 @@
   overflow: hidden;
 }
 
+.ant-layout-content {
+min-height: 100vh;
+}
+
 .MainContainer {
   display: flex;
   flex-direction: column;
@@ -24,6 +28,7 @@
 .layout {
   width: 100%;
   height: 100%;
+  
 
   .ypd {
     margin-top: 103px;
@@ -146,25 +151,8 @@
   opacity: 100%;
 }
 
-.mainhamburger {
-  li {
-    padding: 1.5vh;
-    svg {
-      margin-right: 1vh;
-      font-size: larger;
-    }
-    font-size: 1.3rem;
 
-    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
-    animation-delay: 0.1s;
-  }
 
-  li:active {
-    background-color: rgba(214, 214, 214, 0.603);
-    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
-    animation-delay: 0.1s;
-  }
-}
 
 .ydp-selection-dropdowns {
   display: flex;
@@ -446,4 +434,54 @@
     transform: scale(2.5, 2.5);
     opacity: 0;
   }
+}
+
+//Navbar toggle styles
+.mainhamburger {
+  width: 230px;
+  height: 100%;
+ 
+  li {
+    padding: 1.5vh;
+    svg {
+      margin-right: 1vh;
+      font-size: larger;
+    }
+    font-size: 1.2rem;
+
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-delay: 0.1s;
+  }
+
+  li:active {
+    background-color: rgba(214, 214, 214, 0.603);
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-delay: 0.1s;
+  }
+}
+
+.menu-container{
+    display: none;
+  }
+
+@media (max-width:1000px){
+ 
+ .menu-container{
+   display: block;
+ } 
+ .navSider{
+   display: none;
+   
+ }
+ .navSider.active{
+  display: block;
+  animation: show_in 0.6s;
+ }
+
+ @keyframes show_in {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+
 }

@@ -1,9 +1,8 @@
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import { LayoutContainer } from '../../common';
 import NavBar from '../../common/NavBar';
-
-import React, { useState, useEffect, useContext } from 'react';
-
+import NavMenu from '../../common/NavMenu';
 import { Layout, Menu } from 'antd';
 import axios from 'axios';
 import Plot from 'react-plotly.js';
@@ -23,6 +22,7 @@ const { Content, Sider } = Layout;
 const StyledAdminPage = styled.header`
   display: flex;
 `;
+
 function RenderHomePage() {
   const [mode, setMode] = useState('members');
   const [dateRange, setDateRange] = useState(null);
@@ -94,42 +94,15 @@ function RenderHomePage() {
 
   return (
     <LayoutContainer>
-      <Layout className="layout">
-        <NavBar titleName="Admin Dashboard" />
-        <Layout className="adminDashboardContent">
-          <Sider width={200} className="site-layout-background">
-            <Menu
-              mode="inline"
-              defaultSelectedKeys={['1']}
-              defaultOpenKeys={['sub1']}
-              style={{ height: '100%', borderRight: 0 }}
-            >
-              <DashboardAlerts />
-              {/* <Menu.Item
-                style={{ marginTop: '30px' }}
-                key="1"
-                icon={<UserOutlined />}
-                onClick={() => {
-                  setMode('members');
-                }}
-              >
-                Members
-              </Menu.Item>
-              <Menu.Item
-                key="2"
-                icon={<TeamOutlined />}
-                onClick={() => {
-                  setMode('activities');
-                }}
-              >
-                Activities
-              </Menu.Item> */}
-            </Menu>
-          </Sider>
-          <Content>
-            {/* <div className="site-layout-content">
-              <StyledAdminPage>{widget}</StyledAdminPage>
-            </div> */}
+      <NavBar titleName="Admin Dashboard" />
+      <Layout
+      // className="adminDashboardContent"
+      >
+        <Sider width={230} className="navSider">
+          <NavMenu />
+        </Sider>
+       
+        <Content>
             <Plot
               data={[
                 {
@@ -145,7 +118,6 @@ function RenderHomePage() {
             />
           </Content>
         </Layout>
-      </Layout>
     </LayoutContainer>
   );
 }
