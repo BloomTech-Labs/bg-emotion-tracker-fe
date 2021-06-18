@@ -19,15 +19,7 @@ const NavMenu = props => {
   const context = useContext(UserContext);
   const adminContext = useContext(AdminContext);
 
-  const badge_counter = arr => {
-    let count = 0;
-    arr.forEach(item => {
-      count++;
-    });
-    return count;
-  };
-
-  const num = badge_counter(adminContext.memberReactions);
+  const num = adminContext.memberReactions.Length;
 
   let role = context.user.roles && context.user.roles[0].role.name;
   const history = useHistory();
