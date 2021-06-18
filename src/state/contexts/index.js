@@ -8,6 +8,7 @@ export const AdminContextProvider = ({ children }) => {
   const [programs, setPrograms] = useState([]);
   const [clubs, setClubs] = useState([]);
   const [memberReactions, setMemberReactions] = useState([]);
+  const [leaderboard, setLeaderboard] = useState([]);
 
   return (
     <AdminContext.Provider
@@ -20,6 +21,8 @@ export const AdminContextProvider = ({ children }) => {
         setClubs,
         memberReactions,
         setMemberReactions,
+        leaderboard,
+        setLeaderboard,
       }}
     >
       {children}

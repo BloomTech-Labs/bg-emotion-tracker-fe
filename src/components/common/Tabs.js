@@ -25,14 +25,12 @@ export default function Tabs(props) {
           const { label } = child.props;
 
           return (
-            <div>
-              <Tab
-                activeTab={activeTab}
-                key={label}
-                label={label}
-                onClick={onClickTabItem}
-              />
-            </div>
+            <Tab
+              activeTab={activeTab}
+              key={label}
+              label={label}
+              onClick={onClickTabItem}
+            />
           );
         })}
       </ol>
