@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Menu, Layout } from 'antd';
+import { Menu, Layout, Badge } from 'antd';
 
 import {
   UserOutlined,
@@ -10,13 +10,16 @@ import {
   UpSquareOutlined,
   BellOutlined,
 } from '@ant-design/icons';
-import { UserContext } from '../../state/contexts';
+import { AdminContext, UserContext } from '../../state/contexts';
 import { useHistory } from 'react-router';
 
 const NavMenu = props => {
   const { Sider } = Layout;
   const { hidden } = props;
   const context = useContext(UserContext);
+  const adminContext = useContext(AdminContext);
+
+  const num = adminContext.memberReactions.Length;
 
   let role = context.user.roles && context.user.roles[0].role.name;
   const history = useHistory();
@@ -82,6 +85,7 @@ const NavMenu = props => {
           onClick={() => history.push('/alerts')}
         >
           Alerts
+          <Badge count={num} className="badge" />
         </Menu.Item>
       )}
 
