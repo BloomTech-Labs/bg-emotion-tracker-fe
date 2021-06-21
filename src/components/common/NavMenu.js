@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Menu, Layout, Badge } from 'antd';
+import { Menu, Badge } from 'antd';
 
 import {
   UserOutlined,
@@ -14,16 +14,14 @@ import { AdminContext, UserContext } from '../../state/contexts';
 import { useHistory } from 'react-router';
 
 const NavMenu = props => {
-  const { Sider } = Layout;
-  const { hidden } = props;
   const context = useContext(UserContext);
   const adminContext = useContext(AdminContext);
 
   const num = adminContext.memberReactions;
-  console.log(adminContext.memberReactions);
-
-  let role = context.user.roles && context.user.roles[0].role.name;
+  // console.log(adminContext.memberReactions);
   const history = useHistory();
+
+  let role = localStorage.getItem('role');
 
   return (
     <Menu
