@@ -1,22 +1,9 @@
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
-import { Menu, Dropdown, Button } from 'antd';
-import NavMenu from './NavMenu';
+import { Button } from 'antd';
 
-import {
-  MenuOutlined,
-  UserOutlined,
-  TeamOutlined,
-  LogoutOutlined,
-  LineChartOutlined,
-  CalendarOutlined,
-  UpSquareOutlined,
-  BellOutlined,
-  ArrowLeftOutlined,
-} from '@ant-design/icons';
+import { MenuOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import logo from '../../assets/images/BGC-logo-header.png';
-import { useHistory } from 'react-router';
-import { UserContext } from '../../state/contexts';
 
 const StyledNavBar = styled.header`
   display: flex;
@@ -39,7 +26,7 @@ const StyledNavBar = styled.header`
   }
   h1 {
     color: white;
-    /* margin: 0; */
+    font-size: 1.7em;
   }
 
   @media (min-width: 1000px) {
@@ -49,6 +36,7 @@ const StyledNavBar = styled.header`
     h1 {
       flex: 1;
       display: flex;
+      font-size: 2em;
       justify-content: center;
       transform: translateX(60px);
     }
@@ -65,7 +53,6 @@ function NavBar(props) {
     const elem = document.querySelectorAll('.navSider');
 
     elem.forEach(el => {
-      console.log(el);
       el.classList.toggle('active');
     });
   };
