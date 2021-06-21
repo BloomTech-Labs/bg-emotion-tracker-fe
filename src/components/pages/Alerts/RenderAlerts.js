@@ -16,7 +16,7 @@ function RenderAlerts(props) {
     if (context.clubs.length === 0) {
       getClubs('authState', context);
     }
-    if (context.memberReactions === 0) {
+    if (context.memberReactions.length === 0) {
       getMembersReaction('authState', context);
     }
   }, []);
@@ -29,20 +29,26 @@ function RenderAlerts(props) {
           <NavMenu />
         </Sider>
         <Content>
-          <Tabs>
-            {context.clubs.map(club => (
-              <div label={club.clubname}>
-                <div className="under-tabs-container" key={club.clubid}>
-                  <div className="flags box">
-                    <h2>Negative Sentiment</h2>
-                  </div>
-                  <div className="insights box">
-                    <h2>Insights</h2>
+          {context.clubs.length === 0 ? (
+            <div>
+              <h2>Loading</h2>
+            </div>
+          ) : (
+            <Tabs>
+              {context.clubs.map(club => (
+                <div label={club.clubname} key={club.clubid}>
+                  <div className="under-tabs-container" key={club.clubid}>
+                    <div className="flags box">
+                      <h2>Negative Sentiment</h2>
+                    </div>
+                    <div className="insights box">
+                      <h2>Insights</h2>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </Tabs>
+              ))}
+            </Tabs>
+          )}
         </Content>
       </Layout>
     </LayoutContainer>

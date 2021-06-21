@@ -28,15 +28,6 @@ function RenderHomePage() {
   const [dateRange, setDateRange] = useState(null);
   const context = useContext(AdminContext);
 
-  const fetchClubs = () => {
-    getClubs('authState', context);
-  };
-
-  useEffect(() => {
-    fetchClubs();
-    getMembersReaction('authState', context);
-  }, []);
-
   const [authtoken, setAuthtoken] = useState('');
 
   useEffect(() => {
@@ -46,31 +37,6 @@ function RenderHomePage() {
       setAuthtoken(tokenObj.accessToken.accessToken);
     }
   }, []);
-
-  useEffect(() => {
-    getMarleyData();
-  }, []);
-
-  const getMarleyData = () => {
-    axios
-      .get(
-        `https://bg-emotion-tracker-be-b.herokuapp.com/memberreactions/memberreactions`,
-        {
-          headers: {
-            Authorization: `Bearer ${authtoken}`,
-          },
-        }
-      )
-      .then(e => {
-        console.log(e);
-        let avgForMarley = [];
-        e.data.forEach(element => {
-          if (element.clubactivity.club.clubname === 'Marley') {
-            avgForMarley.push(element.reaction.reactionint);
-          }
-        });
-      });
-  };
 
   let widget = <div></div>;
 
@@ -95,29 +61,27 @@ function RenderHomePage() {
   return (
     <LayoutContainer>
       <NavBar titleName="Admin Dashboard" />
-      <Layout
-      // className="adminDashboardContent"
-      >
+      <Layout>
         <Sider width={230} className="navSider">
           <NavMenu />
         </Sider>
-       
+
         <Content>
-            <Plot
-              data={[
-                {
-                  x: [3, 3, 3, 3, 34, 35, 35, 5, 4, 46],
-                  y: [1, 2, 3, 4, 5],
-                  type: 'scatter',
-                  mode: 'lines+markers',
-                  marker: { color: 'red' },
-                },
-                { type: 'bar', x: [1, 2, 3], y: [2, 5, 3] },
-              ]}
-              layout={{ width: 320, height: 240, title: 'A Fancy Plot' }}
-            />
-          </Content>
-        </Layout>
+          <Plot
+            data={[
+              {
+                x: [3, 3, 3, 3, 34, 35, 35, 5, 4, 46],
+                y: [1, 2, 3, 4, 5],
+                type: 'scatter',
+                mode: 'lines+markers',
+                marker: { color: 'red' },
+              },
+              { type: 'bar', x: [1, 2, 3], y: [2, 5, 3] },
+            ]}
+            layout={{ width: 320, height: 240, title: 'A Fancy Plot' }}
+          />
+        </Content>
+      </Layout>
     </LayoutContainer>
   );
 }

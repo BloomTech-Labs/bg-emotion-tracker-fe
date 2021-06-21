@@ -50,7 +50,6 @@ function ViewMembers(props) {
   };
   // Updates table with new data
   const memberDataToTableData = () => {
-    console.log(context);
     const newRows = [];
     context.members.forEach(member => {
       const newRow = {
@@ -58,7 +57,6 @@ function ViewMembers(props) {
       };
       newRows.push(newRow);
     });
-    console.log(newRows);
     setTableData({
       ...tableData,
       rows: newRows,

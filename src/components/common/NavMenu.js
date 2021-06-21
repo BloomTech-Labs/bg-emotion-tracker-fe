@@ -18,17 +18,13 @@ const NavMenu = props => {
   const adminContext = useContext(AdminContext);
 
   const num = adminContext.memberReactions;
-  // console.log(adminContext.memberReactions);
+
   const history = useHistory();
 
   let role = localStorage.getItem('role');
 
   return (
-    <Menu
-      className="mainhamburger"
-      // className = { hidden ? "mainhamburger" : "mainhamburger active"}
-      mode="inline"
-    >
+    <Menu className="mainhamburger" mode="inline">
       <Menu.Item
         key="1"
         icon={<LineChartOutlined />}
