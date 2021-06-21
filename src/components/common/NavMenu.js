@@ -19,7 +19,8 @@ const NavMenu = props => {
   const context = useContext(UserContext);
   const adminContext = useContext(AdminContext);
 
-  const num = adminContext.memberReactions.Length;
+  const num = adminContext.memberReactions;
+  console.log(adminContext.memberReactions);
 
   let role = context.user.roles && context.user.roles[0].role.name;
   const history = useHistory();
@@ -85,7 +86,7 @@ const NavMenu = props => {
           onClick={() => history.push('/alerts')}
         >
           Alerts
-          <Badge count={num} className="badge" />
+          <Badge count={num.length} className="badge" />
         </Menu.Item>
       )}
 

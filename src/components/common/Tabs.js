@@ -1,12 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Tab from './Tab';
-import { AdminContext } from '../../state/contexts';
-import { Badge } from 'antd';
+import { AdminContext } from '../../state/contexts/';
 
 export default function Tabs(props) {
   const context = useContext(AdminContext);
-  const { showBadge } = props;
 
   Tabs.propTypes = {
     children: PropTypes.instanceOf(Array).isRequired,
@@ -17,19 +15,35 @@ export default function Tabs(props) {
   const onClickTabItem = tab => {
     setActiveTab(tab);
   };
+  /*
+   *  Comment[ here ]
+   */
+  function combine_badges(arr) {
+    const rtn = {};
+
+    arr.forEach(alert => {
+      if (!(alert.clubname in rtn)) {
+        rtn[alert.clubname] = 0;
+      }
+      rtn[alert.clubname] += 1;
+    });
+    return rtn;
+  }
+
+  let badgeObj = combine_badges(context.memberReactions);
 
   return (
     <div className="tabs">
       <ol className="tab-list">
         {props.children.map(child => {
           const { label } = child.props;
-
           return (
             <Tab
               activeTab={activeTab}
               key={label}
               label={label}
               onClick={onClickTabItem}
+              count={badgeObj[label]}
             />
           );
         })}

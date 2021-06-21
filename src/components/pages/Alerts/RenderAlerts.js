@@ -21,8 +21,6 @@ function RenderAlerts(props) {
     }
   }, []);
 
-  console.log(context.memberReactions);
-
   return (
     <LayoutContainer>
       <NavBar titleName={'Alerts'} backgroundColor="#293845" />
