@@ -6,7 +6,7 @@ class Tab extends Component {
     activeTab: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
-    count: PropTypes.number.isRequired,
+    count: PropTypes.number,
   };
 
   onClick = () => {

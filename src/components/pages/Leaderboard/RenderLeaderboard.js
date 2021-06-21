@@ -55,7 +55,7 @@ function RenderLeaderboard(props) {
         <Content>
           <Tabs>
             <div label="HIGHEST CHECK-IN VS. CHECK-OUT">
-              <ul>
+              <ul className="leaderboard-ul">
                 {sortedLeaderboard.map(elem => (
                   <div className={`li-container`} key={elem.clubrating}>
                     <li>
