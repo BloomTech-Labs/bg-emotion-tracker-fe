@@ -55,20 +55,3 @@ function RenderAlerts(props) {
   );
 }
 export default RenderAlerts;
-const stuff = [
-  {
-    member: 25,
-    activityid: 7,
-    clubname: 'Marley',
-    memberid: 'testmember2',
-    activityname: 'bowling',
-    reaction: {
-      reactionid: 30,
-      reactionvalue: '1F610',
-      reactionint: 3,
-    },
-    clubid: 19,
-    reactionid: 37,
-    createddate: '2021-06-21 15:03:57',
-  },
-];
