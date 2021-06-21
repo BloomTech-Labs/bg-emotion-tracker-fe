@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { LayoutContainer } from '../../common/';
 import NavBar from '../../common/NavBar';
 import './Leaderboard.css';
@@ -7,7 +7,7 @@ import { Layout } from 'antd';
 import NavMenu from '../../common/NavMenu';
 import { AdminContext } from '../../../state/contexts';
 import { getLeaderboard } from '../../../state/actions';
-import { ConsoleWriter } from 'istanbul-lib-report';
+import { UpOutlined, DownOutlined } from '@ant-design/icons';
 const { Content, Sider } = Layout;
 
 function RenderLeaderboard(props) {
@@ -62,6 +62,17 @@ function RenderLeaderboard(props) {
                       <h2 className="place">{elem.ranking}</h2>
                       <h2 className="place">{elem.clubname}</h2>
                       <h2 className="rating">{elem.clubrating.toFixed(3)}</h2>
+                      <div className="chevron">
+                        {elem.clubrating > 0 ? (
+                          <UpOutlined
+                            style={{ fontSize: '32px', color: 'green' }}
+                          />
+                        ) : (
+                          <DownOutlined
+                            style={{ fontSize: '32px', color: 'red' }}
+                          />
+                        )}
+                      </div>
                     </li>
                   </div>
                 ))}
@@ -75,6 +86,17 @@ function RenderLeaderboard(props) {
                       <h2 className="place">{elem.ranking}</h2>
                       <h2 className="place">{elem.clubname}</h2>
                       <h2 className="rating">{elem.clubrating.toFixed(3)}</h2>
+                      <div className="chevron">
+                        {elem.clubrating > 0 ? (
+                          <UpOutlined
+                            style={{ fontSize: '32px', color: 'green' }}
+                          />
+                        ) : (
+                          <DownOutlined
+                            style={{ fontSize: '32px', color: 'red' }}
+                          />
+                        )}
+                      </div>
                     </li>
                   </div>
                 ))}
