@@ -15,14 +15,14 @@ const StyledNavBar = styled.header`
 
   img,
   .menu-container {
-    margin: 1.5rem;
+    margin: 1rem;
   }
   .menu-container {
     text-align: left;
     width: 10vh;
   }
   img {
-    height: 6vh;
+    height: 8vh;
   }
   h1 {
     color: white;

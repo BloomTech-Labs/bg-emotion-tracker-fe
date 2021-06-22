@@ -44,7 +44,7 @@
   border-radius: 40px;
 }
 .scannerTitle {
-  color: #0081C6;
+  color: #0081c6;
   font-size: 72px;
   outline: none;
   -webkit-transition: color 0.3s;
@@ -153,7 +153,16 @@
   -o-animation: fadeIn 2s;
   -ms-animation: fadeIn 2s;
 }
-
+.centered-content {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.flex {
+  display: flex;
+}
 
 @keyframes fadeIn {
   0% {

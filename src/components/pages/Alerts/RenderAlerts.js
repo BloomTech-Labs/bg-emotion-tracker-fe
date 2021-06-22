@@ -7,6 +7,9 @@ import { Layout } from 'antd';
 import NavMenu from '../../common/NavMenu';
 import { AdminContext } from '../../../state/contexts';
 import { getClubs, getMembersReaction } from '../../../state/actions';
+import { LoadingComponent } from '../../common';
+import '../../../styles/styles.css';
+
 const { Content, Sider } = Layout;
 
 function RenderAlerts(props) {
@@ -30,8 +33,8 @@ function RenderAlerts(props) {
         </Sider>
         <Content>
           {context.clubs.length === 0 ? (
-            <div>
-              <h2>Loading</h2>
+            <div className="centered-content flex">
+              <LoadingComponent message="loading" />
             </div>
           ) : (
             <Tabs>
