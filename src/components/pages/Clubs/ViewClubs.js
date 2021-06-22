@@ -57,6 +57,7 @@ function ViewClubs(props) {
     context.clubs.forEach(club => {
       const newRow = {
         clubName: club.clubname,
+        key: club.clubid,
       };
       newRows.push(newRow);
     });
