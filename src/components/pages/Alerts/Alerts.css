@@ -30,6 +30,7 @@
 
   .under-tabs-container {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-evenly;
   }
 
@@ -46,6 +47,17 @@
     transition: .3s ease-in;
     display: flex;
     justify-content: center;
+  }
+
+  .alertDiv {
+    display: flex;
+    justify-content: space-around;
+    width: 30%;
+    height: 120px;
+  }
+  .contentDiv {
+    display: flex;
+    flex-direction: column;
   }
 
   /* .badge {
