@@ -11,12 +11,15 @@ import {
   getUserProfile,
   getClubs,
   getMembersReaction,
+  getFeedback,
 } from '../../../state/actions';
+
 import { Redirect } from 'react-router-dom';
 import { LoadingComponent } from '../../../components/common/index';
 
 const HomeContainer = props => {
   const { authState } = useOktaAuth();
+  const adminContext = useContext(AdminContext);
   const userContext = useContext(UserContext);
   const youthContext = useContext(YouthContext);
   const adminContext = useContext(AdminContext);
@@ -25,6 +28,7 @@ const HomeContainer = props => {
     getUserProfile(authState, userContext);
     getClubs(authState, userContext);
     getClubs(authState, youthContext);
+    getFeedback(authState, adminContext);
     getClubs(authState, adminContext);
     getMembersReaction(authState, adminContext);
   }, []);

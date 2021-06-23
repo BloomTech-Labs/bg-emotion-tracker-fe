@@ -129,6 +129,27 @@ const getClubsData = authState => {
   return dataPromise;
 };
 
+// get Feedback data
+
+const getFeedbackData = authState => {
+  let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
+
+  const promise = axios.get(
+    'https://bg-emotion-tracker-be-b.herokuapp.com/clubactivities/feedback',
+    {
+      headers: {
+        Authorization: `Bearer ${tokenObj.accessToken.accessToken}`,
+      },
+    }
+  );
+
+  const dataPromise = promise.then(response => {
+    return response.data;
+  });
+
+  return dataPromise;
+};
+
 // Get Club data
 const getClubData = id => {
   let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
@@ -340,6 +361,7 @@ export {
   getProfileData,
   getDSData,
   getActivityData,
+  getFeedbackData,
   postActivityData,
   getMembersData,
   postMemberData,

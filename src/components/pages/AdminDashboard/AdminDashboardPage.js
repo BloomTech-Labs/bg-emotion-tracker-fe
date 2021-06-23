@@ -1,62 +1,74 @@
 import React, { useState, useEffect, useContext } from 'react';
-import styled from 'styled-components';
 import { LayoutContainer } from '../../common';
 import NavBar from '../../common/NavBar';
 import NavMenu from '../../common/NavMenu';
-import { Layout, Menu } from 'antd';
-import axios from 'axios';
+import { Layout, Card, Dropdown, Button, Menu } from 'antd';
+import { DownOutlined, StockOutlined } from '@ant-design/icons';
 import Plot from 'react-plotly.js';
-import {
-  UserOutlined,
-  TeamOutlined,
-  NotificationOutlined,
-} from '@ant-design/icons';
-import { ActivitiesWidget, MembersWidget } from '../../ReportsWidget';
-import { DashboardAlerts } from '../DashboardAlerts';
 import { getClubs } from '../../../state/actions';
 import { AdminContext } from '../../../state/contexts';
-import { getMembersReaction } from '../../../state/actions';
+import './AdminDashboardPage.css';
 
 const { Content, Sider } = Layout;
 
-const StyledAdminPage = styled.header`
-  display: flex;
-`;
-
 function RenderHomePage() {
-  const [mode, setMode] = useState('members');
-  const [dateRange, setDateRange] = useState(null);
   const context = useContext(AdminContext);
+
+  const [whichClub, setWhichClub] = useState('Anderson');
 
   const [authtoken, setAuthtoken] = useState('');
 
   useEffect(() => {
-    let tokenObj = {};
-    if (typeof window !== 'undefined') {
-      tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
-      setAuthtoken(tokenObj.accessToken.accessToken);
+    if (context.clubs.length === 0) {
+      getClubs('authState', context);
     }
   }, []);
 
-  let widget = <div></div>;
-
-  switch (mode) {
-    case 'members': {
-      widget = (
-        <MembersWidget
-          setMode={setMode}
-          mode={mode}
-          setDateRange={setDateRange}
-        />
-      );
-      break;
-    }
-    case 'activities': {
-      widget = <ActivitiesWidget setMode={setMode} mode={mode} />;
-      break;
-    }
-    default:
+  function getYValues(str) {
+    const output = [];
+    const [temp] = context.feedback.filter(club => club.clubname === str);
+    temp.activityReactionRatings.forEach(activity => {
+      output.push(activity.activityrating);
+    });
+    return output;
   }
+
+  function getXValues(str) {
+    const output = [];
+    const [temp] = context.feedback.filter(club => club.clubname === str);
+    temp.activityReactionRatings.forEach(activity => {
+      output.push(activity.activityname);
+    });
+    return output;
+  }
+
+  const dt = {
+    x: [],
+    y: [],
+    type: 'scatter',
+    mode: 'lines+markers',
+    marker: { color: 'blue' },
+  };
+
+  dt.y = getYValues(whichClub);
+  dt.x = getXValues(whichClub);
+
+  // let widget = <div></div>;
+
+  const menu = (
+    <Menu className="menu-club">
+      {context.clubs.map(club => (
+        <Menu.Item
+          key={club.clubid}
+          icon={<StockOutlined />}
+          onClick={() => setWhichClub(club.clubname)}
+          className="menu-club"
+        >
+          {club.clubname}
+        </Menu.Item>
+      ))}
+    </Menu>
+  );
 
   return (
     <LayoutContainer>
@@ -65,21 +77,37 @@ function RenderHomePage() {
         <Sider width={230} className="navSider">
           <NavMenu />
         </Sider>
-
         <Content>
-          <Plot
-            data={[
-              {
-                x: [3, 3, 3, 3, 34, 35, 35, 5, 4, 46],
-                y: [1, 2, 3, 4, 5],
-                type: 'scatter',
-                mode: 'lines+markers',
-                marker: { color: 'red' },
-              },
-              { type: 'bar', x: [1, 2, 3], y: [2, 5, 3] },
-            ]}
-            layout={{ width: 320, height: 240, title: 'A Fancy Plot' }}
-          />
+          <Dropdown overlay={menu}>
+            <Button size={'large'} className="pick-a-club">
+              CHOOSE CLUB <DownOutlined />
+            </Button>
+          </Dropdown>
+          <div className="card-container">
+            <Card
+              title={whichClub}
+              extra={<a href="/leaderboard">Leaderboard</a>}
+              style={{ width: 600, height: 400 }}
+              className="graph-holder"
+            >
+              <Plot
+                data={[dt]}
+                layout={{
+                  width: 550,
+                  height: 300,
+                  title: {
+                    text: `Avg Sentiment by Activity`,
+                    font: { size: 18 },
+                  },
+                  margin: { l: 30, r: 20, t: 40, b: 40 },
+                  showlegend: false,
+                  xaxis: { linecolor: 'black', linewidth: 2, mirror: true },
+                  yaxis: { linecolor: 'black', linewidth: 2, mirror: true },
+                }}
+              />
+            </Card>
+          </div>
+
         </Content>
       </Layout>
     </LayoutContainer>

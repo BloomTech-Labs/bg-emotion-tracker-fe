@@ -7,6 +7,7 @@ import {
   getProfileData,
   getClubsData,
   getClubData,
+  getFeedbackData,
   postClubData,
   getMemberData,
   fetchMembersReaction,
@@ -34,6 +35,16 @@ export const getUserProfile = async (authState, context) => {
   await getProfileData(authState)
     .then(res => {
       context.setUser(res);
+    })
+    .catch(error => {
+      return error;
+    });
+};
+
+export const getFeedback = async (authState, context) => {
+  await getFeedbackData(authState)
+    .then(res => {
+      context.setFeedback(res);
     })
     .catch(error => {
       return error;
