@@ -47,9 +47,7 @@ import HiddenRoute from './utils/HiddenRoute';
 
 ReactDOM.render(
   <Router>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <App />
   </Router>,
   document.getElementById('root')
 );

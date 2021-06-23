@@ -13,7 +13,10 @@ const { Content, Sider } = Layout;
 
 function RenderHomePage() {
   const context = useContext(AdminContext);
+
   const [whichClub, setWhichClub] = useState('Anderson');
+
+  const [authtoken, setAuthtoken] = useState('');
 
   useEffect(() => {
     if (context.clubs.length === 0) {
@@ -49,6 +52,8 @@ function RenderHomePage() {
 
   dt.y = getYValues(whichClub);
   dt.x = getXValues(whichClub);
+
+  // let widget = <div></div>;
 
   const menu = (
     <Menu className="menu-club">
@@ -102,6 +107,7 @@ function RenderHomePage() {
               />
             </Card>
           </div>
+
         </Content>
       </Layout>
     </LayoutContainer>

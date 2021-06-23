@@ -2,7 +2,6 @@ h2 {
     margin: 0;
 }
 
-
 .place {
     margin-left: 3%;
     width: 20%;
@@ -14,9 +13,7 @@ h2 {
     text-align: center;
 }
 
-
-
-ul {
+.leaderboard-ul {
     list-style-type: none;
     margin-top: 2.5%;
     display: flex;
@@ -24,7 +21,6 @@ ul {
     align-items: center;
     padding: 0;
 }
-
 
 .li-container {
     border: solid 0.75px lightgray;
@@ -39,7 +35,6 @@ ul {
     transition: .3s ease-in;
 }
 
-
 .li-container li {
     margin: 0;
     width: 100%;
@@ -48,7 +43,6 @@ ul {
     align-items: center;
     justify-content: space-evenly;
 }
-
 
 .highest-sentiment {
     width: 50%;

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Menu, Layout, Badge } from 'antd';
+import { Menu, Badge } from 'antd';
 
 import {
   UserOutlined,
@@ -14,22 +14,17 @@ import { AdminContext, UserContext } from '../../state/contexts';
 import { useHistory } from 'react-router';
 
 const NavMenu = props => {
-  const { Sider } = Layout;
-  const { hidden } = props;
   const context = useContext(UserContext);
   const adminContext = useContext(AdminContext);
 
-  const num = adminContext.memberReactions.Length;
+  const num = adminContext.memberReactions;
 
-  let role = context.user.roles && context.user.roles[0].role.name;
   const history = useHistory();
 
+  let role = localStorage.getItem('role');
+
   return (
-    <Menu
-      className="mainhamburger"
-      // className = { hidden ? "mainhamburger" : "mainhamburger active"}
-      mode="inline"
-    >
+    <Menu className="mainhamburger" mode="inline">
       <Menu.Item
         key="1"
         icon={<LineChartOutlined />}
@@ -85,7 +80,7 @@ const NavMenu = props => {
           onClick={() => history.push('/alerts')}
         >
           Alerts
-          <Badge count={num} className="badge" />
+          <Badge count={num.length} className="badge" />
         </Menu.Item>
       )}
 

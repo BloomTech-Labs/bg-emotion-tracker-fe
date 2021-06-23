@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
 import PropTypes from 'prop-types';
+import { Badge } from 'antd';
 class Tab extends Component {
   static propTypes = {
     activeTab: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
+    count: PropTypes.number,
   };
 
   onClick = () => {
@@ -27,6 +29,7 @@ class Tab extends Component {
     return (
       <li className={className} onClick={onClick}>
         {label}
+        <Badge count={this.props.count} className="badge" />
       </li>
     );
   }

@@ -57,6 +57,7 @@ function ViewClubs(props) {
     context.clubs.forEach(club => {
       const newRow = {
         clubName: club.clubname,
+        key: club.clubid,
       };
       newRows.push(newRow);
     });
@@ -73,7 +74,7 @@ function ViewClubs(props) {
           <NavMenu />
         </Sider>
         <Content>
-         <StyledList>
+          <StyledList>
             <StyledView>
               <PageHeader
                 className="site-page-header"
@@ -88,21 +89,10 @@ function ViewClubs(props) {
               style={{ paddingLeft: 8 }}
               pagination={{ position: ['none', 'bottomRight'] }}
             />
-        </StyledList>
-      </Content>
-   </Layout>
-</LayoutContainer>
+          </StyledList>
+        </Content>
+      </Layout>
+    </LayoutContainer>
   );
 }
 export default ViewClubs;
-
-/*
-    <LayoutContainer>
-      <ViewSingleton
-        headerName="Clubs"
-        titleName="All Clubs"
-        RenderAddButton={ImportClubs}
-        sortedBy="Club Name"
-      />
-    </LayoutContainer>
-*/
