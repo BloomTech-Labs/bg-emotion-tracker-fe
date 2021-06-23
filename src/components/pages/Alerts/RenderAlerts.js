@@ -64,7 +64,6 @@ function RenderAlerts(props) {
       }
       rtn[alert.clubname].push(alert);
     });
-    console.log(rtn);
     return rtn;
   }
 
@@ -86,10 +85,10 @@ function RenderAlerts(props) {
             <Tabs>
               {context.clubs.map(club => (
                 <div label={club.clubname} key={club.clubid}>
-                  <div className="under-tabs-container" key={club.clubid}>
-                    {sentimentObj[club.clubname].map(alert => {
+                  <div className="under-tabs-container">
+                    {sentimentObj[club.clubname]?.map(alert => {
                       return (
-                        <div key="alert.id" className="alertDiv flags box">
+                        <div key={alert.id} className="alertDiv flags box">
                           <div className="contentDiv">
                             <h4>Member: {alert.member}</h4>
                             <h4>Activity: {alert.activities}</h4>

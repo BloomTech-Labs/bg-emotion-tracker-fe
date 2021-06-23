@@ -5,7 +5,7 @@ import NavMenu from '../../common/NavMenu';
 import { Layout, Card, Dropdown, Button, Menu } from 'antd';
 import { DownOutlined, StockOutlined } from '@ant-design/icons';
 import Plot from 'react-plotly.js';
-import { getClubs } from '../../../state/actions';
+import { getClubs, getFeedback } from '../../../state/actions';
 import { AdminContext } from '../../../state/contexts';
 import './AdminDashboardPage.css';
 
@@ -13,12 +13,11 @@ const { Content, Sider } = Layout;
 
 function RenderHomePage() {
   const context = useContext(AdminContext);
-
   const [whichClub, setWhichClub] = useState('Anderson');
-
   const [authtoken, setAuthtoken] = useState('');
 
   useEffect(() => {
+    getFeedback('authState', context);
     if (context.clubs.length === 0) {
       getClubs('authState', context);
     }
@@ -27,7 +26,7 @@ function RenderHomePage() {
   function getYValues(str) {
     const output = [];
     const [temp] = context.feedback.filter(club => club.clubname === str);
-    temp.activityReactionRatings.forEach(activity => {
+    temp?.activityReactionRatings?.forEach(activity => {
       output.push(activity.activityrating);
     });
     return output;
@@ -36,7 +35,7 @@ function RenderHomePage() {
   function getXValues(str) {
     const output = [];
     const [temp] = context.feedback.filter(club => club.clubname === str);
-    temp.activityReactionRatings.forEach(activity => {
+    temp?.activityReactionRatings?.forEach(activity => {
       output.push(activity.activityname);
     });
     return output;
@@ -45,7 +44,7 @@ function RenderHomePage() {
   const dt = {
     x: [],
     y: [],
-    type: 'scatter',
+    type: 'bar',
     mode: 'lines+markers',
     marker: { color: 'blue' },
   };
@@ -107,7 +106,6 @@ function RenderHomePage() {
               />
             </Card>
           </div>
-
         </Content>
       </Layout>
     </LayoutContainer>

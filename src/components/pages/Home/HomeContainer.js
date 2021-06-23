@@ -22,7 +22,6 @@ const HomeContainer = props => {
   const adminContext = useContext(AdminContext);
   const userContext = useContext(UserContext);
   const youthContext = useContext(YouthContext);
-  const adminContext = useContext(AdminContext);
 
   useEffect(() => {
     getUserProfile(authState, userContext);
