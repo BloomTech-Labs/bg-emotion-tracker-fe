@@ -1,0 +1,30 @@
+.card-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 3%;
+}
+
+.pick-a-club {
+    margin-top: 3%;
+    margin-left: 3%;
+    width: 20%;
+    font-weight: bold;
+    background-color:white;
+    border: solid 0.75px lightgray;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    transition: .3s ease-in;
+}
+
+.menu-club {
+    width: 100%;
+    text-align: left;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.graph-holder {
+    border: solid 0.75px lightgray;
+    background-color:white;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    transition: .3s ease-in;
+}
