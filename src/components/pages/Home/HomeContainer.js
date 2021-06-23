@@ -1,14 +1,19 @@
 import React, { useEffect, useContext } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
-import { UserContext, YouthContext } from '../../../state/contexts';
+import {
+  UserContext,
+  YouthContext,
+  AdminContext,
+} from '../../../state/contexts';
 
 import RenderHomePage from './RenderHomePage';
-import { getUserProfile, getClubs } from '../../../state/actions';
+import { getUserProfile, getClubs, getFeedback } from '../../../state/actions';
 import { Redirect } from 'react-router-dom';
 import { LoadingComponent } from '../../../components/common/index';
 
 const HomeContainer = props => {
   const { authState } = useOktaAuth();
+  const adminContext = useContext(AdminContext);
   const userContext = useContext(UserContext);
   const youthContext = useContext(YouthContext);
 
@@ -16,6 +21,7 @@ const HomeContainer = props => {
     getUserProfile(authState, userContext);
     getClubs(authState, userContext);
     getClubs(authState, youthContext);
+    getFeedback(authState, adminContext);
   }, []);
 
   let role = userContext.user.roles && userContext.user.roles[0].role.name;
