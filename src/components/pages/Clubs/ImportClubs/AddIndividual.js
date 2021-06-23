@@ -28,7 +28,7 @@ export const AddIndividual = props => {
       }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
-      style={{ 'margin-bottom': '2rem' }}
+      style={{ marginBottom: '2rem' }}
     >
       <Form.Item
         label="Club Name"

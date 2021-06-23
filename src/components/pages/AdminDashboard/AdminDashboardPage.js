@@ -18,7 +18,6 @@ function RenderHomePage() {
 
   useEffect(() => {
     getFeedback('authState', context);
-    console.log('working');
     if (context.clubs.length === 0) {
       getClubs('authState', context);
     }
@@ -45,7 +44,7 @@ function RenderHomePage() {
   const dt = {
     x: [],
     y: [],
-    type: 'scatter',
+    type: 'bar',
     mode: 'lines+markers',
     marker: { color: 'blue' },
   };

@@ -64,7 +64,6 @@ function RenderAlerts(props) {
       }
       rtn[alert.clubname].push(alert);
     });
-    console.log(rtn);
     return rtn;
   }
 
