@@ -4,6 +4,18 @@ You can find the deployed project [here](https://b.bgexperiencetracker.dev/).
 
 ## Contributors
 
+### Labs 35
+
+|                                        [Joe Panetta](https://github.com/jlpanetta1681)                                         |                                       [Anthony Catanzariti](https://github.com/apcatanzariti)                                        |                                       [Ash Tilawat](https://github.com/ashtilawat23)                                        |                                              [Lucas Steinmacher](https://github.com/L-Steinmacher)                                               |                                       [Ethan Trevino](https://github.com/eet349)                                        |                                              [Jackson Henry](https://github.com/JackHenry15)                                               |                                       [Fidan Novruzova](https://github.com/fidan93)                                       |                                      [Samuel Perrin](https://github.com/SamuelPerrin)                                       |
+| :------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------: |
+|     [<img src="https://avatars.githubusercontent.com/u/66652502?v=4" width = "200" />](https://github.com/jlpanetta1681)      |      [<img src="https://avatars.githubusercontent.com/u/74742085?v=4" width = "200" />](https://github.com/apcatanzariti)      |      [<img src="https://avatars.githubusercontent.com/u/73544020?v=4" width = "200" />](https://github.com/ashtilawat23)       |           [<img src="https://avatars.githubusercontent.com/u/72778251?v=4" width = "200" />](https://github.com/L-Steinmacher)            |     [<img src="https://avatars.githubusercontent.com/u/51262590?v=4" width="200" />](https://github.com/eet349)      |                [<img src="https://avatars.githubusercontent.com/u/77174003?v=4" width="200" />](https://github.com/JackHenry15)                |      [<img src="https://avatars.githubusercontent.com/u/72060780?v=4" width="200" />](https://github.com/fidan93)       |      [<img src="https://avatars.githubusercontent.com/u/75265387?v=4" width="200" />](https://github.com/SamuelPerrin)      |
+|                                                            TPL                                                             |                                                      TPL                                                      |                                                      Front-End Engineer/Design Lead                                                       |                                                         Front-End Engineer/Design Lead                                                          |                                                  Back-End Engineer                                                   |                                                              Back-End Engineer/Design Lead                                                              |                                             Front-End Engineer                                             |                                                      Back-End Engineer                                                      |
+|                  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jlpanetta1681)                   |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/apcatanzariti)                   |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ashtilawat23)                   |                        [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/L-Steinmacher)                        |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/eet349)                 |                            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/JackHenry15)                            |                  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/fidan93)                   |                  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/SamuelPerrin)                  |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jlpanetta1681/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/anthony-catanzariti/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ashtilawat23/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/lucas-l-steinmacher/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/samwperrin/) |
+
+<br>
+<br>
+
 ### Labs 34
 
 |                                        [André Jeon](https://github.com/andre-jeon)                                         |                                       [Chase Bianchi](https://github.com/chasebianchi)                                        |                                       [Donavyn Haley](https://github.com/donavynhaley)                                        |                                              [Isaac Pak](https://github.com/pak11273)                                               |                                       [Jiawei Wu](https://github.com/abc1929)                                        |                                              [Iaroslav Mokroguz](https://github.com/maustrauk)                                               |                                       [Robert Garcia](https://github.com/JulsIII)                                       |                                      [Samuel Perrin](https://github.com/SamuelPerrin)                                       |
@@ -91,6 +103,43 @@ Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it 
 - Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
 - Create a live example of the problem.
 - Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes, where you believe the issue is originating from, and any potential solutions you have considered.
+
+### DON’T DELETE ANY QUESTION MARKS!
+
+On the admin dashboard page and render alerts page, you will notice “.?” when handling context that is being used on the page. 
+The question marks are important and they let the page render in the proper order. Without the question marks, the page will crash. When dealing with loading the context onto your page, having the question marks is useful in letting it load in first. 
+For more info, checkout the webpage below: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
+
+### Adding Graphs on the Admin Dashboard using Plotly.js:
+
+The dashboard for both the admin and club director need to be populated. We began by setting one graph and the context necessary to create on the admin page. 
+Please do your Plotly.js research! The object that is needed to make Plotly work is specific and needs attention to the smallest detail. 
+You can use the ‘dt’ object on the admin page as a reference. 
+
+### Tabs and Tab(common components):
+
+Tabs are set up to take in a div that will populate the tab list.  
+When you want to use Tabs, you import Tabs from common. Under tabs, each div with a label prop represents a new tab. The label also equates to the title of the tab. So, you set what you want to label each tab to the label on the div. Like shown below:
+<Tabs>
+	<div label={}>
+	</div>
+</Tabs>
+
+ ### Understanding Ant-Design:
+
+Before beginning the project, learn about ant-design. All webpages are wrapped in a Layout, which is an Ant design feature. Take some time to understand what ant-design features are used when and how. 
+Ant-design significantly impacts CSS and use the inspect tool on your browser to see the CSS ant-design is importing in and how it is affecting the page. 
+
+### To-do’s:
+
+Set up modal for both Club Director and Admin on RenderAlerts.js
+The CD page should have a resolve button and access to only their club’s alerts.
+Admin should have contact info for the club director’s phone and email. 
+#Build out CD’s dashboard displaying only CD’s information.
+Leaderboard should not be visible to CD’s
+Alerts should be populated by activities of their club only and not Clubs as on the Admin page.
+Manage Members/ Programs should be of the Clubs only not all clubs and members.
+
 
 ### Feature Requests
 
