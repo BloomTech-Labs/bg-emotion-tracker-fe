@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { LayoutContainer } from '../../common/';
 import NavBar from '../../common/NavBar';
 import Tabs from '../../common/Tabs';
@@ -9,52 +9,19 @@ import { AdminContext } from '../../../state/contexts';
 import { getClubs, getMembersReaction } from '../../../state/actions';
 import { LoadingComponent } from '../../common';
 import '../../../styles/styles.css';
+import axios from 'axios';
 
 const { Content, Sider } = Layout;
 
-function RenderAlerts(props) {
+function RenderAlerts() {
   const context = useContext(AdminContext);
-  // const [isModalVisible, setIsModalVisible] = useState(false);
-
-  // const handleOk = () => {
-  //   // Send data to backend
-  //   // if (inputData.individual.length > 0) {
-  //   //   inputData.individual.forEach(item => {
-  //   //     console.log(item);
-  //   //     postClub(item);
-  //   //   });
-  //   // }
-  //   // setIsModalVisible(false);
-  //   // clearState();
-  //   // setTimeout(() => {
-  //   //   fetchClubs();
-  //   // }, 2000);
-  // };
-
-  // const handleCancel = () => {
-  //   setIsModalVisible(false);
-  //   clearState();
-  // };
-
-  // const clearState = () => {
-  //   setInputData({
-  //     individual: [],
-  //     file: [],
-  //   });
-  // };
-
-  // const showModal = () => {
-  //   setIsModalVisible(true);
-  // };
+  const [resolve, setResolve] = useState();
 
   useEffect(() => {
-    if (context.clubs.length === 0) {
-      getClubs('authState', context);
-    }
-    if (context.memberReactions.length === 0) {
-      getMembersReaction('authState', context);
-    }
-  }, []);
+    setResolve(true);
+    getClubs('authState', context);
+    getMembersReaction('authState', context);
+  }, [resolve]);
 
   function seperate_club_data(arr) {
     let rtn = {};
@@ -68,6 +35,24 @@ function RenderAlerts(props) {
   }
 
   let sentimentObj = seperate_club_data(context.memberReactions);
+
+  //resolve button
+  function resolveBtn(memberreactionid) {
+    let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
+
+    axios.put(
+      `https://bg-emotion-tracker-be-b.herokuapp.com/memberreactions/update/${memberreactionid}`,
+      {
+        reactionresolved: true,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${tokenObj.accessToken.accessToken}`,
+        },
+      }
+    );
+    setResolve(!resolve);
+  }
 
   return (
     <LayoutContainer>
@@ -95,9 +80,13 @@ function RenderAlerts(props) {
                             <h4>Time: {alert.createddate}</h4>
                           </div>
                           <div className="buttDiv">
-                            <Button type="primary" /*onClick={showModal}*/>
+                            <Button
+                              type="primary"
+                              onClick={() => resolveBtn(alert.id)}
+                            >
                               Resolve
                             </Button>
+
                             {/* <Modal
                                 title="Add Clubs"
                                 visible={isModalVisible}
