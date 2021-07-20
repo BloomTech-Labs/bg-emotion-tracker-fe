@@ -8,7 +8,7 @@ import Plot from 'react-plotly.js';
 import { getClubs, getFeedback } from '../../../state/actions';
 import { AdminContext } from '../../../state/contexts';
 import axios from 'axios';
-import '../ClubPages/anderson.css';
+import '../ClubsPages/anderson.css';
 
 const { Content, Sider } = Layout;
 
