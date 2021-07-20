@@ -44,6 +44,7 @@ import { EmojiConfirmRedirect } from './components/pages/EmojiConfirmRedirect';
 
 import { Roles } from './state/contexts/roles';
 import HiddenRoute from './utils/HiddenRoute';
+import Anderson from './components/pages/ClubsPages/anderson';
 
 ReactDOM.render(
   <Router>
@@ -183,6 +184,12 @@ function App() {
                   path="/manage-clubs"
                   component={() =>
                     Authorization([Roles[0], Roles[1]], ViewClubs)
+                  }
+                />
+                <SecureRoute
+                  path="/anderson"
+                  component={() =>
+                    Authorization([Roles[0], Roles[1]], Anderson)
                   }
                 />
                 <Route path="/unauthorized" component={UnAuthorizedPage} />
