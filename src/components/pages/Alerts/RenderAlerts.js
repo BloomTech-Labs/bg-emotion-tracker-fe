@@ -78,6 +78,11 @@ function RenderAlerts() {
                             <h4>Member: {alert.member}</h4>
                             <h4>Activity: {alert.activities}</h4>
                             <h4>Time: {alert.createddate}</h4>
+                            <span>
+                              {String.fromCodePoint(
+                                parseInt(alert.reactionvalue, 16)
+                              )}
+                            </span>
                           </div>
                           <div className="buttDiv">
                             <Button
