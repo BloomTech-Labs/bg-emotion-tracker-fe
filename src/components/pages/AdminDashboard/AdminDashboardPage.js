@@ -8,15 +8,18 @@ import Plot from 'react-plotly.js';
 import { getClubs, getFeedback } from '../../../state/actions';
 import { AdminContext } from '../../../state/contexts';
 import './AdminDashboardPage.css';
+import axios from 'axios';
 
 const { Content, Sider } = Layout;
 
 function RenderHomePage() {
   const context = useContext(AdminContext);
-  const [whichClub, setWhichClub] = useState('Anderson');
+  const [whichOption, setWhichOption] = useState('Anderson');
   const [authtoken, setAuthtoken] = useState('');
+  const [plotData, setPlotData] = useState('');
 
   useEffect(() => {
+    graph();
     getFeedback('authState', context);
     if (context.clubs.length === 0) {
       getClubs('authState', context);
@@ -49,10 +52,8 @@ function RenderHomePage() {
     marker: { color: 'blue' },
   };
 
-  dt.y = getYValues(whichClub);
-  dt.x = getXValues(whichClub);
-
-  // let widget = <div></div>;
+  dt.y = getYValues(whichOption);
+  dt.x = getXValues(whichOption);
 
   const menu = (
     <Menu className="menu-club">
@@ -60,7 +61,7 @@ function RenderHomePage() {
         <Menu.Item
           key={club.clubid}
           icon={<StockOutlined />}
-          onClick={() => setWhichClub(club.clubname)}
+          onClick={() => setWhichOption(club.clubname)}
           className="menu-club"
         >
           {club.clubname}
@@ -68,6 +69,20 @@ function RenderHomePage() {
       ))}
     </Menu>
   );
+
+  function graph() {
+    axios
+      .get(
+        'http://bg-ds-api-dev.us-east-1.elasticbeanstalk.com/vis/pie/sentiment'
+      )
+      .then(res => {
+        console.log('response res.data: ', JSON.parse(res.data));
+        setPlotData(JSON.parse(res.data));
+      })
+      .catch(err => {
+        console.log('error: ', err);
+      });
+  }
 
   return (
     <LayoutContainer>
@@ -84,26 +99,23 @@ function RenderHomePage() {
           </Dropdown>
           <div className="card-container">
             <Card
-              title={whichClub}
+              title={whichOption}
               extra={<a href="/leaderboard">Leaderboard</a>}
-              style={{ width: 600, height: 400 }}
+              style={{ width: 600, height: 500 }}
               className="graph-holder"
             >
-              <Plot
-                data={[dt]}
-                layout={{
-                  width: 550,
-                  height: 300,
-                  title: {
-                    text: `Avg Sentiment by Activity`,
-                    font: { size: 18 },
-                  },
-                  margin: { l: 30, r: 20, t: 40, b: 40 },
-                  showlegend: false,
-                  xaxis: { linecolor: 'black', linewidth: 2, mirror: true },
-                  yaxis: { linecolor: 'black', linewidth: 2, mirror: true },
-                }}
-              />
+              {plotData != '' ? (
+                <Plot
+                  data={plotData.data}
+                  layout={{
+                    width: 500,
+                    height: 400,
+                    colorway: plotData.layout.colorway,
+                  }}
+                />
+              ) : (
+                <div></div>
+              )}
             </Card>
           </div>
         </Content>
