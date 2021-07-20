@@ -53,7 +53,7 @@ const NavMenu = props => {
         </Menu.Item>
       )}
 
-      {(role === 'ADMIN' || role === 'CD') && (
+      {role === 'ADMIN' && (
         <Menu.Item
           key="5"
           icon={<TeamOutlined />}
