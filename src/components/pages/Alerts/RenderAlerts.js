@@ -91,14 +91,6 @@ function RenderAlerts() {
                             >
                               Resolve
                             </Button>
-
-                            {/* <Modal
-                                title="Add Clubs"
-                                visible={isModalVisible}
-                                onOk={handleOk}
-                                onCancel={handleCancel}
-                                width={'70%'}
-                              /> */}
                           </div>
                         </div>
                       );
