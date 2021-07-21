@@ -64,58 +64,17 @@ function Anderson() {
         </Sider>
         <Content>
           <div className="card-container">
-            <Card style={{ width: 450, height: 350 }} className="graph-holder">
-              {plotData != '' ? (
-                <Plot
-                  data={plotData.data}
-                  layout={{
-                    width: 420,
-                    height: 320,
-                    colorway: plotData.layout.colorway,
-                  }}
-                />
-              ) : (
-                <div></div>
-              )}
-            </Card>
+            <Card size="big" className="graph-holder">
+              <span className="title">Check-in</span>
+              <span className="desc">
+                Percentage of sentiment for all of Check-in
+              </span>
 
-            <Card style={{ width: 450, height: 350 }} className="graph-holder">
               {plotData != '' ? (
                 <Plot
+                  className="Plot"
                   data={plotData.data}
                   layout={{
-                    width: 420,
-                    height: 320,
-                    colorway: plotData.layout.colorway,
-                  }}
-                />
-              ) : (
-                <div></div>
-              )}
-            </Card>
-
-            <Card style={{ width: 450, height: 350 }} className="graph-holder">
-              {plotData != '' ? (
-                <Plot
-                  data={plotData.data}
-                  layout={{
-                    width: 420,
-                    height: 320,
-                    colorway: plotData.layout.colorway,
-                  }}
-                />
-              ) : (
-                <div></div>
-              )}
-            </Card>
-
-            <Card style={{ width: 450, height: 350 }} className="graph-holder">
-              {plotData != '' ? (
-                <Plot
-                  data={plotData.data}
-                  layout={{
-                    width: 420,
-                    height: 320,
                     colorway: plotData.layout.colorway,
                   }}
                 />
