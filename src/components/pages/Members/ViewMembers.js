@@ -7,7 +7,8 @@ import { PageHeader, Table } from 'antd';
 import { getMembers } from '../../../state/actions';
 import styled from 'styled-components';
 import NavMenu from '../../common/NavMenu';
-import { Layout } from 'antd';
+import { Layout, Button } from 'antd';
+import { updateMember } from '../../../api';
 const { Content, Sider } = Layout;
 
 const StyledList = styled.div`
@@ -22,20 +23,48 @@ const StyledView = styled.header`
   align-items: center;
 `;
 
-const sampleTableData = {
-  rows: [{ memberId: 'Member ID' }],
-  columns: [
-    {
-      title: 'Member id',
-      dataIndex: 'memberId',
-      render: text => <p>{text}</p>,
-      key: '1',
-    },
-  ],
-};
 function ViewMembers(props) {
-  const [tableData, setTableData] = useState(sampleTableData);
   const context = useContext(AdminContext);
+
+  const sampleTableData = {
+    rows: [{ memberId: 'Member ID', action: '', tableid: null }],
+    columns: [
+      {
+        title: 'Member id',
+        dataIndex: 'memberId',
+        render: (text, record) => (
+          <p
+            style={{
+              color:
+                record.action == 'Deactivate'
+                  ? 'rgba(0, 0, 0, 0.65)'
+                  : 'lightgray',
+            }}
+          >
+            {text}
+          </p>
+        ),
+        key: '1',
+      },
+      {
+        title: '',
+        dataIndex: '',
+        key: 'action',
+        width: '25%',
+        render: record => (
+          <Button
+            onClick={() => {
+              updateMember(record.tableid).then(() => getMembers(context));
+            }}
+          >
+            {record.action}
+          </Button>
+        ),
+      },
+    ],
+  };
+
+  const [tableData, setTableData] = useState(sampleTableData);
 
   useEffect(() => {
     fetchMembers();
@@ -48,12 +77,15 @@ function ViewMembers(props) {
   const fetchMembers = () => {
     getMembers(context);
   };
+
   // Updates table with new data
   const memberDataToTableData = () => {
     const newRows = [];
     context.members.forEach(member => {
       const newRow = {
         memberId: member.memberid,
+        action: member.active ? 'Deactivate' : 'Activate',
+        tableid: member.member_table_id,
       };
       newRows.push(newRow);
     });
@@ -62,6 +94,7 @@ function ViewMembers(props) {
       rows: newRows,
     });
   };
+
   return (
     <LayoutContainer>
       <NavBar titleName={'Manage Members'} backgroundColor="#293845" />
