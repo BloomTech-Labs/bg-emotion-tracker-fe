@@ -92,7 +92,7 @@ function App() {
                   exact
                   path="/ClubDirectorDashboard"
                   component={() =>
-                    Authorization([Roles[0], Roles[1]], ClubDirectorDashboard)
+                    Authorization([Roles[0], Roles[1]], Anderson)
                   }
                 />
 
