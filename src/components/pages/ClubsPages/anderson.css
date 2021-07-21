@@ -25,3 +25,17 @@
 .title{
     font-size: 35px;
 }
+
+.timebox{
+    display: flex;
+}
+
+.selectbox{
+    display: flex;
+
+}
+
+.titlebox{
+    display: flex;
+    flex-direction: row;
+}
