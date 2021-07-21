@@ -44,7 +44,7 @@ import { EmojiConfirmRedirect } from './components/pages/EmojiConfirmRedirect';
 
 import { Roles } from './state/contexts/roles';
 import HiddenRoute from './utils/HiddenRoute';
-import Anderson from './components/pages/ClubPages/Anderson';
+import Anderson from './components/pages/ClubsPages/anderson';
 
 ReactDOM.render(
   <Router>
