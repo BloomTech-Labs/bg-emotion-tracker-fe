@@ -110,7 +110,7 @@ function ViewMembers(props) {
               <PageHeader
                 className="site-page-header"
                 title={'Members'}
-                subTitle={`Sorted by id`}
+                subTitle={`Sorted by ID`}
               />
               <ImportMembers fetchMembers={fetchMembers} />
             </StyledView>
