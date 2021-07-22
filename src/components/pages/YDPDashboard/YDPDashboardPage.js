@@ -28,13 +28,6 @@ function RenderHomePage() {
   const [disabledBtn, setDisabledBtn] = useState(true);
   const [dropDownName, setDropDownName] = useState('');
 
-  useEffect(() => {
-    // console.log('club: ', clubContext.club.clubname);
-    // if (!clubContext.club.clubname) {
-    //   setDisabledBtn(true);
-    // }
-  }, []);
-
   const onClick = e => {
     e.preventDefault();
   };
