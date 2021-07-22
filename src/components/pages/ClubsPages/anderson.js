@@ -14,13 +14,12 @@ import {
 } from 'antd';
 import { DownOutlined, StockOutlined } from '@ant-design/icons';
 import Plot from 'react-plotly.js';
-import { getClubs, getFeedback } from '../../../state/actions';
-import { AdminContext } from '../../../state/contexts';
+import { getClub, getClubs, getFeedback } from '../../../state/actions';
+import { AdminContext, AdminContextProvider } from '../../../state/contexts';
 import axios from 'axios';
 import '../ClubsPages/anderson.css';
 
 const { Content, Sider } = Layout;
-const { Option } = Select;
 const { RangePicker } = DatePicker;
 
 function Anderson() {
@@ -28,8 +27,8 @@ function Anderson() {
   const [whichClub, setWhichClub] = useState('Anderson');
   const [authtoken, setAuthtoken] = useState('');
   const [plotData, setPlotData] = useState('');
-
   useEffect(() => {
+    getClub('authState', context);
     graph();
     getFeedback('authState', context);
     if (context.clubs.length === 0) {
@@ -37,6 +36,22 @@ function Anderson() {
     }
   }, []);
 
+  let activities = [
+    'Club Checkin',
+    'Club Checkout',
+    'Music',
+    'Soccer',
+    'Basketball',
+  ];
+  const menu = (
+    <Menu>
+      {activities.map(item => (
+        <Menu.Item key={item.activityid}>{item}</Menu.Item>
+      ))}
+    </Menu>
+  );
+
+  // **reactive function that uses context**
   //   const menu = (
   //     <Menu className="menu-club">
   //       {context.clubs.map(club => (
@@ -73,23 +88,66 @@ function Anderson() {
         <Sider width={230} className="navSider">
           <NavMenu />
         </Sider>
+
         <Content>
-          <Card className="titlebox">
-            <div className="selectbox">
-              <span>How does </span>
-              <Select style={{ width: 150 }}>
-                <Option value="Test1">Test1</Option>
-              </Select>
-              <span> impact sentiment?</span>
-            </div>
-            <div className="timebox">
-              <span>Choose a Time Range</span>
-              <RangePicker></RangePicker>
-            </div>
-          </Card>
           <div className="card-container">
             <Card size="big" className="graph-holder">
-              <span className="title">Check-in</span>
+              <div className="selections">
+                <Dropdown overlay={menu} trigger={['click']}>
+                  <a
+                    className="ant-dropdown-link"
+                    onClick={e => e.preventDefault()}
+                  >
+                    Choose Activity <DownOutlined />
+                  </a>
+                </Dropdown>
+                <div className="timebox">
+                  <span>Choose Date: &nbsp;</span>
+                  <RangePicker></RangePicker>
+                </div>
+              </div>
+
+              <span className="title">Check In</span>
+              <span className="desc">
+                Percentage of sentiment for all of Check-in
+              </span>
+
+              {plotData != '' ? (
+                <Plot
+                  className="Plot"
+                  data={plotData.data}
+                  layout={{
+                    colorway: plotData.layout.colorway,
+                    align: '0 auto',
+                  }}
+                />
+              ) : (
+                <div></div>
+              )}
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam
+              </p>
+            </Card>
+
+            <Card size="big" className="graph-holder">
+              <div className="selections">
+                <Dropdown overlay={menu} trigger={['click']}>
+                  <a
+                    className="ant-dropdown-link"
+                    onClick={e => e.preventDefault()}
+                  >
+                    Choose Activity <DownOutlined />
+                  </a>
+                </Dropdown>
+                <div className="timebox">
+                  <span>Choose Date: &nbsp;</span>
+                  <RangePicker></RangePicker>
+                </div>
+              </div>
+
+              <span className="title">Check In</span>
               <span className="desc">
                 Percentage of sentiment for all of Check-in
               </span>
@@ -105,6 +163,11 @@ function Anderson() {
               ) : (
                 <div></div>
               )}
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam
+              </p>
             </Card>
           </div>
         </Content>
