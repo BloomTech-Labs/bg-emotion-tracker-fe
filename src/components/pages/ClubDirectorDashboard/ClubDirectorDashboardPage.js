@@ -13,7 +13,7 @@ const StyledAdminPage = styled.header`
 function RenderHomePage() {
   return (
     <LayoutContainer>
-      <NavBar titleName="Club Director Dashboard" backgroundColor="#293845" />
+      <NavBar titleName="Club Director Dashboard" backgroundColor="dre" />
       <Layout>
         <Sider className="navSider" width={230}>
           <NavMenu />
