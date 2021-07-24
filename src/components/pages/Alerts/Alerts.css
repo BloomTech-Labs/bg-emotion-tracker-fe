@@ -60,9 +60,7 @@
     flex-direction: column;
   }
 
-  /* .badge {
-    margin: .25rem;
-  } */
+
 
   h2 {
     margin: 0;
@@ -77,8 +75,3 @@
     }
   }
 
-  /* @media (min-width:1000px) {
-    .tab-list {
-      flex-wrap: wrap;
-    }
-  } */
