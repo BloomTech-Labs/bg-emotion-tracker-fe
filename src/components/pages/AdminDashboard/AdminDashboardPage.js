@@ -52,8 +52,6 @@ function RenderHomePage() {
   dt.y = getYValues(whichClub);
   dt.x = getXValues(whichClub);
 
-  // let widget = <div></div>;
-
   const menu = (
     <Menu className="menu-club">
       {context.clubs.map(club => (
