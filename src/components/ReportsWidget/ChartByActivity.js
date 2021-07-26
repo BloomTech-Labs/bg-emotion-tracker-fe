@@ -201,7 +201,6 @@ export const ChartByActivity = ({
           )}
         </div>
       </Section>
-      {/* <ChartType setChartType={setChartType} /> */}
     </ChartTemplate>
   );
 };
