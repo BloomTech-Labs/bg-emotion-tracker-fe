@@ -94,7 +94,7 @@
     text-align: center;
   }
   
-  table tr:hover {background-color: #ddd;}
+  table tr:hover {background-color: #ddd; color: black;}
   
   table th {
     padding-top: 12px;
