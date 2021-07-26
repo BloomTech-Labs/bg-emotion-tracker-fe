@@ -2,17 +2,28 @@ import React, { useState, useEffect, useContext } from 'react';
 import { LayoutContainer } from '../../common';
 import NavBar from '../../common/NavBar';
 import NavMenu from '../../common/NavMenu';
-import { Layout, Card, Dropdown, Button, Menu } from 'antd';
+import {
+  Layout,
+  Card,
+  Dropdown,
+  Button,
+  Menu,
+  Select,
+  DatePicker,
+  Space,
+} from 'antd';
 import { DownOutlined, StockOutlined } from '@ant-design/icons';
 import Plot from 'react-plotly.js';
 import { getClubs, getFeedback } from '../../../state/actions';
 import { AdminContext } from '../../../state/contexts';
-import './AdminDashboardPage.css';
 import axios from 'axios';
+import '../ClubsPages/anderson.css';
 
 const { Content, Sider } = Layout;
+const { Option } = Select;
+const { RangePicker } = DatePicker;
 
-function RenderHomePage() {
+function Anderson() {
   const context = useContext(AdminContext);
   const [whichClub, setWhichClub] = useState('Anderson');
   const [authtoken, setAuthtoken] = useState('');
@@ -26,49 +37,20 @@ function RenderHomePage() {
     }
   }, []);
 
-  function getYValues(str) {
-    const output = [];
-    const [temp] = context.feedback.filter(club => club.clubname === str);
-    temp?.activityReactionRatings?.forEach(activity => {
-      output.push(activity.activityrating);
-    });
-    return output;
-  }
-
-  function getXValues(str) {
-    const output = [];
-    const [temp] = context.feedback.filter(club => club.clubname === str);
-    temp?.activityReactionRatings?.forEach(activity => {
-      output.push(activity.activityname);
-    });
-    return output;
-  }
-
-  const dt = {
-    x: [],
-    y: [],
-    type: 'bar',
-    mode: 'lines+markers',
-    marker: { color: 'blue' },
-  };
-
-  dt.y = getYValues(whichClub);
-  dt.x = getXValues(whichClub);
-
-  const menu = (
-    <Menu className="menu-club">
-      {context.clubs.map(club => (
-        <Menu.Item
-          key={club.clubid}
-          icon={<StockOutlined />}
-          onClick={() => setWhichClub(club.clubname)}
-          className="menu-club"
-        >
-          {club.clubname}
-        </Menu.Item>
-      ))}
-    </Menu>
-  );
+  //   const menu = (
+  //     <Menu className="menu-club">
+  //       {context.clubs.map(club => (
+  //         <Menu.Item
+  //           key={club.clubid}
+  //           icon={<StockOutlined />}
+  //           onClick={() => setWhichClub(club.clubname)}
+  //           className="menu-club"
+  //         >
+  //           {club.clubname}
+  //         </Menu.Item>
+  //       ))}
+  //     </Menu>
+  //   );
 
   function graph() {
     axios
@@ -86,30 +68,37 @@ function RenderHomePage() {
 
   return (
     <LayoutContainer>
-      <NavBar titleName="Admin Dashboard" />
+      <NavBar titleName="Anderson" />
       <Layout>
         <Sider width={230} className="navSider">
           <NavMenu />
         </Sider>
         <Content>
-          <Dropdown overlay={menu}>
-            <Button size={'large'} className="pick-a-club">
-              CHOOSE CLUB <DownOutlined />
-            </Button>
-          </Dropdown>
+          <Card className="titlebox">
+            <div className="selectbox">
+              <span>How does </span>
+              <Select style={{ width: 150 }}>
+                <Option value="Test1">Test1</Option>
+              </Select>
+              <span> impact sentiment?</span>
+            </div>
+            <div className="timebox">
+              <span>Choose a Time Range</span>
+              <RangePicker></RangePicker>
+            </div>
+          </Card>
           <div className="card-container">
-            <Card
-              title={whichClub}
-              extra={<a href="/leaderboard">Leaderboard</a>}
-              style={{ width: 600, height: 500 }}
-              className="graph-holder"
-            >
+            <Card size="big" className="graph-holder">
+              <span className="title">Check-in</span>
+              <span className="desc">
+                Percentage of sentiment for all of Check-in
+              </span>
+
               {plotData != '' ? (
                 <Plot
+                  className="Plot"
                   data={plotData.data}
                   layout={{
-                    width: 500,
-                    height: 400,
                     colorway: plotData.layout.colorway,
                   }}
                 />
@@ -123,4 +112,4 @@ function RenderHomePage() {
     </LayoutContainer>
   );
 }
-export default RenderHomePage;
+export default Anderson;
