@@ -318,21 +318,6 @@ const fetchMembersReaction = () => {
   return dataPromise;
 };
 
-// const getLeaderboard = () => {
-//   axios
-//     .get(
-//       `https://bg-emotion-tracker-be-b.herokuapp.com/leaderboard/leaderboard`,
-//       {
-//         headers: {
-//           Authorization: `Bearer ${authtoken}`,
-//         },
-//       }
-//     )
-//     .then(e => {
-//       console.log(e);
-//     });
-// };
-
 const fetchLeaderboard = () => {
   let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
 
