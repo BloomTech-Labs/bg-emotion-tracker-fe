@@ -12,10 +12,6 @@ const StyledButton = styled(Button)`
   align-content: center;
   margin-top: 2rem;
   margin-left: 1.5rem;
-  /* margin: 10px auto; 
-  position: absolute;
-  top: 120px;
-  left: 20px; */
 `;
 
 const BackButton = props => {
