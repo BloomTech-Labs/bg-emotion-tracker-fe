@@ -57,7 +57,12 @@ const NavMenu = props => {
       {role === 'ADMIN' && (
         <Menu.Item key="2" icon={<CheckCircleOutlined />}>
           <Dropdown overlay={menu}>
-            <a onClick={e => e.preventDefault()}>
+            <a
+              onClick={e => {
+                e.preventDefault();
+                history.push('/anderson');
+              }}
+            >
               Choose Club <DownOutlined />
             </a>
           </Dropdown>

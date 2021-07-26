@@ -1,41 +1,55 @@
-.graph-holder.title{
-    font: 200px;
-}
+
 
 .Plot{
     width: 100%;
-    height:100vh;
-    font: 200px;
+    font:12px;
+    
 }
 
 .graph-holder{
-    width:100%;
-    height:115vh;
+    width:45%;
+    height: 680px;
+    text-align: center;
  
 }
-
 
 .desc{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-size: 23px;
+    font-size: 15px;
 }
 
 .title{
-    font-size: 35px;
+    font-size: 25px;
 }
 
 .timebox{
     display: flex;
 }
 
-.selectbox{
+.selections{
     display: flex;
-
+    justify-content: space-around;
 }
 
 .titlebox{
     display: flex;
     flex-direction: row;
+}
+
+@media (max-width: 1240px ){
+    .card-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 70%
+    }
+    .graph-holder{
+        width:80%;
+        /* height: 10%; */
+        height: 680px;
+    }
+
+
 }
