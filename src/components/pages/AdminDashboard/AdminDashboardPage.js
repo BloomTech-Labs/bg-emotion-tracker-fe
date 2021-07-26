@@ -14,7 +14,7 @@ const { Content, Sider } = Layout;
 
 function RenderHomePage() {
   const context = useContext(AdminContext);
-  const [whichClub, setWhichClub] = useState('Anderson');
+  const [whichOption, setWhichOption] = useState('Anderson');
   const [authtoken, setAuthtoken] = useState('');
   const [plotData, setPlotData] = useState('');
 
@@ -52,8 +52,8 @@ function RenderHomePage() {
     marker: { color: 'blue' },
   };
 
-  dt.y = getYValues(whichClub);
-  dt.x = getXValues(whichClub);
+  dt.y = getYValues(whichOption);
+  dt.x = getXValues(whichOption);
 
   const menu = (
     <Menu className="menu-club">
@@ -61,7 +61,7 @@ function RenderHomePage() {
         <Menu.Item
           key={club.clubid}
           icon={<StockOutlined />}
-          onClick={() => setWhichClub(club.clubname)}
+          onClick={() => setWhichOption(club.clubname)}
           className="menu-club"
         >
           {club.clubname}
@@ -99,7 +99,7 @@ function RenderHomePage() {
           </Dropdown>
           <div className="card-container">
             <Card
-              title={whichClub}
+              title={whichOption}
               extra={<a href="/leaderboard">Leaderboard</a>}
               style={{ width: 600, height: 500 }}
               className="graph-holder"
