@@ -14,21 +14,21 @@ import {
 } from 'antd';
 import { DownOutlined, StockOutlined } from '@ant-design/icons';
 import Plot from 'react-plotly.js';
-import { getClubs, getFeedback } from '../../../state/actions';
-import { AdminContext } from '../../../state/contexts';
-import './AdminDashboardPage.css';
+import { getClub, getClubs, getFeedback } from '../../../state/actions';
+import { AdminContext, AdminContextProvider } from '../../../state/contexts';
 import axios from 'axios';
+import '../ClubsPages/anderson.css';
 
 const { Content, Sider } = Layout;
 const { RangePicker } = DatePicker;
 
-function RenderHomePage() {
+function Anderson() {
   const context = useContext(AdminContext);
   const [whichClub, setWhichClub] = useState('Anderson');
   const [authtoken, setAuthtoken] = useState('');
   const [plotData, setPlotData] = useState('');
-
   useEffect(() => {
+    getClub('authState', context);
     graph();
     getFeedback('authState', context);
     if (context.clubs.length === 0) {
@@ -36,37 +36,6 @@ function RenderHomePage() {
     }
   }, []);
 
-
-  function getYValues(str) {
-    const output = [];
-    const [temp] = context.feedback.filter(club => club.clubname === str);
-    temp?.activityReactionRatings?.forEach(activity => {
-      output.push(activity.activityrating);
-    });
-    return output;
-  }
-
-  function getXValues(str) {
-    const output = [];
-    const [temp] = context.feedback.filter(club => club.clubname === str);
-    temp?.activityReactionRatings?.forEach(activity => {
-      output.push(activity.activityname);
-    });
-    return output;
-  }
-
-  const dt = {
-    x: [],
-    y: [],
-    type: 'bar',
-    mode: 'lines+markers',
-    marker: { color: 'blue' },
-  };
-
-  dt.y = getYValues(whichClub);
-  dt.x = getXValues(whichClub);
-
-  const menu = (
   let activities = [
     'Club Checkin',
     'Club Checkout',
@@ -74,7 +43,7 @@ function RenderHomePage() {
     'Soccer',
     'Basketball',
   ];
-  const activitymenu = (
+  const menu = (
     <Menu>
       {activities.map(item => (
         <Menu.Item key={item.activityid}>{item}</Menu.Item>
@@ -82,21 +51,21 @@ function RenderHomePage() {
     </Menu>
   );
 
-  const clubMenu = (
-
-    <Menu className="menu-club">
-      {context.clubs.map(club => (
-        <Menu.Item
-          key={club.clubid}
-          icon={<StockOutlined />}
-          onClick={() => setWhichClub(club.clubname)}
-          className="menu-club"
-        >
-          {club.clubname}
-        </Menu.Item>
-      ))}
-    </Menu>
-  );
+  // **reactive function that uses context**
+  //   const menu = (
+  //     <Menu className="menu-club">
+  //       {context.clubs.map(club => (
+  //         <Menu.Item
+  //           key={club.clubid}
+  //           icon={<StockOutlined />}
+  //           onClick={() => setWhichClub(club.clubname)}
+  //           className="menu-club"
+  //         >
+  //           {club.clubname}
+  //         </Menu.Item>
+  //       ))}
+  //     </Menu>
+  //   );
 
   function graph() {
     axios
@@ -114,21 +83,17 @@ function RenderHomePage() {
 
   return (
     <LayoutContainer>
-      <NavBar titleName={whichClub} />
+      <NavBar titleName="Anderson" />
       <Layout>
         <Sider width={230} className="navSider">
           <NavMenu />
         </Sider>
+
         <Content>
-          <Dropdown overlay={clubMenu}>
-            <Button size={'large'} className="pick-a-club">
-              CHOOSE CLUB <DownOutlined />
-            </Button>
-          </Dropdown>
           <div className="card-container">
             <Card size="big" className="graph-holder">
               <div className="selections">
-                <Dropdown overlay={activitymenu} trigger={['click']}>
+                <Dropdown overlay={menu} trigger={['click']}>
                   <a
                     className="ant-dropdown-link"
                     onClick={e => e.preventDefault()}
@@ -168,7 +133,7 @@ function RenderHomePage() {
 
             <Card size="big" className="graph-holder">
               <div className="selections">
-                <Dropdown overlay={activitymenu} trigger={['click']}>
+                <Dropdown overlay={menu} trigger={['click']}>
                   <a
                     className="ant-dropdown-link"
                     onClick={e => e.preventDefault()}
@@ -210,4 +175,4 @@ function RenderHomePage() {
     </LayoutContainer>
   );
 }
-export default RenderHomePage;
+export default Anderson;

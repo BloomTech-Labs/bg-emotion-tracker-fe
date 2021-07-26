@@ -1,9 +1,8 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { LayoutContainer } from '../../common/';
 import NavBar from '../../common/NavBar';
-import Tabs from '../../common/Tabs';
 import './Alerts.css';
-import { Layout, Button } from 'antd';
+import { Layout, Card } from 'antd';
 import NavMenu from '../../common/NavMenu';
 import { AdminContext } from '../../../state/contexts';
 import { getClubs, getMembersReaction } from '../../../state/actions';
@@ -12,49 +11,40 @@ import '../../../styles/styles.css';
 
 const { Content, Sider } = Layout;
 
-function RenderAlerts(props) {
+function ElapsedTime(createddate) {
+  let today = new Date();
+  let startDate = new Date(createddate);
+  let diffInMilliSeconds = Math.abs(startDate - today) / 1000;
+  console.log(startDate);
+
+  // calc days
+  const days = Math.floor(diffInMilliSeconds / 86400);
+  diffInMilliSeconds -= days * 86400;
+
+  // calculate hours
+  const hours = Math.floor(diffInMilliSeconds / 3600) % 24;
+  diffInMilliSeconds -= hours * 3600;
+
+  // calculate minutes
+  const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
+  diffInMilliSeconds -= minutes * 60;
+
+  let difference = '';
+  if (days > 0) {
+    difference += days === 1 ? `${days} day, ` : `${days} days, `;
+  }
+
+  difference +=
+    hours === 0 || hours === 1 ? `${hours} hour, ` : `${hours} hours, `;
+
+  difference +=
+    minutes === 0 || hours === 1 ? `${minutes} minutes` : `${minutes} minutes`;
+
+  return difference;
+}
+
+function RenderAlerts() {
   const context = useContext(AdminContext);
-  // const [isModalVisible, setIsModalVisible] = useState(false);
-
-  // const handleOk = () => {
-  //   // Send data to backend
-  //   // if (inputData.individual.length > 0) {
-  //   //   inputData.individual.forEach(item => {
-  //   //     console.log(item);
-  //   //     postClub(item);
-  //   //   });
-  //   // }
-  //   // setIsModalVisible(false);
-  //   // clearState();
-  //   // setTimeout(() => {
-  //   //   fetchClubs();
-  //   // }, 2000);
-  // };
-
-  // const handleCancel = () => {
-  //   setIsModalVisible(false);
-  //   clearState();
-  // };
-
-  // const clearState = () => {
-  //   setInputData({
-  //     individual: [],
-  //     file: [],
-  //   });
-  // };
-
-  // const showModal = () => {
-  //   setIsModalVisible(true);
-  // };
-
-  useEffect(() => {
-    if (context.clubs.length === 0) {
-      getClubs('authState', context);
-    }
-    if (context.memberReactions.length === 0) {
-      getMembersReaction('authState', context);
-    }
-  }, []);
 
   function seperate_club_data(arr) {
     let rtn = {};
@@ -77,43 +67,61 @@ function RenderAlerts(props) {
           <NavMenu />
         </Sider>
         <Content>
-          {context.clubs.length === 0 ? (
-            <div className="centered-content flex">
-              <LoadingComponent message="loading" />
+          <Card>
+            <div>
+              <table>
+                <thead>
+                  <tr className="trclass">
+                    <th>Club Name</th>
+                    <th>Emoji</th>
+                    <th>MemberID</th>
+                    <th>Activity</th>
+                    <th>Created</th>
+                    <th>Elapsed</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {context.clubs.map(club => (
+                    <>
+                      {sentimentObj[club.clubname]?.map(alert => {
+                        return (
+                          <tr
+                            className={
+                              ElapsedTime > 0 && ElapsedTime < 30
+                                ? 'tddata'
+                                : ElapsedTime >= 30 && ElapsedTime >= 60
+                                ? 'tddataorangealert'
+                                : 'tddataredalert'
+                            }
+                          >
+                            <td className="tddata">{alert.clubname}</td>
+                            <td className="emoji">
+                              {String.fromCodePoint(
+                                parseInt(alert.reactionvalue, 16)
+                              )}
+                            </td>
+                            <td className="tddata">{alert.member}</td>
+                            <td className="tddata">{alert.activities}</td>
+                            <td className="tddata">{alert.createddate}</td>
+                            <td className="tddata">
+                              {ElapsedTime(alert.createddate)}
+                            </td>
+
+                            {/* <td className={ElapsedTime > 0 && ElapsedTime < 30 ? 'tddata' : ElapsedTime > 30 && ElapsedTime < 60 ? 'tddataorangealert' : 'tddataredalert'}>{alert.clubname}</td>
+                              <td className={ElapsedTime > 0 && ElapsedTime < 30 ? 'emoji' : ElapsedTime > 30 && ElapsedTime < 60 ? 'emojiorangealert' : 'emojiredalert'}>{String.fromCodePoint(parseInt(alert.reactionvalue, 16))}</td>
+                              <td className={ElapsedTime > 0 && ElapsedTime < 30 ? 'tddata' : ElapsedTime > 30 && ElapsedTime < 60 ? 'tddataorangealert' : 'tddataredalert'}>{alert.member}</td>
+                              <td className={ElapsedTime > 0 && ElapsedTime < 30 ? 'tddata' : ElapsedTime > 30 && ElapsedTime < 60 ? 'tddataorangealert' : 'tddataredalert'}>{alert.activities}</td>
+                              <td className={ElapsedTime > 0 && ElapsedTime < 30 ? 'tddata' : ElapsedTime > 30 && ElapsedTime < 60 ? 'tddataorangealert' : 'tddataredalert'}>{alert.createddate}</td>
+                              <td className={ElapsedTime > 0 && ElapsedTime < 30 ? 'tddata' : ElapsedTime > 30 && ElapsedTime < 60 ? 'tddataorangealert' : 'tddataredalert'}>{ElapsedTime(alert.createddate)}</td> */}
+                          </tr>
+                        );
+                      })}
+                    </>
+                  ))}
+                </tbody>
+              </table>
             </div>
-          ) : (
-            <Tabs>
-              {context.clubs.map(club => (
-                <div label={club.clubname} key={club.clubid}>
-                  <div className="under-tabs-container">
-                    {sentimentObj[club.clubname]?.map(alert => {
-                      return (
-                        <div key={alert.id} className="alertDiv flags box">
-                          <div className="contentDiv">
-                            <h4>Member: {alert.member}</h4>
-                            <h4>Activity: {alert.activities}</h4>
-                            <h4>Time: {alert.createddate}</h4>
-                          </div>
-                          <div className="buttDiv">
-                            <Button type="primary" /*onClick={showModal}*/>
-                              Resolve
-                            </Button>
-                            {/* <Modal
-                                title="Add Clubs"
-                                visible={isModalVisible}
-                                onOk={handleOk}
-                                onCancel={handleCancel}
-                                width={'70%'}
-                              /> */}
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              ))}
-            </Tabs>
-          )}
+          </Card>
         </Content>
       </Layout>
     </LayoutContainer>

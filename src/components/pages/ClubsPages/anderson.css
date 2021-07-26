@@ -1,0 +1,55 @@
+
+
+.Plot{
+    width: 100%;
+    font:12px;
+    
+}
+
+.graph-holder{
+    width:45%;
+    height: 680px;
+    text-align: center;
+ 
+}
+
+.desc{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 15px;
+}
+
+.title{
+    font-size: 25px;
+}
+
+.timebox{
+    display: flex;
+}
+
+.selections{
+    display: flex;
+    justify-content: space-around;
+}
+
+.titlebox{
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 1240px ){
+    .card-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 70%
+    }
+    .graph-holder{
+        width:80%;
+        /* height: 10%; */
+        height: 680px;
+    }
+
+
+}
