@@ -36,6 +36,37 @@ function RenderHomePage() {
     }
   }, []);
 
+
+  function getYValues(str) {
+    const output = [];
+    const [temp] = context.feedback.filter(club => club.clubname === str);
+    temp?.activityReactionRatings?.forEach(activity => {
+      output.push(activity.activityrating);
+    });
+    return output;
+  }
+
+  function getXValues(str) {
+    const output = [];
+    const [temp] = context.feedback.filter(club => club.clubname === str);
+    temp?.activityReactionRatings?.forEach(activity => {
+      output.push(activity.activityname);
+    });
+    return output;
+  }
+
+  const dt = {
+    x: [],
+    y: [],
+    type: 'bar',
+    mode: 'lines+markers',
+    marker: { color: 'blue' },
+  };
+
+  dt.y = getYValues(whichClub);
+  dt.x = getXValues(whichClub);
+
+  const menu = (
   let activities = [
     'Club Checkin',
     'Club Checkout',
@@ -52,6 +83,7 @@ function RenderHomePage() {
   );
 
   const clubMenu = (
+
     <Menu className="menu-club">
       {context.clubs.map(club => (
         <Menu.Item

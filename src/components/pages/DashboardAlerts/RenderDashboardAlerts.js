@@ -10,7 +10,6 @@ import MenuItem from 'antd/lib/menu/MenuItem';
 
 function RenderDashboardAlerts() {
   const context = useContext(AdminContext);
-  // let [reactions, setReactions] = useState([]);
 
   /*
    * This function combines the locations into one object with the value of the

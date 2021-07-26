@@ -127,17 +127,3 @@ function ViewMembers(props) {
   );
 }
 export default ViewMembers;
-/* <LayoutContainer>
-<ViewSingleton
-headerName="Members"
-titleName="All Members"
-RenderAddButton={ImportMembers}
-rows={mockData.rows}
-columns={mockData.columns}
-sortedBy="ID"
-/>
-</LayoutContainer>
-
-
-
-*/
