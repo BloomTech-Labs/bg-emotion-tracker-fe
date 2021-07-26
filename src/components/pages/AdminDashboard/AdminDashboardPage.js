@@ -36,7 +36,6 @@ function RenderHomePage() {
     }
   }, []);
 
-
   function getYValues(str) {
     const output = [];
     const [temp] = context.feedback.filter(club => club.clubname === str);
@@ -66,7 +65,6 @@ function RenderHomePage() {
   dt.y = getYValues(whichClub);
   dt.x = getXValues(whichClub);
 
-  const menu = (
   let activities = [
     'Club Checkin',
     'Club Checkout',
@@ -74,6 +72,7 @@ function RenderHomePage() {
     'Soccer',
     'Basketball',
   ];
+
   const activitymenu = (
     <Menu>
       {activities.map(item => (
@@ -83,7 +82,6 @@ function RenderHomePage() {
   );
 
   const clubMenu = (
-
     <Menu className="menu-club">
       {context.clubs.map(club => (
         <Menu.Item
