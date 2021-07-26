@@ -1,47 +1,50 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { LayoutContainer } from '../../common/';
 import NavBar from '../../common/NavBar';
-import Tabs from '../../common/Tabs';
 import './Alerts.css';
-import { Layout, Button, Card, Tooltip } from 'antd';
+import { Layout, Card } from 'antd';
 import NavMenu from '../../common/NavMenu';
 import { AdminContext } from '../../../state/contexts';
 import { getClubs, getMembersReaction } from '../../../state/actions';
 import { LoadingComponent } from '../../common';
 import '../../../styles/styles.css';
-import axios from 'axios';
 
 const { Content, Sider } = Layout;
 
-const gridStyle1 = {
-  width: '10%',
-  textAlign: 'center',
-  fontWeight: 'bold',
-};
-
-const gridStyle2 = {
-  width: '15%',
-  textAlign: 'center',
-};
-
 function ElapsedTime(createddate) {
-  // let newCreatedDate = createddate.getHours() + ':' + createddate.getMinutes();
   let today = new Date();
-  let time = today.getHours() + ':' + today.getMinutes();
-  console.log(`CreatedDate: ${typeof createddate}`);
-  console.log(`Time: ${typeof time}`);
-  return createddate;
+  let startDate = new Date(createddate);
+  let diffInMilliSeconds = Math.abs(startDate - today) / 1000;
+  console.log(startDate);
+
+  // calc days
+  const days = Math.floor(diffInMilliSeconds / 86400);
+  diffInMilliSeconds -= days * 86400;
+
+  // calculate hours
+  const hours = Math.floor(diffInMilliSeconds / 3600) % 24;
+  diffInMilliSeconds -= hours * 3600;
+
+  // calculate minutes
+  const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
+  diffInMilliSeconds -= minutes * 60;
+
+  let difference = '';
+  if (days > 0) {
+    difference += days === 1 ? `${days} day, ` : `${days} days, `;
+  }
+
+  difference +=
+    hours === 0 || hours === 1 ? `${hours} hour, ` : `${hours} hours, `;
+
+  difference +=
+    minutes === 0 || hours === 1 ? `${minutes} minutes` : `${minutes} minutes`;
+
+  return difference;
 }
 
 function RenderAlerts() {
   const context = useContext(AdminContext);
-  const [resolve, setResolve] = useState();
-
-  useEffect(() => {
-    setResolve(true);
-    getClubs('authState', context);
-    getMembersReaction('authState', context);
-  }, [resolve]);
 
   function seperate_club_data(arr) {
     let rtn = {};
@@ -56,24 +59,6 @@ function RenderAlerts() {
 
   let sentimentObj = seperate_club_data(context.memberReactions);
 
-  //resolve button
-  function resolveBtn(memberreactionid) {
-    let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
-
-    axios.put(
-      `https://bg-emotion-tracker-be-b.herokuapp.com/memberreactions/update/${memberreactionid}`,
-      {
-        reactionresolved: true,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${tokenObj.accessToken.accessToken}`,
-        },
-      }
-    );
-    setResolve(!resolve);
-  }
-
   return (
     <LayoutContainer>
       <NavBar titleName={'Alerts'} backgroundColor="#293845" />
@@ -82,96 +67,64 @@ function RenderAlerts() {
           <NavMenu />
         </Sider>
         <Content>
-          {context.clubs.length === 0 ? (
-            <div className="centered-content flex">
-              <LoadingComponent message="loading" />
-            </div>
-          ) : (
-            <Card>
-              {context.clubs.map(club => (
-                <Card>
-                  <Card.Grid style={gridStyle1} hoverable={false}>
-                    {club.clubname}
-                  </Card.Grid>
-                  <div>
-                    {sentimentObj[club.clubname]?.map(alert => {
-                      return (
-                        <Tooltip
-                          title={
-                            <Card>
-                              MemberID: {alert.member}
-                              <br />
-                              Activity: {alert.activities}
-                              <br />
-                              Time: {alert.createddate}
-                              <br />
-                              Elapsed Time: {ElapsedTime(alert.createddate)}
-                              <div>
-                                {String.fromCodePoint(
-                                  parseInt(alert.reactionvalue, 16)
-                                )}
-                              </div>
-                            </Card>
-                          }
-                        >
-                          <Card.Grid style={gridStyle2}>
-                            <div>
+          <Card>
+            <div>
+              <table>
+                <thead>
+                  <tr className="trclass">
+                    <th>Club Name</th>
+                    <th>Emoji</th>
+                    <th>MemberID</th>
+                    <th>Activity</th>
+                    <th>Created</th>
+                    <th>Elapsed</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {context.clubs.map(club => (
+                    <>
+                      {sentimentObj[club.clubname]?.map(alert => {
+                        return (
+                          <tr
+                            className={
+                              ElapsedTime > 0 && ElapsedTime < 30
+                                ? 'tddata'
+                                : ElapsedTime >= 30 && ElapsedTime >= 60
+                                ? 'tddataorangealert'
+                                : 'tddataredalert'
+                            }
+                          >
+                            <td className="tddata">{alert.clubname}</td>
+                            <td className="emoji">
                               {String.fromCodePoint(
                                 parseInt(alert.reactionvalue, 16)
-                              )}{' '}
-                              {alert.activities}
-                            </div>
-                          </Card.Grid>
-                        </Tooltip>
-                      );
-                    })}
-                  </div>
-                </Card>
-              ))}
-            </Card>
-          )}
+                              )}
+                            </td>
+                            <td className="tddata">{alert.member}</td>
+                            <td className="tddata">{alert.activities}</td>
+                            <td className="tddata">{alert.createddate}</td>
+                            <td className="tddata">
+                              {ElapsedTime(alert.createddate)}
+                            </td>
+
+                            {/* <td className={ElapsedTime > 0 && ElapsedTime < 30 ? 'tddata' : ElapsedTime > 30 && ElapsedTime < 60 ? 'tddataorangealert' : 'tddataredalert'}>{alert.clubname}</td>
+                              <td className={ElapsedTime > 0 && ElapsedTime < 30 ? 'emoji' : ElapsedTime > 30 && ElapsedTime < 60 ? 'emojiorangealert' : 'emojiredalert'}>{String.fromCodePoint(parseInt(alert.reactionvalue, 16))}</td>
+                              <td className={ElapsedTime > 0 && ElapsedTime < 30 ? 'tddata' : ElapsedTime > 30 && ElapsedTime < 60 ? 'tddataorangealert' : 'tddataredalert'}>{alert.member}</td>
+                              <td className={ElapsedTime > 0 && ElapsedTime < 30 ? 'tddata' : ElapsedTime > 30 && ElapsedTime < 60 ? 'tddataorangealert' : 'tddataredalert'}>{alert.activities}</td>
+                              <td className={ElapsedTime > 0 && ElapsedTime < 30 ? 'tddata' : ElapsedTime > 30 && ElapsedTime < 60 ? 'tddataorangealert' : 'tddataredalert'}>{alert.createddate}</td>
+                              <td className={ElapsedTime > 0 && ElapsedTime < 30 ? 'tddata' : ElapsedTime > 30 && ElapsedTime < 60 ? 'tddataorangealert' : 'tddataredalert'}>{ElapsedTime(alert.createddate)}</td> */}
+                          </tr>
+                        );
+                      })}
+                    </>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Card>
         </Content>
       </Layout>
     </LayoutContainer>
   );
 }
 export default RenderAlerts;
-
-// {context.clubs.length === 0 ? (
-//   <div className="centered-content flex">
-//     <LoadingComponent message="loading" />
-//   </div>
-// ) : (
-//   <Tabs>
-//     {context.clubs.map(club => (
-//       <div label={club.clubname} key={club.clubid}>
-//         <div className="under-tabs-container">
-//           {sentimentObj[club.clubname]?.map(alert => {
-//             return (
-//               <div key={alert.id} className="alertDiv flags box">
-//                 <div className="contentDiv">
-//                   <h4>Member: {alert.member}</h4>
-//                   <h4>Activity: {alert.activities}</h4>
-//                   <h4>Time: {alert.createddate}</h4>
-//                   <span>
-//                     {String.fromCodePoint(
-//                       parseInt(alert.reactionvalue, 16)
-//                     )}
-//                   </span>
-//                 </div>
-//                 <div className="buttDiv">
-//                   <Button
-//                     type="primary"
-//                     onClick={() => resolveBtn(alert.id)}
-//                   >
-//                     Resolve
-//                   </Button>
-//                 </div>
-//               </div>
-//             );
-//           })}
-//         </div>
-//       </div>
-//     ))}
-//   </Tabs>
-// )}

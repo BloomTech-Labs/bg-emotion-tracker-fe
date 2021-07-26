@@ -111,6 +111,16 @@ const NavMenu = props => {
 
       {(role === 'ADMIN' || role === 'CD') && (
         <Menu.Item
+          key="6"
+          icon={<UpSquareOutlined />}
+          onClick={() => history.push('/allreactions')}
+        >
+          Manage Reactions
+        </Menu.Item>
+      )}
+
+      {(role === 'ADMIN' || role === 'CD') && (
+        <Menu.Item
           key="7"
           icon={<BellOutlined />}
           onClick={() => history.push('/alerts')}

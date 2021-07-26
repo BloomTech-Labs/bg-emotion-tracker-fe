@@ -44,6 +44,7 @@ import { EmojiConfirmRedirect } from './components/pages/EmojiConfirmRedirect';
 
 import { Roles } from './state/contexts/roles';
 import HiddenRoute from './utils/HiddenRoute';
+import { ReactionsTable } from './components/pages/ReactionsTable';
 import Anderson from './components/pages/ClubsPages/anderson';
 
 ReactDOM.render(
@@ -123,6 +124,14 @@ function App() {
                   exact
                   path="/alerts"
                   component={() => Authorization([Roles[0], Roles[1]], Alerts)}
+                />
+
+                <SecureRoute
+                  exact
+                  path="/allreactions"
+                  component={() =>
+                    Authorization([Roles[0], Roles[1]], ReactionsTable)
+                  }
                 />
 
                 <SecureRoute

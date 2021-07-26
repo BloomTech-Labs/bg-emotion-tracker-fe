@@ -3,17 +3,8 @@ import { Form, Input, Button } from 'antd';
 import { YouthContext } from '../../../state/contexts/index';
 import { getMember } from '../../../state/actions';
 
-const layout = {
-  // wrapperCol: {
-  //   span: 16,
-  // },
-};
-const tailLayout = {
-  // wrapperCol: {
-  //   offset: 16,
-  //   span: 1,
-  // },
-};
+const layout = {};
+const tailLayout = {};
 
 function ManualMemberInput(props) {
   const { setScanStatus, handleError } = props;

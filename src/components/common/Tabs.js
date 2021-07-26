@@ -15,9 +15,7 @@ export default function Tabs(props) {
   const onClickTabItem = tab => {
     setActiveTab(tab);
   };
-  /*
-   *  Comment[ here ]
-   */
+
   function combine_badges(arr) {
     const rtn = {};
 

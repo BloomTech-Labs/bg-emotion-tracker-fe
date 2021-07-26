@@ -94,7 +94,7 @@ function ViewPrograms() {
             <Table
               columns={tableData.columns}
               dataSource={tableData.rows}
-              style={{ paddingLeft: 8 }}
+              style={{ paddingLeft: 5 }}
               pagination={{ position: ['none', 'bottomRight'] }}
             />
           </StyledList>
