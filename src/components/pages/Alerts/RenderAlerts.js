@@ -15,7 +15,6 @@ function ElapsedTime(createddate) {
   let today = new Date();
   let startDate = new Date(createddate);
   let diffInMilliSeconds = Math.abs(startDate - today) / 1000;
-  console.log(startDate);
 
   // calc days
   const days = Math.floor(diffInMilliSeconds / 86400);
@@ -30,9 +29,9 @@ function ElapsedTime(createddate) {
   diffInMilliSeconds -= minutes * 60;
 
   let difference = '';
-  if (days > 0) {
-    difference += days === 1 ? `${days} day, ` : `${days} days, `;
-  }
+  // if (days > 0) {
+  //   difference += days === 1 ? `${days} day, ` : `${days} days, `;
+  // }
 
   difference +=
     hours === 0 || hours === 1 ? `${hours} hour, ` : `${hours} hours, `;
@@ -40,7 +39,7 @@ function ElapsedTime(createddate) {
   difference +=
     minutes === 0 || hours === 1 ? `${minutes} minutes` : `${minutes} minutes`;
 
-  return difference;
+  return Math.floor(diffInMilliSeconds);
 }
 
 function RenderAlerts() {
@@ -87,9 +86,11 @@ function RenderAlerts() {
                         return (
                           <tr
                             className={
-                              ElapsedTime > 0 && ElapsedTime < 30
+                              ElapsedTime(alert.createddate) > 0 &&
+                              ElapsedTime(alert.createddate) < 30
                                 ? 'tddata'
-                                : ElapsedTime >= 30 && ElapsedTime >= 60
+                                : ElapsedTime(alert.createddate) >= 30 &&
+                                  ElapsedTime(alert.createddate) < 60
                                 ? 'tddataorangealert'
                                 : 'tddataredalert'
                             }
@@ -105,14 +106,8 @@ function RenderAlerts() {
                             <td className="tddata">{alert.createddate}</td>
                             <td className="tddata">
                               {ElapsedTime(alert.createddate)}
+                              {''} Minutes
                             </td>
-
-                            {/* <td className={ElapsedTime > 0 && ElapsedTime < 30 ? 'tddata' : ElapsedTime > 30 && ElapsedTime < 60 ? 'tddataorangealert' : 'tddataredalert'}>{alert.clubname}</td>
-                              <td className={ElapsedTime > 0 && ElapsedTime < 30 ? 'emoji' : ElapsedTime > 30 && ElapsedTime < 60 ? 'emojiorangealert' : 'emojiredalert'}>{String.fromCodePoint(parseInt(alert.reactionvalue, 16))}</td>
-                              <td className={ElapsedTime > 0 && ElapsedTime < 30 ? 'tddata' : ElapsedTime > 30 && ElapsedTime < 60 ? 'tddataorangealert' : 'tddataredalert'}>{alert.member}</td>
-                              <td className={ElapsedTime > 0 && ElapsedTime < 30 ? 'tddata' : ElapsedTime > 30 && ElapsedTime < 60 ? 'tddataorangealert' : 'tddataredalert'}>{alert.activities}</td>
-                              <td className={ElapsedTime > 0 && ElapsedTime < 30 ? 'tddata' : ElapsedTime > 30 && ElapsedTime < 60 ? 'tddataorangealert' : 'tddataredalert'}>{alert.createddate}</td>
-                              <td className={ElapsedTime > 0 && ElapsedTime < 30 ? 'tddata' : ElapsedTime > 30 && ElapsedTime < 60 ? 'tddataorangealert' : 'tddataredalert'}>{ElapsedTime(alert.createddate)}</td> */}
                           </tr>
                         );
                       })}
