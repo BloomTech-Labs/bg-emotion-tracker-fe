@@ -25,41 +25,13 @@ const StyledView = styled.header`
   align-items: center;
 `;
 
-// const data = [
-//     {
-//       memberId: 'testmember1',
-//       clubname: 'Anderson',
-//       reactionvalue: 1,
-//       activityname: 'kickball',
-//     },
-//     {
-//         memberId: 'testmember2',
-//         clubname: 'Morton',
-//         reactionvalue: 2,
-//         activityname: 'basketball',
-//     },
-//     {
-//         memberId: 'testmember3',
-//         clubname: 'Anderson',
-//         reactionvalue: 1,
-//         activityname: 'studyhall',
-//     },
-//   ];
-
-//   memberReaction {
-//       memberId: 'testmember1',
-//       clubname: 'Anderson',
-//       reactionvalue: '',
-//       activityname: '',
-//   }
-
 const sampleTableData = {
   rows: [
     {
       member: 'Member ID',
       clubname: 'Club Name',
       reactionvalue: 'Reaction Value',
-      activity: 'Activity',
+      activities: 'Activity',
     },
   ],
   columns: [
@@ -78,7 +50,7 @@ const sampleTableData = {
     {
       title: 'Reaction Value',
       dataIndex: 'reactionvalue',
-      render: text => <p>{text}</p>,
+      render: text => <p>{String.fromCodePoint(parseInt(text, 16))}</p>,
       key: '3',
     },
     {
@@ -92,28 +64,28 @@ const sampleTableData = {
 
 export default function RenderReactionsTable() {
   const context = useContext(AdminContext);
-  const [tableData, setTableData] = useState([]);
+  const [tableData, setTableData] = useState(sampleTableData);
 
   useEffect(() => {
     reactionDataToTableData();
   }, [context]);
 
   const fetchMembersReaction = () => {
-    getMembersReaction(context);
+    getMembersReaction("'authState'", context);
   };
 
   useEffect(() => {
     fetchMembersReaction();
-  });
+  }, []);
 
   const reactionDataToTableData = () => {
     const newRows = [];
     context.memberReactions.forEach(reaction => {
       const newRow = {
-        memberId: reaction.member,
+        member: reaction.member,
         clubname: reaction.clubname,
         reactionvalue: reaction.reactionvalue,
-        activity: reaction.activities,
+        activities: reaction.activities,
       };
       newRows.push(newRow);
     });
@@ -122,9 +94,6 @@ export default function RenderReactionsTable() {
       rows: newRows,
     });
   };
-
-  console.log(context.memberReactions);
-  console.log(tableData);
 
   return (
     <LayoutContainer>
