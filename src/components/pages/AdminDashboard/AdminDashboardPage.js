@@ -2,7 +2,16 @@ import React, { useState, useEffect, useContext } from 'react';
 import { LayoutContainer } from '../../common';
 import NavBar from '../../common/NavBar';
 import NavMenu from '../../common/NavMenu';
-import { Layout, Card, Dropdown, Button, Menu } from 'antd';
+import {
+  Layout,
+  Card,
+  Dropdown,
+  Button,
+  Menu,
+  Select,
+  DatePicker,
+  Space,
+} from 'antd';
 import { DownOutlined, StockOutlined } from '@ant-design/icons';
 import Plot from 'react-plotly.js';
 import { getClubs, getFeedback } from '../../../state/actions';
@@ -11,10 +20,11 @@ import './AdminDashboardPage.css';
 import axios from 'axios';
 
 const { Content, Sider } = Layout;
+const { RangePicker } = DatePicker;
 
 function RenderHomePage() {
   const context = useContext(AdminContext);
-  const [whichOption, setWhichOption] = useState('Anderson');
+  const [whichClub, setWhichClub] = useState('Anderson');
   const [authtoken, setAuthtoken] = useState('');
   const [plotData, setPlotData] = useState('');
 
@@ -26,42 +36,28 @@ function RenderHomePage() {
     }
   }, []);
 
-  function getYValues(str) {
-    const output = [];
-    const [temp] = context.feedback.filter(club => club.clubname === str);
-    temp?.activityReactionRatings?.forEach(activity => {
-      output.push(activity.activityrating);
-    });
-    return output;
-  }
+  let activities = [
+    'Club Checkin',
+    'Club Checkout',
+    'Music',
+    'Soccer',
+    'Basketball',
+  ];
+  const activitymenu = (
+    <Menu>
+      {activities.map(item => (
+        <Menu.Item key={item.activityid}>{item}</Menu.Item>
+      ))}
+    </Menu>
+  );
 
-  function getXValues(str) {
-    const output = [];
-    const [temp] = context.feedback.filter(club => club.clubname === str);
-    temp?.activityReactionRatings?.forEach(activity => {
-      output.push(activity.activityname);
-    });
-    return output;
-  }
-
-  const dt = {
-    x: [],
-    y: [],
-    type: 'bar',
-    mode: 'lines+markers',
-    marker: { color: 'blue' },
-  };
-
-  dt.y = getYValues(whichOption);
-  dt.x = getXValues(whichOption);
-
-  const menu = (
+  const clubMenu = (
     <Menu className="menu-club">
       {context.clubs.map(club => (
         <Menu.Item
           key={club.clubid}
           icon={<StockOutlined />}
-          onClick={() => setWhichOption(club.clubname)}
+          onClick={() => setWhichClub(club.clubname)}
           className="menu-club"
         >
           {club.clubname}
@@ -86,36 +82,95 @@ function RenderHomePage() {
 
   return (
     <LayoutContainer>
-      <NavBar titleName="Admin Dashboard" />
+      <NavBar titleName={whichClub} />
       <Layout>
         <Sider width={230} className="navSider">
           <NavMenu />
         </Sider>
         <Content>
-          <Dropdown overlay={menu}>
+          <Dropdown overlay={clubMenu}>
             <Button size={'large'} className="pick-a-club">
               CHOOSE CLUB <DownOutlined />
             </Button>
           </Dropdown>
           <div className="card-container">
-            <Card
-              title={whichOption}
-              extra={<a href="/leaderboard">Leaderboard</a>}
-              style={{ width: 600, height: 500 }}
-              className="graph-holder"
-            >
+            <Card size="big" className="graph-holder">
+              <div className="selections">
+                <Dropdown overlay={activitymenu} trigger={['click']}>
+                  <a
+                    className="ant-dropdown-link"
+                    onClick={e => e.preventDefault()}
+                  >
+                    Choose Activity <DownOutlined />
+                  </a>
+                </Dropdown>
+                <div className="timebox">
+                  <span>Choose Date: &nbsp;</span>
+                  <RangePicker></RangePicker>
+                </div>
+              </div>
+
+              <span className="title">Check In</span>
+              <span className="desc">
+                Percentage of sentiment for all of Check-in
+              </span>
+
               {plotData != '' ? (
                 <Plot
+                  className="Plot"
                   data={plotData.data}
                   layout={{
-                    width: 500,
-                    height: 400,
+                    colorway: plotData.layout.colorway,
+                    align: '0 auto',
+                  }}
+                />
+              ) : (
+                <div></div>
+              )}
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam
+              </p>
+            </Card>
+
+            <Card size="big" className="graph-holder">
+              <div className="selections">
+                <Dropdown overlay={activitymenu} trigger={['click']}>
+                  <a
+                    className="ant-dropdown-link"
+                    onClick={e => e.preventDefault()}
+                  >
+                    Choose Activity <DownOutlined />
+                  </a>
+                </Dropdown>
+                <div className="timebox">
+                  <span>Choose Date: &nbsp;</span>
+                  <RangePicker></RangePicker>
+                </div>
+              </div>
+
+              <span className="title">Check In</span>
+              <span className="desc">
+                Percentage of sentiment for all of Check-in
+              </span>
+
+              {plotData != '' ? (
+                <Plot
+                  className="Plot"
+                  data={plotData.data}
+                  layout={{
                     colorway: plotData.layout.colorway,
                   }}
                 />
               ) : (
                 <div></div>
               )}
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam
+              </p>
             </Card>
           </div>
         </Content>
