@@ -113,10 +113,6 @@
     transform: scale(2);
   }
 
-  .tddata {
-    transform: scale(1.5);
-  }
-
   .tddataredalert {
     background-color: tomato;
     color: white;
@@ -125,8 +121,9 @@
 
   .tddataorangealert {
     background-color: gold;
-    color: white;
-    transform: scale(1.5);
+    color: black;
+    font-weight: bold;
+    
   }
 
   .trclass {
