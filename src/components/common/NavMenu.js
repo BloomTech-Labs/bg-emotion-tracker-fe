@@ -17,9 +17,9 @@ import { AdminContext, UserContext } from '../../state/contexts';
 import { useHistory } from 'react-router';
 
 const NavMenu = props => {
-  const context = useContext(UserContext);
+  // const context = useContext(UserContext);
   const adminContext = useContext(AdminContext);
-  const [whichClub, setWhichClub] = useState('Anderson');
+  // const [whichClub, setWhichClub] = useState('Anderson');
 
   const num = adminContext.memberReactions;
 
@@ -35,7 +35,7 @@ const NavMenu = props => {
         <Menu.Item
           key={club.clubid}
           icon={<StockOutlined />}
-          onClick={() => setWhichClub(club.clubname)}
+          onClick={() => props.setWhichClub(club.clubname)}
           className="menu-club"
         >
           {club.clubname}
@@ -111,7 +111,7 @@ const NavMenu = props => {
 
       {(role === 'ADMIN' || role === 'CD') && (
         <Menu.Item
-          key="6"
+          key="7"
           icon={<UpSquareOutlined />}
           onClick={() => history.push('/allreactions')}
         >
@@ -121,7 +121,7 @@ const NavMenu = props => {
 
       {(role === 'ADMIN' || role === 'CD') && (
         <Menu.Item
-          key="7"
+          key="8"
           icon={<BellOutlined />}
           onClick={() => history.push('/alerts')}
         >
@@ -131,7 +131,7 @@ const NavMenu = props => {
       )}
 
       <Menu.Item
-        key="8"
+        key="9"
         icon={<LogoutOutlined />}
         onClick={() => history.push('/logout')}
       >

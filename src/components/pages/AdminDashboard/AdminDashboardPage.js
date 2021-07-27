@@ -24,7 +24,7 @@ const { RangePicker } = DatePicker;
 
 function RenderHomePage() {
   const context = useContext(AdminContext);
-  const [whichClub, setWhichClub] = useState('Anderson');
+  const [whichClub, setWhichClub] = useState('');
   const [authtoken, setAuthtoken] = useState('');
   const [plotData, setPlotData] = useState('');
 
@@ -112,10 +112,10 @@ function RenderHomePage() {
 
   return (
     <LayoutContainer>
-      <NavBar titleName={whichClub} />
+      <NavBar titleName={whichClub == '' ? 'Admin Dashboard' : whichClub} />
       <Layout>
         <Sider width={230} className="navSider">
-          <NavMenu />
+          <NavMenu setWhichClub={setWhichClub} />
         </Sider>
         <Content>
           <Dropdown overlay={clubMenu}>
