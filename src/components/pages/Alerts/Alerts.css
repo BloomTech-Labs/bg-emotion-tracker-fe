@@ -109,24 +109,35 @@
     }
   } */
 
+  .tddata {
+    font-size: x-large;
+    text-align: center;
+  }
+
   .emoji{
-    transform: scale(2);
+    
+    font-size: x-large;
   }
 
   .tddataredalert {
     background-color: tomato;
     color: white;
-    
+    font-size: larger;
+  }
+
+  .tddataredalert:hover {
+    color: black;
   }
 
   .tddataorangealert {
     background-color: gold;
     color: black;
     font-weight: bold;
+    font-size: larger
     
   }
 
   .trclass {
-    font-size: larger;
+    font-size: x-large;
   }
 
