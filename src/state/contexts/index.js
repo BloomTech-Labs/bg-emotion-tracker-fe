@@ -7,9 +7,11 @@ export const AdminContextProvider = ({ children }) => {
   const [members, setMembers] = useState([]);
   const [programs, setPrograms] = useState([]);
   const [clubs, setClubs] = useState([]);
+  const [reactions, setReactions] = useState([]);
   const [memberReactions, setMemberReactions] = useState([]);
   const [leaderboard, setLeaderboard] = useState([]);
   const [feedback, setFeedback] = useState([]);
+  const [club, setClub] = useState('');
 
   return (
     <AdminContext.Provider
@@ -26,6 +28,10 @@ export const AdminContextProvider = ({ children }) => {
         setLeaderboard,
         feedback,
         setFeedback,
+        club,
+        setClub,
+        reactions,
+        setReactions,
       }}
     >
       {children}
@@ -59,7 +65,7 @@ export const YouthContextProvider = ({ children }) => {
   const [activity, setActivity] = useState({});
   const [activities, setActivities] = useState([]);
   const [clubs, setClubs] = useState([]);
-  const [club, setClub] = useState({});
+  const [club, setClub] = useState('');
   const [id, setId] = useState('');
   const [exists, setExists] = useState('');
   const [emoji, setEmoji] = useState('');

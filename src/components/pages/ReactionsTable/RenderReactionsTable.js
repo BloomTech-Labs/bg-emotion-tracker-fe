@@ -5,7 +5,7 @@ import NavMenu from '../../common/NavMenu';
 import { LayoutContainer } from '../../common/';
 import NavBar from '../../common/NavBar';
 import { AdminContext } from '../../../state/contexts';
-import { getMembersReaction } from '../../../state/actions';
+import { getMembersReaction, getReactions } from '../../../state/actions';
 import { LoadingComponent } from '../../common';
 import './ReactionsTable.css';
 import styled from 'styled-components';
@@ -71,7 +71,7 @@ export default function RenderReactionsTable() {
   }, [context]);
 
   const fetchMembersReaction = () => {
-    getMembersReaction("'authState'", context);
+    getReactions(context);
   };
 
   useEffect(() => {
@@ -80,15 +80,16 @@ export default function RenderReactionsTable() {
 
   const reactionDataToTableData = () => {
     const newRows = [];
-    context.memberReactions.forEach(reaction => {
+    context.reactions.forEach(reaction => {
       const newRow = {
-        member: reaction.member,
-        clubname: reaction.clubname,
-        reactionvalue: reaction.reactionvalue,
-        activities: reaction.activities,
+        member: reaction.member.memberid,
+        clubname: reaction.clubactivity.club.clubname,
+        reactionvalue: reaction.reaction.reactionvalue,
+        activities: reaction.clubactivity.activity.activityname,
       };
       newRows.push(newRow);
     });
+
     setTableData({
       ...tableData,
       rows: newRows,
@@ -103,7 +104,7 @@ export default function RenderReactionsTable() {
           <NavMenu />
         </Sider>
         <Content>
-          {context.memberReactions.length === 0 ? (
+          {context.reactions.length === 0 ? (
             <div className="centered-content flex">
               <LoadingComponent message="loading" />
             </div>
