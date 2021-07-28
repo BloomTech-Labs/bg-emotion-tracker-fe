@@ -118,30 +118,16 @@ function RenderHomePage() {
           <NavMenu setWhichClub={setWhichClub} />
         </Sider>
         <Content>
-          <Dropdown overlay={clubMenu}>
-            <Button size={'large'} className="pick-a-club">
-              CHOOSE CLUB <DownOutlined />
-            </Button>
-          </Dropdown>
           <div className="card-container">
             <Card size="big" className="graph-holder">
               <div className="selections">
-                <Dropdown overlay={activitymenu} trigger={['click']}>
-                  <a
-                    className="ant-dropdown-link"
-                    onClick={e => e.preventDefault()}
-                  >
-                    Choose Activity <DownOutlined />
-                  </a>
-                </Dropdown>
                 <div className="timebox">
                   <span>Choose Date: &nbsp;</span>
                   <RangePicker></RangePicker>
                 </div>
               </div>
 
-              <span className="title">Check In</span>
-              <span className="desc">
+              <span className="title">
                 Percentage of sentiment for all of Check-in
               </span>
 
@@ -152,45 +138,6 @@ function RenderHomePage() {
                   layout={{
                     colorway: plotData.layout.colorway,
                     align: '0 auto',
-                  }}
-                />
-              ) : (
-                <div></div>
-              )}
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam
-              </p>
-            </Card>
-
-            <Card size="big" className="graph-holder">
-              <div className="selections">
-                <Dropdown overlay={activitymenu} trigger={['click']}>
-                  <a
-                    className="ant-dropdown-link"
-                    onClick={e => e.preventDefault()}
-                  >
-                    Choose Activity <DownOutlined />
-                  </a>
-                </Dropdown>
-                <div className="timebox">
-                  <span>Choose Date: &nbsp;</span>
-                  <RangePicker></RangePicker>
-                </div>
-              </div>
-
-              <span className="title">Check In</span>
-              <span className="desc">
-                Percentage of sentiment for all of Check-in
-              </span>
-
-              {plotData != '' ? (
-                <Plot
-                  className="Plot"
-                  data={plotData.data}
-                  layout={{
-                    colorway: plotData.layout.colorway,
                   }}
                 />
               ) : (

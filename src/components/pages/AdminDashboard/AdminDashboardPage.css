@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-evenly;
     margin-top: 3%;
+    width: 100%;
 }
 
 .pick-a-club {
@@ -27,4 +28,8 @@
     background-color:white;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     transition: .3s ease-in;
+}
+
+.Plot {
+    width: 1000px;
 }

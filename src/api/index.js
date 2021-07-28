@@ -351,6 +351,25 @@ const updateMember = memberid => {
   );
 };
 
+const getMembersReactions = () => {
+  let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
+
+  const promise = axios.get(
+    `https://bg-emotion-tracker-be-b.herokuapp.com/memberreactions/memberreactions`,
+    {
+      headers: {
+        Authorization: `Bearer ${tokenObj.accessToken.accessToken}`,
+      },
+    }
+  );
+
+  const dataPromise = promise.then(response => {
+    return response.data;
+  });
+
+  return dataPromise;
+};
+
 export {
   sleep,
   getLeaderboard,
@@ -369,5 +388,6 @@ export {
   fetchMembersReaction,
   fetchLeaderboard,
   updateMember,
+  getMembersReactions,
   baseUrl,
 };
