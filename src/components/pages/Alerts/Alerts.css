@@ -112,11 +112,14 @@
   .tddata {
     font-size: x-large;
     text-align: center;
+    align-items: center;
   }
 
   .emoji{
     
     font-size: x-large;
+    text-align: center;
+    align-items: center;
   }
 
   .tddataredalert {
@@ -141,3 +144,41 @@
     font-size: x-large;
   }
 
+  .alerts-table-div {
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+
+  .pageNumbers{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    font-weight: bold;
+ 
+  }
+
+  .pageNumbers li{
+    padding: 10px;
+    border: 1px solid gray;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 5px;
+  }
+
+  .pageNumbers li.active{
+    background-color: black;
+    color: #ddd;
+    font-weight: bold;
+  }
+
+  .pageNumbers li button {
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  .paginationDiv {
+    
+  }
