@@ -99,7 +99,7 @@ function RenderHomePage() {
   function graph() {
     axios
       .get(
-        'http://bg-ds-api-dev.us-east-1.elasticbeanstalk.com/vis/pie/sentiment'
+        'http://bg-ds-api-dev.us-east-1.elasticbeanstalk.com/vis/pie/Anderson/Basketball/2021-07-01/2021-07-31'
       )
       .then(res => {
         console.log('response res.data: ', JSON.parse(res.data));

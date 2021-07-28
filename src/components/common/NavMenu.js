@@ -12,7 +12,6 @@ import {
   DownOutlined,
   CheckCircleOutlined,
   StockOutlined,
-  TableOutlined,
 } from '@ant-design/icons';
 import { AdminContext, UserContext } from '../../state/contexts';
 import { useHistory } from 'react-router';
@@ -113,7 +112,7 @@ const NavMenu = props => {
       {(role === 'ADMIN' || role === 'CD') && (
         <Menu.Item
           key="7"
-          icon={<TableOutlined />}
+          icon={<UpSquareOutlined />}
           onClick={() => history.push('/allreactions')}
         >
           Manage Reactions
@@ -126,7 +125,7 @@ const NavMenu = props => {
           icon={<BellOutlined />}
           onClick={() => history.push('/alerts')}
         >
-          Alerts &nbsp;
+          Alerts
           <Badge count={num.length} className="badge" />
         </Menu.Item>
       )}
