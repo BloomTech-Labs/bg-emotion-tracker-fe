@@ -78,7 +78,6 @@ export default function RenderReactionsTable() {
     fetchMembersReaction();
   }, []);
 
-  console.log(context);
   const reactionDataToTableData = () => {
     const newRows = [];
     context.reactions.forEach(reaction => {
@@ -90,6 +89,7 @@ export default function RenderReactionsTable() {
       };
       newRows.push(newRow);
     });
+
     setTableData({
       ...tableData,
       rows: newRows,
@@ -104,7 +104,7 @@ export default function RenderReactionsTable() {
           <NavMenu />
         </Sider>
         <Content>
-          {context.memberReactions.length === 0 ? (
+          {context.reactions.length === 0 ? (
             <div className="centered-content flex">
               <LoadingComponent message="loading" />
             </div>
