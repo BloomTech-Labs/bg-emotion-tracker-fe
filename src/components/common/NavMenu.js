@@ -125,7 +125,7 @@ const NavMenu = props => {
           icon={<BellOutlined />}
           onClick={() => history.push('/alerts')}
         >
-          Alerts
+          Alerts &nbsp;
           <Badge count={num.length} className="badge" />
         </Menu.Item>
       )}
