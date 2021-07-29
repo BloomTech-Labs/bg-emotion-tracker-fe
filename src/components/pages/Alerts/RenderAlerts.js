@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { LayoutContainer } from '../../common/';
 import NavBar from '../../common/NavBar';
 import './Alerts.css';
-import { Layout, Card, Table, Pagination, Button } from 'antd';
+import { Layout, Card, Table, Pagination, Button, Input, Row, Col } from 'antd';
 import NavMenu from '../../common/NavMenu';
 import { AdminContext } from '../../../state/contexts';
 import { getMembersReaction } from '../../../state/actions';
@@ -69,6 +69,11 @@ function RenderAlerts() {
   const [pageNumberLimit, setPageNumberLimit] = useState(5);
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearch = e => {
+    setSearchTerm(e.target.value);
+  };
 
   // Start Coding for pagination
   const pages = [];
@@ -119,11 +124,11 @@ function RenderAlerts() {
     indexOfLastItem
   );
 
-  const renderPageNumbers = pages.map(number => {
+  const renderPageNumbers = pages.map((number, key) => {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
       return (
         <li
-          key={number}
+          key={key}
           id={number}
           onClick={handleClick}
           className={currentPage == number ? 'active' : null}
@@ -175,13 +180,25 @@ function RenderAlerts() {
             </Table>
           </div> */}
           {/* end ant-design code for a table */}
+
           <Card>
+            <Row>
+              <Col className="searchCol" span={4}>
+                <Input
+                  onChange={handleSearch}
+                  type="text"
+                  placeholder="Search..."
+                />
+              </Col>
+            </Row>
+
+            <br />
             {context.memberReactions.length === 0 ? (
               <div className="centered-content flex">
                 <LoadingComponent message="loading" />
               </div>
             ) : (
-              <table>
+              <table className="tableClass">
                 <thead>
                   <tr className="trclass">
                     <th>Club Name</th>
@@ -193,34 +210,52 @@ function RenderAlerts() {
                   </tr>
                 </thead>
                 <tbody>
-                  {currentItems.map(alert => (
-                    <tr
-                      className={
-                        ElapsedTime(alert.createddate) > 0 &&
-                        ElapsedTime(alert.createddate) < 30
-                          ? 'tddata'
-                          : ElapsedTime(alert.createddate) >= 30 &&
-                            ElapsedTime(alert.createddate) < 60
-                          ? 'tddataorangealert'
-                          : 'tddataredalert'
+                  {currentItems
+                    .filter(val => {
+                      if (searchTerm == '') {
+                        return val;
+                      } else if (
+                        val.clubname
+                          .toLowerCase()
+                          .includes(searchTerm.toLowerCase()) ||
+                        val.member.toString().includes(searchTerm) ||
+                        val.activities
+                          .toLowerCase()
+                          .includes(searchTerm.toLowerCase())
+                      ) {
+                        return val;
                       }
-                    >
-                      <td className="tddata">{alert.clubname}</td>
-                      <td className="emoji">
-                        {String.fromCodePoint(
-                          parseInt(alert.reactionvalue, 16)
-                        )}
-                      </td>
-                      <td className="tddata">{alert.member}</td>
-                      <td className="tddata">{alert.activities}</td>
-                      <td className="tddata">
-                        {alert.createddate.slice(11, 16)}
-                      </td>
-                      <td className="tddata">
-                        {ElapsedTime(alert.createddate)} Minutes
-                      </td>
-                    </tr>
-                  ))}
+                    })
+                    .map((alert, key) => (
+                      <tr
+                        className={
+                          ElapsedTime(alert.createddate) > 0 &&
+                          ElapsedTime(alert.createddate) < 30
+                            ? 'tddata'
+                            : ElapsedTime(alert.createddate) >= 30 &&
+                              ElapsedTime(alert.createddate) < 60
+                            ? 'tddataorangealert'
+                            : 'tddataredalert'
+                        }
+                      >
+                        <td key={key} className="tddata">
+                          {alert.clubname}
+                        </td>
+                        <td className="emoji">
+                          {String.fromCodePoint(
+                            parseInt(alert.reactionvalue, 16)
+                          )}
+                        </td>
+                        <td className="tddata">{alert.member}</td>
+                        <td className="tddata">{alert.activities}</td>
+                        <td className="tddata">
+                          {alert.createddate.slice(11, 16)}
+                        </td>
+                        <td className="tddata">
+                          {ElapsedTime(alert.createddate)} Minutes
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
             )}

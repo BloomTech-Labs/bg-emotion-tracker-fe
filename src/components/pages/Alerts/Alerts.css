@@ -135,13 +135,17 @@
   .tddataorangealert {
     background-color: gold;
     color: black;
-    font-weight: bold;
     font-size: larger
     
   }
 
   .trclass {
     font-size: x-large;
+    border: 1.5px solid black
+  }
+
+  .tableClass {
+    border: 1.5px solid black
   }
 
   .alerts-table-div {
@@ -160,16 +164,14 @@
 
   .pageNumbers li{
     padding: 10px;
-    border: 1px solid gray;
+    border: 1px solid rgb(65, 63, 63);
     cursor: pointer;
     font-size: 1.2rem;
-    border-radius: 5px;
   }
 
   .pageNumbers li.active{
     background-color: black;
     color: #ddd;
-    font-weight: bold;
   }
 
   .pageNumbers li button {
@@ -179,6 +181,6 @@
     font-size: 1.1rem;
   }
 
-  .paginationDiv {
-    
+  .searchCol {
+    border: 1px solid lightgrey
   }
