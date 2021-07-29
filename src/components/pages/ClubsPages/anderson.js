@@ -43,7 +43,6 @@ function Anderson() {
 
   const getClubActivity = () => {
     getClubData(context.club.clubid).then(res => {
-      console.log(res);
       setActivities(res.activities);
     });
   };
@@ -80,7 +79,6 @@ function Anderson() {
         'http://bg-ds-api-dev.us-east-1.elasticbeanstalk.com/vis/pie/Anderson/Basketball/2021-07-01/2021-07-31'
       )
       .then(res => {
-        console.log('response res.data: ', JSON.parse(res.data));
         setPlotData(JSON.parse(res.data));
       })
       .catch(err => {
