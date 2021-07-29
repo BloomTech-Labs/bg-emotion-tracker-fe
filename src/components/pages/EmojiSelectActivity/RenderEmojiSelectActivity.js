@@ -8,6 +8,7 @@ import { LayoutContainer } from '../../common';
 import { baseUrl } from '../../../api/index';
 import { YouthContext } from '../../../state/contexts/index';
 import '../../../styles/styles.less';
+import { getEmojisData } from '../../../state/actions';
 
 const StyledEmojiSelectActivity = styled.header`
   display: flex;
@@ -62,6 +63,7 @@ function RenderEmojiSelectActivity(props) {
 
   useEffect(() => {
     youthContext.setEmoji(memberReaction);
+    getEmojisData(youthContext);
   }, []);
 
   const onChange = e => {
@@ -93,7 +95,7 @@ function RenderEmojiSelectActivity(props) {
       <StyledEmojiSelectActivity>
         {/* <h2>Select Emoji</h2> */}
         <StyledEmojis>
-          <button
+          {/* <button
             className="emojiBtn"
             style={emojiStyles}
             onClick={onChange}
@@ -133,7 +135,27 @@ function RenderEmojiSelectActivity(props) {
             value={'1F61E'}
           >
             😞
-          </button>
+          </button> */}
+          {youthContext.emojis != [] ? (
+            youthContext.emojis.map(emoji => {
+              if (emoji.reactionint % 1 == 0) {
+                return (
+                  <button
+                    key={emoji.reactionid}
+                    className="emojiBtn"
+                    style={emojiStyles}
+                    onClick={onChange}
+                    value={emoji.reactionvalue}
+                  >
+                    {String.fromCodePoint(parseInt(emoji.reactionvalue, 16))}
+                  </button>
+                );
+              }
+              return '';
+            })
+          ) : (
+            <></>
+          )}
         </StyledEmojis>
 
         <StyledButton

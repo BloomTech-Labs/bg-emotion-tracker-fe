@@ -5,9 +5,10 @@ import NavBar from '../../common/NavBar';
 import { Button } from 'antd';
 import axios from 'axios';
 import { LayoutContainer } from '../../common';
-import { baseUrl } from '../../../api/index';
+import { baseUrl, getEmojis } from '../../../api/index';
 import { YouthContext } from '../../../state/contexts/index';
 import '../../../styles/styles.less';
+import { getEmojisData } from '../../../state/actions';
 
 const StyledEmojiSelectCheck = styled.header`
   display: flex;
@@ -61,6 +62,7 @@ function RenderEmojiSelectCheck(props) {
 
   useEffect(() => {
     youthContext.setEmoji(memberReaction);
+    getEmojisData(youthContext);
   }, []);
 
   const onChange = e => {
@@ -93,7 +95,7 @@ function RenderEmojiSelectCheck(props) {
         {/* <h2>Select Emoji</h2> */}
 
         <StyledEmojis>
-          <button
+          {/* <button
             className="emojiBtn"
             style={emojiStyles}
             onClick={onChange}
@@ -256,7 +258,23 @@ function RenderEmojiSelectCheck(props) {
             value={'1F624'}
           >
             😤
-          </button>
+          </button> */}
+          {youthContext.emojis != [] ? (
+            youthContext.emojis.map(emoji => {
+              return (
+                <button
+                  className="emojiBtn"
+                  style={emojiStyles}
+                  onClick={onChange}
+                  value={emoji.reactionvalue}
+                >
+                  {String.fromCodePoint(parseInt(emoji.reactionvalue, 16))}
+                </button>
+              );
+            })
+          ) : (
+            <></>
+          )}
         </StyledEmojis>
 
         <StyledButton

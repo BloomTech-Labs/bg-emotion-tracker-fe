@@ -69,6 +69,7 @@ export const YouthContextProvider = ({ children }) => {
   const [id, setId] = useState('');
   const [exists, setExists] = useState('');
   const [emoji, setEmoji] = useState('');
+  const [emojis, setEmojis] = useState([]);
 
   return (
     <YouthContext.Provider
@@ -87,6 +88,8 @@ export const YouthContextProvider = ({ children }) => {
         setClub,
         activities,
         setActivities,
+        emojis,
+        setEmojis,
       }}
     >
       {children}

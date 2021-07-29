@@ -17,6 +17,7 @@ import {
   getMembersData,
   postMemberData,
   getMembersReactions,
+  getEmojis,
 } from '../../api';
 
 export const SET_USER = 'SET_USER';
@@ -157,6 +158,16 @@ export const getReactions = async context => {
   await getMembersReactions()
     .then(res => {
       context.setReactions(res);
+    })
+    .catch(error => {
+      return error;
+    });
+};
+
+export const getEmojisData = async context => {
+  await getEmojis()
+    .then(res => {
+      context.setEmojis(res);
     })
     .catch(error => {
       return error;
