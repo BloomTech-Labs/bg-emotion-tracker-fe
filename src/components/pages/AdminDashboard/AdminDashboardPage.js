@@ -98,9 +98,7 @@ function RenderHomePage() {
 
   function graph() {
     axios
-      .get(
-        'http://bg-ds-api-dev.us-east-1.elasticbeanstalk.com/vis/pie/Anderson/Basketball/2021-07-01/2021-07-31'
-      )
+      .get('http://bg-ds-api-dev.us-east-1.elasticbeanstalk.com/vis/daily/')
       .then(res => {
         console.log('response res.data: ', JSON.parse(res.data));
         setPlotData(JSON.parse(res.data));
