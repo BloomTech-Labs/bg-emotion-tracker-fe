@@ -100,7 +100,7 @@ function RenderHomePage() {
     axios
       .get('http://bg-ds-api-dev.us-east-1.elasticbeanstalk.com/vis/daily/')
       .then(res => {
-        console.log('response res.data: ', JSON.parse(res.data));
+        
         setPlotData(JSON.parse(res.data));
       })
       .catch(err => {
