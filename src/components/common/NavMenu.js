@@ -15,11 +15,10 @@ import {
 } from '@ant-design/icons';
 import { AdminContext, UserContext } from '../../state/contexts';
 import { useHistory } from 'react-router';
+import { contextType } from 'qrcode.react';
 
 const NavMenu = props => {
-  // const context = useContext(UserContext);
   const adminContext = useContext(AdminContext);
-  // const [whichClub, setWhichClub] = useState('Anderson');
 
   const num = adminContext.memberReactions;
 
@@ -35,7 +34,10 @@ const NavMenu = props => {
         <Menu.Item
           key={club.clubid}
           icon={<StockOutlined />}
-          onClick={() => props.setWhichClub(club.clubname)}
+          onClick={() => {
+            adminContext.setClub(club);
+            history.push('/anderson');
+          }}
           className="menu-club"
         >
           {club.clubname}
@@ -60,7 +62,6 @@ const NavMenu = props => {
             <a
               onClick={e => {
                 e.preventDefault();
-                history.push('/anderson');
               }}
             >
               Choose Club <DownOutlined />

@@ -370,6 +370,29 @@ const getMembersReactions = () => {
   return dataPromise;
 };
 
+const getEmojis = () => {
+  let tokenObj = JSON.parse(localStorage.getItem('okta-token-storage'));
+
+  const promise = axios.get(
+    `https://bg-emotion-tracker-be-b.herokuapp.com/reactions/reactions`,
+    {
+      headers: {
+        Authorization: `Bearer ${tokenObj.accessToken.accessToken}`,
+      },
+    }
+  );
+
+  const dataPromise = promise
+    .then(response => {
+      return response.data;
+    })
+    .catch(err => {
+      console.log(err.response);
+    });
+
+  return dataPromise;
+};
+
 export {
   sleep,
   getLeaderboard,
@@ -389,5 +412,6 @@ export {
   fetchLeaderboard,
   updateMember,
   getMembersReactions,
+  getEmojis,
   baseUrl,
 };

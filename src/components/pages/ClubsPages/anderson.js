@@ -14,39 +14,45 @@ import {
 } from 'antd';
 import { DownOutlined, StockOutlined } from '@ant-design/icons';
 import Plot from 'react-plotly.js';
-import { getClub, getClubs, getFeedback } from '../../../state/actions';
+import { getClubs, getFeedback } from '../../../state/actions';
 import { AdminContext, AdminContextProvider } from '../../../state/contexts';
 import axios from 'axios';
 import '../ClubsPages/anderson.css';
+import { getClubData } from '../../../api';
 
 const { Content, Sider } = Layout;
 const { RangePicker } = DatePicker;
 
 function Anderson() {
   const context = useContext(AdminContext);
-  const [whichClub, setWhichClub] = useState('Anderson');
-  const [authtoken, setAuthtoken] = useState('');
+  const [activities, setActivities] = useState([]);
   const [plotData, setPlotData] = useState('');
+
   useEffect(() => {
-    getClub('authState', context);
     graph();
+    getClubActivity();
     getFeedback('authState', context);
     if (context.clubs.length === 0) {
       getClubs('authState', context);
     }
   }, []);
 
-  let activities = [
-    'Club Checkin',
-    'Club Checkout',
-    'Music',
-    'Soccer',
-    'Basketball',
-  ];
+  useEffect(() => {
+    getClubActivity();
+  }, [context.club]);
+
+  const getClubActivity = () => {
+    getClubData(context.club.clubid).then(res => {
+      setActivities(res.activities);
+    });
+  };
+
   const menu = (
     <Menu>
       {activities.map(item => (
-        <Menu.Item key={item.activityid}>{item}</Menu.Item>
+        <Menu.Item key={item.activity.activityid}>
+          {item.activity.activityname}
+        </Menu.Item>
       ))}
     </Menu>
   );
@@ -73,7 +79,6 @@ function Anderson() {
         'http://bg-ds-api-dev.us-east-1.elasticbeanstalk.com/vis/pie/Anderson/Basketball/2021-07-01/2021-07-31'
       )
       .then(res => {
-        console.log('response res.data: ', JSON.parse(res.data));
         setPlotData(JSON.parse(res.data));
       })
       .catch(err => {
@@ -83,7 +88,7 @@ function Anderson() {
 
   return (
     <LayoutContainer>
-      <NavBar titleName="Anderson" />
+      <NavBar titleName={context.club.clubname} />
       <Layout>
         <Sider width={230} className="navSider">
           <NavMenu />
