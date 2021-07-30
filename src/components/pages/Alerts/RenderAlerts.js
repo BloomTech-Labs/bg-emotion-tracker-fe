@@ -75,71 +75,72 @@ function RenderAlerts() {
     setSearchTerm(e.target.value);
   };
 
-  // Start Coding for pagination
-  const pages = [];
-  for (
-    let i = 1;
-    i <= Math.ceil(context.memberReactions.length / itemsPerPage);
-    i++
-  ) {
-    pages.push(i);
-  }
+  // Code for pagination ... needs bug fix, as when it is filtered, it doesn't update, so
+  // there are some pages with 1 or 2 items, and
+  // const pages = [];
+  // for (
+  //   let i = 1;
+  //   i <= Math.ceil(context.memberReactions.length / itemsPerPage);
+  //   i++
+  // ) {
+  //   pages.push(i);
+  // }
 
-  const handleClick = e => {
-    setCurrentPage(Number(e.target.id));
-  };
+  // const handleClick = e => {
+  //   setCurrentPage(Number(e.target.id));
+  // };
 
-  const handleNextButton = () => {
-    setCurrentPage(currentPage + 1);
+  // const handleNextButton = () => {
+  //   setCurrentPage(currentPage + 1);
 
-    if (currentPage + 1 > maxPageNumberLimit) {
-      setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
-      setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
-    }
-  };
+  //   if (currentPage + 1 > maxPageNumberLimit) {
+  //     setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
+  //     setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
+  //   }
+  // };
 
-  const handlePrevButton = () => {
-    setCurrentPage(currentPage - 1);
+  // const handlePrevButton = () => {
+  //   setCurrentPage(currentPage - 1);
 
-    if ((currentPage - 1) % pageNumberLimit == 0) {
-      setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
-      setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit);
-    }
-  };
+  //   if ((currentPage - 1) % pageNumberLimit == 0) {
+  //     setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
+  //     setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit);
+  //   }
+  // };
 
-  let pageIncrementBtn = null;
-  if (pages.length > maxPageNumberLimit) {
-    pageIncrementBtn = <li onClick={handlePrevButton}> &hellip;</li>;
-  }
+  // let pageIncrementBtn = null;
+  // if (pages.length > maxPageNumberLimit) {
+  //   pageIncrementBtn = <li onClick={handlePrevButton}> &hellip;</li>;
+  // }
 
-  let pageDecrementBtn = null;
-  if (pages.length > maxPageNumberLimit) {
-    pageDecrementBtn = <li onClick={handleNextButton}> &hellip;</li>;
-  }
+  // let pageDecrementBtn = null;
+  // if (pages.length > maxPageNumberLimit) {
+  //   pageDecrementBtn = <li onClick={handleNextButton}> &hellip;</li>;
+  // }
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = context.memberReactions.slice(
-    indexOfFirstItem,
-    indexOfLastItem
-  );
+  // const indexOfLastItem = currentPage * itemsPerPage;
+  // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  // const currentItems = context.memberReactions.slice(
+  //   indexOfFirstItem,
+  //   indexOfLastItem
+  // );
 
-  const renderPageNumbers = pages.map((number, key) => {
-    if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
-      return (
-        <li
-          key={key}
-          id={number}
-          onClick={handleClick}
-          className={currentPage == number ? 'active' : null}
-        >
-          {number}
-        </li>
-      );
-    } else {
-      return null;
-    }
-  });
+  // const renderPageNumbers = pages.map((number, key) => {
+  //   if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
+  //     return (
+  //       <li
+  //         key={key}
+  //         id={number}
+  //         onClick={handleClick}
+  //         className={currentPage == number ? 'active' : null}
+  //       >
+  //         {number}
+  //       </li>
+  //     );
+  //   } else {
+  //     return null;
+  //   }
+  // });
 
   // End Coding for pagination
 
@@ -210,7 +211,7 @@ function RenderAlerts() {
                   </tr>
                 </thead>
                 <tbody>
-                  {currentItems
+                  {context.memberReactions
                     .filter(val => {
                       if (searchTerm == '') {
                         return val;
@@ -259,7 +260,9 @@ function RenderAlerts() {
                 </tbody>
               </table>
             )}
-            <br />
+
+            {/* Render code for pagination */}
+            {/* <br />
 
             <ul className="pageNumbers">
               <li>
@@ -283,7 +286,7 @@ function RenderAlerts() {
                   Next &gt;
                 </Button>
               </li>
-            </ul>
+            </ul> */}
           </Card>
         </Content>
       </Layout>
