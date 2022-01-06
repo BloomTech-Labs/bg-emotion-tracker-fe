@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Menu, Badge, Dropdown } from 'antd';
 
 import {
@@ -7,15 +7,15 @@ import {
   LogoutOutlined,
   LineChartOutlined,
   CalendarOutlined,
-  UpSquareOutlined,
+  FireOutlined,
+  RightSquareOutlined,
   BellOutlined,
   DownOutlined,
   CheckCircleOutlined,
   StockOutlined,
 } from '@ant-design/icons';
-import { AdminContext, UserContext } from '../../state/contexts';
+import { AdminContext } from '../../state/contexts';
 import { useHistory } from 'react-router';
-import { contextType } from 'qrcode.react';
 
 const NavMenu = props => {
   const adminContext = useContext(AdminContext);
@@ -102,21 +102,21 @@ const NavMenu = props => {
 
       {(role === 'ADMIN' || role === 'CD') && (
         <Menu.Item
-          key="6"
-          icon={<UpSquareOutlined />}
-          onClick={() => history.push('/leaderboard')}
+          key="7"
+          icon={<RightSquareOutlined />}
+          onClick={() => history.push('/allreactions')}
         >
-          Leaderboard
+          Manage Reactions
         </Menu.Item>
       )}
 
       {(role === 'ADMIN' || role === 'CD') && (
         <Menu.Item
-          key="7"
-          icon={<UpSquareOutlined />}
-          onClick={() => history.push('/allreactions')}
+          key="6"
+          icon={<FireOutlined />}
+          onClick={() => history.push('/leaderboard')}
         >
-          Manage Reactions
+          Leaderboard
         </Menu.Item>
       )}
 

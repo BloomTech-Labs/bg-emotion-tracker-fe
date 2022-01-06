@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { ImportClubs } from './ImportClubs';
 import { AdminContext } from '../../../state/contexts';
 import { getClubs } from '../../../state/actions';
-import { PageHeader, Table } from 'antd';
+import { Table } from 'antd';
 import styled from 'styled-components';
 import { LayoutContainer } from '../../common/';
 import NavBar from '../../common/NavBar';
@@ -11,22 +11,20 @@ import NavMenu from '../../common/NavMenu';
 const { Content, Sider } = Layout;
 
 const StyledList = styled.div`
-  max-width: 1200px;
-  width: 1200px;
   max-width: 90%;
   margin: 3rem auto;
 `;
 const StyledView = styled.header`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 1%;
 `;
 
 const sampleTableData = {
   rows: [{ clubName: 'Club Name' }],
   columns: [
     {
-      title: 'Club Name',
+      title: 'Club Names',
       dataIndex: 'clubName',
       render: text => <p>{text}</p>,
       key: '1',
@@ -76,17 +74,12 @@ function ViewClubs(props) {
         <Content>
           <StyledList>
             <StyledView>
-              <PageHeader
-                className="site-page-header"
-                title={'Clubs'}
-                subTitle={`Sorted by clubs`}
-              />
               <ImportClubs fetchClubs={() => getClubs('authState', context)} />
             </StyledView>
             <Table
               columns={tableData.columns}
               dataSource={tableData.rows}
-              style={{ paddingLeft: 8 }}
+              size={'small'}
               pagination={{ position: ['none', 'bottomRight'] }}
             />
           </StyledList>
