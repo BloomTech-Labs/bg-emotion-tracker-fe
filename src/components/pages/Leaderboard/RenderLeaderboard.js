@@ -1,20 +1,72 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { LayoutContainer } from '../../common/';
 import NavBar from '../../common/NavBar';
-import './Leaderboard.css';
-import Tabs from '../../common/Tabs';
 import { Layout } from 'antd';
+import { Table } from 'antd';
 import NavMenu from '../../common/NavMenu';
 import { AdminContext } from '../../../state/contexts';
 import { getLeaderboard } from '../../../state/actions';
+import { LoadingComponent } from '../../common';
 import { UpOutlined, DownOutlined } from '@ant-design/icons';
+import styled from 'styled-components';
+
 const { Content, Sider } = Layout;
 
-function RenderLeaderboard(props) {
-  // Brings in context
-  const context = useContext(AdminContext);
+const StyledList = styled.div`
+  width: 90%;
+  margin: 3rem auto;
+`;
+const StyledView = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
-  // Sorts the leaderboard data from the backend by clubrating
+const sampleTableData = {
+  rows: [
+    {
+      member: 'Ranking',
+      clubname: 'Club Name',
+      reactionvalue: 'Rating',
+      activities: 'Percent Change',
+    },
+  ],
+  columns: [
+    {
+      title: 'Ranking',
+      dataIndex: 'ranking',
+      render: text => <p>{text}</p>,
+      key: '1',
+    },
+    {
+      title: 'Club Name',
+      dataIndex: 'clubname',
+      render: text => <p>{text}</p>,
+      key: '2',
+    },
+    {
+      title: 'Rating',
+      dataIndex: 'rating',
+      render: text => <p>{text}</p>,
+      key: '3',
+    },
+    {
+      title: 'Percent Change',
+      dataIndex: 'change',
+      render: text => <p>{text}</p>,
+      key: '4',
+    },
+  ],
+};
+
+function RenderLeaderboard(props) {
+  const context = useContext(AdminContext);
+  const [tableData, setTableData] = useState(sampleTableData);
+
+  useEffect(() => {
+    reactionDataToTableData();
+  }, [context]);
+
   function sortLeaderboard(arr) {
     var len = arr.length;
     for (var i = len - 1; i >= 0; i--) {
@@ -29,21 +81,35 @@ function RenderLeaderboard(props) {
     return arr;
   }
 
-  // Gets leaderboard data if context hasn't come in
+  const fetchLeaderboard = () => {
+    getLeaderboard('authstate', context);
+  };
 
   useEffect(() => {
-    if (context.leaderboard.length === 0) {
-      getLeaderboard('authState', context);
-    }
+    fetchLeaderboard();
   }, []);
 
-  const sortedLeaderboard = sortLeaderboard(context.leaderboard).reverse();
+  const reactionDataToTableData = () => {
+    const newRows = [];
+    const sortedLeaderboard = sortLeaderboard(context.leaderboard).reverse();
+    for (var i = 0; i < sortedLeaderboard.length; i++) {
+      sortedLeaderboard[i].ranking = i + 1;
+    }
+    sortedLeaderboard.forEach(el => {
+      const newRow = {
+        ranking: el.ranking,
+        clubname: el.clubname,
+        rating: el.clubrating.toFixed(3),
+        change: ((el.clubrating.toFixed(3) / 1) * 100).toFixed(2) + '%',
+      };
+      newRows.push(newRow);
+    });
 
-  // Adds ranking to each leaderboard item
-
-  for (var i = 0; i < sortedLeaderboard.length; i++) {
-    sortedLeaderboard[i].ranking = i + 1;
-  }
+    setTableData({
+      ...tableData,
+      rows: newRows,
+    });
+  };
 
   return (
     <LayoutContainer>
@@ -53,56 +119,22 @@ function RenderLeaderboard(props) {
           <NavMenu />
         </Sider>
         <Content>
-          <Tabs>
-            <div label="CHECK-IN VS. CHECK-OUT">
-              <ul className="leaderboard-ul">
-                {sortedLeaderboard.map(elem => (
-                  <div className={`li-container`} key={elem.clubrating}>
-                    <li>
-                      <h2 className="place">{elem.ranking}</h2>
-                      <h2 className="place">{elem.clubname}</h2>
-                      <h2 className="rating">{elem.clubrating.toFixed(3)}</h2>
-                      <div className="chevron">
-                        {elem.clubrating > 0 ? (
-                          <UpOutlined
-                            style={{ fontSize: '32px', color: 'green' }}
-                          />
-                        ) : (
-                          <DownOutlined
-                            style={{ fontSize: '32px', color: 'red' }}
-                          />
-                        )}
-                      </div>
-                    </li>
-                  </div>
-                ))}
-              </ul>
+          {context.length === 0 ? (
+            <div className="centered-content flex">
+              <LoadingComponent message="loading" />
             </div>
-            <div label="MOST IMPROVED LAST MONTH">
-              <ul className="leaderboard-ul">
-                {sortedLeaderboard.map(elem => (
-                  <div className={`li-container`} key={elem.clubrating}>
-                    <li>
-                      <h2 className="place">{elem.ranking}</h2>
-                      <h2 className="place">{elem.clubname}</h2>
-                      <h2 className="rating">{elem.clubrating.toFixed(3)}</h2>
-                      <div className="chevron">
-                        {elem.clubrating > 0 ? (
-                          <UpOutlined
-                            style={{ fontSize: '32px', color: 'green' }}
-                          />
-                        ) : (
-                          <DownOutlined
-                            style={{ fontSize: '32px', color: 'red' }}
-                          />
-                        )}
-                      </div>
-                    </li>
-                  </div>
-                ))}
-              </ul>
-            </div>
-          </Tabs>
+          ) : (
+            <StyledView>
+              <StyledList>
+                <Table
+                  columns={tableData.columns}
+                  dataSource={tableData.rows}
+                  size={'small'}
+                  pagination={{ position: ['none', 'bottomRight'] }}
+                />
+              </StyledList>
+            </StyledView>
+          )}
         </Content>
       </Layout>
     </LayoutContainer>
