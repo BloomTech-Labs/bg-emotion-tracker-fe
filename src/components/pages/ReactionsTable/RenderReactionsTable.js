@@ -1,15 +1,14 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Table, Space } from 'antd';
+import { Table } from 'antd';
 import { Layout } from 'antd';
 import NavMenu from '../../common/NavMenu';
 import { LayoutContainer } from '../../common/';
 import NavBar from '../../common/NavBar';
 import { AdminContext } from '../../../state/contexts';
-import { getMembersReaction, getReactions } from '../../../state/actions';
+import { getReactions } from '../../../state/actions';
 import { LoadingComponent } from '../../common';
 import './ReactionsTable.css';
 import styled from 'styled-components';
-import { fetchMembersReaction } from '../../../api';
 
 const { Content, Sider } = Layout;
 
