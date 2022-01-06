@@ -32,6 +32,45 @@ const sampleTableData = {
     {
       title: 'Club Name',
       dataIndex: 'clubName',
+      filters: [
+        {
+          text: 'Anderson',
+          value: 'Anderson',
+        },
+        {
+          text: 'Catlin',
+          value: 'Catlin',
+        },
+        {
+          text: 'Grossman',
+          value: 'Grossman',
+        },
+        {
+          text: 'Johnston',
+          value: 'Johnston',
+        },
+        {
+          text: 'Marley',
+          value: 'Marley',
+        },
+        {
+          text: 'Morton',
+          value: 'Morton',
+        },
+        {
+          text: 'Notter',
+          value: 'Notter',
+        },
+        {
+          text: 'Stelle',
+          value: 'Stelle',
+        },
+        {
+          text: 'Jefferson',
+          value: 'Jefferson',
+        },
+      ],
+      onFilter: (value, record) => record.clubName.indexOf(value) === 0,
       render: text => <p>{text}</p>,
       key: '2',
     },

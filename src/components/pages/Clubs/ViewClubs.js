@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { ImportClubs } from './ImportClubs';
 import { AdminContext } from '../../../state/contexts';
 import { getClubs } from '../../../state/actions';
 import { Table } from 'antd';
@@ -13,11 +12,6 @@ const { Content, Sider } = Layout;
 const StyledList = styled.div`
   max-width: 90%;
   margin: 3rem auto;
-`;
-const StyledView = styled.header`
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 1%;
 `;
 
 const sampleTableData = {
@@ -73,9 +67,6 @@ function ViewClubs(props) {
         </Sider>
         <Content>
           <StyledList>
-            <StyledView>
-              <ImportClubs fetchClubs={() => getClubs('authState', context)} />
-            </StyledView>
             <Table
               columns={tableData.columns}
               dataSource={tableData.rows}

@@ -16,11 +16,6 @@ const StyledList = styled.div`
   width: 90%;
   margin: 3rem auto;
 `;
-const StyledView = styled.header`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
 
 const sampleTableData = {
   rows: [
@@ -41,6 +36,45 @@ const sampleTableData = {
     {
       title: 'Club Name',
       dataIndex: 'clubname',
+      filters: [
+        {
+          text: 'Anderson',
+          value: 'Anderson',
+        },
+        {
+          text: 'Catlin',
+          value: 'Catlin',
+        },
+        {
+          text: 'Grossman',
+          value: 'Grossman',
+        },
+        {
+          text: 'Johnston',
+          value: 'Johnston',
+        },
+        {
+          text: 'Marley',
+          value: 'Marley',
+        },
+        {
+          text: 'Morton',
+          value: 'Morton',
+        },
+        {
+          text: 'Notter',
+          value: 'Notter',
+        },
+        {
+          text: 'Stelle',
+          value: 'Stelle',
+        },
+        {
+          text: 'Jefferson',
+          value: 'Jefferson',
+        },
+      ],
+      onFilter: (value, record) => record.clubname.indexOf(value) === 0,
       render: text => <p>{text}</p>,
       key: '2',
     },
@@ -106,16 +140,14 @@ export default function RenderReactionsTable() {
               <LoadingComponent message="loading" />
             </div>
           ) : (
-            <StyledView>
-              <StyledList>
-                <Table
-                  columns={tableData.columns}
-                  dataSource={tableData.rows}
-                  size={'small'}
-                  pagination={{ position: ['none', 'bottomRight'] }}
-                />
-              </StyledList>
-            </StyledView>
+            <StyledList>
+              <Table
+                columns={tableData.columns}
+                dataSource={tableData.rows}
+                size={'small'}
+                pagination={{ position: ['none', 'bottomRight'] }}
+              />
+            </StyledList>
           )}
         </Content>
       </Layout>

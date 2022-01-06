@@ -7,7 +7,6 @@ import NavMenu from '../../common/NavMenu';
 import { AdminContext } from '../../../state/contexts';
 import { getLeaderboard } from '../../../state/actions';
 import { LoadingComponent } from '../../common';
-import { UpOutlined, DownOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 
 const { Content, Sider } = Layout;
