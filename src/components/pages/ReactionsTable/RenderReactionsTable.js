@@ -14,9 +14,7 @@ import { fetchMembersReaction } from '../../../api';
 const { Content, Sider } = Layout;
 
 const StyledList = styled.div`
-  max-width: 1200px;
-  width: 1200px;
-  max-width: 90%;
+  width: 90%;
   margin: 3rem auto;
 `;
 const StyledView = styled.header`
@@ -114,7 +112,7 @@ export default function RenderReactionsTable() {
                 <Table
                   columns={tableData.columns}
                   dataSource={tableData.rows}
-                  style={{ paddingLeft: 8 }}
+                  size={'small'}
                   pagination={{ position: ['none', 'bottomRight'] }}
                 />
               </StyledList>

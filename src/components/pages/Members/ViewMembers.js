@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { ViewSingleton, LayoutContainer } from '../../common';
+import { LayoutContainer } from '../../common';
 import NavBar from '../../common/NavBar';
 import { ImportMembers } from './ImportMember';
 import { AdminContext } from '../../../state/contexts';
-import { PageHeader, Table } from 'antd';
+import { Table } from 'antd';
 import { getMembers } from '../../../state/actions';
 import styled from 'styled-components';
 import NavMenu from '../../common/NavMenu';
@@ -12,15 +12,13 @@ import { updateMember } from '../../../api';
 const { Content, Sider } = Layout;
 
 const StyledList = styled.div`
-  max-width: 1200px;
-  width: 1200px;
   max-width: 90%;
   margin: 3rem auto;
 `;
 const StyledView = styled.header`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 1%;
 `;
 
 function ViewMembers(props) {
@@ -30,7 +28,7 @@ function ViewMembers(props) {
     rows: [{ memberId: 'Member ID', action: '', tableid: null }],
     columns: [
       {
-        title: 'Member id',
+        title: 'Member IDs',
         dataIndex: 'memberId',
         render: (text, record) => (
           <p
@@ -98,26 +96,19 @@ function ViewMembers(props) {
   return (
     <LayoutContainer>
       <NavBar titleName={'Manage Members'} backgroundColor="#293845" />
-
       <Layout>
-        <Sider className="navSider" width={230}>
+        <Sider className="navSider" width={200}>
           <NavMenu />
         </Sider>
-
         <Content>
           <StyledList>
             <StyledView>
-              <PageHeader
-                className="site-page-header"
-                title={'Members'}
-                subTitle={`Sorted by ID`}
-              />
               <ImportMembers fetchMembers={fetchMembers} />
             </StyledView>
             <Table
               columns={tableData.columns}
               dataSource={tableData.rows}
-              style={{ paddingLeft: 8 }}
+              size={'small'}
               pagination={{ position: ['none', 'bottomRight'] }}
             />
           </StyledList>

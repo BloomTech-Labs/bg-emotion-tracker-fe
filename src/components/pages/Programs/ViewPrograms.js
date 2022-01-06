@@ -10,6 +10,16 @@ import { Layout } from 'antd';
 import NavMenu from '../../common/NavMenu';
 const { Content, Sider } = Layout;
 
+const StyledList = styled.div`
+  max-width: 90%;
+  margin: 3rem auto;
+`;
+const StyledView = styled.header`
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1%;
+`;
+
 const sampleTableData = {
   rows: [{ programName: 'Program Name', activityId: '0', clubId: '0' }],
   columns: [
@@ -27,18 +37,6 @@ const sampleTableData = {
     },
   ],
 };
-
-const StyledList = styled.div`
-  max-width: 1200px;
-  width: 1200px;
-  max-width: 90%;
-  margin: 3rem auto;
-`;
-const StyledView = styled.header`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
 
 function ViewPrograms() {
   const [tableData, setTableData] = useState(sampleTableData);
@@ -62,7 +60,6 @@ function ViewPrograms() {
       club.activities.forEach(activity => {
         const newRow = {
           programName: activity.activity.activityname,
-          // activityId: activity.activity.activityid,
           clubName: club.clubname,
         };
         newRows.push(newRow);
@@ -78,23 +75,18 @@ function ViewPrograms() {
     <LayoutContainer>
       <NavBar titleName={'Manage Programs'} backgroundColor="#293845" />
       <Layout>
-        <Sider className="navSider" width={230}>
+        <Sider className="navSider" width={210}>
           <NavMenu />
         </Sider>
         <Content>
           <StyledList>
             <StyledView>
-              <PageHeader
-                className="site-page-header"
-                title={'Programs'}
-                subTitle={`Sorted by clubs`}
-              />
               <ImportPrograms fetchActivities={fetchActivities} />
             </StyledView>
             <Table
               columns={tableData.columns}
               dataSource={tableData.rows}
-              style={{ paddingLeft: 5 }}
+              size={'small'}
               pagination={{ position: ['none', 'bottomRight'] }}
             />
           </StyledList>
