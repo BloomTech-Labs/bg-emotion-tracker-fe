@@ -79,13 +79,16 @@ function ViewMembers(props) {
   // Updates table with new data
   const memberDataToTableData = () => {
     const newRows = [];
+    let count = 1;
     context.members.forEach(member => {
       const newRow = {
+        key: count,
         memberId: member.memberid,
         action: member.active ? 'Deactivate' : 'Activate',
         tableid: member.member_table_id,
       };
       newRows.push(newRow);
+      count++;
     });
     setTableData({
       ...tableData,
@@ -108,6 +111,7 @@ function ViewMembers(props) {
             <Table
               columns={tableData.columns}
               dataSource={tableData.rows}
+              rowKey={'key'}
               size={'small'}
               pagination={{ position: ['none', 'bottomRight'] }}
             />

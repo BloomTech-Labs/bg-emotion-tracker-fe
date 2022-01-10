@@ -24,6 +24,7 @@ const sampleTableData = {
       clubname: 'Club Name',
       reactionvalue: 'Reaction Value',
       activities: 'Activity',
+      key: 'Key',
     },
   ],
   columns: [
@@ -111,14 +112,17 @@ export default function RenderReactionsTable() {
 
   const reactionDataToTableData = () => {
     const newRows = [];
+    let count = 1;
     context.reactions.forEach(reaction => {
       const newRow = {
+        key: count,
         member: reaction.member.memberid,
         clubname: reaction.clubactivity.club.clubname,
         reactionvalue: reaction.reaction.reactionvalue,
         activities: reaction.clubactivity.activity.activityname,
       };
       newRows.push(newRow);
+      count++;
     });
 
     setTableData({
@@ -136,7 +140,7 @@ export default function RenderReactionsTable() {
         </Sider>
         <Content>
           {context.reactions.length === 0 ? (
-            <div className="centered-content flex">
+            <div className="loading">
               <LoadingComponent message="loading" />
             </div>
           ) : (
@@ -144,6 +148,7 @@ export default function RenderReactionsTable() {
               <Table
                 columns={tableData.columns}
                 dataSource={tableData.rows}
+                rowKey={'key'}
                 size={'small'}
                 pagination={{ position: ['none', 'bottomRight'] }}
               />

@@ -10,7 +10,7 @@ function LoadingComponent(props) {
       className="loading-spinner"
       tip={message}
       size="large"
-      style={{ margin: '0 auto', fontWeight: '600' }}
+      style={{ margin: '0 auto', fontWeight: '800' }}
     />
   );
 }

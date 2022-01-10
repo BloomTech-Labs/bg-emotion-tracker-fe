@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const baseUrl = 'https://bg-emotion-tracker-be-b.herokuapp.com';
-let URI = 'https://bg-emotion-tracker-be-a.herokuapp.com/';
+let URI = 'https://bg-emotion-tracker-be-b.herokuapp.com/';
 if (process.env.NODE_ENV === 'production') {
   URI = process.env.REACT_APP_API_URI;
 }
