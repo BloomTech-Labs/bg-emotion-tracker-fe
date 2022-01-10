@@ -98,9 +98,8 @@ function RenderHomePage() {
 
   function graph() {
     axios
-      .get('http://bg-ds-api-dev.us-east-1.elasticbeanstalk.com/vis/daily/')
+      .get('http://bg-ds-api-dev.us-east-1.elasticbeanstalk.com/vis/daily')
       .then(res => {
-        
         setPlotData(JSON.parse(res.data));
       })
       .catch(err => {

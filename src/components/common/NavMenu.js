@@ -76,7 +76,7 @@ const NavMenu = props => {
           icon={<UserOutlined />}
           onClick={() => history.push('/manage-members')}
         >
-          Manage Members
+          Members
         </Menu.Item>
       )}
 
@@ -86,7 +86,7 @@ const NavMenu = props => {
           icon={<CalendarOutlined />}
           onClick={() => history.push('/manage-programs')}
         >
-          Manage Programs
+          Programs
         </Menu.Item>
       )}
 
@@ -96,7 +96,7 @@ const NavMenu = props => {
           icon={<TeamOutlined />}
           onClick={() => history.push('/manage-clubs')}
         >
-          Manage Clubs
+          Clubs
         </Menu.Item>
       )}
 
@@ -106,7 +106,7 @@ const NavMenu = props => {
           icon={<RightSquareOutlined />}
           onClick={() => history.push('/allreactions')}
         >
-          Manage Reactions
+          Reactions
         </Menu.Item>
       )}
 
@@ -127,7 +127,7 @@ const NavMenu = props => {
           onClick={() => history.push('/alerts')}
         >
           Alerts
-          <Badge count={num.length} className="badge" />
+          <Badge count={num.length} className="badge" size={'small'} />
         </Menu.Item>
       )}
 

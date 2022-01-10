@@ -8,17 +8,13 @@ import { AdminContext } from '../../../state/contexts';
 import { getLeaderboard } from '../../../state/actions';
 import { LoadingComponent } from '../../common';
 import styled from 'styled-components';
+import './../ReactionsTable/ReactionsTable.css';
 
 const { Content, Sider } = Layout;
 
 const StyledList = styled.div`
   width: 90%;
   margin: 3rem auto;
-`;
-const StyledView = styled.header`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 `;
 
 const sampleTableData = {
@@ -119,20 +115,19 @@ function RenderLeaderboard(props) {
         </Sider>
         <Content>
           {context.length === 0 ? (
-            <div className="centered-content flex">
+            <div className="loading">
               <LoadingComponent message="loading" />
             </div>
           ) : (
-            <StyledView>
-              <StyledList>
-                <Table
-                  columns={tableData.columns}
-                  dataSource={tableData.rows}
-                  size={'small'}
-                  pagination={{ position: ['none', 'bottomRight'] }}
-                />
-              </StyledList>
-            </StyledView>
+            <StyledList>
+              <Table
+                columns={tableData.columns}
+                dataSource={tableData.rows}
+                rowKey={'clubname'}
+                size={'small'}
+                pagination={{ position: ['none', 'bottomRight'] }}
+              />
+            </StyledList>
           )}
         </Content>
       </Layout>
