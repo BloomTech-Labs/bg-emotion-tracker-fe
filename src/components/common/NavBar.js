@@ -72,7 +72,6 @@ function NavBar(props) {
           </div>
         )}
         <h1>{props.titleName}</h1>
-        <img src={logo} alt="Boys & Girls Club of Greater Conejo Valley" />
       </StyledNavBar>
     </>
   );
